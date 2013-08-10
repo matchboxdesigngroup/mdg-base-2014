@@ -3,7 +3,7 @@
 
 	<!--[if lt IE 7]><div class="alert"><?php _e( 'You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.', 'roots' ); ?></div><![endif]-->
 
-	<?php
+<?php
 do_action( 'get_header' );
 // Use Bootstrap's navbar if enabled in config.php
 if ( current_theme_supports( 'bootstrap-top-navbar' ) ) {
@@ -13,7 +13,7 @@ if ( current_theme_supports( 'bootstrap-top-navbar' ) ) {
 }
 ?>
 
-	<div class="wrap container" role="document">
+	<div class="wrap container sticky-footer-wrap" role="document">
 		<div class="content row">
 			<div class="main <?php echo roots_main_class(); ?>" role="main">
 				<?php include roots_template_path(); ?>

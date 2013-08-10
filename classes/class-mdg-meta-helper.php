@@ -9,7 +9,26 @@
 
 ************************************************************/
 
-class MDG_Meta_Helper {
+class MDG_Meta_Helper extends MDG_Generic {
+
+	public function __construct()
+	{
+		add_action( 'admin_menu' , array( &$this, 'mdg_remove_metaboxes' ) );
+	} // __construct()
+
+	/**
+	 * Removes unwanted meta boxes
+	 *
+	 * @return null
+	 */
+	public function mdg_remove_metaboxes() {
+		// hide stuff for all post types
+		$post_types = get_post_types();
+		foreach ( $post_types as $post_type ) {
+			remove_meta_box( 'postcustom', $post_type, 'normal' );
+		} // foreach()
+	} // mdg_remove_metaboxes()
+
 
 	public function mdg_make_form( $args = array() ) {
 
