@@ -8,12 +8,9 @@ class MDG_Ajax extends MDG_Generic
 {
 	/**
 	 * Class constructor
-	 *
-	 * @param array $config Class configuration options
 	 */
-	function __construct( $config = array() )
+	function __construct()
 	{
-
 	} // __construct()
 } // END Class MDG_Ajax()
 
