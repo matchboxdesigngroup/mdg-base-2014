@@ -277,6 +277,8 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 	/**
 	 * Retrieves all of the custom transient titles for the current post type
 	 *
+	 * @internal
+	 *
 	 * @return array All of the custom transient titles for the current post type
 	 */
 	protected function _get_custom_transient_title() {
@@ -287,6 +289,8 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 
 	/**
 	 * Sets custom transient titles for the current post type
+	 *
+	 * @internal
 	 *
 	 * @param  array  $custom_query_args      Optional. Any arguments accepted by the WP_Query class http://codex.wordpress.org/Class_Reference/WP_Query
 	 * @param  string $custom_transient_title Optional. An unique string to be appended to the default transient title
@@ -310,6 +314,8 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 	 * transient for cache purposes.  It also allows for custom queries, when using custom queries you
 	 * need to specify a custom transient title.  Also you will not retrieve the posts like the basic one
 	 * by using $this->posts;. You will instead need to use the return value to access the posts.
+	 *
+	 * @internal
 	 *
 	 * @param  array $custom_query_args      Optional. Any arguments accepted by the WP_Query class http://codex.wordpress.org/Class_Reference/WP_Query
 	 * @param  string $custom_transient_title Optional. An unique string to be appended to the default transient title

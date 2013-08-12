@@ -66,6 +66,7 @@ class MDG_Generic {
 	} // make_dummy_content()
 
 
+
 	/**
 	 * Truncates a string with the supplied information
 	 *
@@ -100,6 +101,7 @@ class MDG_Generic {
 
 		return $string;
 	} // truncate_string()
+
 
 
 	/**
@@ -153,11 +155,13 @@ class MDG_Generic {
 	} // pagination()
 
 
+
 	/**
 	 * Retrieve the post excerpt.
 	 *
-	 * @param  integer     $id             Post ID to retrieve the excerpt for
-	 * @return string
+	 * @param  integer $id Post ID to retrieve the excerpt for
+	 *
+	 * @return string       The post excerpt
 	 */
 	public function get_the_excerpt( $id = null ) {
 		if ( is_null( $id ) )
@@ -186,7 +190,7 @@ class MDG_Generic {
 		}
 
 		return $excerpt;
-	}
+	} // get_the_excerpt()
 
 
 
@@ -272,7 +276,14 @@ class MDG_Generic {
 
 
 
-	public function output_prev_next_nav( $post = array() ) {
+	/**
+	 * Outputs previous and next navigation when supplied a post object
+	 *
+	 * @param  STDObject $post WP post object
+	 *
+	 * @return Void
+	 */
+	public function output_prev_next_nav( $post ) {
 
 		$post_type = get_post_type( $post );
 
@@ -354,19 +365,24 @@ class MDG_Generic {
 		echo '</div>';
 
 		echo '</section>';
-	}
+	} // output_prev_next_nav()
 
 
 
-	public function next_post( $post = array() ) {
-		// appearently there are some issues with next_post_link() and custom post types
-		// so i guess we're gonna make our own :)
-
-		// please pass me a post object and i'll return an array of
-		// the previuos and next posts
-
-		// attention!!! notice that i'm flipping previous and next so an older post will
-		// be previous etc... (that happens in the return)
+	/**
+	 * Retrieves the next and previous post with the same sort of functionality for the built in post types
+	 *
+	 * appearently there are some issues with next_post_link() and custom post types
+	 * so i guess we're gonna make our own :)
+	 *
+	 * @param  STDObject $post WP post object
+	 *
+	 * @return string[] $return {
+	 * 	@type integer $prev The ID of the previous post
+	 * 	'next' => $prev
+	 * }
+	 */
+	public function next_post( $post ) {
 		$query_args = array(
 			'post_type'      => $post->post_type,
 			'post_status'    => 'publish',
@@ -378,66 +394,72 @@ class MDG_Generic {
 			$query_args['orderby'] = 'title';
 			$query_args['order']   = 'ASC';
 		}
-
 		$query = new WP_Query( $query_args );
-
 		$posts = $query->get_posts();
 		$ids   = array();
 
-		foreach ( $posts as $item ) {
+		foreach ( $posts as $item )
 			array_push( $ids, $item->ID );
-		}
 
 		$current = $post->ID;
-		$nextkey = array_search( $current, $ids, true ) + 1;
-		$prevkey = array_search( $current, $ids, true ) - 1;
+		$prev_key = array_search( $current, $ids, true ) + 1;
+		$next_key = array_search( $current, $ids, true ) - 1;
 
-		if ( $nextkey == count( $sorting ) ) {
-			// reached end of array, reset
-			$nextkey = 0;
-		}
+		if ( $prev_key == count( $sorting ) )
+			$prev_key = 0; // reached end of array, reset
 
-		if ( $prevkey == 1 ) {
-			// beginning of array, reset
-			$prevkey = 0;
-		}
+		if ( $next_key == 1 )
+			$next_key = 0; // beginning of array, reset
 
-		$next = $ids[$nextkey];
-		$prev = $ids[$prevkey];
+		$prev = $ids[$prev_key];
+		$next = $ids[$next_key];
 
 		return array(
-			'prev' => $next,
-			'next' => $prev
+			'prev' => $prev,
+			'next' => $next
 		);
-	}
+	} // next_post()
 
 
 
-	public function get_attachments( $post = array(), $args = array() ) {
-		// pass me a post array and i'll return an array of it's attachements
-
+	/**
+	 * Retrieves attachments for the supplied parent post ID
+	 *
+	 * @param  integer  $post_id The parent post ID
+	 * @param  string[] $args {
+	 * 	@type integer $numberposts Optional. The amount of attachments to return, defaults to -1
+	 * }
+	 *
+	 * @return array             The retrieved attachments
+	 */
+	public function get_attachments( $post_id, $args = array() ) {
 		// try to get the global post in case it wasn't passed
-		if ( empty( $post ) ) {
+		if ( empty( $post ) )
 			global $post;
-		}
 
-		$limit = isset( $args['limit'] ) ? $args['limit'] : 99;
+		extract( $args );
 
-		$args     = array(
-			'post_type'  => 'attachment',
-			'numberposts'  => $limit,
-			'post_status'  => null,
-			'order'   => 'ASC',
-			'orderby'   => 'menu_order',
-			'post_parent'  => $post->ID
+		$numberposts = ( isset( $numberposts ) ) ? $numberposts : -1;
+
+		$args = array(
+			'post_type'   => 'attachment',
+			'numberposts' => $numberposts,
+			'post_status' => null,
+			'order'       => 'ASC',
+			'orderby'     => 'menu_order',
+			'post_parent' => $post_id
 		);
 
-		$attachments   = get_posts( $args );
+		$attachments = get_posts( $args );
 
 		return $attachments;
-	}
+	} // get_attachments()
 
 
+
+	/**
+	 * @todo Audit and document this method
+	 */
 	public function print_attachments( $args = array() ) {
 
 		$limit        = isset( $args['limit'] )        ? $args['limit']        : '';
@@ -503,9 +525,13 @@ class MDG_Generic {
 			echo '</div>';
 
 		} // end if $attachments
-	}
+	} // print_attachments()
 
 
+
+	/**
+	 * @todo Audit and document this method
+	 */
 	public function roll_template( $posts = array() ) {
 		// pass me an array of posts, and i'll return
 		// the html of the layout (list)
@@ -568,13 +594,16 @@ class MDG_Generic {
 		}
 
 		return $html;
-	}
+	} // roll_template()
 
 
 
+	/**
+	 * @todo Audit and document this method
+	 */
 	public function determine_teaser_format( $post = array() ) {
 		// pass a post object and this guy will return the html for the teaser
-		// based on things like title lenght etc...
+		// based on things like title length etc...
 		$title_length = strlen( $post->post_title );
 
 		// only show excert if titles are shorter than this
@@ -592,10 +621,17 @@ class MDG_Generic {
 		// }
 
 		return $html;
-	}
+	} // determine_teaser_format()
 
 
 
+	/**
+	 * Retrieves the YouTube video ID from the supplied embed code
+	 *
+	 * @param  string $embed YouTube embed code
+	 *
+	 * @return [type]        [description]
+	 */
 	public function get_youtube_id( $embed ) {
 
 		// pass me a link or an embed code and I'll return the youtube id for the video
@@ -605,10 +641,13 @@ class MDG_Generic {
 		}
 
 		return $youtube_id;
-	}
+	} // get_youtube_id()
 
 
 
+	/**
+	 * @todo Audit and document this method
+	 */
 	public function get_video( $post = array() ) {
 		// pass me a post array, and i'll return the html
 		// for the video (if one exists
@@ -628,10 +667,13 @@ class MDG_Generic {
 		}
 
 		return $html;
-	}
+	} // get_video()
 
 
 
+	/**
+	 * @todo Audit and document this method
+	 */
 	public function clean_multi_input( $multi_input = '' ) {
 		// this converts the multi_input from it's saved state (fake sorta json object thingy)
 		// to a php array
@@ -643,10 +685,13 @@ class MDG_Generic {
 		$multi_input = json_decode( $multi_input );
 
 		return $multi_input;
-	}
+	} // clean_multi_input()
 
 
 
+	/**
+	 * @todo Audit and document this method
+	 */
 	public function group_multi_input( $multi_input = '' ) {
 
 		// this method will get the multi_input, clean them via this->clean_multi_input, and return them in a grouped array
@@ -684,10 +729,13 @@ class MDG_Generic {
 		}
 
 		return $grouped_array;
-	}
+	} // group_multi_input()
 
 
 
+	/**
+	 * @todo Audit and document this method
+	 */
 	public function get_img_urls( $attachment_id = '' ) {
 		// pass id of attachment
 		// return array of image urls for different sizes
@@ -709,8 +757,7 @@ class MDG_Generic {
 			'medium'  => $attachment_full_url[0],
 			'large'   => $attachment_large_url[0]
 		);
-	}
-
-}
+	} // get_img_urls()
+} // END Class MDG_Generic()
 global $mdg_generic;
 $mdg_generic = new MDG_Generic();
