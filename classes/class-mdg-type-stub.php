@@ -32,18 +32,20 @@ class MDG_Type_Stub extends MDG_Type_Base
 	 * @return ArrayObject Custom meta fields
 	 */
 	public function get_custom_meta_fields() {
+		$description = '<div class="mdg-note"></div>';
 		return array(
+			array(
+				'label'   => '',
+				'desc'    => $description,
+				'id'      => 'info',
+				'type'    => 'info',
+				'visible' => false
+			),
 			array(
 				'label' => 'Title/Position',
 				'desc'  => '',
 				'id'    => $prefix.'Title',
 				'type'  => 'text'
-			),
-			array(
-				'label' => 'Quote',
-				'desc'  => '',
-				'id'    => $prefix.'Quote',
-				'type'  => 'textarea'
 			)
 		);
 	} // get_custom_meta_fields()
