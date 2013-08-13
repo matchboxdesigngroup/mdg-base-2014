@@ -1,59 +1,80 @@
 <?php
-/************************************************************
 
-	Meta helpers should hold some grunt work for making
-	custom meta
-
-	This class should contain global work that should work
-	for any environment (that's the idea anyway)
-
-************************************************************/
-
+/**
+ * Meta helpers should hold some grunt work for making
+ * custom meta. This class should contain global work that should work
+ * for any environment (that's the idea anyway).
+ */
 class MDG_Meta_Helper extends MDG_Generic {
 
+	/**
+	 * Class Constructor
+	 */
 	public function __construct()
 	{
-		add_action( 'admin_menu' , array( &$this, 'mdg_remove_metaboxes' ) );
+		$this->_add_actions();
 	} // __construct()
 
+
+
 	/**
-	 * Removes unwanted meta boxes
+	 * All action hooks that are required by the class using add_action.
 	 *
-	 * @return null
+	 * @return Void
+	 */
+	protected function _add_actions()
+	{
+		// Save custom meta action hook
+		add_action( 'save_post', array( &$this, 'save_meta' ) );
+
+		// Make meta box action hook
+		add_action( 'add_meta_boxes', array( &$this, 'make_meta_box' ) );
+
+		// Remove metaboxes action hook
+		add_action( 'admin_menu' , array( &$this, 'mdg_remove_metaboxes' ) );
+	} // _add_actions()
+
+
+
+	/**
+	 * Removes unwanted meta boxes from all post types.
+	 *
+	 * @return Void
 	 */
 	public function mdg_remove_metaboxes() {
 		// hide stuff for all post types
 		$post_types = get_post_types();
-		foreach ( $post_types as $post_type ) {
+		foreach ( $post_types as $post_type )
 			remove_meta_box( 'postcustom', $post_type, 'normal' );
-		} // foreach()
 	} // mdg_remove_metaboxes()
 
 
+
+	/**
+	 * Will cycle through your fields array, and create your form
+	 *
+	 * Your fields array should look something like the example provided
+	 * and you can pass this array via	$args (e.g. $helper->mdg_make_form(array('meta_fields' => $fields_array);
+	 *	array(
+	 *		array(
+	 *			'label'	=> 'Field one',
+	 *			'desc'	=> 'helper text,
+	 *			'id'	=> 'fieldOneID',
+	 *			'type'	=> 'text'
+	 *		),
+	 *		array(
+	 *			'label'	=> 'Field Two',
+	 *			'desc'	=> 'helper text,
+	 *			'id'	=> 'fieldTwoID',
+	 *			'type'	=> 'text'
+	 *		)
+	 *	);
+	 *
+	 * @param  array  $args [description]
+	 *
+	 * @return [type]       [description]
+	 */
 	public function mdg_make_form( $args = array() ) {
-
-		/*
-		*mdg_make_form() will cycle through your fields array, and create your form
-
-		*Your fields array should look something like...
-		*array(
-		*	array(
-		*		'label'	=> 'Field one',
-		*		'desc'	=> 'helper text,
-		*		'id'	=> 'fieldOneID',
-		*		'type'	=> 'text'
-		*	),
-		*	array(
-		*		'label'	=> 'Field Two',
-		*		'desc'	=> 'helper text,
-		*		'id'	=> 'fieldTwoID',
-		*		'type'	=> 'text'
-		*	)
-		*)
-
-		*And you can pass this array via	$args (e.g. $helper->mdg_make_form(array('meta_fields' => $fields_array);
-		*/
-
 		global $post;
 		$meta_fields = isset( $args['meta_fields'] ) ? $args['meta_fields'] : '';
 
@@ -300,9 +321,92 @@ class MDG_Meta_Helper extends MDG_Generic {
 		} // end foreach
 
 		return $actual_meta;
-
-
 	}
 
 
-}
+
+	/**
+	 * Override this method to create custom meta fields.
+	 *
+	 * By returning an empty array in this method, we're telling the class to not to
+	 * do anything will custom meta (e.g. meta boxes, and saving meta etc...)
+	 * The overridden method should return an array like..
+	 * return array(
+	 * 	array(
+	 * 		'label' => 'Title/Position',
+	 * 		'desc'  => '',
+	 * 		'id'    => $prefix.'Title',
+	 * 		'type'  => 'text'
+	 * 	),
+	 * 	array(
+	 * 		'label' => 'Quote',
+	 * 		'desc'  => '',
+	 * 		'id'    => $prefix.'Quote',
+	 * 		'type'  => 'textarea'
+	 * 	)
+	 * );
+	 *
+	 * @return ArrayObject Custom meta fields
+	 */
+	public function get_custom_meta_fields() {
+		return array();
+	} // get_custom_meta_fields()
+
+
+
+	/**
+	 * Handles registering and generating the custom meta box
+	 *
+	 * @return Void
+	 */
+	public function make_meta_box() {
+		$custom_meta_fields = $this->get_custom_meta_fields();
+		if ( empty( $custom_meta_fields ) )
+			return;
+
+		add_meta_box(
+			$this->post_type_id.'_meta_box', // $id
+			'Details',                       // $title
+			array( $this, 'show_meta_box' ), // $callback
+			$this->post_type,                // $page
+			'normal',                        // $context
+			'high'                           // $priority
+		);
+	} // make_meta_box()
+
+
+
+	/**
+	 * Handles outputting of the metabox form
+	 *
+	 * @return Void
+	 */
+	public function show_meta_box() {
+		$custom_meta_fields = $this->get_custom_meta_fields();
+		if ( empty( $custom_meta_fields ) )
+			return;
+
+		global $post;
+		$this->mdg_make_form( array( 'meta_fields' => $custom_meta_fields ) );
+	} // show_meta_box()
+
+
+
+	/**
+	 * Handles the saving of custom meta
+	 *
+	 * @param  integer $post_id ID of the post that you wish to save custom meta for
+	 *
+	 * @return Void
+	 */
+	public function save_meta( $post_id ) {
+		$custom_meta_fields = $this->get_custom_meta_fields();
+		if ( empty( $custom_meta_fields ) )
+			return;
+
+		$this->save_custom_meta(array(
+			'post_id'            => $post_id,
+			'custom_meta_fields' => $custom_meta_fields
+		));
+	} // save_meta()
+} // END Class MDG_Meta_Helper

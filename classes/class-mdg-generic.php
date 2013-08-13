@@ -1,45 +1,90 @@
 <?php
-/************************************************************
-
-	Author: Andy Weisman
-			aweisman@matchboxdesigngroup.com
-
-	This generic class is really just designed to hold random functions/methods.
-	By putting them in this generic class, we will avoid collisions and
-	make these functions easier to find.  Since you will be forced to instantiate
-	this class before you can use these functions, that instantiation will
-	tell you (and others) that the function lives here.
-
-************************************************************/
-
+/**
+ * This generic class is really just designed to hold random functions/methods.
+ * By putting them in this generic class, we will avoid collisions and
+ * make these functions easier to find.  Since you will be forced to instantiate
+ * this class before you can use these functions, that instantiation will
+ * tell you (and others) that the function lives here.
+ *
+ * @author Matchbox Design Group <info@matchboxdesigngroup.com>
+ */
 class MDG_Generic {
+	/**
+	 * Retrieves a page/post/custom post type ID when provided a slug.
+	 *
+	 * @param string  $slug The slug of the page/post/custom post type you want an ID for.
+	 *
+	 * @return integer      The ID of the page/post/custom post type
+	 */
+	public function get_ID_by_slug( $slug ) {
+		$page = get_page_by_path( $slug );
+		if ( $page )
+			return $page->ID;
 
-	public function add_this_code() {
-		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_id() ), 'thumbnail' );
-		$url = $thumb['0'];
+		return null;
+	} // get_ID_by_slug()
 
-		return '<!-- AddThis Button BEGIN -->
-				<div class="addthis_toolbox addthis_default_style ">
-				<a class="addthis_button_preferred_1"></a>
-				<a class="addthis_button_preferred_2"></a>
-				<a class="addthis_button_preferred_3"></a>
-				<a class="addthis_button_preferred_4"></a>
-				<a class="addthis_button_compact"></a>
-				</div>
 
-				<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-512a374f6d8b031b"></script>
-				<meta property="og:image" content="'.$url.'"/>
-				<meta property="og:site_name" content="StoneBridge Community Church"/>
-				<!-- AddThis Button END -->';
-	}
 
-	public function truncate_string( $string, $limit, $break=".", $pad="..." ) {
+	/**
+	 * Adds testing post content to the supplied post type.
+	 *
+	 * Sample use: $mdg_generic->make_dummy_content( 'project', 'Sample Project' 20 );
+	 *
+	 * @param string  $post_type Required. Name of the post type to create content for.
+	 * @param string  $title     Required. The title base you want to use without a trailing space, the post count will be appended to the end.
+	 * @param integer $count     Required. The amount of posts you want to be added.
+	 * @param string[] $options{} Optional.
+	 *
+	 * @return [type]            [description]
+	 */
+	public function make_dummy_content( $post_type, $title, $count, $options = array() ) {
+		global $user_ID;
+
+		for ( $i = 1; $i <= $count; $i++ ) {
+
+			$text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+
+			// add an extra paragraph here and there
+			$text = $i % 3 ? $text . '<br/><br/>' . $text : $text;
+
+			// By adding one to the time the publish date increments
+			$current_time = time() + $i;
+
+			$new_post = array(
+				'post_title'    => "{$title} {$i}",
+				'post_content'  => $text,
+				'post_status'   => 'publish',
+				'post_date'     => date( 'Y-m-d H:i:s', $current_time ),
+				'post_author'   => $user_ID,
+				'post_type'     => $post_type,
+				'post_category' => array( 0 )
+			);
+
+			$post_id = wp_insert_post( $new_post );
+		} // for()
+	} // make_dummy_content()
+
+
+
+	/**
+	 * Truncates a string with the supplied information
+	 *
+	 * @param string  $string The string to be truncated
+	 * @param integer $limit  The length of the truncated string
+	 * @param string  $break  The break point
+	 * @param string  $pad    The string padding to use
+	 *
+	 * @return string          The truncated string if $string <= $limit or the input $string
+	 */
+	public function truncate_string( $string, $limit, $break = ".", $pad = "..." ) {
 
 		// sample use...
 		//mdg_truncate($string, 30, " ")
 
 		// return with no change if string is shorter than $limit
-		if ( strlen( $string ) <= $limit ) return $string;
+		if ( strlen( $string ) <= $limit )
+			return $string;
 
 		// our first test
 		$test1 = strpos( $string, $break, $limit );
@@ -51,46 +96,79 @@ class MDG_Generic {
 		if ( false !== ( $breakpoint = $test1 ) || false !== ( $breakpoint = $test2 ) ) {
 			if ( $breakpoint < strlen( $string ) - 1 ) {
 				$string = substr( $string, 0, $breakpoint ) . $pad;
-			}
-		}
+			} // if()
+		} // if()
 
 		return $string;
+	} // truncate_string()
 
-	}
 
-	public function kriesi_pagination( $pages = '', $range = 2 ) {
-		$showitems = ( $range * 2 )+1;
+
+	/**
+	 * Creates and optionally outputs pagination
+	 *
+	 * @param  string  $max_num_pages    Optional. The amount of pages to be paginated through, defaults to the global $wp_query->max_num_pages.
+	 * @param  integer $range  Optional. The minimum amount of items to show
+	 * @param  boolean $output Optional. Output the content
+	 *
+	 * @return string                    The pagination HTML
+	 */
+	public function pagination( $max_num_pages = null, $range = 2, $output = true ) {
+		$showitems = ( $range * 2 ) + 1;
+		$pagination = '';
 
 		global $paged;
-		if ( empty( $paged ) ) $paged = 1;
+		if ( empty( $paged ) )
+			$paged = 1;
 
-		if ( $pages == '' ) {
+		if ( is_null( $max_num_pages ) ) {
 			global $wp_query;
-			$pages = $wp_query->max_num_pages;
-			if ( !$pages ) {
-				$pages = 1;
-			}
-		}
+			$max_num_pages = $wp_query->max_num_pages;
+			if ( ! $max_num_pages )
+				$max_num_pages = 1;
+		} // if()
 
-		if ( 1 != $pages ) {
-			echo "<div class='pagination'>";
-			if ( $paged > 2 && $paged > $range+1 && $showitems < $pages ) echo "<a href='".get_pagenum_link( 1 )."'>&laquo;</a>";
-			if ( $paged > 1 && $showitems < $pages ) echo "<a href='".get_pagenum_link( $paged - 1 )."'>&lsaquo;</a>";
+		if ( 1 != $max_num_pages ) {
+			$pagination .= "<div class='pagination'>";
+			if ( $paged > 2 && $paged > $range+1 && $showitems < $max_num_pages )
+				$pagination .= "<a href='".get_pagenum_link( 1 )."'>&laquo;</a>";
+			if ( $paged > 1 && $showitems < $max_num_pages )
+				$pagination .= "<a href='".get_pagenum_link( $paged - 1 )."'>&lsaquo;</a>";
 
-			for ( $i=1; $i <= $pages; $i++ ) {
-				if ( 1 != $pages &&( !( $i >= $paged+$range+1 || $i <= $paged-$range-1 ) || $pages <= $showitems ) ) {
-					echo ( $paged == $i )? "<span class='current'>".$i."</span>":"<a href='".get_pagenum_link( $i )."' class='inactive' >".$i."</a>";
-				}
-			}
+			for ( $i = 1; $i <= $max_num_pages; $i++ ) {
+				if ( 1 != $max_num_pages &&( !( $i >= $paged + $range + 1 || $i <= $paged-$range-1 ) || $max_num_pages <= $showitems ) ) {
+					$pagination .= ( $paged == $i )? "<span class='current'>".$i."</span>":"<a href='".get_pagenum_link( $i )."' class='inactive' >".$i."</a>";
+				} // if()
+			} // for()
 
-			if ( $paged < $pages && $showitems < $pages ) echo "<a href='".get_pagenum_link( $paged + 1 )."'>&rsaquo;</a>";
-			if ( $paged < $pages-1 &&  $paged+$range-1 < $pages && $showitems < $pages ) echo "<a href='".get_pagenum_link( $pages )."'>&raquo;</a>";
-			echo "</div>\n";
-		}
-	}
+			if ( $paged < $max_num_pages && $showitems < $max_num_pages )
+				$pagination .= "<a href='".get_pagenum_link( $paged + 1 )."'>&rsaquo;</a>";
+			if ( $paged < $max_num_pages - 1 &&  $paged + $range - 1 < $max_num_pages && $showitems < $max_num_pages )
+				$pagination .= "<a href='".get_pagenum_link( $max_num_pages )."'>&raquo;</a>";
+			$pagination .= "</div>\n";
+		} // if()
 
-	public function get_the_excerpt( $id=false, $allowable_tags = array() ) {
-		$post = get_post( $id );
+		if ( $output )
+			echo $pagination;
+
+		return $pagination;
+	} // pagination()
+
+
+
+	/**
+	 * Retrieve the post excerpt.
+	 *
+	 * @param  integer $id Post ID to retrieve the excerpt for
+	 *
+	 * @return string       The post excerpt
+	 */
+	public function get_the_excerpt( $id = null ) {
+		if ( is_null( $id ) )
+			get_post();
+		else
+			$post = get_post( $id );
+
 		$excerpt = trim( $post->post_excerpt );
 		if ( !$excerpt ) {
 			$excerpt = $post->post_content;
@@ -98,9 +176,8 @@ class MDG_Generic {
 			$excerpt = strip_shortcodes( $excerpt );
 			$excerpt = apply_filters( 'the_content', $excerpt );
 			$excerpt = str_replace( ']]>', ']]&gt;', $excerpt );
-			$excerpt = strip_tags( $excerpt, $allowable_tags );
+			$excerpt = strip_tags( $excerpt );
 			$excerpt_length = apply_filters( 'excerpt_length', 55 );
-			// $excerpt_more = '... <br><a href="'. get_permalink($post->ID) . '" class="more-link lato-bold-italic">Read More</a>';
 
 			$words = preg_split( "/[\n\r\t ]+/", $excerpt, $excerpt_length + 1, PREG_SPLIT_NO_EMPTY );
 			if ( count( $words ) > $excerpt_length ) {
@@ -113,9 +190,100 @@ class MDG_Generic {
 		}
 
 		return $excerpt;
-	}
+	} // get_the_excerpt()
 
-	public function output_prev_next_nav( $post = array() ) {
+
+
+	/**
+	 * Display the post content.
+	 *
+	 * @param STDObject $post           Optional. The post object
+	 * @param string  $more_link_text Optional. Content for when there is more text.
+	 * @param bool    $strip_teaser   Optional. Strip teaser content before the more text. Default is false.
+	 */
+	function the_content( $post = null, $more_link_text = null, $strip_teaser = false ) {
+		$content = get_the_content( $post, $more_link_text, $strip_teaser );
+		$content = apply_filters( 'the_content', $content );
+		$content = str_replace( ']]>', ']]&gt;', $content );
+		echo $content;
+	} // the_content()
+
+
+
+	/**
+	 * Retrieve the post content.
+	 *
+	 * @param STDObject $post           Optional. The post object
+	 * @param string  $more_link_text Optional. Content for when there is more text.
+	 * @param bool    $stripteaser    Optional. Strip teaser content before the more text. Default is false.
+	 * @return string
+	 */
+	function get_the_content( $post = null, $more_link_text = null, $strip_teaser = false ) {
+		global $page, $more, $preview, $pages, $multipage;
+
+		if ( is_null( $post ) )
+			$post = get_post();
+
+		if ( null === $more_link_text )
+			$more_link_text = __( '(more&hellip;)' );
+
+		$output = '';
+		$has_teaser = false;
+
+		// If post password required and it doesn't match the cookie.
+		if ( post_password_required( $post ) )
+			return get_the_password_form( $post );
+
+		if ( $page > count( $pages ) ) // if the requested page doesn't exist
+			$page = count( $pages ); // give them the highest numbered page that DOES exist
+
+		$content = $pages[$page - 1];
+		if ( preg_match( '/<!--more(.*?)?-->/', $content, $matches ) ) {
+			$content = explode( $matches[0], $content, 2 );
+			if ( ! empty( $matches[1] ) && ! empty( $more_link_text ) )
+				$more_link_text = strip_tags( wp_kses_no_null( trim( $matches[1] ) ) );
+
+			$has_teaser = true;
+		} else {
+			$content = array( $content );
+		}
+
+		if ( false !== strpos( $post->post_content, '<!--noteaser-->' ) && ( ! $multipage || $page == 1 ) )
+			$strip_teaser = true;
+
+		$teaser = $content[0];
+
+		if ( $more && $strip_teaser && $has_teaser )
+			$teaser = '';
+
+		$output .= $teaser;
+
+		if ( count( $content ) > 1 ) {
+			if ( $more ) {
+				$output .= '<span id="more-' . $post->ID . '"></span>' . $content[1];
+			} else {
+				if ( ! empty( $more_link_text ) )
+					$output .= apply_filters( 'the_content_more_link', ' <a href="' . get_permalink() . "#more-{$post->ID}\" class=\"more-link\">$more_link_text</a>", $more_link_text );
+				$output = force_balance_tags( $output );
+			}
+		}
+
+		if ( $preview ) // preview fix for javascript bug with foreign languages
+			$output = preg_replace_callback( '/\%u([0-9A-F]{4})/', '_convert_urlencoded_to_entities', $output );
+
+		return $output;
+	} // get_the_content(
+
+
+
+	/**
+	 * Outputs previous and next navigation when supplied a post object
+	 *
+	 * @param  STDObject $post WP post object
+	 *
+	 * @return Void
+	 */
+	public function output_prev_next_nav( $post ) {
 
 		$post_type = get_post_type( $post );
 
@@ -156,7 +324,7 @@ class MDG_Generic {
 			// custom post types
 			// so get the previous and next post ids from this method
 
-			$prev_and_next = $this->mdg_next_post( $post );
+			$prev_and_next = $this->next_post( $post );
 
 			$next_post_url = !empty( $prev_and_next['next'] ) ? get_permalink( $prev_and_next['next'] ) : '';
 			$prev_post_url = !empty( $prev_and_next['prev'] ) ? get_permalink( $prev_and_next['prev'] ) : '';
@@ -197,17 +365,24 @@ class MDG_Generic {
 		echo '</div>';
 
 		echo '</section>';
-	}
+	} // output_prev_next_nav()
 
-	public function mdg_next_post( $post = array() ) {
-		// appearently there are some issues with next_post_link() and custom post types
-		// so i guess we're gonna make our own :)
 
-		// please pass me a post object and i'll return an array of
-		// the previuos and next posts
 
-		// attention!!! notice that i'm flipping previous and next so an older post will
-		// be previous etc... (that happens in the return)
+	/**
+	 * Retrieves the next and previous post with the same sort of functionality for the built in post types
+	 *
+	 * appearently there are some issues with next_post_link() and custom post types
+	 * so i guess we're gonna make our own :)
+	 *
+	 * @param  STDObject $post WP post object
+	 *
+	 * @return string[] $return {
+	 * 	@type integer $prev The ID of the previous post
+	 * 	'next' => $prev
+	 * }
+	 */
+	public function next_post( $post ) {
 		$query_args = array(
 			'post_type'      => $post->post_type,
 			'post_status'    => 'publish',
@@ -219,64 +394,72 @@ class MDG_Generic {
 			$query_args['orderby'] = 'title';
 			$query_args['order']   = 'ASC';
 		}
-
 		$query = new WP_Query( $query_args );
-
 		$posts = $query->get_posts();
 		$ids   = array();
 
-		foreach ( $posts as $item ) {
+		foreach ( $posts as $item )
 			array_push( $ids, $item->ID );
-		}
 
 		$current = $post->ID;
-		$nextkey = array_search( $current, $ids, true ) + 1;
-		$prevkey = array_search( $current, $ids, true ) - 1;
+		$prev_key = array_search( $current, $ids, true ) + 1;
+		$next_key = array_search( $current, $ids, true ) - 1;
 
-		if ( $nextkey == count( $sorting ) ) {
-			// reached end of array, reset
-			$nextkey = 0;
-		}
+		if ( $prev_key == count( $sorting ) )
+			$prev_key = 0; // reached end of array, reset
 
-		if ( $prevkey == 1 ) {
-			// beginning of array, reset
-			$prevkey = 0;
-		}
+		if ( $next_key == 1 )
+			$next_key = 0; // beginning of array, reset
 
-		$next = $ids[$nextkey];
-		$prev = $ids[$prevkey];
+		$prev = $ids[$prev_key];
+		$next = $ids[$next_key];
 
 		return array(
-			'prev' => $next,
-			'next' => $prev
+			'prev' => $prev,
+			'next' => $next
 		);
-	}
+	} // next_post()
 
-	public function get_attachments( $post = array(), $args = array() ) {
-		// pass me a post array and i'll return an array of it's attachements
 
+
+	/**
+	 * Retrieves attachments for the supplied parent post ID
+	 *
+	 * @param  integer  $post_id The parent post ID
+	 * @param  string[] $args {
+	 * 	@type integer $numberposts Optional. The amount of attachments to return, defaults to -1
+	 * }
+	 *
+	 * @return array             The retrieved attachments
+	 */
+	public function get_attachments( $post_id, $args = array() ) {
 		// try to get the global post in case it wasn't passed
-		if ( empty( $post ) ) {
+		if ( empty( $post ) )
 			global $post;
-		}
 
-		$limit = isset( $args['limit'] ) ? $args['limit'] : 99;
+		extract( $args );
 
-		$args     = array(
-			'post_type'  => 'attachment',
-			'numberposts'  => $limit,
-			'post_status'  => null,
-			'order'   => 'ASC',
-			'orderby'   => 'menu_order',
-			'post_parent'  => $post->ID
+		$numberposts = ( isset( $numberposts ) ) ? $numberposts : -1;
+
+		$args = array(
+			'post_type'   => 'attachment',
+			'numberposts' => $numberposts,
+			'post_status' => null,
+			'order'       => 'ASC',
+			'orderby'     => 'menu_order',
+			'post_parent' => $post_id
 		);
 
-		$attachments   = get_posts( $args );
+		$attachments = get_posts( $args );
 
 		return $attachments;
+	} // get_attachments()
 
-	}
 
+
+	/**
+	 * @todo Audit and document this method
+	 */
 	public function print_attachments( $args = array() ) {
 
 		$limit        = isset( $args['limit'] )        ? $args['limit']        : '';
@@ -342,11 +525,14 @@ class MDG_Generic {
 			echo '</div>';
 
 		} // end if $attachments
+	} // print_attachments()
 
-	}
 
+
+	/**
+	 * @todo Audit and document this method
+	 */
 	public function roll_template( $posts = array() ) {
-
 		// pass me an array of posts, and i'll return
 		// the html of the layout (list)
 		$html = '';
@@ -408,11 +594,16 @@ class MDG_Generic {
 		}
 
 		return $html;
-	}
+	} // roll_template()
 
+
+
+	/**
+	 * @todo Audit and document this method
+	 */
 	public function determine_teaser_format( $post = array() ) {
 		// pass a post object and this guy will return the html for the teaser
-		// based on things like title lenght etc...
+		// based on things like title length etc...
 		$title_length = strlen( $post->post_title );
 
 		// only show excert if titles are shorter than this
@@ -430,8 +621,17 @@ class MDG_Generic {
 		// }
 
 		return $html;
-	}
+	} // determine_teaser_format()
 
+
+
+	/**
+	 * Retrieves the YouTube video ID from the supplied embed code
+	 *
+	 * @param  string $embed YouTube embed code
+	 *
+	 * @return [type]        [description]
+	 */
 	public function get_youtube_id( $embed ) {
 
 		// pass me a link or an embed code and I'll return the youtube id for the video
@@ -441,8 +641,13 @@ class MDG_Generic {
 		}
 
 		return $youtube_id;
-	}
+	} // get_youtube_id()
 
+
+
+	/**
+	 * @todo Audit and document this method
+	 */
 	public function get_video( $post = array() ) {
 		// pass me a post array, and i'll return the html
 		// for the video (if one exists
@@ -462,37 +667,46 @@ class MDG_Generic {
 		}
 
 		return $html;
+	} // get_video()
 
-	}
 
-	public function clean_awards( $awards = '' ) {
-		// this converts the awards from it's saved state (fake sorta json object thingy)
+
+	/**
+	 * @todo Audit and document this method
+	 */
+	public function clean_multi_input( $multi_input = '' ) {
+		// this converts the multi_input from it's saved state (fake sorta json object thingy)
 		// to a php array
 
 		// make it a valid json object
-		$awards = str_replace( '|', '"', $awards );
+		$multi_input = str_replace( '|', '"', $multi_input );
 
 		// decode to get make it php friendly array
-		$awards = json_decode( $awards );
+		$multi_input = json_decode( $multi_input );
 
-		return $awards;
-	}
+		return $multi_input;
+	} // clean_multi_input()
 
-	public function group_awards( $awards = '' ) {
 
-		// this method will get the awards, clean them via this->clean_awards, and return them in a grouped array
 
-		// clean/format awards
-		$awards = $this->clean_awards( $awards );
+	/**
+	 * @todo Audit and document this method
+	 */
+	public function group_multi_input( $multi_input = '' ) {
+
+		// this method will get the multi_input, clean them via this->clean_multi_input, and return them in a grouped array
+
+		// clean/format multi_input
+		$multi_input = $this->clean_multi_input( $multi_input );
 
 		$i      = 1;
-		$awards_fields_count= 3; // this is the number of fields for each group of rewards
+		$multi_input_fields_count= 3; // this is the number of fields for each group of rewards
 		$tracker    = 1;
 		$grouped_array  = array();
 
-		foreach ( $awards as $award ) {
+		foreach ( $multi_input as $award ) {
 
-			// iterate through awards, building an award (item) with each field
+			// iterate through multi_input, building an award (item) with each field
 			if ( $tracker == 1 ) {
 				//first in group
 				$item = array();
@@ -500,7 +714,7 @@ class MDG_Generic {
 
 			array_push( $item, $award );
 
-			if ( $tracker == $awards_fields_count ) {
+			if ( $tracker == $multi_input_fields_count ) {
 				// last in group
 
 				array_push( $grouped_array, $item );
@@ -515,9 +729,13 @@ class MDG_Generic {
 		}
 
 		return $grouped_array;
+	} // group_multi_input()
 
-	}
 
+
+	/**
+	 * @todo Audit and document this method
+	 */
 	public function get_img_urls( $attachment_id = '' ) {
 		// pass id of attachment
 		// return array of image urls for different sizes
@@ -539,8 +757,7 @@ class MDG_Generic {
 			'medium'  => $attachment_full_url[0],
 			'large'   => $attachment_large_url[0]
 		);
-	}
-
-}
-
-$GLOBALS['MDG_Generic'] = new MDG_Generic();
+	} // get_img_urls()
+} // END Class MDG_Generic()
+global $mdg_generic;
+$mdg_generic = new MDG_Generic();
