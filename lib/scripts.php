@@ -26,7 +26,7 @@ function roots_scripts() {
 	wp_register_script( 'modernizr', get_template_directory_uri() . '/assets/js/site/vendor/modernizr-2.6.2.min.js', false, null, false );
 	wp_enqueue_script( 'modernizr' );
 
-	wp_register_script( 'roots_main', get_template_directory_uri() . '/assets/js/site/src/main.js', array( 'jquery' ), null, true );
+	wp_register_script( 'roots_main', get_template_directory_uri() . '/assets/js/site/main.js', array( 'jquery' ), null, true );
 	// Place anything that needs to be passed to AJAX into this array
 	wp_localize_script( 'roots_main', 'mdgGlobals', array(
 		'ajaxUrl' => admin_url( 'admin-ajax.php' )
