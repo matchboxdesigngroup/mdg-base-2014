@@ -13,9 +13,9 @@ if ( current_theme_supports( 'bootstrap-top-navbar' ) ) {
 }
 ?>
 
-	<div class="wrap container sticky-footer-wrap" role="document">
+	<div class="wrap sticky-footer-wrap" role="document">
 		<div class="content row">
-			<div class="main <?php echo roots_main_class(); ?>" role="main">
+			<div class="main" role="main">
 				<?php include roots_template_path(); ?>
 			</div><!-- /.main -->
 			<?php if ( roots_display_sidebar() ) : ?>
