@@ -1,171 +1,59 @@
-var mdgAdmin = {};
-
-/**
- * This updates the hidden text box that holds selections
- *
- * @param  Event e Event object from the chosen change method
- *
- * @return boolean
- */
-mdgAdmin.changeChosen = function(e){
-	var chz,
-			selectId,
-			textField,
-			$ = jQuery
-	;
-	chz = jQuery('#' + e.currentTarget.id).val();
-	selectId = e.currentTarget.id.replace('chz_', '');
-	textField = jQuery("#" + selectId);
-	textField.val(chz);
-
-	return false;
-}; // changeChosen
-
-/**
- * Sets up the chosen plugin
- *
- * @example http://harvesthq.github.io/chosen/
- *
- * @return boolean
- */
-mdgAdmin.setupChosen =  function(){
-	$ = jQuery;
-	$(".chzn-select").chosen({
-		allow_single_deselect:true
-	});
-
-	$(".chzn-select").chosen().change(function(e){
-		mdgAdmin.changeChosen(e);
-	});
-
-	return false;
-}; // setupChosen()
-
-
+// @codekit-prepend "src/_old-media-uploader.js"
 jQuery(function(){
-	$(window).load(function(){
-		// Setup chosen JavaScript dropdowns when the document is ready
-		mdgAdmin.setupChosen();
-	});
-}($));
-
-jQuery(document).ajaxSuccess(function(e, xhr, settings) {
-	// setup chosen javascript after a widget is saved
-	mdgAdmin.setupChosen();
-});
-
-/*****************************
-
-	Uploader
-
-*****************************/
-/* Code Only Blog Post
- *
- * To add a custom field media uploader in WordPress
- * using the built-in thick box you need to override
- * the window.send_to_editor method. This is a JavaScript
- * code block that will help you do just that.
- *
- * The best way to get the JavaScript onto the page you
- * are working with is to use the wp_enqueue_script and
- * wp_register_script functions. Then need it to run against
- * the page when it loads.
- *
- * You can do this using the add_action method or something else.
- *
- * http://codex.wordpress.org/Function_Reference/wp_enqueue_script
- * http://codex.wordpress.org/Function_Reference/wp_register_script
- *
- * If you are working with a page that doesn't include the WordPress
- * editor you will be missing the files: thickbox and media-upload.
- * You must include these files as well for the uploader to work.
- * Including your script last.
- *
- * Here is an example of the php function you might create:
- *
- * function scripts() {
- * wp_enqueue_script('media-upload');
- * wp_enqueue_script('thickbox');
- * wp_register_script('upload', '/wp-content/plugins/js/upload.js', array('jquery','media-upload','thickbox'));
- *  wp_enqueue_script('upload');
- * }
- *
- * Note: you should never assume the plugin directory as show above.
- * It is best to use a function to get this path.
- *
- * The below works with WordPress 3.2 and has been tested
- */
-jQuery(document).ready(function() {
+	var mdgAdmin = {},
+			chosenSelect = {}
+	;
 
 	/**
-	 * Add Uploader.
+	 * This updates the hidden text box that holds selections
 	 *
-	 * Attach on click event to button enabling thickbox uploader
-	 * built into wordpress. Uses jQuery like selector for
-	 * strings parameters. Targets must be one element. This
-	 * function allows for multiple uploaders per page when
-	 * editor is present.
+	 * @param  Event e Event object from the chosen change method
 	 *
-	 * (required)
-	 * @para1 string -> form button's id to open uploader box
-	 * @para2 string -> form input's id where image url will go
-	 *
-	 * Example: set_uploader('#button', '#field')
-	 *
-	 * Usage: Added function call to end of this file inside the
-	 * ready function. See example for calling the function.
+	 * @return boolean
 	 */
-	function set_uploader(button, field) {
-		// make sure both button and field are in the DOM
-		if(jQuery(button) && jQuery(field)) {
-			// when button is clicked show thick box
-			jQuery(button).click(function() {
-				tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
+	chosenSelect.changeChosen = function(e){
+		var chz,
+				selectId,
+				textField
+		;
+		chz = $('#' + e.currentTarget.id).val();
+		selectId = e.currentTarget.id.replace('chz_', '');
+		textField = $("#" + selectId);
+		textField.val(chz);
 
-				// when the thick box is opened set send to editor button
-				set_send(field);
-				return false;
-			});
-		}
-	}
+		return false;
+	}; // changeChosen
 
-	/* Setup Send Button
+
+	/**
+	 * Sets up the chosen plugin
 	 *
-	 * Add image url to the set_uploader() field parameters element
-	 * when send or "Insert into Post" is clicked; setting the value
-	 * to the image's path.
+	 * @example http://harvesthq.github.io/chosen/
 	 *
-	 * (required)
-	 * @para1 string -> form field id
-	 *
-	 * Example: set_url('#filed')
-	 *
-	 * Usage: needed by the set_uploader, no calls outside needed
+	 * @return boolean
 	 */
-	function set_send(field) {
-		// store send_to_event so at end of function normal editor works
-		window.original_send_to_editor = window.send_to_editor;
+	chosenSelect.setupChosen =  function(){
+		$(".chzn-select").chosen({
+			allow_single_deselect:true
+		});
 
-		// override function so you can have multiple uploaders pre page
-		window.send_to_editor = function(html) {
-			imgurl = jQuery(html).attr('src');
-			if(!imgurl){
-				imgurl = jQuery('img', html).attr('src');
-			}
+		$(".chzn-select").chosen().change(function(e){
+			chosenSelect.changeChosen(e);
+		});
 
-			if(!imgurl){
-				// might be a file (pdf)
-				// let's try this
-				imgurl = jQuery(html).attr('href');
-			}
-			jQuery(field).val(imgurl);
-			tb_remove();
-			// Set normal uploader for editor
-			window.send_to_editor = window.original_send_to_editor;
-		};
-	}
+		return false;
+	}; // setupChosen()
 
-	// place set_uploader functions below, button then field
-	set_uploader('.upload-link-projectHomePageFeaturedImage', '#projectHomePageFeaturedImage');
 
-});
+	// Window Load
+	$(window).load(function(){
+		// Setup chosen JavaScript dropdowns when the document is ready
+		chosenSelect.setupChosen();
+	});
+
+	// Chosen Plugin
+	$(document).ajaxSuccess(function(e, xhr, settings) {
+		// setup chosen javascript after a widget is saved
+		chosenSelect.setupChosen();
+	});
+}($));
