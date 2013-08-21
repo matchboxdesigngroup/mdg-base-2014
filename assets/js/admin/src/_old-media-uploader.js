@@ -1,115 +1,7 @@
-jQuery(document).ready(function(){
-
-	// setup chosen javascript dropdowns when the document is ready
-	setup_chz();
-
-	jQuery('div.widgets-sortables').bind('sortstop',function(event,ui){
-		
-		// setup chosen javascript when widget is dragged to widget area
-		
-		// I can get an alert to work here after widget is dropped
-		// but the setup_chz() doesn't seem to work?
-		setup_chz();
-	});
-	
-	// handle cleaning youtube id for video entry in projects
-	
-	jQuery('#projectVideo, #postVideo').keyup(function(){
-		var project_video_value;
-		project_video_value = jQuery(this).val();
-		console.log( project_video_value );
-		jQuery(this).val( clean_youtube_id( project_video_value ));
-	});
-	
-});
-
-jQuery(window).load(function(){
-	mdg_alerts();
-});
-
-function setup_chz(){
-	//jQuery.each(".chzn-select", function(){
-
-	jQuery(".chzn-select").chosen({
-		allow_single_deselect:true
-	});
-	
-	jQuery(".chzn-select").chosen().change(function(e){
-		
-		change_chz(e);
-
-	});
-}
-
-function change_chz(e){
-	// this updates the hidden text box that holds selections
-	var chz, select_id, text_field;
-	chz   = jQuery('#' + e.currentTarget.id).val();
-	select_id  = e.currentTarget.id.replace('chz_', '');
-	text_field  = jQuery("#" + select_id);
-
-	text_field.val(chz);
-	console.log(select_id);
-
-}
-
-jQuery(document).ajaxSuccess(function(e, xhr, settings) {
-	
-	// setup chosen javascript after a widget is saved
-	setup_chz();
-});
-
-function mdg_alerts(){
-	// this will show a little alert above the title on the awards page (in admin)
-	if( pagenow == 'award' ) {
-
-		jQuery('#titlediv').before( '<div class="updated"><p>Please give the award a title and a featured image.</p></div>' );
-	
-	} else if( pagenow == 'certification' ) {
-
-		jQuery('#titlediv').before( '<div class="updated"><p>Please give the Certification a title and a featured image.</p></div>' );
-	} else if( pagenow == 'upload' ) {
-		jQuery('h2').after( '<div class="updated"><p><a href="#" id="image-size-reference-trigger">View image size reference.</a></p></div><div class="image-size-reference"></div>' );
-		
-		jQuery('#image-size-reference-trigger').click(function(){
-			mdg_get_image_reference_grid();
-		});
-		
-	}
-}
-
-function mdg_get_image_reference_grid(){
-	var html;
-	jQuery.get(
-
-		// ajaxurl is defined in templates/head.php
-		'/wp-admin/admin-ajax.php',
-		{
-			action 		: 'mdg-image-reference-grid'
-		},
-		function( return_html ) {
-			jQuery('#image-size-reference-trigger').after(
-				'<p><a href="#" id="hide-image-grid-reference">hide image sizes</a></p>'+
-				'<p>please note that image sizes may be smaller to fit into your screen</p>'
-			);		
-			jQuery('.image-size-reference').empty().append( return_html + '<div style="clear:both"></div>' );
-			
-			jQuery('#hide-image-grid-reference').click(function(){
-				jQuery(this).parent().next().remove();
-				jQuery(this).remove();
-				jQuery('.image-size-reference').empty();
-			});
-			
-		} // end success function
-	);
-	
-	return html;
-}
-
 /*****************************
 
 	Uploader
-	
+
 *****************************/
 /* Code Only Blog Post
  *
@@ -204,7 +96,7 @@ jQuery(document).ready(function() {
 			if(!imgurl){
 				imgurl = jQuery('img', html).attr('src');
 			}
-			
+
 			if(!imgurl){
 				// might be a file (pdf)
 				// let's try this

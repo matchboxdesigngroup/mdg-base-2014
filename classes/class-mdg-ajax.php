@@ -3,6 +3,8 @@
 * MDG Ajax
 *
 * All AJAX callbacks should reside in this class for easier maintenance and testing
+*
+* @author Matchbox Design Group <info@matchboxdesigngroup.com>
 */
 class MDG_Ajax extends MDG_Generic
 {
@@ -11,6 +13,7 @@ class MDG_Ajax extends MDG_Generic
 	 */
 	function __construct()
 	{
+		parent::__construct();
 	} // __construct()
 } // END Class MDG_Ajax()
 

@@ -6,7 +6,9 @@
 *
 * You basically need to change [stub/Stub] to be your post
 * type name and then add your custom meta if needed, if no
-* custom meta is needed then delete the get_custom_meta_fields
+* custom meta is needed then delete the get_custom_meta_fields.
+* Please do take a look at MDG_Type_Base to see what parameters
+* and methods are already available to use.
 *
 * @author Matchbox Design Group <info@matchboxdesigngroup.com>
 */
@@ -27,7 +29,7 @@ class MDG_Type_Stub extends MDG_Type_Base
 
 
 	/**
-	 * This method creates custom meta fields array.
+	 * Creates custom meta fields array.
 	 *
 	 * @return ArrayObject Custom meta fields
 	 */

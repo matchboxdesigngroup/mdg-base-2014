@@ -26,13 +26,27 @@ function roots_scripts() {
 	wp_register_script( 'modernizr', get_template_directory_uri() . '/assets/js/site/vendor/modernizr-2.6.2.min.js', false, null, false );
 	wp_enqueue_script( 'modernizr' );
 
-	wp_register_script( 'roots_main', get_template_directory_uri() . '/assets/js/site/src/main.js', array( 'jquery', 'roots_plugins' ), null, true );
-
-
+	wp_register_script( 'roots_main', get_template_directory_uri() . '/assets/js/site/main.js', array( 'jquery' ), null, true );
+	// Place anything that needs to be passed to AJAX into this array
+	wp_localize_script( 'roots_main', 'mdgGlobals', array(
+		'ajaxUrl' => admin_url( 'admin-ajax.php' )
+	));
 	wp_enqueue_script( 'roots_main' );
 }
 add_action( 'wp_enqueue_scripts', 'roots_scripts', 100 );
 
+
+// admin scripts
+function mdg_admin_enqueue_scripts() {
+	wp_enqueue_style( 'admin_css', 			get_template_directory_uri() . '/assets/css/admin.css');
+	// wp_enqueue_script('multi_input', 		get_template_directory_uri() . '/assets/js/admin/multi-input.js', false, null, false);
+
+	// wp_enqueue_script( 'mdg_admin', 		get_template_directory_uri() . '/assets//js/admin/mdg-admin.js', array( 'jquery' ) );
+
+	// wp_enqueue_style( 'mdg_chosen', 		get_template_directory_uri() . '/assets/css/chosen.css', array() );
+	// wp_enqueue_script( 'mdg_multi_chooser', get_template_directory_uri() . '/assets/js/admin/chosen.jquery.min.js', array( 'jquery' ) );
+}
+add_action( 'admin_enqueue_scripts', 'mdg_admin_enqueue_scripts' );
 
 
 // http://wordpress.stackexchange.com/a/12450
