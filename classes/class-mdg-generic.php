@@ -10,13 +10,25 @@
  */
 class MDG_Generic {
 	/**
+	 * Class Constructor
+	 *
+	 * @return Void
+	 */
+	public function __construct()
+	{
+	} // __construct()
+
+
+
+	/**
 	 * Retrieves a page/post/custom post type ID when provided a slug.
 	 *
 	 * @param string  $slug The slug of the page/post/custom post type you want an ID for.
 	 *
 	 * @return integer      The ID of the page/post/custom post type
 	 */
-	public function get_ID_by_slug( $slug ) {
+	public function get_ID_by_slug( $slug )
+	{
 		$page = get_page_by_path( $slug );
 		if ( $page )
 			return $page->ID;
@@ -38,7 +50,8 @@ class MDG_Generic {
 	 *
 	 * @return [type]            [description]
 	 */
-	public function make_dummy_content( $post_type, $title, $count, $options = array() ) {
+	public function make_dummy_content( $post_type, $title, $count, $options = array() )
+	{
 		global $user_ID;
 
 		for ( $i = 1; $i <= $count; $i++ ) {
@@ -70,6 +83,10 @@ class MDG_Generic {
 	/**
 	 * Truncates a string with the supplied information
 	 *
+	 * Example:
+	 * global $mdg_generic;
+	 * $mdg_generic->truncate( $string, 30, " " )
+	 *
 	 * @param string  $string The string to be truncated
 	 * @param integer $limit  The length of the truncated string
 	 * @param string  $break  The break point
@@ -77,11 +94,8 @@ class MDG_Generic {
 	 *
 	 * @return string          The truncated string if $string <= $limit or the input $string
 	 */
-	public function truncate_string( $string, $limit, $break = ".", $pad = "..." ) {
-
-		// sample use...
-		//mdg_truncate($string, 30, " ")
-
+	public function truncate_string( $string, $limit, $break = ".", $pad = "..." )
+	{
 		// return with no change if string is shorter than $limit
 		if ( strlen( $string ) <= $limit )
 			return $string;
@@ -113,7 +127,8 @@ class MDG_Generic {
 	 *
 	 * @return string                    The pagination HTML
 	 */
-	public function pagination( $max_num_pages = null, $range = 2, $output = true ) {
+	public function pagination( $max_num_pages = null, $range = 2, $output = true )
+	{
 		$showitems = ( $range * 2 ) + 1;
 		$pagination = '';
 
@@ -163,7 +178,8 @@ class MDG_Generic {
 	 *
 	 * @return string       The post excerpt
 	 */
-	public function get_the_excerpt( $id = null ) {
+	public function get_the_excerpt( $id = null )
+	{
 		if ( is_null( $id ) )
 			get_post();
 		else
@@ -201,7 +217,8 @@ class MDG_Generic {
 	 * @param string  $more_link_text Optional. Content for when there is more text.
 	 * @param bool    $strip_teaser   Optional. Strip teaser content before the more text. Default is false.
 	 */
-	function the_content( $post = null, $more_link_text = null, $strip_teaser = false ) {
+	function the_content( $post = null, $more_link_text = null, $strip_teaser = false )
+	{
 		$content = get_the_content( $post, $more_link_text, $strip_teaser );
 		$content = apply_filters( 'the_content', $content );
 		$content = str_replace( ']]>', ']]&gt;', $content );
@@ -218,7 +235,8 @@ class MDG_Generic {
 	 * @param bool    $stripteaser    Optional. Strip teaser content before the more text. Default is false.
 	 * @return string
 	 */
-	function get_the_content( $post = null, $more_link_text = null, $strip_teaser = false ) {
+	function get_the_content( $post = null, $more_link_text = null, $strip_teaser = false )
+	{
 		global $page, $more, $preview, $pages, $multipage;
 
 		if ( is_null( $post ) )
@@ -283,7 +301,8 @@ class MDG_Generic {
 	 *
 	 * @return Void
 	 */
-	public function output_prev_next_nav( $post ) {
+	public function output_prev_next_nav( $post )
+	{
 
 		$post_type = get_post_type( $post );
 
@@ -432,7 +451,8 @@ class MDG_Generic {
 	 *
 	 * @return array             The retrieved attachments
 	 */
-	public function get_attachments( $post_id, $args = array() ) {
+	public function get_attachments( $post_id, $args = array() )
+	{
 		// try to get the global post in case it wasn't passed
 		if ( empty( $post ) )
 			global $post;
@@ -460,7 +480,8 @@ class MDG_Generic {
 	/**
 	 * @todo Audit and document this method
 	 */
-	public function print_attachments( $args = array() ) {
+	public function print_attachments( $args = array() )
+	{
 
 		$limit        = isset( $args['limit'] )        ? $args['limit']        : '';
 		$post         = isset( $args['post'] )         ? $args['post']         : '';
@@ -532,7 +553,8 @@ class MDG_Generic {
 	/**
 	 * @todo Audit and document this method
 	 */
-	public function roll_template( $posts = array() ) {
+	public function roll_template( $posts = array() )
+	{
 		// pass me an array of posts, and i'll return
 		// the html of the layout (list)
 		$html = '';
@@ -601,7 +623,8 @@ class MDG_Generic {
 	/**
 	 * @todo Audit and document this method
 	 */
-	public function determine_teaser_format( $post = array() ) {
+	public function determine_teaser_format( $post = array() )
+	{
 		// pass a post object and this guy will return the html for the teaser
 		// based on things like title length etc...
 		$title_length = strlen( $post->post_title );
@@ -632,7 +655,8 @@ class MDG_Generic {
 	 *
 	 * @return [type]        [description]
 	 */
-	public function get_youtube_id( $embed ) {
+	public function get_youtube_id( $embed )
+	{
 
 		// pass me a link or an embed code and I'll return the youtube id for the video
 		preg_match( '#(\.be/|/embed/|/v/|/watch\?v=)([A-Za-z0-9_-]{5,11})#', $embed, $matches );
@@ -648,7 +672,8 @@ class MDG_Generic {
 	/**
 	 * @todo Audit and document this method
 	 */
-	public function get_video( $post = array() ) {
+	public function get_video( $post = array() )
+	{
 		// pass me a post array, and i'll return the html
 		// for the video (if one exists
 		$embed = get_post_meta( $post->ID, 'videoEmbed', true );
@@ -674,7 +699,8 @@ class MDG_Generic {
 	/**
 	 * @todo Audit and document this method
 	 */
-	public function clean_multi_input( $multi_input = '' ) {
+	public function clean_multi_input( $multi_input = '' )
+	{
 		// this converts the multi_input from it's saved state (fake sorta json object thingy)
 		// to a php array
 
@@ -692,7 +718,8 @@ class MDG_Generic {
 	/**
 	 * @todo Audit and document this method
 	 */
-	public function group_multi_input( $multi_input = '' ) {
+	public function group_multi_input( $multi_input = '' )
+	{
 
 		// this method will get the multi_input, clean them via this->clean_multi_input, and return them in a grouped array
 
@@ -736,7 +763,8 @@ class MDG_Generic {
 	/**
 	 * @todo Audit and document this method
 	 */
-	public function get_img_urls( $attachment_id = '' ) {
+	public function get_img_urls( $attachment_id = '' )
+	{
 		// pass id of attachment
 		// return array of image urls for different sizes
 
@@ -759,5 +787,6 @@ class MDG_Generic {
 		);
 	} // get_img_urls()
 } // END Class MDG_Generic()
+
 global $mdg_generic;
 $mdg_generic = new MDG_Generic();

@@ -1,112 +1,131 @@
 <?php
-// this class will handle image sizes etc...
-
+/**
+ * MDG Images handles adding custom image sizes and other global image related functionality
+ *
+ * @author Matchbox Design Group <info@matchboxdesigngroup.com>
+ */
 class MDG_Images {
 
-	// add addition to title at the end of each array if required like so
-	// array(381, 381, 'add me to title')
-	public $image_sizes = array(
-
-		// Project grid
-		array(
-			'width' => 220,
-			'height'=> 130,
-			'used_in' => array(
-				'title' => 'Project Grid',
-				'link'  => ''
-			)
-		),
-
-		// Project slider thumbs
-		array(
-			'width' => 60,
-			'height'=> 60,
-			'used_in' => array(
-				'title' => 'Project Slider thumbs',
-				'link'  => ''
-			)
-		),
-
-		// Project slider full
-		array(
-			'width' => '',
-			'height'=> 475,
-			'cropped' => 'false',
-			'used_in' => array(
-				'title' => 'Project Slider full',
-				'link'  => ''
-			)
-		)
-	);
+	public $image_sizes = array();
 
 	public function __construct() {
-
+		// Custom Image Sizes
+		$this->set_image_sizes();
 		$this->register_sizes();
 
 		// ajax response to return the reference grid
 		add_action( 'wp_ajax_mdg-image-reference-grid', array( $this, 'output_reference_grid' ) );
+	} // __construct()
 
-	}
 
+	/**
+	 * Sets all of the custom image sizes
+	 *
+	 * Example:
+	 * $this->image_sizes['example_size'] = array(
+	 * 	'width'  => 220,
+	 * 	'height' => 130,
+	 * 	'title'  => '220x130', // The default will be widthxheight but any string can be used
+	 * 	'used_in' => array(
+	 * 		'title' => 'Example Size', // Title to be used in Media notification
+	 * 		'link'  => '' // Link to an image of the created size to be used in Media notification
+	 * 	)
+	 * );
+	 * @return [type] [description]
+	 */
+	public function set_image_sizes()
+	{
+		// Example size - Duplicate this and get image resizing
+		// $this->image_sizes[] = array(
+		// 	'width'  => 220,
+		// 	'height' => 130,
+		// 	'title'  => '220x130', // The default will be widthxheight but any string can be used
+		// 	'used_in' => array(
+		// 		'title' => 'Example Size', // Title to be used in Media notification
+		// 		'link'  => '' // Link to an image of the created size to be used in Media notification
+		// 	)
+		// );
+	} // function set_image_sizes()
+
+
+
+	/**
+	 * Registers all of the new image sizes for use in our theme
+	 *
+	 * @return Void
+	 */
 	public function register_sizes() {
-		// register the image sizes with wordpress
-
-		// first set the thumb siz e and make sure that this theme supports thumbs
+		// first set the thumb size and make sure that this theme supports thumbs
 		if ( function_exists( 'add_theme_support' ) ) {
 			add_theme_support( 'post-thumbnails' );
 			set_post_thumbnail_size( 140, 140 ); // default Post Thumbnail dimensions
-		}
+		} // if()
 
 		// now add the sizes
 		if ( function_exists( 'add_image_size' ) ) {
 			foreach ( $this->image_sizes as $image_size ) {
-				$image_size_0 = isset( $image_size['width'] ) ? $image_size['width'] : '';
-				$image_size_1 = isset( $image_size['height'] ) ? $image_size['height'] : '';
-				$image_size_2 = isset( $image_size['title_override'] ) ? $image_size['title_override'] : '';
-				$cropped   = isset( $image_size['cropped'] ) ? $image_size['cropped'] : true;
+				extract($image_size);
+				$width = isset( $width ) ? $width : '';
+				$height = isset( $height ) ? $height : '';
+				$title = isset( $title ) ? $title : "{$width}x{$height}";
+				$cropped      = isset( $cropped ) ? $cropped : true;
 
 				add_image_size(
-					$image_size_0 . 'x' . $image_size_1 . $image_size_2,   //title
-					$image_size_0,            // width
-					$image_size_1,            // height
+					$title,   //title
+					$width,            // width
+					$height,            // height
 					$cropped            // crop
 				);
 			}
 			//add_image_size( 'homepage-thumb', 220, 180, true ); //(cropped)
-		}
-	}
+		} // if()
+	} // function register_sizes()
 
+
+
+	/**
+	 * Outputs the reference grid in the Media Library
+	 *
+	 * @return Void
+	 */
 	public function output_reference_grid() {
-
 		echo $this->reference_grid_html();
 		exit;
-	}
+	} // output_reference_grid()
 
+
+
+	/**
+	 * Creates the HTML for the image size reference grid in the Media Library
+	 *
+	 * @return String The HTML with all of the different custom image sizes
+	 */
 	public function reference_grid_html() {
-		// this method will take all of the image sizes and return
-		// html for a reference grid for admin
 		$html = '<ul class="image-reference-grid">';
-
 		foreach ( $this->image_sizes as $image_size ) {
+			extract( $image_size );
+
+			$width = isset( $width ) ? $width : '';
+			$height = isset( $height ) ? $height : '';
+			$title = isset( $title ) ? $title : "{$width}x{$height}";
+
 			$style = '';
-			$width = 'width: '. $image_size['width'] . 'px !important;';
-			$height= ' height: '. $image_size['height'] . 'px !important;';
-			$style = $width . $height;
+			$style .= "width: {$width}px !important;";
+			$style .= " height: {$height}px !important;";
 
-			$html .= '<li style="'.$style.'">';
-			$html .= '<p>'.$image_size['width'] . 'x' . $image_size['height'] . '</p>';
+			$html .= "<li style='{$style}'>";
+			$html .= "<p>{$title} - {$width}x{$height}</p>";
 
-			if ( isset( $image_size['used_in']['title'] ) ) {
-				$html .= 'Used in: <a href="'.$image_size['used_in']['link'].'" target="_blank">'.$image_size['used_in']['title']. '</a>';
-			}
+			if ( isset( $used_in['title'] ) )
+				$html .= 'Used in: <a href="'.$used_in['link'].'" target="_blank">'.$used_in['title']. '</a>';
 
 			$html .= '</li>';
-		}
+		} // foreach()
 
 		$html .= '</ul>';
 
 		return $html;
-	}
-}
+	} // function reference_grid_html()
+} // END Class MDG_Images()
 
 $mdg_images = new MDG_Images();
