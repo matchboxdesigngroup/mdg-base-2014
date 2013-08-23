@@ -46,7 +46,7 @@ class MDG_Type_Stub extends MDG_Type_Base
 			array(
 				'label' => 'Title/Position',
 				'desc'  => '',
-				'id'    => $prefix.'Title',
+				'id'    => $this->post_type.'Title',
 				'type'  => 'text'
 			)
 		);
