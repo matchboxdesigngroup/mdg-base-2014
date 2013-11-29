@@ -191,70 +191,70 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 				),
 			);
 			switch ( $type ) {
-				case 'divider':
-					echo '<hr/>';
-					break;
-				case 'markup':
-					echo $desc;
-					break;
-				case 'text':
-					$text_field = $this->text_field( $id, $meta, $desc );
-					echo wp_kses( $text_field, $allowed_wp_kses_html );
-					break;
-				case 'file':
-					$file_upload = $this->file_upload_field( $id, $meta, $desc );
-					echo wp_kses( $file_upload, $allowed_wp_kses_html );
-					break;
-				case 'textarea':
-					$textarea = $this->textarea( $id, $meta, $desc );
-					echo wp_kses( $textarea, $allowed_wp_kses_html );
-					break;
-				case 'checkbox':
-					$checkbox = $this->checkbox( $id, $meta, $desc );
-					echo wp_kses( $checkbox, $allowed_wp_kses_html );
-					break;
-				case 'select':
-					$select = $this->select( $id, $meta, $desc, $options );
-					echo wp_kses( $select, $allowed_wp_kses_html );
-					break;
-				case 'chosen_select':
-					$chosen_select = $this->chosen_select( $id, $meta, $desc, $options );
-					echo wp_kses( $chosen_select, $allowed_wp_kses_html );
-					break;
-				case 'chosen_select_multi':
-					$chosen_select_multi = $this->chosen_select_multi( $id, $meta, $desc, $options );
-					echo wp_kses( $chosen_select_multi, $allowed_wp_kses_html );
-					break;
-				case 'date':
-					$datepicker = $this->datepicker( $id, $meta, $id );
-					echo wp_kses( $datepicker, $allowed_wp_kses_html );
-					break;
-				case 'line':
-					echo '</td></tr></table><hr/><table class="form-table">';
-					break;
-				case 'title':
-					echo '<div class="form-group-title">'.esc_attr( $label ).'</div>';
-					break;
-				case 'wysiwg_editor':
-					$meta = get_post_meta( $post->ID, $id, true );
-					$wysiwg_editor = $this->wysiwg_editor( $id, $meta, $desc );
-					echo wp_kses( $wysiwg_editor, $allowed_wp_kses_html );
-					break;
+			case 'divider':
+				echo '<hr/>';
+				break;
+			case 'markup':
+				echo $desc;
+				break;
+			case 'text':
+				$text_field = $this->text_field( $id, $meta, $desc );
+				echo wp_kses( $text_field, $allowed_wp_kses_html );
+				break;
+			case 'file':
+				$file_upload = $this->file_upload_field( $id, $meta, $desc );
+				echo wp_kses( $file_upload, $allowed_wp_kses_html );
+				break;
+			case 'textarea':
+				$textarea = $this->textarea( $id, $meta, $desc );
+				echo wp_kses( $textarea, $allowed_wp_kses_html );
+				break;
+			case 'checkbox':
+				$checkbox = $this->checkbox( $id, $meta, $desc );
+				echo wp_kses( $checkbox, $allowed_wp_kses_html );
+				break;
+			case 'select':
+				$select = $this->select( $id, $meta, $desc, $options );
+				echo wp_kses( $select, $allowed_wp_kses_html );
+				break;
+			case 'chosen_select':
+				$chosen_select = $this->chosen_select( $id, $meta, $desc, $options );
+				echo wp_kses( $chosen_select, $allowed_wp_kses_html );
+				break;
+			case 'chosen_select_multi':
+				$chosen_select_multi = $this->chosen_select_multi( $id, $meta, $desc, $options );
+				echo wp_kses( $chosen_select_multi, $allowed_wp_kses_html );
+				break;
+			case 'date':
+				$datepicker = $this->datepicker( $id, $meta, $id );
+				echo wp_kses( $datepicker, $allowed_wp_kses_html );
+				break;
+			case 'line':
+				echo '</td></tr></table><hr/><table class="form-table">';
+				break;
+			case 'title':
+				echo '<div class="form-group-title">'.esc_attr( $label ).'</div>';
+				break;
+			case 'wysiwg_editor':
+				$meta = get_post_meta( $post->ID, $id, true );
+				$wysiwg_editor = $this->wysiwg_editor( $id, $meta, $desc );
+				echo wp_kses( $wysiwg_editor, $allowed_wp_kses_html );
+				break;
 
-				case 'multi_input':
-					$this->multi_input_field(
-						array(
-							'multi_fields' => $multi_fields,
-							'id'           => $id,
-							'desc'         => $desc,
-							'meta'         => $meta,
-						)
-					);
-					break;
-				case 'color_picker':
-					$color_picker = $this->color_picker( $id, $meta, $desc );
-					echo wp_kses( $color_picker, $allowed_wp_kses_html );
-					break;
+			case 'multi_input':
+				$this->multi_input_field(
+					array(
+						'multi_fields' => $multi_fields,
+						'id'           => $id,
+						'desc'         => $desc,
+						'meta'         => $meta,
+					)
+				);
+				break;
+			case 'color_picker':
+				$color_picker = $this->color_picker( $id, $meta, $desc );
+				echo wp_kses( $color_picker, $allowed_wp_kses_html );
+				break;
 			} // switch()
 			echo '</td></tr>';
 		} // foreach()

@@ -1,29 +1,28 @@
 <?php
 /**
-* MDG Type Base Stub
-*
-* This class can be used as a starting point to add new post types.
-*
-* You basically need to change [stub/Stub] to be your post
-* type name and then add your custom meta if needed, if no
-* custom meta is needed then delete the get_custom_meta_fields.
-* Please do take a look at MDG_Type_Base to see what parameters
-* and methods are already available to use.
-*
-* The properties of MDG_Type_Base that you should/can alter are
-* all in __construct(). Anything thay isn't REQUIRED that you
-* do not use please remove before deploying to production. Also
-* any property that is optional has the defaults as an example.
-*
-* @author Matchbox Design Group <info@matchboxdesigngroup.com>
-*/
+ * MDG Type Base Stub
+ *
+ * This class can be used as a starting point to add new post types.
+ *
+ * You basically need to change [stub/Stub] to be your post
+ * type name and then add your custom meta if needed, if no
+ * custom meta is needed then delete the get_custom_meta_fields.
+ * Please do take a look at MDG_Type_Base to see what parameters
+ * and methods are already available to use.
+ *
+ * The properties of MDG_Type_Base that you should/can alter are
+ * all in __construct(). Anything thay isn't REQUIRED that you
+ * do not use please remove before deploying to production. Also
+ * any property that is optional has the defaults as an example.
+ *
+ * @author Matchbox Design Group <info@matchboxdesigngroup.com>
+ */
 class MDG_Type_Stub extends MDG_Type_Base
 {
 	/**
 	 * Class constructor, handles instantiation functionality for the class
 	 */
-	function __construct()
-	{
+	function __construct() {
 		/** @var string  REQUIRED slug for post type */
 		$this->post_type = 'stub';
 
@@ -148,69 +147,69 @@ class MDG_Type_Stub extends MDG_Type_Base
 		/** @var array Meta box id(s) to be removed */
 		$this->meta_boxes_to_remove = array(
 			// array(
-			// 	'id'      => 'authordiv',
-			// 	'context' => 'normal',
-			// 	'page'    => $this->post_type,
+			//  'id'      => 'authordiv',
+			//  'context' => 'normal',
+			//  'page'    => $this->post_type,
 			// ),
 			// array(
-			// 	'id'      => 'categorydiv',
-			// 	'context' => 'side',
-			// 	'page'    => $this->post_type,
+			//  'id'      => 'categorydiv',
+			//  'context' => 'side',
+			//  'page'    => $this->post_type,
 			// ),
 			// array(
-			// 	'id'      => "{$this->post_type}-categoriesdiv", // Default custom taxonomy
-			// 	'context' => 'side',
-			// 	'page'    => $this->post_type,
+			//  'id'      => "{$this->post_type}-categoriesdiv", // Default custom taxonomy
+			//  'context' => 'side',
+			//  'page'    => $this->post_type,
 			// ),
 			// array(
-			// 	'id'      => 'commentstatusdiv',
-			// 	'context' => 'normal',
-			// 	'page'    => $this->post_type,
+			//  'id'      => 'commentstatusdiv',
+			//  'context' => 'normal',
+			//  'page'    => $this->post_type,
 			// ),
 			// array(
-			// 	'id'      => 'commentsdiv',
-			// 	'context' => 'normal',
-			// 	'page'    => $this->post_type,
+			//  'id'      => 'commentsdiv',
+			//  'context' => 'normal',
+			//  'page'    => $this->post_type,
 			// ),
 			// array(
-			// 	'id'      => 'formatdiv',
-			// 	'context' => 'normal',
-			// 	'page'    => $this->post_type,
+			//  'id'      => 'formatdiv',
+			//  'context' => 'normal',
+			//  'page'    => $this->post_type,
 			// ),
 			// array(
-			// 	'id'      => 'pageparentdiv',
-			// 	'context' => 'side',
-			// 	'page'    => $this->post_type,
+			//  'id'      => 'pageparentdiv',
+			//  'context' => 'side',
+			//  'page'    => $this->post_type,
 			// ),
 			// array(
-			// 	'id'      => 'postexcerpt',
-			// 	'context' => 'normal',
-			// 	'page'    => $this->post_type,
+			//  'id'      => 'postexcerpt',
+			//  'context' => 'normal',
+			//  'page'    => $this->post_type,
 			// ),
 			// array(
-			// 	'id'      => 'revisionsdiv',
-			// 	'context' => 'normal',
-			// 	'page'    => $this->post_type,
+			//  'id'      => 'revisionsdiv',
+			//  'context' => 'normal',
+			//  'page'    => $this->post_type,
 			// ),
 			// array(
-			// 	'id'      => 'slugdiv',
-			// 	'context' => 'normal',
-			// 	'page'    => $this->post_type,
+			//  'id'      => 'slugdiv',
+			//  'context' => 'normal',
+			//  'page'    => $this->post_type,
 			// ),
 			// array(
-			// 	'id'      => 'submitdiv',
-			// 	'context' => 'side',
-			// 	'page'    => $this->post_type,
+			//  'id'      => 'submitdiv',
+			//  'context' => 'side',
+			//  'page'    => $this->post_type,
 			// ),
 			// array(
-			// 	'id'      => 'tagsdiv-post_tag',
-			// 	'context' => 'side',
-			// 	'page'    => $this->post_type,
+			//  'id'      => 'tagsdiv-post_tag',
+			//  'context' => 'side',
+			//  'page'    => $this->post_type,
 			// ),
 			// array(
-			// 	'id'      => 'trackbacksdiv',
-			// 	'context' => 'normal',
-			// 	'page'    => $this->post_type,
+			//  'id'      => 'trackbacksdiv',
+			//  'context' => 'normal',
+			//  'page'    => $this->post_type,
 			// ),
 		);
 	} // _set_mdg_meta_helper_options()

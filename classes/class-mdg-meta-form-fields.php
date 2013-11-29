@@ -1,15 +1,15 @@
 <?php
 /**
-* MDG Meta Form Fields
-*
-* @author Matchbox Design Group <info@matchboxdesigngroup.com>
-*/
+ * MDG Meta Form Fields
+ *
+ * @author Matchbox Design Group <info@matchboxdesigngroup.com>
+ */
 class MDG_Meta_Form_Fields extends MDG_Generic
 {
 	/**
 	 * Class constructor
 	 *
-	 * @param array $config Class configuration
+	 * @param array   $config Class configuration
 	 */
 	function __construct( $config = array() ) {
 		parent::__construct();
@@ -20,9 +20,9 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	/**
 	 * Creates a HTML text field and description.
 	 *
-	 * @param  string $id   id attribute
-	 * @param  string $meta meta value
-	 * @param  string $desc description
+	 * @param string  $id   id attribute
+	 * @param string  $meta meta value
+	 * @param string  $desc description
 	 *
 	 * @return string       The text field and description
 	 */
@@ -39,9 +39,9 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	/**
 	 * Creates a color picker.
 	 *
-	 * @param  string $id   id attribute
-	 * @param  string $meta meta value
-	 * @param  string $desc description
+	 * @param string  $id   id attribute
+	 * @param string  $meta meta value
+	 * @param string  $desc description
 	 *
 	 * @return string       The color picker and description
 	 */
@@ -58,9 +58,9 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	/**
 	 * Creates a HTML input field and description.
 	 *
-	 * @param  string $id       id attribute
-	 * @param  string $file_src meta value
-	 * @param  string $desc     description
+	 * @param string  $id       id attribute
+	 * @param string  $file_src meta value
+	 * @param string  $desc     description
 	 *
 	 * @return string            The input field and description
 	 */
@@ -68,11 +68,11 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 		$image_thumbnail = $this->file_upload_field_thumbnail( $file_src );
 
 		$input_field = '<div id="meta_upload_'.esc_attr( $id ).'" class="mdg-meta-upload">';
-			$input_field .= '<input type="text" name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" value="'.$file_src.'" size="30" />';
-			$input_field .= '<a href="#" id="meta_upload_link_'.esc_attr( $id ).'" class="upload-link button">upload</a>';
-			$input_field .= '<br>';
-			$input_field .= '<span class="description">'.esc_attr( $desc ).'</span>';
-			$input_field .= $image_thumbnail;
+		$input_field .= '<input type="text" name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" value="'.$file_src.'" size="30" />';
+		$input_field .= '<a href="#" id="meta_upload_link_'.esc_attr( $id ).'" class="upload-link button">upload</a>';
+		$input_field .= '<br>';
+		$input_field .= '<span class="description">'.esc_attr( $desc ).'</span>';
+		$input_field .= $image_thumbnail;
 		$input_field .= '</div>';
 		return $input_field;
 	}
@@ -82,7 +82,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	/**
 	 * Retrieves file upload field thumbnails
 	 *
-	 * @param  string $file_src The files source url
+	 * @param string  $file_src The files source url
 	 *
 	 * @return string           The image HTML or an empty string
 	 */
@@ -120,9 +120,9 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	/**
 	 * Creates a HTML textarea and description.
 	 *
-	 * @param  string $id   id attribute
-	 * @param  string $meta meta value
-	 * @param  string $desc description
+	 * @param string  $id   id attribute
+	 * @param string  $meta meta value
+	 * @param string  $desc description
 	 *
 	 * @return string            The input field and description
 	 */
@@ -139,9 +139,9 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	/**
 	 * Creates a HTML checkbox and description.
 	 *
-	 * @param  string $id   id attribute
-	 * @param  string $meta meta value
-	 * @param  string $desc description
+	 * @param string  $id   id attribute
+	 * @param string  $meta meta value
+	 * @param string  $desc description
 	 *
 	 * @return string            The input field and description
 	 */
@@ -158,20 +158,20 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	/**
 	 * Creates a HTML select and description.
 	 *
-	 * @param  string $id      id attribute
-	 * @param  string $meta    meta value
-	 * @param  string $desc    description
-	 * @param  array  $options select options
+	 * @param string  $id      id attribute
+	 * @param string  $meta    meta value
+	 * @param string  $desc    description
+	 * @param array   $options select options
 	 *
 	 * @return string            The input field and description
 	 */
 	public function select( $id, $meta, $desc, $options ) {
 		$select = '<select name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'">';
-			foreach ( $options as $option ) {
-				extract( $option );
-				$selected = ( $value == $meta ) ? ' selected="selected"' : '';
-				$select .= '<option value="'.esc_attr( $value ).'"'.$selected.'>'.esc_attr( $label ).'</option>';
-			} // foreach()
+		foreach ( $options as $option ) {
+			extract( $option );
+			$selected = ( $value == $meta ) ? ' selected="selected"' : '';
+			$select .= '<option value="'.esc_attr( $value ).'"'.$selected.'>'.esc_attr( $label ).'</option>';
+		} // foreach()
 		$select .= '</select>';
 		$select .= '<br>';
 		$select .= '<span class="description">'.esc_attr( $desc ).'</span>';
@@ -184,20 +184,20 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	/**
 	 * Creates a HTML chosen select and description.
 	 *
-	 * @param  string $id      id attribute
-	 * @param  string $meta    meta value
-	 * @param  string $desc    description
-	 * @param  array  $options select options
+	 * @param string  $id      id attribute
+	 * @param string  $meta    meta value
+	 * @param string  $desc    description
+	 * @param array   $options select options
 	 *
 	 * @return string            The input field and description
 	 */
 	public function chosen_select( $id, $meta, $desc, $options ) {
 		$select = '<select name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" class="mdg-chosen-select" style="width:200px;">';
-			foreach ( $options as $option ) {
-				extract( $option );
-				$selected = ( $value == $meta ) ? ' selected="selected"' : '';
-				$select .= '<option value="'.esc_attr( $value ).'"'.$selected.'>'.esc_attr( $label ).'</option>';
-			} // foreach()
+		foreach ( $options as $option ) {
+			extract( $option );
+			$selected = ( $value == $meta ) ? ' selected="selected"' : '';
+			$select .= '<option value="'.esc_attr( $value ).'"'.$selected.'>'.esc_attr( $label ).'</option>';
+		} // foreach()
 		$select .= '</select>';
 		$select .= '<br>';
 		$select .= '<span class="description">'.esc_attr( $desc ).'</span>';
@@ -210,20 +210,20 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	/**
 	 * Creates a HTML chosen select multiple and description.
 	 *
-	 * @param  string $id      id attribute
-	 * @param  string $meta    meta value
-	 * @param  string $desc    description
-	 * @param  array  $options select options
+	 * @param string  $id      id attribute
+	 * @param string  $meta    meta value
+	 * @param string  $desc    description
+	 * @param array   $options select options
 	 *
 	 * @return string            The input field and description
 	 */
 	public function chosen_select_multi( $id, $meta, $desc, $options ) {
 		$select = '<select name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" multiple="multiple" class="mdg-chosen-select" style="width:200px;">';
-			foreach ( $options as $option ) {
-				extract( $option );
-				$selected = ( $value == $meta ) ? ' selected="selected"' : '';
-				$select .= '<option value="'.esc_attr( $value ).'"'.$selected.'>'.esc_attr( $label ).'</option>';
-			} // foreach()
+		foreach ( $options as $option ) {
+			extract( $option );
+			$selected = ( $value == $meta ) ? ' selected="selected"' : '';
+			$select .= '<option value="'.esc_attr( $value ).'"'.$selected.'>'.esc_attr( $label ).'</option>';
+		} // foreach()
 		$select .= '</select>';
 		$select .= '<br>';
 		$select .= '<span class="description">'.esc_attr( $desc ).'</span>';
@@ -236,9 +236,9 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	/**
 	 * Creates a date picker.
 	 *
-	 * @param  string $id   id attribute
-	 * @param  string $meta meta value
-	 * @param  string $desc description
+	 * @param string  $id   id attribute
+	 * @param string  $meta meta value
+	 * @param string  $desc description
 	 *
 	 * @return string       The date picker and description
 	 */
@@ -254,9 +254,9 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	/**
 	 * Creates a HTML text area WYSWIG editor and description.
 	 *
-	 * @param  string $id   id attribute
-	 * @param  string $meta meta value
-	 * @param  string $desc description
+	 * @param string  $id   id attribute
+	 * @param string  $meta meta value
+	 * @param string  $desc description
 	 *
 	 * @return string            The text area and description
 	 */
@@ -273,7 +273,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	/**
 	 * Makes the multi field input
 	 *
-	 * @param  :TODO
+	 * @param :TODO
 	 *
 	 * @return :TODO
 	 */

@@ -116,7 +116,7 @@ function roots_body_class( $classes ) {
 	$home_id_class = 'page-id-' . get_option( 'page_on_front' );
 	$remove_classes = array(
 		'page-template-default',
-		$home_id_class
+		$home_id_class,
 	);
 	$classes = array_diff( $classes, $remove_classes );
 
@@ -150,7 +150,7 @@ function roots_caption( $output, $attr, $content ) {
 		'id'      => '',
 		'align'   => 'alignnone',
 		'width'   => '',
-		'caption' => ''
+		'caption' => '',
 	);
 
 	$attr = shortcode_atts( $defaults, $attr );

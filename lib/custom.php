@@ -3,7 +3,7 @@ if ( !function_exists( 'pp' ) ) {
 	/**
 	 * Pretty Print Debug Function
 	 *
-	 * @param  mixed $value Any value.
+	 * @param mixed   $value Any value.
 	 *
 	 * @return [type]        [description]
 	 */

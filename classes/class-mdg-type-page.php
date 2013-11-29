@@ -1,16 +1,15 @@
 <?php
 /**
-* MDG Type Base Page
-*
-* @author Matchbox Design Group <info@matchboxdesigngroup.com>
-*/
+ * MDG Type Base Page
+ *
+ * @author Matchbox Design Group <info@matchboxdesigngroup.com>
+ */
 class MDG_Type_Page extends MDG_Type_Base
 {
 	/**
 	 * Class constructor, handles instantiation functionality for the class
 	 */
-	function __construct()
-	{
+	function __construct() {
 		$this->post_type        = 'page';
 		$this->post_type_title  = 'Pages';
 		$this->post_type_single = 'Page';
@@ -30,71 +29,71 @@ class MDG_Type_Page extends MDG_Type_Base
 	private function _set_mdg_meta_helper_options() {
 		/** @var array Meta box id(s) to be removed */
 		// $this->meta_boxes_to_remove = array(
-		// 	array(
-		// 		'id'      => 'authordiv',
-		// 		'context' => 'normal',
-		// 		'page'    => $this->post_type,
-		// 	),
-		// 	array(
-		// 		'id'      => 'categorydiv',
-		// 		'context' => 'side',
-		// 		'page'    => $this->post_type,
-		// 	),
-		// 	array(
-		// 		'id'      => "{$this->post_type}-categorydiv",
-		// 		'context' => 'side',
-		// 		'page'    => $this->post_type,
-		// 	),
-		// 	array(
-		// 		'id'      => 'commentstatusdiv',
-		// 		'context' => 'normal',
-		// 		'page'    => $this->post_type,
-		// 	),
-		// 	array(
-		// 		'id'      => 'commentsdiv',
-		// 		'context' => 'normal',
-		// 		'page'    => $this->post_type,
-		// 	),
-		// 	array(
-		// 		'id'      => 'formatdiv',
-		// 		'context' => 'normal',
-		// 		'page'    => $this->post_type,
-		// 	),
-		// 	array(
-		// 		'id'      => 'pageparentdiv',
-		// 		'context' => 'side',
-		// 		'page'    => $this->post_type,
-		// 	),
-		// 	array(
-		// 		'id'      => 'postexcerpt',
-		// 		'context' => 'normal',
-		// 		'page'    => $this->post_type,
-		// 	),
-		// 	array(
-		// 		'id'      => 'revisionsdiv',
-		// 		'context' => 'normal',
-		// 		'page'    => $this->post_type,
-		// 	),
-		// 	array(
-		// 		'id'      => 'slugdiv',
-		// 		'context' => 'normal',
-		// 		'page'    => $this->post_type,
-		// 	),
-		// 	array(
-		// 		'id'      => 'submitdiv',
-		// 		'context' => 'side',
-		// 		'page'    => $this->post_type,
-		// 	),
-		// 	array(
-		// 		'id'      => 'tagsdiv-post_tag',
-		// 		'context' => 'side',
-		// 		'page'    => $this->post_type,
-		// 	),
-		// 	array(
-		// 		'id'      => 'trackbacksdiv',
-		// 		'context' => 'normal',
-		// 		'page'    => $this->post_type,
-		// 	),
+		//  array(
+		//   'id'      => 'authordiv',
+		//   'context' => 'normal',
+		//   'page'    => $this->post_type,
+		//  ),
+		//  array(
+		//   'id'      => 'categorydiv',
+		//   'context' => 'side',
+		//   'page'    => $this->post_type,
+		//  ),
+		//  array(
+		//   'id'      => "{$this->post_type}-categorydiv",
+		//   'context' => 'side',
+		//   'page'    => $this->post_type,
+		//  ),
+		//  array(
+		//   'id'      => 'commentstatusdiv',
+		//   'context' => 'normal',
+		//   'page'    => $this->post_type,
+		//  ),
+		//  array(
+		//   'id'      => 'commentsdiv',
+		//   'context' => 'normal',
+		//   'page'    => $this->post_type,
+		//  ),
+		//  array(
+		//   'id'      => 'formatdiv',
+		//   'context' => 'normal',
+		//   'page'    => $this->post_type,
+		//  ),
+		//  array(
+		//   'id'      => 'pageparentdiv',
+		//   'context' => 'side',
+		//   'page'    => $this->post_type,
+		//  ),
+		//  array(
+		//   'id'      => 'postexcerpt',
+		//   'context' => 'normal',
+		//   'page'    => $this->post_type,
+		//  ),
+		//  array(
+		//   'id'      => 'revisionsdiv',
+		//   'context' => 'normal',
+		//   'page'    => $this->post_type,
+		//  ),
+		//  array(
+		//   'id'      => 'slugdiv',
+		//   'context' => 'normal',
+		//   'page'    => $this->post_type,
+		//  ),
+		//  array(
+		//   'id'      => 'submitdiv',
+		//   'context' => 'side',
+		//   'page'    => $this->post_type,
+		//  ),
+		//  array(
+		//   'id'      => 'tagsdiv-post_tag',
+		//   'context' => 'side',
+		//   'page'    => $this->post_type,
+		//  ),
+		//  array(
+		//   'id'      => 'trackbacksdiv',
+		//   'context' => 'normal',
+		//   'page'    => $this->post_type,
+		//  ),
 		// );
 	} // _set_mdg_meta_helper_options()
 

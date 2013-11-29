@@ -13,7 +13,7 @@
 function mdg_enqueue_site_scripts() {
 	$theme         = wp_get_theme( $stylesheet, $theme_root );
 	$theme_version = $theme->get( 'Version' );
-	$ltie9         = preg_match( '/(?i)msie [6-8]/',$_SERVER['HTTP_USER_AGENT'] );
+	$ltie9         = preg_match( '/(?i)msie [6-8]/', $_SERVER['HTTP_USER_AGENT'] );
 	global $is_IE;
 
 	wp_enqueue_style( 'main_css', get_template_directory_uri() . '/assets/css/main.min.css', false, $theme_version );
@@ -82,8 +82,8 @@ add_action( 'admin_enqueue_scripts', 'mdg_enqueue_admin_scripts', 100 );
  *
  * @see http://wordpress.stackexchange.com/a/12450
  *
- * @param  string $src    Script src.
- * @param  string $handle Script handle.
+ * @param string  $src    Script src.
+ * @param string  $handle Script handle.
  *
  * @return [type]         [description]
  */

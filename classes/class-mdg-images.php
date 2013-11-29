@@ -25,26 +25,27 @@ class MDG_Images {
 	 *
 	 * Example:
 	 * $this->image_sizes['example_size'] = array(
-	 * 	'width'  => 220,
-	 * 	'height' => 130,
-	 * 	'title'  => '220x130', // The default will be widthxheight but any string can be used
-	 * 	'used_in' => array(
-	 * 		'title' => 'Example Size', // Title to be used in Media notification
-	 * 		'link'  => '' // Link to an image of the created size to be used in Media notification
-	 * 	)
+	 *  'width'  => 220,
+	 *  'height' => 130,
+	 *  'title'  => '220x130', // The default will be widthxheight but any string can be used
+	 *  'used_in' => array(
+	 *   'title' => 'Example Size', // Title to be used in Media notification
+	 *   'link'  => '' // Link to an image of the created size to be used in Media notification
+	 *  )
 	 * );
+	 *
 	 * @return Void
 	 */
 	public function set_image_sizes() {
 		// Example size - Duplicate this and get image resizing (for normal sizes)
 		// $this->image_sizes[] = array(
-		// 	'width'  => 220,
-		// 	'height' => 130,
-		// 	'title'  => '220x130', // The default will be widthxheight but any string can be used
-		// 	'used_in' => array(
-		// 		'title' => 'Example Size', // Title to be used in Media notification
-		// 		'link'  => '' // Link to an image of the created size to be used in Media notification
-		// 	)
+		//  'width'  => 220,
+		//  'height' => 130,
+		//  'title'  => '220x130', // The default will be widthxheight but any string can be used
+		//  'used_in' => array(
+		//   'title' => 'Example Size', // Title to be used in Media notification
+		//   'link'  => '' // Link to an image of the created size to be used in Media notification
+		//  )
 		// );
 
 		// For responsive images
@@ -75,13 +76,13 @@ class MDG_Images {
 	 *
 	 * set_responsive_image_sizes( 500, 200, 'some_image', array( 'med' => 200 ), 'Used in some image spot' )
 	 *
-	 * @param integer $orig_width    Image largest/original width, this will be the 'full' size title.
-	 * @param integer $orig_height   Image largest/original height.
-	 * @param string  $base_title    The title that will be prepended to the image size title.
-	 * @param string[] $img_sizes {
-	 *	@type string  $title Size title. => @type integer $width Image width.
+	 * @param integer $orig_width  Image largest/original width, this will be the 'full' size title.
+	 * @param integer $orig_height Image largest/original height.
+	 * @param string  $base_title  The title that will be prepended to the image size title.
+	 * @param string[] $img_sizes   {
+	 * @type string  $title Size title. => @type integer $width Image width.
 	 * }
-	 * @param string $used_in        Title to be used in Media notification
+	 * @param string  $used_in     Title to be used in Media notification
 	 *
 	 * @return Void
 	 */
@@ -160,23 +161,23 @@ class MDG_Images {
 	 */
 	public function reference_grid_html() {
 		$html = '<ul class="image-reference-grid">';
-			foreach ( $this->image_sizes as $image_size ) {
-				extract( $image_size );
-				extract( $used_in );
+		foreach ( $this->image_sizes as $image_size ) {
+			extract( $image_size );
+			extract( $used_in );
 
-				$width  = isset( $width ) ? $width : '';
-				$height = isset( $height ) ? $height : '';
-				$title  = isset( $title ) ? $title : "{$width}x{$height}";
-				$title  = "{$title} - {$width}px x {$height}px";
+			$width  = isset( $width ) ? $width : '';
+			$height = isset( $height ) ? $height : '';
+			$title  = isset( $title ) ? $title : "{$width}x{$height}";
+			$title  = "{$title} - {$width}px x {$height}px";
 
-				$html .= '<li style="float: left;max-width: 100%; margin-right: 15px;">';
-					$html .= "<p>{$title}</p>";
-					if ( isset( $link ) and $link != '' ) {
-						$html .= "Used in: <a href='{$link}' target='_blank'>{$title}</a>";
-					} // if()
-					$html .= "<img src='http://placehold.it/{$width}x{$height}' style='max-width: 100%;height:auto;' alt='{$title}' width='{$width}' height='{$height}'>";
-				$html .= '</li>';
-			} // foreach()
+			$html .= '<li style="float: left;max-width: 100%; margin-right: 15px;">';
+			$html .= "<p>{$title}</p>";
+			if ( isset( $link ) and $link != '' ) {
+				$html .= "Used in: <a href='{$link}' target='_blank'>{$title}</a>";
+			} // if()
+			$html .= "<img src='http://placehold.it/{$width}x{$height}' style='max-width: 100%;height:auto;' alt='{$title}' width='{$width}' height='{$height}'>";
+			$html .= '</li>';
+		} // foreach()
 		$html .= '</ul>';
 
 		return $html;

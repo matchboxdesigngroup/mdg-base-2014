@@ -185,7 +185,7 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 		} // if()
 
 		if ( ! is_null( $post_type ) ) {
-			return ( $post_type == $this->post_type );
+			return $post_type == $this->post_type;
 		} // if()
 
 		return false;
@@ -206,18 +206,18 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 		} // if()
 
 		switch ( $this->post_type ) {
-			case 'post':
-				$manage_filter = 'manage_posts_columns';
-				$custom_column = 'manage_posts_custom_column';
-				break;
-			case 'page':
-				$manage_filter = 'manage_pages_columns';
-				$custom_column = 'manage_pages_custom_column';
-				break;
-			default:
-				$manage_filter = "manage_{$this->post_type}_posts_columns";
-				$custom_column = "manage_{$this->post_type}_posts_custom_column";
-				break;
+		case 'post':
+			$manage_filter = 'manage_posts_columns';
+			$custom_column = 'manage_posts_custom_column';
+			break;
+		case 'page':
+			$manage_filter = 'manage_pages_columns';
+			$custom_column = 'manage_pages_custom_column';
+			break;
+		default:
+			$manage_filter = "manage_{$this->post_type}_posts_columns";
+			$custom_column = "manage_{$this->post_type}_posts_custom_column";
+			break;
 		} // switch()
 
 		add_filter( $manage_filter, array( &$this, 'add_thumbnail_column' ), 5 );
@@ -302,7 +302,7 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 		);
 
 		if ( $custom_post_type_supports === false ) {
-			$this->_post_type_supports = array('title');
+			$this->_post_type_supports = array( 'title' );
 		} elseif ( ! empty( $custom_post_type_supports ) ) {
 			$this->_post_type_supports = $custom_post_type_supports;
 		} else {
@@ -531,11 +531,11 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 	 *
 	 * @param  string  $base_title  The base image size used when adding responsive image sizes.
 	 * @param  string[] $args {
-	 *	@type  array   $image_sizes The image sizes image_size_name => <|>size, optional default all image sizes that match $base_title.
-	 *	@type  integer $post_id     ID of the post to get image for blog post, optional default global $post.
-	 *	@type  boolean $echo        Echo or return the image, optional default true.
-	 *	@type  string  $link        The link for the image, use '' to disable link, optional default post permalink.
-	 *	@type  string  $default_img Link to a default image, optional default null.
+	 * @type  array   $image_sizes The image sizes image_size_name => <|>size, optional default all image sizes that match $base_title.
+	 * @type  integer $post_id     ID of the post to get image for blog post, optional default global $post.
+	 * @type  boolean $echo        Echo or return the image, optional default true.
+	 * @type  string  $link        The link for the image, use '' to disable link, optional default post permalink.
+	 * @type  string  $default_img Link to a default image, optional default null.
 	 * }
 	 *
 	 * @todo Make this easy to use.
@@ -623,7 +623,7 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 
 		// Get the responsive image sizes
 		foreach ( $resp_sizes as $size ) {
-			if ( in_array( $size, array( 'thumbnail', 'medium', 'large' ) ) ){
+			if ( in_array( $size, array( 'thumbnail', 'medium', 'large' ) ) ) {
 				$sizes[$size] = get_option( $size . '_size_w' );
 			} elseif ( isset( $_wp_additional_image_sizes ) && isset( $_wp_additional_image_sizes[ $size ] ) ) {
 				$sizes[$size] = $_wp_additional_image_sizes[ $size ]['width'];

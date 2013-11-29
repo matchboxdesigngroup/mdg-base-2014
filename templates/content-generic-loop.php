@@ -15,16 +15,16 @@ $posts = $query->get_posts();
 ?>
 
 <ul>
-	<?php foreach( $posts as $post ){
+	<?php foreach ( $posts as $post ) {
 
-	setup_postdata($post);
+	setup_postdata( $post );
 	$more = 0;
-	
-	?>
+
+?>
 		<li>
 			<h2 class="title title1"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-			<?php the_content('Read More <span class="glyphicon glyphicon-play"></span>'); ?>
+			<?php the_content( 'Read More <span class="glyphicon glyphicon-play"></span>' ); ?>
 		</li>
-	
+
 	<?php } wp_reset_postdata(); ?>
 </ul>
