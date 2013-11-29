@@ -9,7 +9,6 @@ jQuery(function($){
 		*/
 		// Uploading files
 		$('.mdg-meta-upload .upload-link').on('click', function( e ) {
-			console.log($(e.currentTarget).attr('id'));
 			var metaWrap  = $(e.currentTarget).parent('.mdg-meta-upload'),
 					metaField = metaWrap.find('input[type="text"]')
 			;
@@ -29,7 +28,6 @@ jQuery(function($){
 				var fileFrameJSON = file_frame.state().get('selection').toJSON(),
 						fileUrl = fileFrameJSON[0].url
 				;
-				console.log(metaField.attr('id'));
 				metaField.val(fileUrl);
 
 				var ajaxParams = {
