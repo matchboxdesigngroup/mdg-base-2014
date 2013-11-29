@@ -14,9 +14,25 @@ class MDG_Generic {
 	 *
 	 * @return Void
 	 */
-	public function __construct()
-	{
+	public function __construct() {
 	} // __construct()
+
+
+	/**
+	 * Checks if the current host is localhost.
+	 *
+	 * @return boolean If the current host is localhost.
+	 */
+	public function is_localhost() {
+		$localhost = array( 'localhost', '127.0.0.1' );
+		$host      = $_SERVER['HTTP_HOST'];
+
+		if ( in_array( $host, $localhost ) ) {
+			return true;
+		} // if()
+
+		return false;
+	} // is_localhost()
 
 
 
@@ -27,8 +43,7 @@ class MDG_Generic {
 	 *
 	 * @return integer      The ID of the page/post/custom post type
 	 */
-	public function get_ID_by_slug( $slug )
-	{
+	public function get_ID_by_slug( $slug ) {
 		$page = get_page_by_path( $slug );
 		if ( $page )
 			return $page->ID;
@@ -50,8 +65,7 @@ class MDG_Generic {
 	 *
 	 * @return [type]            [description]
 	 */
-	public function make_dummy_content( $post_type, $title, $count, $options = array() )
-	{
+	public function make_dummy_content( $post_type, $title, $count, $options = array() ) {
 		global $user_ID;
 
 		for ( $i = 1; $i <= $count; $i++ ) {
@@ -94,8 +108,7 @@ class MDG_Generic {
 	 *
 	 * @return string          The truncated string if $string <= $limit or the input $string
 	 */
-	public function truncate_string( $string, $limit, $break = ".", $pad = "..." )
-	{
+	public function truncate_string( $string, $limit, $break = ".", $pad = "..." ) {
 		// return with no change if string is shorter than $limit
 		if ( strlen( $string ) <= $limit )
 			return $string;
@@ -121,14 +134,13 @@ class MDG_Generic {
 	/**
 	 * Creates and optionally outputs pagination
 	 *
-	 * @param  string  $max_num_pages    Optional. The amount of pages to be paginated through, defaults to the global $wp_query->max_num_pages.
-	 * @param  integer $range  Optional. The minimum amount of items to show
-	 * @param  boolean $output Optional. Output the content
+	 * @param string  $max_num_pages Optional. The amount of pages to be paginated through, defaults to the global $wp_query->max_num_pages.
+	 * @param integer $range         Optional. The minimum amount of items to show
+	 * @param boolean $output        Optional. Output the content
 	 *
 	 * @return string                    The pagination HTML
 	 */
-	public function pagination( $max_num_pages = null, $range = 2, $output = true )
-	{
+	public function pagination( $max_num_pages = null, $range = 2, $output = true ) {
 		$showitems = ( $range * 2 ) + 1;
 		$pagination = '';
 
@@ -174,26 +186,21 @@ class MDG_Generic {
 	/**
 	 * Retrieve the post excerpt.
 	 *
-	 * @param  integer $id Post ID to retrieve the excerpt for
+	 * @param integer $id Post ID to retrieve the excerpt for
 	 *
 	 * @return string       The post excerpt
 	 */
-	public function get_the_excerpt( $id = null )
-	{
-		if ( is_null( $id ) )
-			get_post();
-		else
-			$post = get_post( $id );
-
+	public function get_the_excerpt( $id = false, $allowable_tags = array(), $excerpt_length = 55, $excerpt_more = '...' ) {
+		$post    = get_post( $id );
 		$excerpt = trim( $post->post_excerpt );
-		if ( !$excerpt ) {
-			$excerpt = $post->post_content;
-
-			$excerpt = strip_shortcodes( $excerpt );
-			$excerpt = apply_filters( 'the_content', $excerpt );
-			$excerpt = str_replace( ']]>', ']]&gt;', $excerpt );
-			$excerpt = strip_tags( $excerpt );
-			$excerpt_length = apply_filters( 'excerpt_length', 55 );
+		if ( ! $excerpt ) {
+			$excerpt        = $post->post_content;
+			$excerpt        = strip_shortcodes( $excerpt );
+			$excerpt        = apply_filters( 'the_content', $excerpt );
+			$excerpt        = str_replace( ']]>', ']]&gt;', $excerpt );
+			$excerpt        = strip_tags( $excerpt, $allowable_tags );
+			$excerpt_length = ( $excerpt_length == 55 ) ? apply_filters( 'excerpt_length', $excerpt_length ) : $excerpt_length;
+			// $excerpt_more = '<a href="'. get_permalink($post->ID) . '" class="more-link lato-bold-italic">Read More</a>';
 
 			$words = preg_split( "/[\n\r\t ]+/", $excerpt, $excerpt_length + 1, PREG_SPLIT_NO_EMPTY );
 			if ( count( $words ) > $excerpt_length ) {
@@ -217,8 +224,7 @@ class MDG_Generic {
 	 * @param string  $more_link_text Optional. Content for when there is more text.
 	 * @param bool    $strip_teaser   Optional. Strip teaser content before the more text. Default is false.
 	 */
-	function the_content( $post = null, $more_link_text = null, $strip_teaser = false )
-	{
+	function the_content( $post = null, $more_link_text = null, $strip_teaser = false ) {
 		$content = get_the_content( $post, $more_link_text, $strip_teaser );
 		$content = apply_filters( 'the_content', $content );
 		$content = str_replace( ']]>', ']]&gt;', $content );
@@ -235,8 +241,7 @@ class MDG_Generic {
 	 * @param bool    $stripteaser    Optional. Strip teaser content before the more text. Default is false.
 	 * @return string
 	 */
-	function get_the_content( $post = null, $more_link_text = null, $strip_teaser = false )
-	{
+	function get_the_content( $post = null, $more_link_text = null, $strip_teaser = false ) {
 		global $page, $more, $preview, $pages, $multipage;
 
 		if ( is_null( $post ) )
@@ -297,12 +302,11 @@ class MDG_Generic {
 	/**
 	 * Outputs previous and next navigation when supplied a post object
 	 *
-	 * @param  STDObject $post WP post object
+	 * @param STDObject $post WP post object
 	 *
 	 * @return Void
 	 */
-	public function output_prev_next_nav( $post )
-	{
+	public function output_prev_next_nav( $post ) {
 
 		$post_type = get_post_type( $post );
 
@@ -394,11 +398,11 @@ class MDG_Generic {
 	 * appearently there are some issues with next_post_link() and custom post types
 	 * so i guess we're gonna make our own :)
 	 *
-	 * @param  STDObject $post WP post object
+	 * @param STDObject $post WP post object
 	 *
 	 * @return string[] $return {
-	 * 	@type integer $prev The ID of the previous post
-	 * 	'next' => $prev
+	 *  @type integer $prev The ID of the previous post
+	 *  'next' => $prev
 	 * }
 	 */
 	public function next_post( $post ) {
@@ -444,15 +448,14 @@ class MDG_Generic {
 	/**
 	 * Retrieves attachments for the supplied parent post ID
 	 *
-	 * @param  integer  $post_id The parent post ID
-	 * @param  string[] $args {
-	 * 	@type integer $numberposts Optional. The amount of attachments to return, defaults to -1
+	 * @param integer $post_id The parent post ID
+	 * @param string[] $args    {
+	 *  @type integer $numberposts Optional. The amount of attachments to return, defaults to -1
 	 * }
 	 *
 	 * @return array             The retrieved attachments
 	 */
-	public function get_attachments( $post_id, $args = array() )
-	{
+	public function get_attachments( $post_id, $args = array() ) {
 		// try to get the global post in case it wasn't passed
 		if ( empty( $post ) )
 			global $post;
@@ -478,10 +481,11 @@ class MDG_Generic {
 
 
 	/**
+	 *
+	 *
 	 * @todo Audit and document this method
 	 */
-	public function print_attachments( $args = array() )
-	{
+	public function print_attachments( $args = array() ) {
 
 		$limit        = isset( $args['limit'] )        ? $args['limit']        : '';
 		$post         = isset( $args['post'] )         ? $args['post']         : '';
@@ -551,10 +555,11 @@ class MDG_Generic {
 
 
 	/**
+	 *
+	 *
 	 * @todo Audit and document this method
 	 */
-	public function roll_template( $posts = array() )
-	{
+	public function roll_template( $posts = array() ) {
 		// pass me an array of posts, and i'll return
 		// the html of the layout (list)
 		$html = '';
@@ -621,10 +626,11 @@ class MDG_Generic {
 
 
 	/**
+	 *
+	 *
 	 * @todo Audit and document this method
 	 */
-	public function determine_teaser_format( $post = array() )
-	{
+	public function determine_teaser_format( $post = array() ) {
 		// pass a post object and this guy will return the html for the teaser
 		// based on things like title length etc...
 		$title_length = strlen( $post->post_title );
@@ -651,12 +657,11 @@ class MDG_Generic {
 	/**
 	 * Retrieves the YouTube video ID from the supplied embed code
 	 *
-	 * @param  string $embed YouTube embed code
+	 * @param string  $embed YouTube embed code
 	 *
 	 * @return [type]        [description]
 	 */
-	public function get_youtube_id( $embed )
-	{
+	public function get_youtube_id( $embed ) {
 
 		// pass me a link or an embed code and I'll return the youtube id for the video
 		preg_match( '#(\.be/|/embed/|/v/|/watch\?v=)([A-Za-z0-9_-]{5,11})#', $embed, $matches );
@@ -670,10 +675,11 @@ class MDG_Generic {
 
 
 	/**
+	 *
+	 *
 	 * @todo Audit and document this method
 	 */
-	public function get_video( $post = array() )
-	{
+	public function get_video( $post = array() ) {
 		// pass me a post array, and i'll return the html
 		// for the video (if one exists
 		$embed = get_post_meta( $post->ID, 'videoEmbed', true );
@@ -697,10 +703,11 @@ class MDG_Generic {
 
 
 	/**
+	 *
+	 *
 	 * @todo Audit and document this method
 	 */
-	public function clean_multi_input( $multi_input = '' )
-	{
+	public function clean_multi_input( $multi_input = '' ) {
 		// this converts the multi_input from it's saved state (fake sorta json object thingy)
 		// to a php array
 
@@ -716,10 +723,11 @@ class MDG_Generic {
 
 
 	/**
+	 *
+	 *
 	 * @todo Audit and document this method
 	 */
-	public function group_multi_input( $multi_input = '' )
-	{
+	public function group_multi_input( $multi_input = '' ) {
 
 		// this method will get the multi_input, clean them via this->clean_multi_input, and return them in a grouped array
 
@@ -761,10 +769,11 @@ class MDG_Generic {
 
 
 	/**
+	 *
+	 *
 	 * @todo Audit and document this method
 	 */
-	public function get_img_urls( $attachment_id = '' )
-	{
+	public function get_img_urls( $attachment_id = '' ) {
 		// pass id of attachment
 		// return array of image urls for different sizes
 
@@ -783,9 +792,26 @@ class MDG_Generic {
 		return array(
 			'small'   => $attachment_url[0],
 			'medium'  => $attachment_full_url[0],
-			'large'   => $attachment_large_url[0]
+			'large'   => $attachment_large_url[0],
 		);
+
 	} // get_img_urls()
+
+
+
+	/**
+	 * Get attachment ID from src url
+	 *
+	 * @param string  $attachment_url Absolute URI to an attachment
+	 *
+	 * @return integer Post ID
+	 */
+	public function get_attachment_id_from_src( $attachment_url ) {
+		global $wpdb;
+		$query = "SELECT ID FROM {$wpdb->posts} WHERE guid='$attachment_url'";
+		$id    = $wpdb->get_var( $query );
+		return $id;
+	} // get_attachment_id_from_src()
 } // END Class MDG_Generic()
 
 global $mdg_generic;

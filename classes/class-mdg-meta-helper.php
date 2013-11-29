@@ -1,21 +1,36 @@
 <?php
+
 /**
- * MDG Meta Helper
- *
  * Meta helpers should hold some grunt work for making
  * custom meta. This class should contain global work that should work
  * for any environment (that's the idea anyway).
- *
- * @author Matchbox Design Group <info@matchboxdesigngroup.com>
  */
-class MDG_Meta_Helper extends MDG_Generic {
+class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
+	/** @var string Sets the meta box title */
+	public $meta_box_title;
+	/** @var string Sets the meta box position */
+	public $meta_box_position;
+	/** @var string Sets the meta box priority */
+	public $meta_box_priority;
+	/** @var string Renames the featured image meta box */
+	public $featured_image_title;
+	/** @var array Meta box id(s) to be removed */
+	public $meta_boxes_to_remove;
+
+
 	/**
 	 * Class Constructor
 	 */
-	public function __construct()
-	{
+	public function __construct() {
 		parent::__construct();
+
 		$this->_add_actions();
+
+		$this->meta_box_title       = ( isset( $this->meta_box_title ) ) ? $this->meta_box_title : 'Details';
+		$this->meta_box_position    = ( isset( $this->meta_box_position ) ) ? $this->meta_box_position : 'normal';
+		$this->meta_box_priority    = ( isset( $this->meta_box_priority ) ) ? $this->meta_box_priority : 'high';
+		$this->meta_boxes_to_remove = ( isset( $this->meta_boxes_to_remove ) ) ? $this->meta_boxes_to_remove : array();
+		$this->featured_image_title = ( isset( $this->featured_image_title ) ) ? $this->featured_image_title : 'Featured Image';
 	} // __construct()
 
 
@@ -25,8 +40,7 @@ class MDG_Meta_Helper extends MDG_Generic {
 	 *
 	 * @return Void
 	 */
-	protected function _add_actions()
-	{
+	protected function _add_actions() {
 		// Save custom meta action hook
 		add_action( 'save_post', array( &$this, 'save_meta' ) );
 
@@ -35,21 +49,38 @@ class MDG_Meta_Helper extends MDG_Generic {
 
 		// Remove metaboxes action hook
 		add_action( 'admin_menu' , array( &$this, 'remove_metaboxes' ) );
+
+		// Renames the featured image meta box
+		add_action( 'do_meta_boxes', array( &$this, 'rename_featured_image_meta_box' ) );
 	} // _add_actions()
 
 
 
 	/**
-	 * Removes unwanted meta boxes from all post types.
+	 * Removes unwanted meta boxes
 	 *
 	 * @return Void
 	 */
 	public function remove_metaboxes() {
-		// hide stuff for all post types
+		// Remove from all post types
 		$post_types = get_post_types();
 		foreach ( $post_types as $post_type )
 			remove_meta_box( 'postcustom', $post_type, 'normal' );
+
+		// Remove from specific post type
+		foreach ( $this->meta_boxes_to_remove as $meta_box ) {
+			extract( $meta_box );
+			if ( $id != '' and $context != '' and $page != '' )
+				remove_meta_box( $id, $page, $context );
+		} // foreach();
 	} // remove_metaboxes()
+
+
+
+	public function rename_featured_image_meta_box() {
+		remove_meta_box( 'postimagediv', $this->post_type, 'side' );
+		add_meta_box( 'postimagediv', __( $this->featured_image_title ), 'post_thumbnail_meta_box', $this->post_type, 'side', 'low' );
+	} // rename_featured_image_meta_box
 
 
 
@@ -57,242 +88,194 @@ class MDG_Meta_Helper extends MDG_Generic {
 	 * Will cycle through your fields array, and create your form
 	 *
 	 * Your fields array should look something like the example provided
-	 * and you can pass this array via	$args (e.g. $helper->make_form(array('meta_fields' => $fields_array);
-	 *	array(
-	 *		array(
-	 *			'label'	=> 'Field one',
-	 *			'desc'	=> 'helper text,
-	 *			'id'	=> 'fieldOneID',
-	 *			'type'	=> 'text'
-	 *		),
-	 *		array(
-	 *			'label'	=> 'Field Two',
-	 *			'desc'	=> 'helper text,
-	 *			'id'	=> 'fieldTwoID',
-	 *			'type'	=> 'text'
-	 *		)
-	 *	);
+	 * and you can pass this array via $args (e.g. $helper->mdg_make_form(array('meta_fields' => $fields_array);
+	 * array(
+	 *  array(
+	 *   'label' => 'Field one',
+	 *   'desc' => 'helper text,
+	 *   'id' => 'fieldOneID',
+	 *   'type' => 'text'
+	 *  ),
+	 *  array(
+	 *   'label' => 'Field Two',
+	 *   'desc' => 'helper text,
+	 *   'id' => 'fieldTwoID',
+	 *   'type' => 'text'
+	 *  )
+	 * );
 	 *
-	 * @todo Finish doc block and clean up method
-	 *
-	 * @param  array  $args [description]
+	 * @param array   $args [description]
 	 *
 	 * @return [type]       [description]
 	 */
-	public function make_form( $args = array() ) {
+	public function mdg_make_form( $args = array() ) {
 		global $post;
 		$meta_fields = isset( $args['meta_fields'] ) ? $args['meta_fields'] : '';
-		$meta_form = '';
 
-		// get descriptive info
-		foreach ( $meta_fields as $field ) {
+		// Output description information
+		foreach ( $meta_fields as $field )
 			if ( $field['type'] == 'info' )
-				$meta_form .= $field['desc'];
-		} // foreach()
+				echo $field['desc'];
 
-		// Use nonce for verification
-		$nonce = wp_create_nonce( basename( __FILE__ ) );
-		$meta_form .= "<input type='hidden' name='custom_meta_box_nonce' value='{$nonce}' />";
+			// Use nonce for verification
+			echo '<input type="hidden" name="custom_meta_box_nonce" value="'.wp_create_nonce( basename( __FILE__ ) ).'" />';
 
 		// Begin the field table and loop
-		$meta_form .= '<table class="form-table">';
+		echo '<table class="form-table">';
+
 		foreach ( $meta_fields as $field ) {
-			$field = $this->_esc_array_attr( $field );
 			extract( $field );
 
 			// get value of this field if it exists for this post
-			$meta = get_post_meta( $post->ID, $id, true );
+			$meta = get_post_meta( $post->ID, esc_attr( $id ), true );
+			// begin a table row with
+			echo '<tr>
+			<th><label for="'.esc_attr( $id ).'">'.esc_attr( $label ).'</label></th>
+				<td>';
 
-			$meta_form .= '<tr>';
-			$meta_form .= "<th><label for='{$id}'>{$label}</label></th>";
-				$meta_form .= '<td>';
-					switch ( $type ) {
-						case 'divider':
-							$meta_form .= '<hr/>';
-							break;
-						case 'markup':
-							// will look for the desc key and display whatever it holds
-							// this is for general markup needs... (e.g. if you need a button or image etc...)
-							$meta_form .=  $field['desc'];
-							break;
-						case 'text':
-							$meta_form .=  "<input type='text' name='{$id}' id='{$id}' value='{$meta}' size='30' />";
-							$meta_form .=  '<br />';
-							$meta_form .=  "<span class='description'>{$desc}</span>";
-							break;
-						case 'file':
-							$meta_form .=  "<input type='text' name='{$id}' id='{$id}' value='{$meta}' size='30' />";
-							$meta_form .=  "<a href='javascript:void();' class='upload-link-{$id} button'>upload</a>";
-							$meta_form .=  '<br />';
-							$meta_form .=  "<span class='description'>{$desc}</span>";
-							break;
-						case 'textarea':
-							$meta_form .=  "<textarea name='{$id}' id='{$id}' cols='55' rows='4'>{$meta}</textarea>";
-							$meta_form .=  '<br />';
-							$meta_form .=  "<span class='description'>{$desc}</span>";
-							break;
-						case 'checkbox':
-							$checked = ( $meta ) ? ' checked="checked"' : '';
-							$meta_form .= "<input type='checkbox' name='{$id}' id='{$id}'{$checked}/>";
-							$meta_form .= "<label for='{$id}'>$desc</label>";
-							break;
-						case 'select':
-							$meta_form .= "<select name='{$id}' id='{$id}'>";
-								foreach ( $options as $option ) {
-									$option = $this->_esc_array_attr( $option );
-									extract( $option );
-									$selected = ( $value ) ? ' selected="selected"' : '';
-									$meta_form .= "<option{$selected} value='{$value}'>{$label}</option>";
-								} // foreach()
-							$meta_form .=  '</select>';
-							$meta_form .= '<br />';
-							$meta_form .= "<span class='description'>{$desc}</span>";
-							break;
-						case 'chosen_select':
-							// Requires: Chosen jQuery plugin http://harvesthq.github.io/chosen/
-							$meta_form .= "<select name='{$id}' id='{$id}' class='chzn-select' style='width:200px;'>";
-								foreach ( $options as $option ) {
-									$option = $this->_esc_array_attr( $option );
-									extract( $option );
-									$selected = ( $value ) ? ' selected="selected"' : '';
-									$meta_form .= "<option{$selected} value='{$value}'>{$label}</option>";
-								} // foreach()
-							$meta_form .= '</select>';
-							$meta_form .= '<br />';
-							$meta_form .= "<span class='description'>{$desc}</span>";
-							break;
-						// case 'chosen_select_multi':
-						// 	$selection_array = explode( ',', $meta );
+			$allowed_wp_kses_html = array(
+				'div' => array(
+					'class' => array(),
+					'id'    => array(),
+				),
+				'a' => array(
+					'href' => array(),
+					'class' => array(),
+					'id'    => array(),
+				),
+				'input' => array(
+					'type'        => array(),
+					'name'        => array(),
+					'id'          => array(),
+					'value'       => array(),
+					'size'        => array(),
+					'class'       => array(),
+					'placeholder' => array(),
+					'checked'     => array(),
+				),
+				'textarea' => array(
+					'name'        => array(),
+					'id'          => array(),
+					'cols'        => array(),
+					'rows'        => array(),
+					'class'       => array(),
+				),
+				'img' => array(
+					'src'    => array(),
+					'alt'    => array(),
+					'width'  => array(),
+					'height' => array(),
+					'class'  => array(),
+					'id'    => array(),
+				),
+				'br' => array(),
+				'span' => array(
+					'class' => array(),
+					'id'    => array(),
+				),
+				'label' => array(
+					'class' => array(),
+					'id'    => array(),
+					'for'   => array(),
+				),
+				'select' => array(
+					'name'     => array(),
+					'id'       => array(),
+					'class'    => array(),
+					'style'    => array(),
+					'multiple' => array()
+				),
+				'option' => array(
+					'value'    => array(),
+					'selected' => array(),
+				),
+			);
+			switch ( $type ) {
+				case 'divider':
+					echo '<hr/>';
+					break;
+				case 'markup':
+					echo $desc;
+					break;
+				case 'text':
+					$text_field = $this->text_field( $id, $meta, $desc );
+					echo wp_kses( $text_field, $allowed_wp_kses_html );
+					break;
+				case 'file':
+					$file_upload = $this->file_upload_field( $id, $meta, $desc );
+					echo wp_kses( $file_upload, $allowed_wp_kses_html );
+					break;
+				case 'textarea':
+					$textarea = $this->textarea( $id, $meta, $desc );
+					echo wp_kses( $textarea, $allowed_wp_kses_html );
+					break;
+				case 'checkbox':
+					$checkbox = $this->checkbox( $id, $meta, $desc );
+					echo wp_kses( $checkbox, $allowed_wp_kses_html );
+					break;
+				case 'select':
+					$select = $this->select( $id, $meta, $desc, $options );
+					echo wp_kses( $select, $allowed_wp_kses_html );
+					break;
+				case 'chosen_select':
+					$chosen_select = $this->chosen_select( $id, $meta, $desc, $options );
+					echo wp_kses( $chosen_select, $allowed_wp_kses_html );
+					break;
+				case 'chosen_select_multi':
+					$chosen_select_multi = $this->chosen_select_multi( $id, $meta, $desc, $options );
+					echo wp_kses( $chosen_select_multi, $allowed_wp_kses_html );
+					break;
+				case 'date':
+					$datepicker = $this->datepicker( $id, $meta, $id );
+					echo wp_kses( $datepicker, $allowed_wp_kses_html );
+					break;
+				case 'line':
+					echo '</td></tr></table><hr/><table class="form-table">';
+					break;
+				case 'title':
+					echo '<div class="form-group-title">'.esc_attr( $label ).'</div>';
+					break;
+				case 'wysiwg_editor':
+					$meta = get_post_meta( $post->ID, $id, true );
+					$wysiwg_editor = $this->wysiwg_editor( $id, $meta, $desc );
+					echo wp_kses( $wysiwg_editor, $allowed_wp_kses_html );
+					break;
 
-						// 	echo '<input type="text" name='{$id}' id='{$id}' value="'.$meta.'" style="display:none" />';
-						// 	echo '<select name="chz_'.$id.'" id="chz_'.$id.'" multiple class="chzn-select" style="width:200px;">';
-						// 	foreach ( $field['options'] as $option ) {
-
-
-						// 		foreach ( $selection_array as $selection ) {
-						// 			echo '<option', $selection == esc_attr( $option['value'] ) ? ' selected="selected"' : '', ' value="'.esc_attr( $option['value'] ).'">'.esc_attr( $option['label'] ).'</option>';
-						// 		}
-						// 	}
-						// 	echo '</select><br /><span class="description">'.esc_attr( $field['desc'] ).'</span>';
-						// 	break;
-
-						// 	//date
-						// case 'date':
-						// 	echo '<input type="text" class="datepicker" name='{$id}' id='{$id}' value="'.$meta.'" size="30" />
-						// 			<br /><span class="description">'.esc_attr( $field['desc'] ).'</span>';
-						// 	break;
-
-						// 	//line break
-						// case 'line':
-						// 	echo '</td></tr></table><hr/><table class="form-table">';
-						// 	break;
-
-						// 	//Title
-						// case 'title':
-						// 	echo '<div class="form-group-title">'.$label.'</div>';
-						// 	break;
-
-						// 	// multi_input
-						// case 'multi_input':
-
-						// 	// sorry if this is starting to feel like spaghetti
-						// 	// moved this to a method to hide and encapsulate the logic
-
-						// 	$this->make_multi_input_field( array(
-						// 			'multi_fields' => $field['multi_fields'],
-						// 			'id'   => $id,
-						// 			'desc'   => $field['desc'],
-						// 			'meta'   => $meta
-						// 		) );
-
-						// 	break;
-					} // switch()
-				$meta_form .= '</td>';
-			$meta_form .= '</tr>';
+				case 'multi_input':
+					$this->multi_input_field(
+						array(
+							'multi_fields' => $multi_fields,
+							'id'           => $id,
+							'desc'         => $desc,
+							'meta'         => $meta,
+						)
+					);
+					break;
+				case 'color_picker':
+					$color_picker = $this->color_picker( $id, $meta, $desc );
+					echo wp_kses( $color_picker, $allowed_wp_kses_html );
+					break;
+			} // switch()
+			echo '</td></tr>';
 		} // foreach()
-		$meta_form .= '</table>';
-	} // make_form()
+		echo '</table>'; // end table
+
+	}
 
 
-
-	/**
-	 * Esacpes all of the attributes
-	 *
-	 * @uses  esc_attr()
-	 *
-	 * @param  array  $unescaped Any form of unescaped content can be contained inside the array
-	 *
-	 * @return array             The escaped content
-	 */
-	protected function _esc_array_attr( $unescaped = array() )
-	{
-		$escaped = array();
-
-		foreach ( $unescaped as $key => $value )
-			$escaped[$key] = esc_attr( $value );
-
-		return $escaped;
-	} // _esc_array_attr()
-
-
-
-	/**
-	 * Creates a multi-input style form input
-	 *
-	 * @param  array  $args [description]
-	 *
-	 * @return [type]       [description]
-	 */
-	private function make_multi_input_field( $args = array() ) {
-		// this method creates the multi-input field
-
-		// get the fields
-		$multi_fields  = isset( $args['multi_fields'] )  ? $args['multi_fields'] : '';
-		$id    = isset( $args['id'] )    ? $args['id']    : '';
-		$description  = isset( $args['desc'] )    ? $args['desc']   : '';
-		$meta    = isset( $args['meta'] )    ? $args['meta']   : '';
-
-		$json_fields = '\''.json_encode( $multi_fields ).'\' ';
-		echo $description;
-		echo '<div class="multi-input" id="'.$id.'_container">';
-		echo '<input '.
-			'type="text" '.
-			'style="display:none;"'.
-			'name="'.$id.'" '.
-			'id="'.$id.'" '.
-			'value="'.$meta.'" '.
-			'size="30" '.
-			'class="multi-input-field" '.   // JS will grab this class to start the magic
-		'data-field-id="'.$id.'" '.    // JS uses this to identify this multi-input field
-		'data-fields='.$json_fields.'" '.  // JS converts this to an object to manage the fields
-		'/>';
-		echo '</div>';
-	} // make_multi_input_field()
-
-
-
-	/**
+	/*
 	 * Saves your custom meta when the post is saved
-	 * requires post_id and the meta fields in an array as an argument
+	 * You should pass it the post_id and the meta fields in an array as an argument
+	 * something like...
+	 *	$meta_helper->save_custom_meta(array(
+	 *		'post_id'				=> 12,
+	 *		'custom_meta_fields'	=> $meta_fields_array
+	 *	));
 	 *
- 	 * Example:
-	 * 	$meta_helper->save_custom_meta(array(
-	 * 	'post_id' => 12,
-	 * 	'fields'  => $meta_fields
-	 * 	));
-	 *
-	 * @param string[]  $args {
-	 * 	@type integer $post_id The post ID of the post the meta should be saved to
-	 * 	@type array   $fields  The meta fields to be saved
-	 * }
-	 *
-	 * @return Void
 	 */
 	public function save_custom_meta( $args = array() ) {
-		extract( $args );
-
-		$post_id = isset( $post_id ) ? $post_id : '';
-		$fields = isset( $fields ) ? $fields : '';
+		$post_id    = isset( $args['post_id'] ) ? $args['post_id'] : '';
+		$custom_meta_fields = isset( $args['custom_meta_fields'] ) ? $args['custom_meta_fields'] : '';
 
 		// verify nonce
 		$mb_nonce = isset( $_POST['custom_meta_box_nonce'] ) ? $_POST['custom_meta_box_nonce'] : '';
@@ -304,16 +287,72 @@ class MDG_Meta_Helper extends MDG_Generic {
 			return $post_id;
 
 		// loop through fields and save the data
-		foreach ( $fields as $field ) {
-			$current = get_post_meta( $post_id, esc_attr( $field['id'] ), true );
-			$new = isset( $_POST[esc_attr( $field['id'] )] ) ? $_POST[esc_attr( $field['id'] )] : '';
+		foreach ( $custom_meta_fields as $field ) {
+			extract( $field );
 
-			if ( $new AND $new != $current )
-				update_post_meta( $post_id, esc_attr( $field['id'] ), $new );
-			elseif ( '' == $new && $current )
-				delete_post_meta( $post_id, esc_attr( $field['id'] ), $current );
-		} // foreach()
+			$old = get_post_meta( $post_id, esc_attr( $id ), true );
+			$new = isset( $_POST[esc_attr( $id )] ) ? $_POST[esc_attr( $id )] : '';
+
+			if ( $type == 'wysiwg_editor' ) {
+				$new = esc_textarea( $new );
+			} // if()
+
+			if ( $new && $new != $old ) {
+				update_post_meta( $post_id, esc_attr( $id ), $new );
+			} elseif ( '' == $new && $old ) {
+				delete_post_meta( $post_id, esc_attr( $id ), $old );
+			} // if/elseif()
+		} // end foreach
 	} // save_custom_meta()
+
+
+
+	public function get_custom_meta( $args ) {
+
+		// this method is for use on the front end
+		// it will iterated through the fields in the backend ->
+		// then match those to fields that have content ->
+		// then return an array of the custom meta ->
+
+		// We need to look at all fields first to get the titles from them
+
+		// initialize args
+		$post_id   = isset( $args['post_id'] )   ? $args['post_id'] : '';
+		$meta_fields  = isset( $args['meta_fields'] )  ? $args['meta_fields'] : '';
+
+		// get possible available custom meta (see inc/custom-meta.php)
+		$custom_meta_fields = $meta_fields;
+
+		// get actual saved custom meta
+		$custom_meta_data  = get_post_custom( $post_id );
+
+		// create array of custom meta based on what's
+		// available and whats been entered
+		$actual_meta = array();
+
+		// iterate through the available meta, adding data to our array
+		// if it exists as saved meta
+		foreach ( $custom_meta_fields as $meta_field ) {
+			if ( array_key_exists( $meta_field['id'], $custom_meta_data ) ) {
+				$value = isset( $custom_meta_data[ $meta_field['id'] ][0] ) ? $custom_meta_data[ $meta_field['id'] ][0] : '';
+				$visible = isset( $meta_field['visible'] ) ? $meta_field['visible'] : true;
+				$type    = isset( $meta_field['type'] ) ? $meta_field['type'] : '';
+				$item = array(
+					'id'      => $meta_field['id'],
+					'title'   => $meta_field['label'],
+					'value'   => $value,
+					'visible' => $visible,
+					'type'    => $type,
+				);
+
+				array_push( $actual_meta, $item );
+
+			} // end if
+
+		} // end foreach
+
+		return $actual_meta;
+	} // get_custom_meta()
 
 
 
@@ -324,21 +363,21 @@ class MDG_Meta_Helper extends MDG_Generic {
 	 * do anything will custom meta (e.g. meta boxes, and saving meta etc...)
 	 * The overridden method should return an array like..
 	 * return array(
-	 * 	array(
-	 * 		'label' => 'Title/Position',
-	 * 		'desc'  => '',
-	 * 		'id'    => $prefix.'Title',
-	 * 		'type'  => 'text'
-	 * 	),
-	 * 	array(
-	 * 		'label' => 'Quote',
-	 * 		'desc'  => '',
-	 * 		'id'    => $prefix.'Quote',
-	 * 		'type'  => 'textarea'
-	 * 	)
+	 *  array(
+	 *   'label' => 'Title/Position',
+	 *   'desc'  => '',
+	 *   'id'    => $prefix.'Title',
+	 *   'type'  => 'text'
+	 *  ),
+	 *  array(
+	 *   'label' => 'Quote',
+	 *   'desc'  => '',
+	 *   'id'    => $prefix.'Quote',
+	 *   'type'  => 'textarea'
+	 *  )
 	 * );
 	 *
-	 * @return Array Custom meta fields for the current post type
+	 * @return array Custom meta fields
 	 */
 	public function get_custom_meta_fields() {
 		return array();
@@ -357,12 +396,12 @@ class MDG_Meta_Helper extends MDG_Generic {
 			return;
 
 		add_meta_box(
-			$this->post_type_id.'_meta_box', // $id
-			'Details',                       // $title
-			array( $this, 'show_meta_box' ), // $callback
-			$this->post_type,                // $page
-			'normal',                        // $context
-			'high'                           // $priority
+			"{$this->post_type}_id_meta_box", // $id
+			$this->meta_box_title,            // $title
+			array( $this, 'show_meta_box' ),  // $callback
+			$this->post_type,                 // $page
+			$this->meta_box_position,         // $context
+			$this->meta_box_priority          // $priority
 		);
 	} // make_meta_box()
 
@@ -379,7 +418,7 @@ class MDG_Meta_Helper extends MDG_Generic {
 			return;
 
 		global $post;
-		$this->make_form( array( 'meta_fields' => $custom_meta_fields ) );
+		$this->mdg_make_form( array( 'meta_fields' => $custom_meta_fields ) );
 	} // show_meta_box()
 
 
@@ -387,7 +426,7 @@ class MDG_Meta_Helper extends MDG_Generic {
 	/**
 	 * Handles the saving of custom meta
 	 *
-	 * @param  integer $post_id ID of the post that you wish to save custom meta for
+	 * @param integer $post_id ID of the post that you wish to save custom meta for
 	 *
 	 * @return Void
 	 */
@@ -396,9 +435,11 @@ class MDG_Meta_Helper extends MDG_Generic {
 		if ( empty( $custom_meta_fields ) )
 			return;
 
-		$this->save_custom_meta(array(
-			'post_id'            => $post_id,
-			'custom_meta_fields' => $custom_meta_fields
-		));
+		$this->save_custom_meta(
+			array(
+				'post_id'            => $post_id,
+				'custom_meta_fields' => $custom_meta_fields,
+			)
+		);
 	} // save_meta()
 } // END Class MDG_Meta_Helper

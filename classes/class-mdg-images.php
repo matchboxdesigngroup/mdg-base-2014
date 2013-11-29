@@ -18,6 +18,8 @@ class MDG_Images {
 	} // __construct()
 
 
+
+
 	/**
 	 * Sets all of the custom image sizes
 	 *
@@ -31,11 +33,10 @@ class MDG_Images {
 	 * 		'link'  => '' // Link to an image of the created size to be used in Media notification
 	 * 	)
 	 * );
-	 * @return [type] [description]
+	 * @return Void
 	 */
-	public function set_image_sizes()
-	{
-		// Example size - Duplicate this and get image resizing
+	public function set_image_sizes() {
+		// Example size - Duplicate this and get image resizing (for normal sizes)
 		// $this->image_sizes[] = array(
 		// 	'width'  => 220,
 		// 	'height' => 130,
@@ -45,7 +46,64 @@ class MDG_Images {
 		// 		'link'  => '' // Link to an image of the created size to be used in Media notification
 		// 	)
 		// );
+
+		// For responsive images
+		$responsive_image_sizes = array(
+			'med'      => 400,
+			'small'    => 300,
+			'xs_small' => 300,
+		);
+		$this->set_responsive_image_sizes( 500, 200, 'some_image', $responsive_image_sizes, 'Used in some image spot' );
+
+		// Featured image administrator column image size
+		$this->image_sizes[] = array(
+			'title'   => 'admin-list-thumb', // The default will be widthxheight but any string can be used
+			'width'   => 100,
+			'height'  => 100,
+			'cropped' => true,
+			'used_in' => array(
+				'title'  => 'Example Size',    // Title to be used in Media notification
+				'link'   => '',                // Link to an image of the created size to be used in Media notification
+			)
+		);
 	} // function set_image_sizes()
+
+
+
+	/**
+	 * Sets the image sizes for the responsive images plugin.
+	 *
+	 * set_responsive_image_sizes( 500, 200, 'some_image', array( 'med' => 200 ), 'Used in some image spot' )
+	 *
+	 * @param integer $orig_width    Image largest/original width, this will be the 'full' size title.
+	 * @param integer $orig_height   Image largest/original height.
+	 * @param string  $base_title    The title that will be prepended to the image size title.
+	 * @param string[] $img_sizes {
+	 *	@type string  $title Size title. => @type integer $width Image width.
+	 * }
+	 * @param string $used_in        Title to be used in Media notification
+	 *
+	 * @return Void
+	 */
+	private function set_responsive_image_sizes( $orig_width, $orig_height, $base_title, $img_sizes, $used_in = '' ) {
+		$img_sizes['full'] = ( isset( $img_sizes['full'] ) ) ? $img_sizes['full'] : $orig_width;
+
+		foreach ( $img_sizes as $title => $newWidth ) {
+			$height = round( $orig_height / $orig_width * $newWidth );
+			$used_in = ( $used_in == '' ) ? '' : "{$used_in} ";
+
+			$this->image_sizes[] = array(
+				'width'   => $newWidth,
+				'height'  => $height,
+				'title'   => "{$base_title}_{$title}", // The default will be widthxheight but any string can be used
+				'used_in' => array(
+					'title'  => "{$used_in}", // Title to be used in Media notification
+					'link'   => '',                                          // Link to an image of the created size to be used in Media notification
+				)
+			);
+		} // foreach()
+	} // set_responsive_image_sizes()
+
 
 
 
@@ -64,17 +122,17 @@ class MDG_Images {
 		// now add the sizes
 		if ( function_exists( 'add_image_size' ) ) {
 			foreach ( $this->image_sizes as $image_size ) {
-				extract($image_size);
-				$width = isset( $width ) ? $width : '';
-				$height = isset( $height ) ? $height : '';
-				$title = isset( $title ) ? $title : "{$width}x{$height}";
-				$cropped      = isset( $cropped ) ? $cropped : true;
+				extract( $image_size );
+				$width   = isset( $width ) ? $width : '';
+				$height  = isset( $height ) ? $height : '';
+				$title   = isset( $title ) ? $title : "{$width}x{$height}";
+				$cropped = isset( $cropped ) ? $cropped : true;
 
 				add_image_size(
-					$title,   //title
-					$width,            // width
-					$height,            // height
-					$cropped            // crop
+					$title,  //title
+					$width,  // width
+					$height, // height
+					$cropped // crop
 				);
 			}
 			//add_image_size( 'homepage-thumb', 220, 180, true ); //(cropped)
@@ -102,26 +160,23 @@ class MDG_Images {
 	 */
 	public function reference_grid_html() {
 		$html = '<ul class="image-reference-grid">';
-		foreach ( $this->image_sizes as $image_size ) {
-			extract( $image_size );
+			foreach ( $this->image_sizes as $image_size ) {
+				extract( $image_size );
+				extract( $used_in );
 
-			$width = isset( $width ) ? $width : '';
-			$height = isset( $height ) ? $height : '';
-			$title = isset( $title ) ? $title : "{$width}x{$height}";
+				$width  = isset( $width ) ? $width : '';
+				$height = isset( $height ) ? $height : '';
+				$title  = isset( $title ) ? $title : "{$width}x{$height}";
+				$title  = "{$title} - {$width}px x {$height}px";
 
-			$style = '';
-			$style .= "width: {$width}px !important;";
-			$style .= " height: {$height}px !important;";
-
-			$html .= "<li style='{$style}'>";
-			$html .= "<p>{$title} - {$width}x{$height}</p>";
-
-			if ( isset( $used_in['title'] ) )
-				$html .= 'Used in: <a href="'.$used_in['link'].'" target="_blank">'.$used_in['title']. '</a>';
-
-			$html .= '</li>';
-		} // foreach()
-
+				$html .= '<li style="float: left;max-width: 100%; margin-right: 15px;">';
+					$html .= "<p>{$title}</p>";
+					if ( isset( $link ) and $link != '' ) {
+						$html .= "Used in: <a href='{$link}' target='_blank'>{$title}</a>";
+					} // if()
+					$html .= "<img src='http://placehold.it/{$width}x{$height}' style='max-width: 100%;height:auto;' alt='{$title}' width='{$width}' height='{$height}'>";
+				$html .= '</li>';
+			} // foreach()
 		$html .= '</ul>';
 
 		return $html;

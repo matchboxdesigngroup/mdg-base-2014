@@ -4,26 +4,30 @@
  */
 function roots_widgets_init() {
 	// Sidebars
-	register_sidebar( array(
+	register_sidebar(
+		array(
 			'name'          => __( 'Primary', 'roots' ),
 			'id'            => 'sidebar-primary',
 			'before_widget' => '<section class="widget %1$s %2$s"><div class="widget-inner">',
 			'after_widget'  => '</div></section>',
 			'before_title'  => '<h3>',
 			'after_title'   => '</h3>',
-		) );
+		)
+	);
 
-	register_sidebar( array(
+	register_sidebar(
+		array(
 			'name'          => __( 'Footer', 'roots' ),
 			'id'            => 'sidebar-footer',
 			'before_widget' => '<section class="widget %1$s %2$s"><div class="widget-inner">',
 			'after_widget'  => '</div></section>',
 			'before_title'  => '<h3>',
 			'after_title'   => '</h3>',
-		) );
+		)
+	);
 
 	// Widgets
-	register_widget( 'Roots_Vcard_Widget' );
+	// register_widget( 'Roots_Vcard_Widget' );
 }
 add_action( 'widgets_init', 'roots_widgets_init' );
 
@@ -38,7 +42,7 @@ class Roots_Vcard_Widget extends WP_Widget {
 		'region'         => 'State/Region',
 		'postal_code'    => 'Zipcode/Postal Code',
 		'tel'            => 'Telephone',
-		'email'          => 'Email'
+		'email'          => 'Email',
 	);
 
 	function __construct() {
@@ -74,7 +78,9 @@ class Roots_Vcard_Widget extends WP_Widget {
 		$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? __( 'vCard', 'roots' ) : $instance['title'], $instance, $this->id_base );
 
 		foreach ( $this->fields as $name => $label ) {
-			if ( !isset( $instance[$name] ) ) { $instance[$name] = ''; }
+			if ( !isset( $instance[$name] ) ) {
+				$instance[$name] = '';
+			}
 		}
 
 		echo $before_widget;
