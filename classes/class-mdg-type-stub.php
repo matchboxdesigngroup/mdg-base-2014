@@ -142,7 +142,7 @@ class MDG_Type_Stub extends MDG_Type_Base
 		$this->meta_box_priority = 'high'; // high|core|default|low
 
 		/** @var string Renames the featured image meta box */
-		$this->featured_image_title = 'Featured Image';
+		$this->featured_image_title = "{$this->post_type_single} Image"; // set to '' or false to keep default title.
 
 		/** @var array Meta box id(s) to be removed */
 		$this->meta_boxes_to_remove = array(
@@ -212,6 +212,9 @@ class MDG_Type_Stub extends MDG_Type_Base
 			//  'page'    => $this->post_type,
 			// ),
 		);
+
+		/** @var array   Used to disable the addition of the featured image column */
+		$this->disable_image_column = false;
 	} // _set_mdg_meta_helper_options()
 
 

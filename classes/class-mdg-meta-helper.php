@@ -18,6 +18,7 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 	public $meta_boxes_to_remove;
 
 
+
 	/**
 	 * Class Constructor
 	 */
@@ -77,7 +78,15 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 
 
 
+	/**
+	 * Renames the featured image meta box.
+	 *
+	 * @return Void
+	 */
 	public function rename_featured_image_meta_box() {
+		if ( ! $this->featured_image_title or $this->featured_image_title == '' ) {
+			return;
+		} // if()
 		remove_meta_box( 'postimagediv', $this->post_type, 'side' );
 		add_meta_box( 'postimagediv', __( $this->featured_image_title ), 'post_thumbnail_meta_box', $this->post_type, 'side', 'low' );
 	} // rename_featured_image_meta_box
@@ -259,7 +268,6 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 			echo '</td></tr>';
 		} // foreach()
 		echo '</table>'; // end table
-
 	}
 
 

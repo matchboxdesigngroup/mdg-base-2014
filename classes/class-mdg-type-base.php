@@ -72,6 +72,9 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 	/** @var boolean  Disable/Enable Categories per post type */
 	public $disable_post_type_categories;
 
+	/** @var boolean  Disable/Enable thumbnail post table column */
+	public $disable_thumbnail_column;
+
 
 	/**
 	 * Class constructor, takes care of all the setup needed
@@ -201,7 +204,11 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 	 * @return void
 	 */
 	private function _add_image_column_action() {
-		if ( $this->_image_column_action_added ) {
+		if ( $this->disable_image_column ) {
+			return;
+		} // if()
+
+		if ( ! $this->_is_correct_post_type() ) {
 			return;
 		} // if()
 
@@ -226,7 +233,13 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 
 
 
-	// Add the column
+	/**
+	 * Adds the thumbnail image column.
+	 *
+	 * @param array $cols Current post table columns.
+	 *
+	 * @return array $cols The current columns with thumbnail column added.
+	 */
 	function add_thumbnail_column( $cols ) {
 		$cols['mdg_post_thumb'] = __( $this->featured_image_title );
 		return $cols;
@@ -234,7 +247,14 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 
 
 
-	// Grab featured-thumbnail size post thumbnail and display it.
+	/**
+	 * Grab featured-thumbnail size post thumbnail and display it.
+	 *
+	 * @param array   $cols Current post table columns.
+	 * @param integer $id   The current post ID.
+	 *
+	 * @return Void
+	 */
 	function display_thumbnail_column( $col, $id ) {
 		if ( $col == 'mdg_post_thumb' and $this->_is_correct_post_type() ) {
 			echo get_the_post_thumbnail( $id, 'admin-list-thumb' );
