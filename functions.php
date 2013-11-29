@@ -1,26 +1,52 @@
 <?php
 /**
- * Roots includes
+ * Libs
  */
-require_once locate_template( '/lib/utils.php' );                     // Utility functions
-require_once locate_template( '/lib/init.php' );                      // Initial theme setup and constants
-require_once locate_template( '/lib/wrapper.php' );                   // Theme wrapper class
-require_once locate_template( '/lib/sidebar.php' );                   // Sidebar class
-require_once locate_template( '/lib/config.php' );                    // Configuration
-require_once locate_template( '/lib/activation.php' );                // Theme activation
-require_once locate_template( '/lib/titles.php' );                    // Page titles
-require_once locate_template( '/lib/cleanup.php' );                   // Cleanup
-require_once locate_template( '/lib/nav.php' );                       // Custom nav modifications
-require_once locate_template( '/lib/gallery.php' );                   // Custom [gallery] modifications
-require_once locate_template( '/lib/comments.php' );                  // Custom comments modifications
-require_once locate_template( '/lib/rewrites.php' );                  // URL rewriting for assets
-require_once locate_template( '/lib/relative-urls.php' );             // Root relative URLs
-require_once locate_template( '/lib/widgets.php' );                   // Sidebars and widgets
-require_once locate_template( '/lib/scripts.php' );                   // Scripts and stylesheets
-require_once locate_template( '/lib/custom.php' );                    // Custom functions
-require_once locate_template( '/classes/class-mdg-generic.php' );     // MDG Generic functions much like custom.php except in a class
-require_once locate_template( '/classes/class-mdg-meta-helper.php' ); // MDG Meta helper
-require_once locate_template( '/classes/class-mdg-images.php' );      // MDG Images
-require_once locate_template( '/classes/class-mdg-type-base.php' );   // MDG Post type base
-require_once locate_template( '/classes/class-mdg-type-stub.php' );   // MDG Post type stub
-require_once locate_template( '/classes/class-mdg-ajax.php' );        // MDG AJAX callbacks/functionality
+$libs = array(
+	'utils',
+	'init',
+	'wrapper',
+	'sidebar',
+	'config',
+	'activation',
+	'titles',
+	'cleanup',
+	'nav',
+	'gallery',
+	'comments',
+	'rewrites',
+	'relative-urls',
+	'widgets',
+	'scripts',
+	'custom',
+	'shortcodes',
+);
+
+foreach ( $libs as $lib ) {
+	$has_php = ( strpos( $lib, '.php' ) !== false );
+	$lib     = ( $has_php ) ? $lib : "{$lib}.php";
+	require_once locate_template( "/lib/{$lib}" );
+} // foreach()
+
+
+
+/**
+ * Classes
+ */
+$classes = array(
+	'class-mdg-generic',
+	'class-mdg-meta-form-fields',
+	'class-mdg-meta-helper',
+	'class-mdg-images',
+	'class-mdg-type-base',
+	'class-mdg-type-stub',
+	'class-mdg-type-post',
+	'class-mdg-type-page',
+	'class-mdg-wp-admin',
+);
+
+foreach ( $classes as $class ) {
+	$has_php = ( strpos( $class, '.php' ) !== false );
+	$class   = ( $has_php ) ? $class : "{$class}.php";
+	require_once locate_template( "/classes/{$class}" );
+} // foreach()

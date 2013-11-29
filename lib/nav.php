@@ -15,22 +15,24 @@ class Roots_Nav_Walker extends Walker_Nav_Menu {
 		return preg_match( '/(current[-_])|active|dropdown/', $classes );
 	}
 
+
+
 	function start_lvl( &$output, $depth = 0, $args = array() ) {
 		$output .= "\n<ul class=\"dropdown-menu\">\n";
 	}
+
+
 
 	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 		$item_html = '';
 		parent::start_el( $item_html, $item, $depth, $args );
 
 		if ( $item->is_dropdown && ( $depth === 0 ) ) {
-			$item_html = str_replace( '<a', '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"', $item_html );
-			$item_html = str_replace( '</a>', ' <b class="caret"></b></a>', $item_html );
-		}
-		elseif ( stristr( $item_html, 'li class="divider' ) ) {
+			// $item_html = str_replace('<a', '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"', $item_html);
+			// $item_html = str_replace('</a>', ' <b class="caret"></b></a>', $item_html);
+		} elseif ( stristr( $item_html, 'li class="divider' ) ) {
 			$item_html = preg_replace( '/<a[^>]*>.*?<\/a>/iU', '', $item_html );
-		}
-		elseif ( stristr( $item_html, 'li class="nav-header' ) ) {
+		} elseif ( stristr( $item_html, 'li class="dropdown-header' ) ) {
 			$item_html = preg_replace( '/<a[^>]*>(.*)<\/a>/iU', '$1', $item_html );
 		}
 
@@ -38,20 +40,20 @@ class Roots_Nav_Walker extends Walker_Nav_Menu {
 		$output .= $item_html;
 	}
 
+
+
 	function display_element( $element, &$children_elements, $max_depth, $depth = 0, $args, &$output ) {
 		$element->is_dropdown = ( ( !empty( $children_elements[$element->ID] ) && ( ( $depth + 1 ) < $max_depth || ( $max_depth === 0 ) ) ) );
 
 		if ( $element->is_dropdown ) {
-			if ( $depth === 0 ) {
-				$element->classes[] = 'dropdown';
-			} elseif ( $depth === 1 ) {
-				$element->classes[] = 'dropdown-submenu';
-			}
+			$element->classes[] = 'dropdown';
 		}
 
 		parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
 	}
-}
+} // Roots_Nav_Walker()
+
+
 
 /**
  * Remove the id="" on nav menu items
@@ -71,6 +73,8 @@ function roots_nav_menu_css_class( $classes, $item ) {
 add_filter( 'nav_menu_css_class', 'roots_nav_menu_css_class', 10, 2 );
 add_filter( 'nav_menu_item_id', '__return_null' );
 
+
+
 /**
  * Clean up wp_nav_menu_args
  *
@@ -84,8 +88,8 @@ function roots_nav_menu_args( $args = '' ) {
 		$roots_nav_menu_args['items_wrap'] = '<ul class="%2$s">%3$s</ul>';
 	}
 
-	if ( current_theme_supports( 'bootstrap-top-navbar' ) ) {
-		$roots_nav_menu_args['depth'] = 3;
+	if ( current_theme_supports( 'bootstrap-top-navbar' ) && !$args['depth'] ) {
+		$roots_nav_menu_args['depth'] = 2;
 	}
 
 	if ( !$args['walker'] ) {

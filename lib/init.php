@@ -7,9 +7,14 @@ function roots_setup() {
 	load_theme_textdomain( 'roots', get_template_directory() . '/lang' );
 
 	// Register wp_nav_menu() menus (http://codex.wordpress.org/Function_Reference/register_nav_menus)
-	register_nav_menus( array(
+	register_nav_menus(
+		array(
 			'primary_navigation' => __( 'Primary Navigation', 'roots' ),
-		) );
+			'footer_col_1' => __( 'Footer (Column 1)', 'roots' ),
+			'footer_col_2' => __( 'Footer (Column 2)', 'roots' ),
+			'footer_col_3' => __( 'Footer (Column 3)', 'roots' ),
+		)
+	);
 
 	// Add post thumbnails (http://codex.wordpress.org/Post_Thumbnails)
 	add_theme_support( 'post-thumbnails' );
@@ -25,4 +30,6 @@ function roots_setup() {
 add_action( 'after_setup_theme', 'roots_setup' );
 
 // Backwards compatibility for older than PHP 5.3.0
-if ( !defined( '__DIR__' ) ) { define( '__DIR__', dirname( __FILE__ ) ); }
+if ( ! defined( '__DIR__' ) ) {
+	define( '__DIR__', dirname( __FILE__ ) );
+}

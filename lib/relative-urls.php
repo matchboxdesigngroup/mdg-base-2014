@@ -41,7 +41,7 @@ if ( roots_enable_root_relative_urls() ) {
 		'tag_link',
 		'the_author_posts_link',
 		'script_loader_src',
-		'style_loader_src'
+		'style_loader_src',
 	);
 
 	add_filters( $root_rel_filters, 'roots_root_relative_url' );

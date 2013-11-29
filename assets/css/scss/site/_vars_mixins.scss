@@ -1,0 +1,253 @@
+$font_main: Arial, Helvetica, sans-serif;
+$font_featured: Arial, Helvetica, sans-serif;
+
+$small: 12px;
+$med: 16px;
+$large: 32px;
+$xlarge: 42px;
+
+$color1: #000; // black
+$color2: #fff; // white
+$color3: #666; // medium grey
+$color4: #ccc; // light grey
+
+$theme1: #ff0000; // Change this and add more theme colors
+
+
+// ===============================================
+// Mixins
+// ===============================================
+
+/**
+ * CSS transition.
+ *
+ * @param $values... Any value that CSS transition allows.
+ */
+@mixin transition($values...) {
+	-moz-transition: $values;
+	-webkit-transition: $values;
+	transition: $values;
+}
+
+
+/**
+ * Border radius.
+ *
+ * @param $radius Radius size.
+ */
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+		 -moz-border-radius: $radius;
+					border-radius: $radius;
+}
+
+@mixin no-rounded {
+	@include border-radius(0);
+	-webkit-appearance: none;
+	-moz-appearance: none
+}
+
+
+/**
+ * No Shadow
+ */
+@mixin no_shadow {
+	@include shadow(0 0 0 rgba(0,0,0,0) !important);
+}
+
+
+// Drop shadows
+@mixin box-shadow($shadow) {
+  -webkit-box-shadow: $shadow; // i-o-s <4.3 & Android <4.1
+          box-shadow: $shadow;
+}
+
+
+
+/**
+ * Box shadow.
+ *
+ * @param $shadow... Any value that CSS box-shadow excepts.
+ */
+@mixin box-shadow($shadow...) {
+	-webkit-box-shadow: $shadow;
+					box-shadow: $shadow;
+	behavior: url();
+}
+
+
+
+/**
+ * Arrow right.
+ *
+ * @param $color Arrow color.
+ * @param $left   Border left size.
+ * @param $right  Border right size.
+ * @param $bottom Border top size.
+ */
+@mixin arrow-up($color, $left:5px, $right:5px, $bottom:5px) {
+	width: 0;
+	height: 0;
+	border-left: $left solid transparent;
+	border-right: $right solid transparent;
+	border-bottom: $bottom solid $color;
+	@include transition(color 0.15s ease-out , background-color 0.15s ease-out , border 0.15s ease-out);
+}
+
+
+
+/**
+ * Arrow right.
+ *
+ * @param $color Arrow color.
+ * @param $left  Border left size.
+ * @param $right Border right size.
+ * @param $top   Border top size.
+ */
+@mixin arrow-down($color, $left:5px, $right:5px, $top:5px) {
+	width: 0;
+	height: 0;
+	border-left: $left solid transparent;
+	border-right: $right solid transparent;
+	border-top: $top solid $color;
+	@include transition(color 0.15s ease-out , background-color 0.15s ease-out , border 0.15s ease-out);
+}
+
+
+
+/**
+ * Arrow right.
+ *
+ * @param $color Arrow color.
+ * @param $top    Border top size.
+ * @param $bottom Border bottom size.
+ * @param $left  Border left size.
+ */
+@mixin arrow-right($color, $top:5px, $bottom:5px, $left:5px) {
+	width: 0;
+	height: 0;
+	border-top: $top solid transparent;
+	border-bottom: $bottom solid transparent;
+	border-left: $left solid $color;
+	@include transition(color 0.15s ease-out , background-color 0.15s ease-out , border 0.15s ease-out);
+}
+
+
+
+/**
+ * Arrow Left.
+ *
+ * @param $color Arrow color.
+ * @param $top    Border top size.
+ * @param $bottom Border bottom size.
+ * @param $right  Border right size.
+ */
+@mixin arrow-left($color, $top:5px, $bottom:5px, $right:5px) {
+	width: 0;
+	height: 0;
+	border-top: $top solid transparent;
+	border-bottom: $bottom solid transparent;
+	border-right:$right solid $color;
+}
+
+
+
+/**
+ * Background opacity
+ *
+ * @param $color   The color to set opacity on.
+ * @param $opacity The opacity value 0 to 1.
+ */
+@mixin background-opacity($color, $opacity) {
+	background: $color;
+	background: rgba($color, $opacity);
+}
+
+
+// Background opacity
+@mixin background-opacity($color, $opacity) {
+	background: $color;
+	background: rgba($color, $opacity);
+}
+
+
+// Restricts img with to 100%
+@mixin mobile-img {
+	img {
+		max-width: 100%;
+		height: auto;
+	} // img
+}
+
+
+// ===============================================
+// Media Queries
+// ===============================================
+
+/**
+ * Media Query Min Width.
+ *
+ * * @param $screen-size Min device width.
+ */
+@mixin bp-min( $screen-size ) {
+	@media (min-width: $screen-size) { @content; }
+}
+
+
+/**
+ * Media Query Max Width.
+ *
+ * @param $screen-size Max device width.
+ */
+@mixin bp-max( $screen-size ) {
+	@media (max-width: $screen-size) { @content; }
+}
+
+
+/**
+ * Media Query Min/Max
+ *
+ * @param $min Min device width.
+ * @param $max Max device width.
+ */
+@mixin bp-min-max( $min,$max ) {
+	@media (min-width: $min) and (max-width: $max) { @content; }
+}
+
+// ===============================================
+// Media Sizes
+// ===============================================
+
+// Extra small devices (phones, less than 768px)
+@mixin bp-screen-xs() {
+	@include bp-max( $screen-xs-max ) { @content; }
+}
+
+// Small devices (tablets, 768px and up)
+@mixin bp-screen-sm() {
+	@include bp-min( $screen-sm-min) { @content; }
+}
+
+// Medium devices (desktops, 992px and up)
+@mixin bp-screen-md() {
+	@include bp-min( $screen-md-min ) { @content; }
+}
+
+// Large devices (large desktops, 1200px and up)
+@mixin bp-screen-lg() {
+	@include bp-min( $screen-lg-min ) { @content; }
+}
+
+// ===============================================
+// Media Quearies to limit CSS to a narrower set of devices.
+// ===============================================
+
+// Used to target small devices only
+@mixin bp-min-max-sm() {
+	@include bp-min-max( $screen-sm-min,$screen-sm-max ) { @content; }
+}
+
+// Used to target medium devices only
+@mixin bp-min-max-md() {
+	@include bp-min-max($screen-md-min,$screen-md-max) { @content; }
+}

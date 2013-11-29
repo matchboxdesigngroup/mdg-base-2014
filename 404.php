@@ -1,13 +1,8 @@
 <?php get_template_part( 'templates/page', 'header' ); ?>
-
-<div class="alert">
-	<?php _e( 'Sorry, but the page you were trying to view does not exist.', 'roots' ); ?>
+<div class="container error-404">
+	<div class="col-xs-12">
+		<p class="big-404">- 404 ERROR -</p>
+		<p class="message">Maybe we can still help.  What were you trying to find?</p>
+		<div class="col-md-4 col-md-offset-4"><?php get_search_form(); ?></div>
+	</div>
 </div>
-
-<p><?php _e( 'It looks like this was the result of either:', 'roots' ); ?></p>
-<ul>
-	<li><?php _e( 'a mistyped address', 'roots' ); ?></li>
-	<li><?php _e( 'an out-of-date link', 'roots' ); ?></li>
-</ul>
-
-<?php get_search_form(); ?>
