@@ -55,6 +55,9 @@ class MDG_WP_Admin extends MDG_Generic
 
 		// Set default admin theme
 		add_filter( 'get_user_option_admin_color', array( &$this, 'change_admin_color' ) );
+
+		// Add MDG dashboard widget
+		add_action( 'wp_dashboard_setup', array( &$this, 'add_mdg_dashboard_widget' ) );
 	} // _add_actions()
 
 
@@ -393,6 +396,36 @@ class MDG_WP_Admin extends MDG_Generic
 	function change_admin_color( $result ) {
 		return 'midnight';
 	} // change_admin_color()
+
+
+
+	/**
+	 * Adds the MDG dashboard widget to the dashboard.
+	 *
+	 * @return Void
+	 */
+	function add_mdg_dashboard_widget() {
+		wp_add_dashboard_widget(
+			'mdg_dashboard_widget',
+			'Matchbox Design Group',
+			array( $this, 'mdg_dashboard_widget_callback' ),
+			array( $this, 'mdg_dashboard_widget_control_callback' )
+		);
+	}
+
+
+
+	/**
+	 * Outputs/includes th MDG dashboard widgets content.
+	 *
+	 * @return Void
+	 */
+	function mdg_dashboard_widget_callback() {
+		get_template_part( 'templates/widget', 'mdg-dashboard' );
+	} // mdg_dashboard_widget_callback()
+
+	function mdg_dashboard_widget_control_callback() {
+	} // mdg_dashboard_widget_control_callback
 } // End class MDG_WP_Admin()
 
 // Set global instance
