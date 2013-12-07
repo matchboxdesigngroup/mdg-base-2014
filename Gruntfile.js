@@ -60,7 +60,6 @@ module.exports = function(grunt) {
 						// 'assets/js/src/plugins/jquery.selectric.js',
 						'assets/js/src/plugins/responsive-img.js',
 						// 'assets/js/src/plugins/waypoints.js',
-						'assets/js/src/site/lightbox.js',
 						'assets/js/src/site/ie10-viewport-bug.js',
 						'assets/js/src/site/bp.js',
 						'assets/js/src/site/scripts.js'

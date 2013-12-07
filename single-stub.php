@@ -54,6 +54,6 @@ $resp_image = $mdg_stub->get_responsive_image( 'some_image', array( 'link' => 't
 <div class="progress"><div>Loading…</div></div>
 <div class="large progress"><div>Loading…</div></div> -->
 
-<h3>LightBox Example</h3>
+<!-- <h3>LightBox Example</h3>
 <a href="#" class="mdg-lightbox" data-content="<h4>test</h4>">Lightbox HTML Content</a><br>
-<a href="#" class="mdg-lightbox" data-image="placehold.it/2800x530">Lightbox Image</a>
+<a href="#" class="mdg-lightbox" data-image="http://placehold.it/2800x530">Lightbox Image</a> -->
