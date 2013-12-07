@@ -116,7 +116,7 @@ class MDG_Type_Stub extends MDG_Type_Base
 			'show_in_menu'       => true,
 			'query_var'          => true,
 			'rewrite'            => array( 'slug' => $this->post_type, 'with_front' => false ),
-			'capability_type'    => 'page',
+			'capability_type'    => 'post',
 			'has_archive'        => true,
 			'hierarchical'       => true,
 			'menu_position'      => 5,
