@@ -19,6 +19,7 @@ $libs = array(
 	'widgets',
 	'scripts',
 	'custom',
+	'debug',
 	'shortcodes',
 );
 
