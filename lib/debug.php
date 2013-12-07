@@ -48,3 +48,18 @@ function development_url_change() {
 	} // if()
 } // development_url_change()
 add_action( 'init', 'development_url_change' );
+
+
+
+// Add MDG developer tool bar
+function mdgdev_tool_bar_html()
+{
+	global $mdg_generic;
+	if ( $mdg_generic->is_localhost() ) {
+		echo '<div class="mdg-dev-tool-bar mdg-dev-localhost">&nbsp;</div>';
+	} elseif ( $mdg_generic->is_staging() ) {
+		echo '<div class="mdg-dev-tool-bar mdg-dev-staging">&nbsp;</div>';
+	} // if/elseif()
+} // mdgdev_tool_bar_html()
+add_action( 'wp_footer', 'mdgdev_tool_bar_html' );
+add_action( 'admin_footer', 'mdgdev_tool_bar_html' );

@@ -37,6 +37,26 @@ class MDG_Generic {
 
 
 	/**
+	 * Checks if the current host is a staging site.
+	 *
+	 * @return boolean If the current host is a staging site.
+	 */
+	public function is_staging() {
+		$staging = array( 'staging.', 'dev.' );
+		$host    = $_SERVER['HTTP_HOST'];
+
+		foreach ( $staging as $site ) {
+			if ( strpos( $host, $site ) !== false ) {
+				return true;
+			} // if()
+		} // foreach()
+
+		return false;
+	} // is_staging()
+
+
+
+	/**
 	 * Retrieves a page/post/custom post type ID when provided a slug.
 	 *
 	 * @param string  $slug The slug of the page/post/custom post type you want an ID for.
