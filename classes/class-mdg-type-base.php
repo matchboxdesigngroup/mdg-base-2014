@@ -208,10 +208,6 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 			return;
 		} // if()
 
-		if ( ! $this->_is_correct_post_type() ) {
-			return;
-		} // if()
-
 		switch ( $this->post_type ) {
 		case 'post':
 			$manage_filter = 'manage_posts_columns';
@@ -256,7 +252,7 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 	 * @return Void
 	 */
 	function display_thumbnail_column( $col, $id ) {
-		if ( $col == 'mdg_post_thumb' and $this->_is_correct_post_type() ) {
+		if ( $col == 'mdg_post_thumb' and $this->_is_correct_post_type( get_post_type( $id ) ) ) {
 			echo get_the_post_thumbnail( $id, 'admin-list-thumb' );
 		} // if()
 	} // display_thumbnail_column()
