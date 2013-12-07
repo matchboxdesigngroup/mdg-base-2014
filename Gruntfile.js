@@ -36,8 +36,7 @@ module.exports = function(grunt) {
 			},
 			site: {
 				options:{
-					sourceMap: 'scripts.min.js.map',
-					sourceMapRoot: 'assets/js/src'
+					sourceMap: 'scripts.min.js.map'
 				},
 				files: {
 					'assets/js/scripts.min.js': [
@@ -49,7 +48,6 @@ module.exports = function(grunt) {
 						'assets/js/src/plugins/bootstrap/collapse.js',
 						'assets/js/src/plugins/bootstrap/dropdown.js',
 						// 'assets/js/src/plugins/bootstrap/modal.js',
-						// 'assets/js/src/plugins/bootstrap/button.js',
 						// 'assets/js/src/plugins/bootstrap/tooltip.js',
 						// 'assets/js/src/plugins/bootstrap/popover.js',
 						// 'assets/js/src/plugins/bootstrap/scrollspy.js',
@@ -62,6 +60,8 @@ module.exports = function(grunt) {
 						// 'assets/js/src/plugins/jquery.selectric.js',
 						'assets/js/src/plugins/responsive-img.js',
 						// 'assets/js/src/plugins/waypoints.js',
+						'assets/js/src/site/lightbox.js',
+						'assets/js/src/site/ie10-viewport-bug.js',
 						'assets/js/src/site/bp.js',
 						'assets/js/src/site/scripts.js'
 					]
