@@ -13,8 +13,8 @@ if ( current_theme_supports( 'bootstrap-top-navbar' ) ) {
 }
 ?>
 
-	<div class="wrap container" role="document">
-		<div class="content row">
+	<div class="wrap" role="document">
+		<div class="content">
 			<div class="main <?php echo esc_attr( roots_main_class() ); ?>" role="main">
 				<?php include roots_template_path(); ?>
 			</div><!-- /.main -->
