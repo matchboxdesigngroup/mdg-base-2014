@@ -57,7 +57,7 @@ class MDG_WP_Admin extends MDG_Generic
 		add_filter( 'get_user_option_admin_color', array( &$this, 'change_admin_color' ) );
 
 		// Add MDG dashboard widget
-		add_action( 'wp_dashboard_setup', array( &$this, 'add_mdg_dashboard_widget' ) );
+		// add_action( 'wp_dashboard_setup', array( &$this, 'add_mdg_dashboard_widget' ) );
 	} // _add_actions()
 
 
