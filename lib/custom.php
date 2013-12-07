@@ -48,12 +48,3 @@ function development_url_change() {
 	} // if()
 } // development_url_change()
 add_action( 'init', 'development_url_change' );
-
-/**
- * Forces the admin theme to use Midnight.  It has a red that
- * workes well for Matchbox.
- */
-add_filter('get_user_option_admin_color','mdg_change_admin_color');
-function mdg_change_admin_color($result) {
-	return 'midnight';
-}

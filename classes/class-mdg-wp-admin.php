@@ -52,6 +52,9 @@ class MDG_WP_Admin extends MDG_Generic
 
 		// Removes default widgets.
 		add_action( 'widgets_init', array( &$this, 'remove_widgets' ), 1 );
+
+		// Set default admin theme
+		add_filter( 'get_user_option_admin_color', array( &$this, 'change_admin_color' ) );
 	} // _add_actions()
 
 
@@ -380,6 +383,16 @@ class MDG_WP_Admin extends MDG_Generic
 
 		return $settings;
 	} // mce_before_init($settings)
+
+
+
+	/**
+	 * Forces the admin theme to use Midnight.
+	 * It has a red that works well for Matchbox.
+	 */
+	function change_admin_color( $result ) {
+		return 'midnight';
+	} // change_admin_color()
 } // End class MDG_WP_Admin()
 
 // Set global instance
