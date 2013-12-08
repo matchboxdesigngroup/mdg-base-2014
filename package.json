@@ -6,6 +6,7 @@
   "scripts": {
     "test": "test"
   },
+  "repository": "https://github.com/matchboxdesigngroup/mdg-base.git",
   "author": "Matchbox Design Group",
   "license": "GPLv2",
   "devDependencies": {
@@ -16,9 +17,7 @@
     "grunt-contrib-uglify": "x.x.x",
     "grunt-notify": "x.x.x",
     "grunt-contrib-jshint": "x.x.x",
-    "grunt-newer": "x.x.x",
     "jshint-stylish": "x.x.x",
-    "load-grunt-tasks": "x.x.x",
-    "grunt-concurrent": "x.x.x"
+    "load-grunt-tasks": "x.x.x"
   }
 }
