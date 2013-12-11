@@ -103,29 +103,42 @@ module.exports = function(grunt) {
 		watch: {
 			siteSass: {
 				files: ['assets/css/scss/site/**/*.scss'],
-				tasks: ['sass:site']
+				tasks: ['sass:site'],
+				options: {
+					spawn: false,
+				},
 			},
 			adminSass: {
 				files: ['assets/css/scss/admin/**/*.scss'],
-				tasks: ['sass:admin']
+				tasks: ['sass:admin'],
+				options: {
+					spawn: false,
+				},
 			},
 			siteScripts: {
 				files: ['assets/js/src/site/**/*.js'],
 				tasks: [
 					'uglify:site',
 					'jshint:site'
-				]
+				],
+				options: {
+					spawn: false,
+				},
 			},
 			adminScripts: {
 				files: ['assets/js/src/admin/**/*.js'],
 				tasks: [
 					'uglify:admin',
 					'jshint:admin'
-				]
+				],
+				options: {
+					spawn: false,
+				},
 			},
 			livereload: {
 				options: {
-					livereload: true
+					livereload: true,
+					spawn: false,
 				},
 				files: [
 					'assets/css/*.css',
@@ -134,7 +147,7 @@ module.exports = function(grunt) {
 					'!**/node_modules/**',
 					'**/*.{png,jpg,gif}'
 				],
-			}
+			},
 		}
 	});
 
