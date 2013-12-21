@@ -2,7 +2,7 @@
 	"folders":
 	[
 		{
-			"path": ".",
+			"path": "./wp-content/themes/",
 			"file_exclude_patterns": [
 				"assets/*.css",
 				"assets/*.min.*",
