@@ -105,18 +105,23 @@ class MDG_WP_Admin extends MDG_Generic
 	 * @return Void
 	 */
 	public function login_logo() {
-		$theme_img_base = '/assets/img/login-logo.png';
+		$theme_img_base = '/assets/img/w-logo-blue.png';
 		$theme_img_uri  = get_template_directory().$theme_img_base;
 		$theme_img_url  = get_template_directory_uri().$theme_img_base;
 
-		if ( ! file_exists( $theme_img_uri ) ) {
+		$svg_theme_img_base = '/assets/img/wordpress-logo.svg';
+		$svg_theme_img_uri  = get_template_directory().$theme_img_base;
+		$svg_theme_img_url  = get_template_directory_uri().$theme_img_base;
+
+		if ( ! file_exists( $theme_img_uri ) or ! file_exists( $svg_theme_img_uri )  ) {
 			return;
 		} // if()
 
 		$style = '<style type="text/css">';
-		$style .= '.login h1 a {';
-		$style .= 'background-image: url("'.$theme_img_url.'");';
-		$style .= '}';
+			$style .= '.login h1 a {';
+				$style .= 'background-image: url("'.$theme_img_url.'");';
+				$style .= 'background-image: none,url("'.$svg_theme_img_url.'");';
+			$style .= '}';
 		$style .= '</style>';
 
 		echo $style;
