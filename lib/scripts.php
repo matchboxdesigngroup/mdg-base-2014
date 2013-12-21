@@ -4,19 +4,21 @@
  *
  */
 function mdg_enqueue_site_scripts() {
-	$theme         = wp_get_theme( $stylesheet, $theme_root );
-	$theme_version = $theme->get( 'Version' );
-	$ltie9         = preg_match( '/(?i)msie [6-8]/', $_SERVER['HTTP_USER_AGENT'] );
 	global $is_IE;
 
-	wp_enqueue_style( 'main_css', get_template_directory_uri() . '/assets/css/main.min.css', false, $theme_version );
+	$theme         = wp_get_theme( $stylesheet, $theme_root );
+	$theme_version = $theme->get( 'Version' );
+	$theme_uri     = get_template_directory_uri();
+	$ltie9         = preg_match( '/(?i)msie [6-8]/', $_SERVER['HTTP_USER_AGENT'] );
+
+	wp_enqueue_style( 'main_css', "{$theme_uri}/assets/css/main.min.css", array(), $theme_version, 'all' );
 
 	// jQuery is loaded using the same method from HTML5 Boilerplate:
 	// Grab Google CDN's latest jQuery with a protocol relative URL; fallback to local if offline
 	// It's kept in the header instead of footer to avoid conflicts with plugins.
 	if ( !is_admin() && current_theme_supports( 'jquery-cdn' ) ) {
 		wp_deregister_script( 'jquery' );
-		wp_register_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', false, '1.10.2', false );
+		wp_register_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', array(), '1.10.2', false );
 		add_filter( 'script_loader_src', 'roots_jquery_local_fallback', 10, 2 );
 	} // if()
 
@@ -25,10 +27,10 @@ function mdg_enqueue_site_scripts() {
 	} // if()
 
 	// Register Scripts
-	wp_register_script( 'modernizr', get_template_directory_uri() . '/assets/js/vendor/modernizr-2.7.0.min.js', false, '2.7.0', false );
-	wp_register_script( 'respond_js', get_template_directory_uri() . '/assets/js/vendor/respond-1.4.0.min.js', false, '1.4.0', false );
-	wp_register_script( 'device_js', get_template_directory_uri() . '/assets/js/vendor/device-0.1.57.min.js', false, '0.1.57', false );
-	wp_register_script( 'main_js', get_template_directory_uri() . '/assets/js/scripts.min.js', false, $theme_version, true );
+	wp_register_script( 'modernizr', "{$theme_uri}/assets/js/vendor/modernizr-2.7.0.min.js", array(), '2.7.0', false );
+	wp_register_script( 'respond_js', "{$theme_uri}/assets/js/vendor/respond-1.4.0.min.js", array( 'modernizer' ), '1.4.0', false );
+	wp_register_script( 'device_js', "{$theme_uri}/assets/js/vendor/device-0.1.57.min.js", array( 'modernizer' ), '0.1.57', false );
+	wp_register_script( 'main_js', "{$theme_uri}/assets/js/scripts.min.js", array( 'jquery' ), $theme_version, true );
 
 	// Add Global PHP -> JS
 	$mdg_globals = array(
@@ -58,12 +60,13 @@ add_action( 'wp_enqueue_scripts', 'mdg_enqueue_site_scripts', 100 );
 function mdg_enqueue_admin_scripts() {
 	$theme         = wp_get_theme( $stylesheet, $theme_root );
 	$theme_version = $theme->get( 'Version' );
+	$theme_uri     = get_template_directory_uri();
 
 	wp_enqueue_style( 'wp-color-picker' );
-	wp_enqueue_style( 'mdg-admin-css', get_template_directory_uri() . '/assets/css/admin.min.css', false, $theme_version );
+	wp_enqueue_style( 'mdg-admin-css', "{$theme_uri}/assets/css/admin.min.css", array( 'wp-color-picker' ), $theme_version, 'all' );
 
 	wp_enqueue_script( 'jquery-ui-datepicker' );
-	wp_register_script( 'admin_scripts', get_template_directory_uri() . '/assets/js/admin.min.js', array( 'jquery', 'jquery-ui-datepicker', 'wp-color-picker' ), $theme_version, true );
+	wp_register_script( 'admin_scripts', "{$theme_uri}/assets/js/admin.min.js", array( 'jquery', 'jquery-ui-datepicker' ), $theme_version, true );
 	wp_enqueue_script( 'admin_scripts' );
 } // mdg_enqueue_admin_scripts()
 add_action( 'admin_enqueue_scripts', 'mdg_enqueue_admin_scripts', 100 );
@@ -75,10 +78,10 @@ add_action( 'admin_enqueue_scripts', 'mdg_enqueue_admin_scripts', 100 );
  *
  * @see http://wordpress.stackexchange.com/a/12450
  *
- * @param string  $src    Script src.
- * @param string  $handle Script handle.
+ * @param  string  $src    Script src.
+ * @param  string  $handle Script handle.
  *
- * @return [type]         [description]
+ * @return string          Script src.
  */
 function roots_jquery_local_fallback( $src, $handle ) {
 	static $add_jquery_fallback = false;
@@ -114,16 +117,15 @@ function mdg_add_favicon() {
  * @return Void
  */
 function roots_google_analytics() { ?>
-<script>
-	(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-	function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-	e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-	e.src='//www.google-analytics.com/analytics.js';
-	r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-	ga( 'create', '<?php echo esc_attr( GOOGLE_ANALYTICS_ID ); ?>');ga('send','pageview' );
-</script>
-
+	<script>
+		(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+		function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+		e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+		e.src='//www.google-analytics.com/analytics.js';
+		r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+		ga( 'create', '<?php echo esc_attr( GOOGLE_ANALYTICS_ID ); ?>');ga('send','pageview' );
+	</script>
 <?php }
-if ( GOOGLE_ANALYTICS_ID && !current_user_can( 'manage_options' ) ) {
-	add_action( 'wp_header', 'roots_google_analytics', 20 );
+if ( GOOGLE_ANALYTICS_ID && ! current_user_can( 'manage_options' ) ) {
+	add_action( 'wp_head', 'roots_google_analytics', 20 );
 }
