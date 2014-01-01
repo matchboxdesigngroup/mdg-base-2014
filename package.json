@@ -18,6 +18,7 @@
     "grunt-notify": "x.x.x",
     "grunt-contrib-jshint": "x.x.x",
     "jshint-stylish": "x.x.x",
-    "load-grunt-tasks": "x.x.x"
+    "load-grunt-tasks": "x.x.x",
+    "grunt-scss-lint": "0.0.7"
   }
 }

@@ -100,17 +100,29 @@ module.exports = function(grunt) {
 			}
 		},
 		// Watch Config
+		scsslint: {
+			site: [
+				'assets/css/scss/site/*.scss',
+			],
+			admin: [
+				'assets/css/scss/admin/*.scss',
+			],
+			options: {
+				config: '.scss-lint.yml',
+				reporterOutput: null
+			},
+		},
 		watch: {
 			siteSass: {
 				files: ['assets/css/scss/site/**/*.scss'],
-				tasks: ['sass:site'],
+				tasks: ['sass:site', 'scsslint:site'],
 				options: {
 					spawn: false,
 				},
 			},
 			adminSass: {
 				files: ['assets/css/scss/admin/**/*.scss'],
-				tasks: ['sass:admin'],
+				tasks: ['sass:admin', 'scsslint:admin'],
 				options: {
 					spawn: false,
 				},
@@ -160,4 +172,5 @@ module.exports = function(grunt) {
 	grunt.registerTask('default', ['sass']);
 	grunt.registerTask('default', ['imagemin']);
 	grunt.registerTask('default', ['jshint']);
+	grunt.registerTask('default', ['scsslint']);
 };
