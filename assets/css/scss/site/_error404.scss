@@ -6,34 +6,34 @@
 	font-size: 14px;
 
 	.big-404 {
-		font-size: 120px;
-		font-weight: bold;
-		color: $color4;
-		line-height: 80px;
-		margin-top: 80px;
 
 		@include bp-min-max-sm {
 			font-size: 80px;
 			line-height: 60px;
-		} // @include bp-min-max-sm
+		}
 
 		@include bp-screen-xs {
 			font-size: 40px;
 			line-height: 40px;
-		} // @include bp-screen-xs
+		}
+		margin-top: 80px;
+		color: $color4;
+		font-weight: bold;
+		font-size: 120px;
+		line-height: 80px;
 	} // .big-404
 
 	.big-error {
-		font-size: 30px;
 		color: $color4;
+		font-size: 30px;
 	} // .big-error
 
 	.message {
+		margin-top: 40px;
 		color: $color1;
 		font-weight: bold;
 		font-size: 20px;
 		line-height: 25px;
-		margin-top: 40px;
 	} // .message
 
 	#searchform {
@@ -43,11 +43,11 @@
 		label { display: none; }
 
 		#searchsubmit {
+			margin-top: -10px;
+			padding: 5px 10px;
+			border: 0;
 			background: $color2;
 			color: $color1;
-			border: none;
-			padding: 5px 10px;
-			margin-top: -10px;
-		} // #searchsubmit
-	} // #searchform
+		}
+	}
 } // .error-404
