@@ -1,0 +1,14 @@
+{
+  "name": "devicejs",
+  "homepage": "https://github.com/matthewhudson/device.js",
+  "_release": "110e86db25",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "110e86db25dc2d61ec72dd5684854cf35eb1d143"
+  },
+  "_source": "git://github.com/matthewhudson/device.js.git",
+  "_target": "*",
+  "_originalSource": "devicejs",
+  "_direct": true
+}

@@ -28,8 +28,8 @@ function mdg_enqueue_site_scripts() {
 
 	// Register Scripts
 	wp_register_script( 'modernizr', "{$theme_uri}/assets/js/vendor/modernizr-2.7.0.min.js", array(), '2.7.0', false );
-	wp_register_script( 'respond_js', "{$theme_uri}/assets/js/vendor/respond-1.4.0.min.js", array( 'modernizer' ), '1.4.0', false );
-	wp_register_script( 'device_js', "{$theme_uri}/assets/js/vendor/device-0.1.57.min.js", array( 'modernizer' ), '0.1.57', false );
+	wp_register_script( 'respond_js', "{$theme_uri}/assets/bower_components/respond/dest/respond.min.js", array( 'modernizer' ), '1.4.0', false );
+	wp_register_script( 'device_js', "{$theme_uri}/assets/bower_components/devicejs/lib/device.min.js", array( 'modernizer' ), null, false );
 	wp_register_script( 'main_js', "{$theme_uri}/assets/js/scripts.min.js", array( 'jquery' ), $theme_version, true );
 
 	// Add Global PHP -> JS
