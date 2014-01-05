@@ -16,7 +16,7 @@ function mdg_enqueue_site_scripts() {
 	// jQuery is loaded using the same method from HTML5 Boilerplate:
 	// Grab Google CDN's latest jQuery with a protocol relative URL; fallback to local if offline
 	// It's kept in the header instead of footer to avoid conflicts with plugins.
-	if ( !is_admin() && current_theme_supports( 'jquery-cdn' ) ) {
+	if ( ! is_admin() && current_theme_supports( 'jquery-cdn' ) ) {
 		wp_deregister_script( 'jquery' );
 		wp_register_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', array(), '1.10.2', false );
 		add_filter( 'script_loader_src', 'roots_jquery_local_fallback', 10, 2 );
@@ -125,7 +125,9 @@ function roots_google_analytics() { ?>
 		r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
 		ga( 'create', '<?php echo esc_attr( GOOGLE_ANALYTICS_ID ); ?>');ga('send','pageview' );
 	</script>
-<?php }
+	<?php
+} // roots_google_analytics()
+
 if ( GOOGLE_ANALYTICS_ID && ! current_user_can( 'manage_options' ) ) {
 	add_action( 'wp_head', 'roots_google_analytics', 20 );
-}
+} // if()
