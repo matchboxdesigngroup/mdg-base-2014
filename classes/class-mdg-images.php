@@ -90,7 +90,7 @@ class MDG_Images {
 		$img_sizes['full'] = ( isset( $img_sizes['full'] ) ) ? $img_sizes['full'] : $orig_width;
 
 		foreach ( $img_sizes as $title => $newWidth ) {
-			$height = round( $orig_height / $orig_width * $newWidth );
+			$height  = round( $orig_height / $orig_width * $newWidth );
 			$used_in = ( $used_in == '' ) ? '' : "{$used_in} ";
 
 			$this->image_sizes[] = array(
