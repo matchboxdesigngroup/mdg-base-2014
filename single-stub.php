@@ -45,6 +45,10 @@ pp( $stubs3 );
 <?php
 $resp_image = $mdg_stub->get_responsive_image( 'some_image', array( 'link' => 'test' ) );
 ?>
+<h3>FontAwesome/Glyphicons Test</h3>
+<i class="fa fa-wheelchair"></i> fa-wheelchair
+<i class="fa fa-plus-square-o"></i> fa-plus-square-o
+<span class="glyphicon glyphicon-star"></span> Star
 <!-- <h2>CSS3Pie Test</h3>
 <div class="stub-css3pie-test pie">test</div>
 <div class="test">Test2</div> -->
