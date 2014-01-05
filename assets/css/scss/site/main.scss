@@ -1,8 +1,11 @@
-@import "vendor/bootstrap/sass-bootstrap";
-@import "vendor/font-awesome/font-awesome.scss";
+$icon-font-path: "../bower_components/bootstrap-sass/vendor/assets/fonts/bootstrap";
+@import "../../../bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap";
+$fa-font-path: "../bower_components/font-awesome/fonts";
+@import "../../../bower_components/font-awesome/scss/font-awesome.scss";
+@import "../plugins/_flexslider-2.2.0";
+
 @import "vars_mixins";
 @import "utilities";
-@import "../plugins/flexslider";
 @import "base";
 @import "header";
 @import "nav";

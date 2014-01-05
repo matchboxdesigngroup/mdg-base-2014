@@ -1,0 +1,15 @@
+{
+  "name": "jQuery-ResizeEnd",
+  "homepage": "https://github.com/nielse63/jQuery-ResizeEnd",
+  "version": "0.1.3",
+  "_release": "0.1.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.3",
+    "commit": "659764df461fb6d1b90b45598a7160b3e4ff4d18"
+  },
+  "_source": "https://github.com/nielse63/jQuery-ResizeEnd.git",
+  "_target": "~0.1.3",
+  "_originalSource": "https://github.com/nielse63/jQuery-ResizeEnd.git",
+  "_direct": true
+}
