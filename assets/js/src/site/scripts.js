@@ -1,4 +1,4 @@
-/* global MDG_GLOBALS */
+/** global MDG_GLOBALS */
 /**
  * To activate the plugins for CodeKit remove the space between @ and codekit-prepend this
  * mirrors the order and default setup from Gruntfile.js
@@ -13,10 +13,11 @@
 // @ codekit-prepend "../plugins/waypoints.js"
 // @codekit-prepend "bp.js"
 jQuery((function($) {
-	var site    = {},
-			bp      = MDG_GLOBALS.bp,
-			ajaxurl = MDG_GLOBALS.ajaxurl
-	;
+	var site    = {};
+
+	// Globals defined in scripts.php
+	// bp      = MDG_GLOBALS.bp,
+	// ajaxurl = MDG_GLOBALS.ajaxurl
 
 	/**
 	 * Initialize FlexSliders here
