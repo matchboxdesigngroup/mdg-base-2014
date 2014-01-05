@@ -21,6 +21,8 @@
     "load-grunt-tasks": "x.x.x",
     "grunt-scss-lint": "0.0.7",
     "grunt-jscs-checker": "~0.3.0",
-    "grunt-githooks": "~0.3.1"
+    "grunt-githooks": "~0.3.1",
+    "grunt-phpcs": "~0.2.1",
+    "grunt-contrib-copy": "~0.5.0"
   }
 }

@@ -1,168 +1,186 @@
+// Install grunt bower for githooks
+// Install PHPCS for githooks
+// Look into a bower copy/concatenate grunt plugin
+// Look into dploy
 module.exports = function(grunt) {
-	// Configurations
-	grunt.initConfig({
-		sass: {
-			site: {
-				options: {
-					style: 'compressed',
-					sourcemap: true
-				},
-				files: [{
-					expand: true,
-					cwd: 'assets/css/scss/site',
-					src: ['main.scss'],
-					dest: 'assets/css/',
-					ext: '.min.css'
-				}]
-			},
-			admin: {
-				options: {
-					style: 'compressed'
-				},
-				files: [{
-					expand: true,
-					cwd: 'assets/css/scss/admin',
-					src: ['admin.scss'],
-					dest: 'assets/css/',
-					ext: '.min.css'
-				}]
-			}
-		},
-		uglify: {
+	var gc = {};
+
+	/**
+	 * SASS Specific Configurations
+	 */
+	gc.sass = {
+		site: {
 			options: {
-				mangle: false
+				style: 'compressed',
+				sourcemap: true
 			},
-			site: {
-				options:{
-					sourceMap: 'scripts.min.js.map'
-				},
-				files: {
-					'assets/js/scripts.min.js': [
-						'!assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/plugins.js',
-						'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/transition.js',
-						// 'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/alert.js',
-						'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/button.js',
-						// 'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/carousel.js',
-						'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/collapse.js',
-						'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/dropdown.js',
-						// 'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/modal.js',
-						// 'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/tooltip.js',
-						// 'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/popover.js',
-						// 'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/scrollspy.js',
-						// 'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/tab.js',
-						// 'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/affix.js',
-						// 'assets/bower_components/imagesloaded/imagesloaded.js',
-						// 'assets/js/src/plugins/jquery.flexslider.js',
-						// 'assets/js/src/plugins/placeholders.jquery.min.js',
-						'assets/bower_components/jQuery-ResizeEnd/src/jQuery.resizeEnd.js',
-						// 'assets/js/src/plugins/jquery.selectric.js',
-						'assets/js/src/plugins/responsive-img.js',
-						// 'assets/bower_components/jquery-waypoints/waypoints.js',
-						'assets/js/src/site/ie10-viewport-bug.js',
-						'assets/js/src/site/bp.js',
-						'assets/js/src/site/scripts.js'
-					]
-				}
-			},
-			admin: {
-				options:{
-					sourceMap: 'admin.min.js.map',
-					sourceMapRoot: 'assets/js/src'
-				},
-				files: {
-					'assets/js/admin.min.js': [
-						'assets/js/src/plugins/jquery.cleditor.js',
-						'assets/js/src/plugins/chosen.jquery.js',
-						'assets/js/src/admin/*.js'
-					]
-				}
-			}
+			files: [{
+				expand: true,
+				cwd: 'assets/css/scss/site',
+				src: ['main.scss'],
+				dest: 'assets/css/',
+				ext: '.min.css'
+			}]
 		},
-		jshint: {
+		admin: {
 			options: {
-				reporter: require('jshint-stylish'),
-				jshintrc: ".jshintrc"
+				style: 'compressed'
 			},
-			site: ['assets/js/src/admin/*.js'],
-			admin: ['assets/js/src/site/*.js']
-		},
-		jscs: {
-			options: { config: ".jscs.json" },
-			site: ['assets/js/src/admin/*.js'],
-			admin: ['assets/js/src/site/*.js']
-		},
-		imagemin: {
-			theme: {
-				files: [{
-					expand: true,
-					cwd: 'assets/img/',
-					src: ['**/*.{png,jpg,gif}'],
-					dest: 'assets/img/'
-				}]
-			}
-		},
-		scsslint: {
-			site: [
-				'assets/css/scss/site/*.scss',
-			],
-			admin: [
-				'assets/css/scss/admin/*.scss',
-			],
-			options: {
-				config: '.scss-lint.yml',
-				reporterOutput: null
-			},
-		},
-		watch: {
-			siteSass: {
-				files: ['assets/css/scss/site/**/*.scss'],
-				tasks: ['sass:site', 'scsslint:site'],
-				options: {
-					spawn: false,
-				},
-			},
-			adminSass: {
-				files: ['assets/css/scss/admin/**/*.scss'],
-				tasks: ['sass:admin', 'scsslint:admin'],
-				options: {
-					spawn: false,
-				},
-			},
-			siteScripts: {
-				files: ['assets/js/src/site/**/*.js'],
-				tasks: [
-					'uglify:site',
-					'jshint:site'
-				],
-				options: {
-					spawn: false,
-				},
-			},
-			adminScripts: {
-				files: ['assets/js/src/admin/**/*.js'],
-				tasks: [
-					'uglify:admin',
-					'jshint:admin'
-				],
-				options: {
-					spawn: false,
-				},
-			},
-			livereload: {
-				options: {
-					livereload: true,
-					spawn: false,
-				},
-				files: [
-					'assets/css/*.css',
-					'assets/js/*.js',
-					'**/*.php',
-					'!**/node_modules/**',
-					'**/*.{png,jpg,gif}'
-				],
-			},
+			files: [{
+				expand: true,
+				cwd: 'assets/css/scss/admin',
+				src: ['admin.scss'],
+				dest: 'assets/css/',
+				ext: '.min.css'
+			}]
 		}
-	});
+	};
+
+	gc.scsslint = {
+		site: ['assets/css/scss/site/*.scss'],
+		admin: ['assets/css/scss/admin/*.scss'],
+		options: { config: '.scss-lint.yml', reporterOutput: null },
+	};
+
+	/**
+	 * JavaScript Specific Configurations
+	 */
+	gc.uglify = {
+		options: { mangle: false },
+		site: {
+			options:{ sourceMap: 'scripts.min.js.map' },
+			files: {
+				'assets/js/scripts.min.js': [
+					'!assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/plugins.js',
+					'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/transition.js',
+					// 'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/alert.js',
+					'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/button.js',
+					// 'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/carousel.js',
+					'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/collapse.js',
+					'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/dropdown.js',
+					// 'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/modal.js',
+					// 'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/tooltip.js',
+					// 'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/popover.js',
+					// 'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/scrollspy.js',
+					// 'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/tab.js',
+					// 'assets/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/affix.js',
+					// 'assets/bower_components/imagesloaded/imagesloaded.js',
+					// 'assets/js/src/plugins/jquery.flexslider.js',
+					// 'assets/js/src/plugins/placeholders.jquery.min.js',
+					'assets/bower_components/jQuery-ResizeEnd/src/jQuery.resizeEnd.js',
+					// 'assets/js/src/plugins/jquery.selectric.js',
+					'assets/js/src/plugins/responsive-img.js',
+					// 'assets/bower_components/jquery-waypoints/waypoints.js',
+					'assets/js/src/site/ie10-viewport-bug.js',
+					'assets/js/src/site/bp.js',
+					'assets/js/src/site/scripts.js'
+				]
+			}
+		},
+		admin: {
+			options:{ sourceMap: 'admin.min.js.map' },
+			files: {
+				'assets/js/admin.min.js': [
+					'assets/js/src/plugins/jquery.cleditor.js',
+					'assets/js/src/plugins/chosen.jquery.js',
+					'assets/js/src/admin/*.js'
+				]
+			}
+		}
+	};
+
+	gc.copy = {
+		jsSourceMaps: {
+			files: [
+				{expand: true, src: ['*.js.map'], dest: 'assets/js/', filter: 'isFile'},
+			]
+		}
+	};
+
+	gc.jshint = {
+		options: { reporter: require('jshint-stylish'), jshintrc: ".jshintrc" },
+		site: ['assets/js/src/admin/*.js'],
+		admin: ['assets/js/src/site/*.js']
+	};
+
+	gc.jscs = {
+		options: { config: ".jscs.json" },
+		site: ['assets/js/src/admin/*.js'],
+		admin: ['assets/js/src/site/*.js']
+	};
+
+	/**
+	 * PHP Specific Configurations
+	 */
+	gc.phpcs = {
+		theme: { dir: '**/*.php' },
+		options: { standard: 'WordPress' }
+	};
+
+	/**
+	 * Image Specific Configurations
+	 */
+	gc.imagemin = {
+		theme: {
+			files: [{
+				expand: true,
+				cwd: 'assets/img/',
+				src: ['**/*.{png,jpg,gif}'],
+				dest: 'assets/img/'
+			}]
+		}
+	};
+
+	/**
+	 * Event Specific Configurations
+	 */
+	gc.watch = {
+		siteSass: {
+			files: ['assets/css/scss/site/**/*.scss'],
+			tasks: ['sass:site', 'scsslint:site'],
+			options: { spawn: false, },
+		},
+		adminSass: {
+			files: ['assets/css/scss/admin/**/*.scss'],
+			tasks: ['sass:admin', 'scsslint:admin'],
+			options: {
+				spawn: false,
+			},
+		},
+		siteScripts: {
+			files: ['assets/js/src/site/**/*.js'],
+			tasks: ['uglify:site', 'jshint:site', 'copy:jsSourceMaps'],
+			options: { spawn: false, },
+		},
+		adminScripts: {
+			files: ['assets/js/src/admin/**/*.js'],
+			tasks: ['uglify:admin', 'jshint:admin', 'copy:jsSourceMaps'],
+			options: { spawn: false, },
+		},
+		livereload: {
+			options: {
+				livereload: true,
+				spawn: false,
+			},
+			files: [
+				'assets/css/*.css',
+				'assets/js/*.js',
+				'**/*.php',
+				'!**/node_modules/**',
+				'**/*.{png,jpg,gif}'
+			],
+		},
+	};
+
+	gc.githooks = {
+		all: {
+			'pre-commit': 'scsslint jshint imagemin jscs',
+			// 'post-merge': 'bower:update'
+		},
+	};
+
+	// Load Configurations
+	grunt.initConfig(gc);
 
 
 	// Load Tasks
