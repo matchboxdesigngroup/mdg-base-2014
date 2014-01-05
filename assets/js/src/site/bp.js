@@ -25,7 +25,6 @@ jQuery((function($){
 			}
 	;
 
-
 	/**
 	 * Applies the current bp-{size} class and removes all others
 	 *
@@ -182,15 +181,12 @@ jQuery((function($){
 		bp.isScreenLg();
 	};
 
-
-
 	/**
 	 * Document Ready
 	 */
 	$(document).ready(function(){
 		bp.check();
 	});
-
 
 
 	/**

@@ -1,8 +1,9 @@
+/* global pagenow */
 // @codekit-prepend "../plugins/chosen.jquery.js"
 // @codekit-prepend "../plugins/cleditor/jquery.cleditor.js"
 // @codekit-prepend "../plugins/cleditor/jquery.cleditor.min.js"
 // @codekit-prepend "meta-upload.js"
-jQuery((function($){
+jQuery((function($) {
 	var Meta   = {},
 			Alerts = {}
 	;
@@ -12,21 +13,18 @@ jQuery((function($){
 	 *
 	 * @return Void
 	 */
-	Meta.setupChosen = function(){
+	Meta.setupChosen = function() {
 		var chosenElem = $(".mdg-chosen-select");
-
 
 		if ( chosenElem === 0 ) {
 			return false;
 		} // if()
 
 		chosenElem.chosen({
-			allow_single_deselect:true,
-			disable_search_threshold: 5
+			allow_single_deselect    : true,
+			disable_search_threshold : 5
 		});
 	}; // Meta.setupChosen()
-
-
 
 	/**
 	 * Sets up the meta date picker.
@@ -41,13 +39,11 @@ jQuery((function($){
 		} // if()
 
 		datePicker.datepicker({
-			dateFormat : 'DD, MM d, yy',
-			changeMonth: true,
-			changeYear: true
+			dateFormat  : 'DD, MM d, yy',
+			changeMonth : true,
+			changeYear  : true
 		});
 	}; // Meta.setupDatepicker()
-
-
 
 	/**
 	 * Sets up the meta color picker.
@@ -64,21 +60,19 @@ jQuery((function($){
 		var options = {
 				// you can declare a default color here,
 				// or in the data-default-color attribute on the input
-				defaultColor: false,
+				defaultColor : false,
 				// a callback to fire whenever the color changes to a valid color
-				change: function(event, ui){},
+				change       : function(event, ui) {},
 				// a callback to fire when the input is emptied or an invalid color
-				clear: function() {},
+				clear        : function() {},
 				// hide the color picker controls on load
-				hide: true,
+				hide         : true,
 				// show a group of common colors beneath the square
 				// or, supply an array of colors to customize further
-				palettes: true
+				palettes     : true
 		};
 		colorPicker.wpColorPicker( options );
 	}; // Meta.setupColorPicker()
-
-
 
 	/**
 	 * Sets up the WYWSIG Editor meta.
@@ -95,8 +89,6 @@ jQuery((function($){
 		editor.cleditor();
 	}; // Meta.setupWyswigEditor()
 
-
-
 	/**
 	 * Initializes all meta.
 	 *
@@ -109,8 +101,6 @@ jQuery((function($){
 		Meta.setupColorPicker();
 	}; // Meta.init()
 
-
-
 	/**
 	 * Adds an alert for all image sizes
 	 *
@@ -119,23 +109,21 @@ jQuery((function($){
 	 * @return boolean false
 	 */
 	Alerts.getImageReferenceGrid = function() {
-		if( pagenow !== 'upload' ) {
+		if ( pagenow !== 'upload' ) {
 			return false;
 		} // if()
-
-
 
 		$('h2').after( '<div class="updated"><p><a href="#" id="image-size-reference-trigger">View image size reference.</a></p></div><div class="image-size-reference"></div>' );
 
 		var trigger = $('#image-size-reference-trigger');
 
-		trigger.click(function(){
+		trigger.click(function() {
 			$.get(
 				ajaxurl,
-				{ action: 'mdg-image-reference-grid' },
+				{ action : 'mdg-image-reference-grid' },
 				function( return_html ) {
 					trigger.after(
-						'<p class="mdg-image-reference"><a href="#" id="hide-image-grid-reference">hide image sizes</a></p>'+
+						'<p class="mdg-image-reference"><a href="#" id="hide-image-grid-reference">hide image sizes</a></p>' +
 						'<p class="mdg-image-reference">please note that image sizes may be smaller to fit into your screen</p>'
 					);
 
@@ -148,7 +136,7 @@ jQuery((function($){
 
 					trigger.hide();
 
-					$('#hide-image-grid-reference').click(function(){
+					$('#hide-image-grid-reference').click(function() {
 						$('.mdg-image-reference').remove();
 						trigger.show();
 					});
@@ -160,8 +148,6 @@ jQuery((function($){
 		return false;
 	}; // Alerts.getImageReferenceGrid()
 
-
-
 	/**
 	 * Initializes all administrator alerts
 	 *
@@ -170,8 +156,6 @@ jQuery((function($){
 	Alerts.init = function() {
 		Alerts.getImageReferenceGrid();
 	}; // Alerts.init()
-
-
 
 	/**
 	 * Document ready

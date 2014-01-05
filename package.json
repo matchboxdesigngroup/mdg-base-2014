@@ -19,6 +19,7 @@
     "grunt-contrib-jshint": "x.x.x",
     "jshint-stylish": "x.x.x",
     "load-grunt-tasks": "x.x.x",
-    "grunt-scss-lint": "0.0.7"
+    "grunt-scss-lint": "0.0.7",
+    "grunt-jscs-checker": "~0.3.0"
   }
 }

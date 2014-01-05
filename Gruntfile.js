@@ -1,7 +1,6 @@
 module.exports = function(grunt) {
 	// Configurations
 	grunt.initConfig({
-		// Sass Config
 		sass: {
 			site: {
 				options: {
@@ -29,7 +28,6 @@ module.exports = function(grunt) {
 				}]
 			}
 		},
-		// Concatenate and Uglify JavaScript config
 		uglify: {
 			options: {
 				mangle: false
@@ -80,15 +78,19 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		// JSHint
 		jshint: {
 			options: {
-				reporter: require('jshint-stylish')
+				reporter: require('jshint-stylish'),
+				jshintrc: ".jshintrc"
 			},
 			site: ['assets/js/src/admin/*.js'],
 			admin: ['assets/js/src/site/*.js']
 		},
-		// Image Min Config
+		jscs: {
+			options: { config: ".jscs.json" },
+			site: ['assets/js/src/admin/*.js'],
+			admin: ['assets/js/src/site/*.js']
+		},
 		imagemin: {
 			theme: {
 				files: [{
@@ -99,7 +101,6 @@ module.exports = function(grunt) {
 				}]
 			}
 		},
-		// Watch Config
 		scsslint: {
 			site: [
 				'assets/css/scss/site/*.scss',

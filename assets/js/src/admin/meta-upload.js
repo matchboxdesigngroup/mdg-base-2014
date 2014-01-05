@@ -1,8 +1,6 @@
-jQuery(function($){
+jQuery((function($) {
 	$(window).load(function(){
 		var file_frame;
-
-
 
 		/**
 		* Attach Image
@@ -47,4 +45,4 @@ jQuery(function($){
 		});
 
 	}); // $(window).load()
-}(jQuery));
+})(jQuery));
