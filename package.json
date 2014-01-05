@@ -20,6 +20,7 @@
     "jshint-stylish": "x.x.x",
     "load-grunt-tasks": "x.x.x",
     "grunt-scss-lint": "0.0.7",
-    "grunt-jscs-checker": "~0.3.0"
+    "grunt-jscs-checker": "~0.3.0",
+    "grunt-githooks": "~0.3.1"
   }
 }
