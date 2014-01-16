@@ -50,8 +50,29 @@ function development_url_change() {
 add_action( 'init', 'development_url_change' );
 
 
+/**
+ * Adds MDG toolbar body class on staging and localhost.
+ *
+ * @param   array  $classes  Current body classes.
+ *
+ * @return  array            Classes with MDG developer toolbar classes added.
+ */
+function mdg_toolbar_body_class( $classes ) {
+	global $mdg_generic;
+	if ( $mdg_generic->is_localhost() or $mdg_generic->is_staging() ) {
+		$classes[] = 'mdg-dev-toolbar-active';
+	}
+	return $classes;
+}
+add_filter( 'body_class', 'mdg_toolbar_body_class' );
 
-// Add MDG developer tool bar
+
+
+/**
+ * Adds a localhost/staging bar for development purposes
+ *
+ * @return  void
+ */
 function mdgdev_tool_bar_html()
 {
 	global $mdg_generic;
