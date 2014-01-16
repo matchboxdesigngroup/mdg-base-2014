@@ -62,7 +62,6 @@ module.exports = function(grunt) {
 					'assets/bower_components/jQuery-ResizeEnd/src/jQuery.resizeEnd.js',
 					// 'assets/js/src/plugins/jquery.selectric.js',
 					'assets/js/src/plugins/responsive-img.js',
-					// 'assets/bower_components/jquery-waypoints/waypoints.js',
 					'assets/js/src/site/ie10-viewport-bug.js',
 					'assets/js/src/site/bp.js',
 					'assets/js/src/site/scripts.js'
