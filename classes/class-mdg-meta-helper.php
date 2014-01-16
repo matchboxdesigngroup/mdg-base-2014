@@ -78,13 +78,14 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 
 
 
-	/**
+/**
 	 * Renames the featured image meta box.
 	 *
 	 * @return Void
 	 */
 	public function rename_featured_image_meta_box() {
-		if ( ! $this->featured_image_title or $this->featured_image_title == '' ) {
+		$post_type_supports_thumbnail = post_type_supports( get_post_type(), 'thumbnail' );
+		if ( ! $this->featured_image_title or $this->featured_image_title == '' or ! $post_type_supports_thumbnail ) {
 			return;
 		} // if()
 		remove_meta_box( 'postimagediv', $this->post_type, 'side' );
