@@ -1,5 +1,3 @@
-// Install grunt bower for githooks
-// Install PHPCS for githooks
 // Look into a bower copy/concatenate grunt plugin
 // Look into dploy
 module.exports = function(grunt) {
@@ -34,12 +32,6 @@ module.exports = function(grunt) {
 				ext: '.min.css'
 			}]
 		}
-	};
-
-	gc.scsslint = {
-		site: ['assets/css/scss/site/*.scss'],
-		admin: ['assets/css/scss/admin/*.scss'],
-		options: { config: '.scss-lint.yml', reporterOutput: null },
 	};
 
 	/**
@@ -97,26 +89,6 @@ module.exports = function(grunt) {
 		}
 	};
 
-	gc.jshint = {
-		options: { reporter: require('jshint-stylish'), jshintrc: ".jshintrc" },
-		site: ['assets/js/src/admin/*.js'],
-		admin: ['assets/js/src/site/*.js']
-	};
-
-	gc.jscs = {
-		options: { config: ".jscs.json" },
-		site: ['assets/js/src/admin/*.js'],
-		admin: ['assets/js/src/site/*.js']
-	};
-
-	/**
-	 * PHP Specific Configurations
-	 */
-	gc.phpcs = {
-		theme: { dir: '**/*.php' },
-		options: { standard: 'WordPress' }
-	};
-
 	/**
 	 * Image Specific Configurations
 	 */
@@ -137,24 +109,24 @@ module.exports = function(grunt) {
 	gc.watch = {
 		siteSass: {
 			files: ['assets/css/scss/site/**/*.scss'],
-			tasks: ['sass:site', 'scsslint:site'],
+			tasks: ['sass:site'],
 			options: { spawn: false, },
 		},
 		adminSass: {
 			files: ['assets/css/scss/admin/**/*.scss'],
-			tasks: ['sass:admin', 'scsslint:admin'],
+			tasks: ['sass:admin'],
 			options: {
 				spawn: false,
 			},
 		},
 		siteScripts: {
 			files: ['assets/js/src/site/**/*.js'],
-			tasks: ['uglify:site', 'jshint:site', 'copy:jsSourceMaps'],
+			tasks: ['uglify:site', 'copy:jsSourceMaps'],
 			options: { spawn: false, },
 		},
 		adminScripts: {
 			files: ['assets/js/src/admin/**/*.js'],
-			tasks: ['uglify:admin', 'jshint:admin', 'copy:jsSourceMaps'],
+			tasks: ['uglify:admin', 'copy:jsSourceMaps'],
 			options: { spawn: false, },
 		},
 		livereload: {
@@ -172,13 +144,6 @@ module.exports = function(grunt) {
 		},
 	};
 
-	gc.githooks = {
-		all: {
-			'pre-commit': 'scsslint jshint imagemin jscs',
-			// 'post-merge': 'bower:update'
-		},
-	};
-
 	// Load Configurations
 	grunt.initConfig(gc);
 
@@ -190,6 +155,4 @@ module.exports = function(grunt) {
 	// Register Tasks
 	grunt.registerTask('default', ['sass']);
 	grunt.registerTask('default', ['imagemin']);
-	grunt.registerTask('default', ['jshint']);
-	grunt.registerTask('default', ['scsslint']);
 };
