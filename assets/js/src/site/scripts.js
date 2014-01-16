@@ -1,4 +1,5 @@
 /** global MDG_GLOBALS */
+/** global PIE */
 /**
  * To activate the plugins for CodeKit remove the space between @ and codekit-prepend this
  * mirrors the order and default setup from Gruntfile.js
@@ -96,7 +97,53 @@ jQuery((function($) {
 		$('html,body').animate( { scrollTop: offset }, speed, easing );
 
 		return false;
-	};
+	}; // site.scollTo()
+
+	/**
+	 * Attaches CSS3Pie IE CSS3 helper.
+	 *
+	 * @return  {void}
+	 */
+	site.css3pieAttach = function() {
+		if (window.PIE) {
+			var PIE = window.PIE;
+			$('.css3pie').each(function() {
+				PIE.attach(this);
+			});
+		} // if()
+	}; // site.css3pieAttach()
+
+	/**
+	 * Handles the locking of an element on scroll.
+	 *
+	 * @param {integer} offsetTop The distance from the top to trigger the fixing of the element.
+	 *
+	 * @return Void
+	 */
+	site.fixElement = function(offsetTop) {
+		site.lastScrollTop = $(window).scrollTop();
+
+		var fixedElem    = $('.fixed-elem'),
+				offset = (typeof offsetTop === 'undefined') ? 150:offsetTop
+		;
+
+		$(window).scroll(function(){
+			fixedElem.each(function(index, el) {
+				var st                   = $(this).scrollTop(),
+						direction            = ( st < site.lastScrollTop ) ? 'up' : 'down',
+						fixedElemOffset      = ( fixedElem.offset().top <= ( st - fixedElem.scrollTop() ) ),
+						fixedElemFixedOffset = ( fixedElem.hasClass('fixed') && ( fixedElem.offset().top <= offset ) )
+				;
+
+				// Handle locking of the navbar
+				if ( fixedElemOffset && !fixedElemFixedOffset ) {
+					fixedElem.addClass('fixed');
+				} else {
+					fixedElem.removeClass('fixed');
+				} // if/else()
+			}); // fixedElem.each()
+		}); // $(window).scroll()
+	}; // site.fixElement()
 
 	/**
 	 * Document Ready
