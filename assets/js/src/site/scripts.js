@@ -11,7 +11,6 @@
 // @codekit-prepend "../plugins/jQuery.resizeEnd.js"
 // @ codekit-prepend "../plugins/jquery.selectric.js"
 // @codekit-prepend "../plugins/responsive-img.js"
-// @ codekit-prepend "../plugins/waypoints.js"
 // @codekit-prepend "bp.js"
 jQuery((function($) {
 	var site    = {};
