@@ -119,30 +119,36 @@ jQuery((function($) {
 	 *
 	 * @return Void
 	 */
-	site.fixElement = function(offsetTop) {
-		site.lastScrollTop = $(window).scrollTop();
+	// site.fixElement = function(offsetTop) {
+	// 	var fixedElem = $('.fixed-elem'),
+	// 			offset    = (typeof offsetTop === 'undefined') ? 150:offsetTop
+	// 	;
 
-		var fixedElem    = $('.fixed-elem'),
-				offset = (typeof offsetTop === 'undefined') ? 150:offsetTop
-		;
+	// 	if ( fixedElem.length === 0 ) {
+	// 		return false;
+	// 	} // if
 
-		$(window).scroll(function(){
-			fixedElem.each(function(index, el) {
-				var st                   = $(this).scrollTop(),
-						direction            = ( st < site.lastScrollTop ) ? 'up' : 'down',
-						fixedElemOffset      = ( fixedElem.offset().top <= ( st - fixedElem.scrollTop() ) ),
-						fixedElemFixedOffset = ( fixedElem.hasClass('fixed') && ( fixedElem.offset().top <= offset ) )
-				;
+	// 	$(window).scroll(function(){
+	// 		fixedElem.each(function(index,el) {
+	// 			var that = $(el);
 
-				// Handle locking of the navbar
-				if ( fixedElemOffset && !fixedElemFixedOffset ) {
-					fixedElem.addClass('fixed');
-				} else {
-					fixedElem.removeClass('fixed');
-				} // if/else()
-			}); // fixedElem.each()
-		}); // $(window).scroll()
-	}; // site.fixElement()
+	// 			var offsetTop             = that.offset().top,
+	// 					scrollTop             = $(window).scrollTop(),
+	// 					// direction            = ( true ) ? 'up' : 'down',
+	// 					fixedElemOffset       = ( ( offsetTop - offset ) <= scrollTop ),
+	// 					activeFixedElemOffset = ( ( offsetTop - offset ) <= scrollTop )
+	// 			;
+	// 			if ( fixedElemOffset || activeFixedElemOffset ) {
+	// 				if ( ! that.hasClass('fixed') ) {
+	// 					that.addClass('fixed');
+	// 				} // if()
+	// 			} else {
+	// 				// that.removeClass('fixed').removeClass('up').removeClass('down');
+	// 				// console.log(that.attr('class'));
+	// 			} // if/else()
+	// 		}); // fixedElem.each()
+	// 	}); // $(window).scroll()
+	// }; // site.fixElement()
 
 	/**
 	 * Document Ready
@@ -150,6 +156,8 @@ jQuery((function($) {
 	$(document).ready(function() {
 		site.initFauxLink();
 		site.initDropDownMenu();
+		site.css3pieAttach();
+		// site.fixElement();
 	});
 
 	/**
