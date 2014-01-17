@@ -21,7 +21,8 @@
 				"node_modules",
 				"dev-assets",
 				"lang",
-				"tasks"
+				"tasks",
+				"bower_components"
 			]
 		}
 	]
