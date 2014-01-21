@@ -85,14 +85,16 @@ jQuery((function($) {
 	 * @param  {object}          elem            The jQuery selector object to scroll to.
 	 * @param  {string}          [easing=linear] The easing used when scrolling.
 	 * @param  {(string|number)} [speed=1500]    The speed to scroll.
+	 * @param {number}           [offsetTop=10]  Offset above the top of the element to scroll to.
 	 *
 	 * @return boolean               false
 	 */
-	site.scollTo = function( elem, easing, speed ) {
-		speed = ( typeof speed === 'undefined' ) ? 1500 : speed;
-		easing = ( typeof easing === 'undefined' ) ? 'linear' : easing;
+	site.scollTo = function( elem, easing, speed, offsetTop ) {
+		speed     = ( typeof speed === 'undefined' ) ? 1500 : speed;
+		easing    = ( typeof easing === 'undefined' ) ? 'linear' : easing;
+		offsetTop = ( typeof offsetTop === 'undefined' ) ? 10 : offsetTop;
 
-		var offset = elem.offset().top - 10;
+		var offset = elem.offset().top - offsetTop;
 		$('html,body').animate( { scrollTop: offset }, speed, easing );
 
 		return false;
@@ -120,34 +122,34 @@ jQuery((function($) {
 	 * @return Void
 	 */
 	// site.fixElement = function(offsetTop) {
-	// 	var fixedElem = $('.fixed-elem'),
-	// 			offset    = (typeof offsetTop === 'undefined') ? 150:offsetTop
-	// 	;
+	//	var fixedElem = $('.fixed-elem'),
+	//			offset    = (typeof offsetTop === 'undefined') ? 150:offsetTop
+	//	;
 
-	// 	if ( fixedElem.length === 0 ) {
-	// 		return false;
-	// 	} // if
+	//	if ( fixedElem.length === 0 ) {
+	//		return false;
+	//	} // if
 
-	// 	$(window).scroll(function(){
-	// 		fixedElem.each(function(index,el) {
-	// 			var that = $(el);
+	//	$(window).scroll(function(){
+	//		fixedElem.each(function(index,el) {
+	//			var that = $(el);
 
-	// 			var offsetTop             = that.offset().top,
-	// 					scrollTop             = $(window).scrollTop(),
-	// 					// direction            = ( true ) ? 'up' : 'down',
-	// 					fixedElemOffset       = ( ( offsetTop - offset ) <= scrollTop ),
-	// 					activeFixedElemOffset = ( ( offsetTop - offset ) <= scrollTop )
-	// 			;
-	// 			if ( fixedElemOffset || activeFixedElemOffset ) {
-	// 				if ( ! that.hasClass('fixed') ) {
-	// 					that.addClass('fixed');
-	// 				} // if()
-	// 			} else {
-	// 				// that.removeClass('fixed').removeClass('up').removeClass('down');
-	// 				// console.log(that.attr('class'));
-	// 			} // if/else()
-	// 		}); // fixedElem.each()
-	// 	}); // $(window).scroll()
+	//			var offsetTop             = that.offset().top,
+	//					scrollTop             = $(window).scrollTop(),
+	//					// direction            = ( true ) ? 'up' : 'down',
+	//					fixedElemOffset       = ( ( offsetTop - offset ) <= scrollTop ),
+	//					activeFixedElemOffset = ( ( offsetTop - offset ) <= scrollTop )
+	//			;
+	//			if ( fixedElemOffset || activeFixedElemOffset ) {
+	//				if ( ! that.hasClass('fixed') ) {
+	//					that.addClass('fixed');
+	//				} // if()
+	//			} else {
+	//				// that.removeClass('fixed').removeClass('up').removeClass('down');
+	//				// console.log(that.attr('class'));
+	//			} // if/else()
+	//		}); // fixedElem.each()
+	//	}); // $(window).scroll()
 	// }; // site.fixElement()
 
 	/**
