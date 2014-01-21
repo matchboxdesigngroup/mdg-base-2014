@@ -115,6 +115,34 @@ jQuery((function($) {
 	}; // site.css3pieAttach()
 
 	/**
+	 * Initializes the back to top button.
+	 *
+	 * @todo Possibly add parameters but we will see
+	 *
+	 * @return  {void}
+	 */
+	site.initBackToTop = function() {
+		var pageTopLinkElem = $('.page-top-link');
+
+		if ( pageTopLinkElem.length === 0 ) {
+			return;
+		} // if()
+
+		pageTopLinkElem.click(function(){
+			$(window.opera ? "html" : "html, body").stop(true , true).animate({scrollTop: 0} , 1500 , "easeInOutQuad");
+			return false;
+		});
+
+		$(window).scroll(function(){
+			if($(window).scrollTop() > 150){
+				pageTopLinkElem.stop(true , true).fadeIn(1000);
+			}else{
+				pageTopLinkElem.stop(true , true).fadeOut(1000);
+			}
+		});
+	}; // site.initBackToTop()
+
+	/**
 	 * Handles the locking of an element on scroll.
 	 *
 	 * @param {integer} offsetTop The distance from the top to trigger the fixing of the element.
@@ -175,6 +203,7 @@ jQuery((function($) {
 	 */
 	$(window).load(function() {
 		site.initFlexslider();
+		site.initBackToTop();
 	});
 })(jQuery));
 
