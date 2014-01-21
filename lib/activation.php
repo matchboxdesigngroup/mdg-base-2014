@@ -97,7 +97,7 @@ function roots_theme_activation_options_render_page() { ?>
 					</td>
 				</tr>
 
-				<tr valign="top"><th scope="row"><?php _e( 'Add pages to menu?', 'roots' ); ?></th>
+				<!-- <tr valign="top"><th scope="row"><?php _e( 'Add pages to menu?', 'roots' ); ?></th>
 					<td>
 						<fieldset><legend class="screen-reader-text"><span><?php _e( 'Add pages to menu?', 'roots' ); ?></span></legend>
 							<select name="roots_theme_activation_options[add_pages_to_primary_navigation]" id="add_pages_to_primary_navigation">
@@ -108,7 +108,7 @@ function roots_theme_activation_options_render_page() { ?>
 							<small class="description"><?php printf( __( 'Add all current published pages to the Primary Navigation', 'roots' ) ); ?></small>
 						</fieldset>
 					</td>
-				</tr>
+				</tr> -->
 
 			</table>
 
