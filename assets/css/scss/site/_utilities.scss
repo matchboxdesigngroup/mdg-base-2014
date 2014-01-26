@@ -1,2 +1,62 @@
 // General
 .faux-link { cursor: pointer; }
+
+// Color Vars Backgrounds
+.default-bg-1 { background-color: $color1; } // black
+.default-bg-2 { background-color: $color2; } // white
+.default-bg-3 { background-color: $color3; } // medium grey
+.default-bg-4 { background-color: $color4; } // light grey
+
+// Color Vars Backgrounds
+.default-font-color-1 { color: $color1; } // black
+.default-font-color-2 { color: $color2; } // white
+.default-font-color-3 { color: $color3; } // medium grey
+.default-font-color-4 { color: $color4; } // light grey
+
+// Hide Large screen / wide desktop
+.hide-lg {
+	display: block;
+	@include bp-min($screen-lg) { display: none; }
+} // .hide-lg
+
+// Hide Medium screen / desktop
+.hide-md {
+	display: block;
+	@include bp-max($screen-md) { display: none; }
+} // .hide-md
+
+// Hide Small screen / tablet
+.hide-sm {
+	display: block;
+	@include bp-max($screen-sm) { display: none; }
+} // .hide-sm
+
+// Hide Extra small screen / phone
+.hide-xs {
+	display: block;
+	@include bp-max($screen-xs-max) { display: none; }
+} // .hide-xs
+
+// Show Large screen / wide desktop
+.show-lg {
+	display: none;
+	@include bp-min($screen-lg) { display: block; }
+} // .show-lg
+
+// Show Medium screen / desktop
+.show-md {
+	display: none;
+	@include bp-max($screen-md) { display: block; }
+} // .show-md
+
+// Show Small screen / tablet
+.show-sm {
+	display: none;
+	@include bp-max($screen-sm) { display: block; }
+} // .show-sm
+
+// Show Extra small screen / phone
+.show-xs {
+	display: none;
+	@include bp-max($screen-xs-max) { display: block; }
+} // .show-xs
