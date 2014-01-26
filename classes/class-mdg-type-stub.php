@@ -39,6 +39,8 @@ class MDG_Type_Stub extends MDG_Type_Base
 		$this->_set_mdg_meta_helper_options();
 
 		parent::__construct();
+
+		$this->_add_type_actions_filters();
 	} // __construct()
 
 
@@ -374,6 +376,30 @@ class MDG_Type_Stub extends MDG_Type_Base
 			),
 		);
 	} // get_custom_meta_fields()
+
+
+
+	/**
+	 * Add post type actions & filters
+	 */
+	private function _add_type_actions_filters() {
+		// Uncomment to redirect the single page to the landing page.
+		// add_action( 'template_redirect', array( &$this, 'single_redirect' ) );
+	} // _add_type_actions_filters()
+
+
+
+	/**
+	 * Handles redirecting the single templates to the main team page.
+	 *
+	 * @return  void
+	 */
+	public function single_redirect() {
+		if ( is_single() and get_post_type() == $this->post_type ) {
+			wp_redirect( home_url( "/{$this->post_type}/" ) );
+			exit();
+		} // if()
+	} // single_redirect()
 } // END Class MDG_Type_Stub()
 
 global $mdg_stub;

@@ -1,3 +1,37 @@
+// ==================================================
+// Back to top
+// ==================================================
+.back-to-top {
+	display: none;
+	width: 40px;
+	height: 40px;
+	position: fixed;
+	bottom: 20px;
+	right: 25px;
+	cursor: pointer;
+	text-indent: -9999px;
+	background: rgba(180 , 180 , 180 , 0.2);
+	@include border-radius(5px);
+
+	a {
+		display: block;
+		width: 30px;
+		height: 30px;
+		position: absolute;
+		top: 5px;
+		left: 5px;
+		@include border-radius(999px);
+		background: url("../img/page-top-link.png") center center no-repeat $theme1;
+	} // a
+
+	&:hover a { background-color: #333; }
+
+	.backgroundsize & a {
+		background: url("../img/page-top-link@2x.png") center center no-repeat $theme1;
+		background-size: 30px 30px;
+	} // .backgroundsize & a
+} // .back-to-top
+
 // Sticky Footer
 // * { margin: 0; }
 // html, body {

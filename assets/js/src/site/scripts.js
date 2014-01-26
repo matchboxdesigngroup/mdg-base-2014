@@ -1,4 +1,5 @@
 /** global MDG_GLOBALS */
+/** global PIE */
 /**
  * To activate the plugins for CodeKit remove the space between @ and codekit-prepend this
  * mirrors the order and default setup from Gruntfile.js
@@ -10,7 +11,6 @@
 // @codekit-prepend "../plugins/jQuery.resizeEnd.js"
 // @ codekit-prepend "../plugins/jquery.selectric.js"
 // @codekit-prepend "../plugins/responsive-img.js"
-// @ codekit-prepend "../plugins/waypoints.js"
 // @codekit-prepend "bp.js"
 jQuery((function($) {
 	var site    = {};
@@ -85,18 +85,100 @@ jQuery((function($) {
 	 * @param  {object}          elem            The jQuery selector object to scroll to.
 	 * @param  {string}          [easing=linear] The easing used when scrolling.
 	 * @param  {(string|number)} [speed=1500]    The speed to scroll.
+	 * @param {number}           [offsetTop=10]  Offset above the top of the element to scroll to.
 	 *
 	 * @return boolean               false
 	 */
-	site.scollTo = function( elem, easing, speed ) {
-		speed = ( typeof speed === 'undefined' ) ? 1500 : speed;
-		easing = ( typeof easing === 'undefined' ) ? 'linear' : easing;
+	site.scollTo = function( elem, easing, speed, offsetTop ) {
+		speed     = ( typeof speed === 'undefined' ) ? 1500 : speed;
+		easing    = ( typeof easing === 'undefined' ) ? 'linear' : easing;
+		offsetTop = ( typeof offsetTop === 'undefined' ) ? 10 : offsetTop;
 
-		var offset = elem.offset().top - 10;
+		var offset = elem.offset().top - offsetTop;
 		$('html,body').animate( { scrollTop: offset }, speed, easing );
 
 		return false;
-	};
+	}; // site.scollTo()
+
+	/**
+	 * Attaches CSS3Pie IE CSS3 helper.
+	 *
+	 * @return  {void}
+	 */
+	site.css3pieAttach = function() {
+		if (window.PIE) {
+			var PIE = window.PIE;
+			$('.css3pie').each(function() {
+				PIE.attach(this);
+			});
+		} // if()
+	}; // site.css3pieAttach()
+
+	/**
+	 * Initializes the back to top button.
+	 *
+	 * @todo Possibly add parameters but we will see
+	 *
+	 * @return  {void}
+	 */
+	site.initBackToTop = function() {
+		var pageTopLinkElem = $('.page-top-link');
+
+		if ( pageTopLinkElem.length === 0 ) {
+			return;
+		} // if()
+
+		pageTopLinkElem.click(function(){
+			$(window.opera ? "html" : "html, body").stop(true , true).animate({scrollTop: 0} , 1500 , "easeInOutQuad");
+			return false;
+		});
+
+		$(window).scroll(function(){
+			if($(window).scrollTop() > 150){
+				pageTopLinkElem.stop(true , true).fadeIn(1000);
+			}else{
+				pageTopLinkElem.stop(true , true).fadeOut(1000);
+			}
+		});
+	}; // site.initBackToTop()
+
+	/**
+	 * Handles the locking of an element on scroll.
+	 *
+	 * @param {integer} offsetTop The distance from the top to trigger the fixing of the element.
+	 *
+	 * @return Void
+	 */
+	// site.fixElement = function(offsetTop) {
+	//	var fixedElem = $('.fixed-elem'),
+	//			offset    = (typeof offsetTop === 'undefined') ? 150:offsetTop
+	//	;
+
+	//	if ( fixedElem.length === 0 ) {
+	//		return false;
+	//	} // if
+
+	//	$(window).scroll(function(){
+	//		fixedElem.each(function(index,el) {
+	//			var that = $(el);
+
+	//			var offsetTop             = that.offset().top,
+	//					scrollTop             = $(window).scrollTop(),
+	//					// direction            = ( true ) ? 'up' : 'down',
+	//					fixedElemOffset       = ( ( offsetTop - offset ) <= scrollTop ),
+	//					activeFixedElemOffset = ( ( offsetTop - offset ) <= scrollTop )
+	//			;
+	//			if ( fixedElemOffset || activeFixedElemOffset ) {
+	//				if ( ! that.hasClass('fixed') ) {
+	//					that.addClass('fixed');
+	//				} // if()
+	//			} else {
+	//				// that.removeClass('fixed').removeClass('up').removeClass('down');
+	//				// console.log(that.attr('class'));
+	//			} // if/else()
+	//		}); // fixedElem.each()
+	//	}); // $(window).scroll()
+	// }; // site.fixElement()
 
 	/**
 	 * Document Ready
@@ -104,6 +186,8 @@ jQuery((function($) {
 	$(document).ready(function() {
 		site.initFauxLink();
 		site.initDropDownMenu();
+		site.css3pieAttach();
+		// site.fixElement();
 	});
 
 	/**
@@ -119,6 +203,7 @@ jQuery((function($) {
 	 */
 	$(window).load(function() {
 		site.initFlexslider();
+		site.initBackToTop();
 	});
 })(jQuery));
 

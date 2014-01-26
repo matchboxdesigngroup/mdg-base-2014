@@ -23,7 +23,7 @@ add_filter( 'option_page_capability_roots_activation_options', 'roots_activation
 function roots_theme_activation_options_add_page() {
 	$roots_activation_options = roots_get_theme_activation_options();
 
-	if ( !$roots_activation_options ) {
+	if ( ! $roots_activation_options ) {
 		$theme_page = add_theme_page(
 			__( 'Theme Activation', 'roots' ),
 			__( 'Theme Activation', 'roots' ),
@@ -54,8 +54,7 @@ function roots_theme_activation_options_render_page() { ?>
 		<form method="post" action="options.php">
 
 			<?php
-	settings_fields( 'roots_activation_options' );
-?>
+	settings_fields( 'roots_activation_options' ); ?>
 
 			<table class="form-table">
 
@@ -98,7 +97,7 @@ function roots_theme_activation_options_render_page() { ?>
 					</td>
 				</tr>
 
-				<tr valign="top"><th scope="row"><?php _e( 'Add pages to menu?', 'roots' ); ?></th>
+				<!-- <tr valign="top"><th scope="row"><?php _e( 'Add pages to menu?', 'roots' ); ?></th>
 					<td>
 						<fieldset><legend class="screen-reader-text"><span><?php _e( 'Add pages to menu?', 'roots' ); ?></span></legend>
 							<select name="roots_theme_activation_options[add_pages_to_primary_navigation]" id="add_pages_to_primary_navigation">
@@ -109,7 +108,7 @@ function roots_theme_activation_options_render_page() { ?>
 							<small class="description"><?php printf( __( 'Add all current published pages to the Primary Navigation', 'roots' ) ); ?></small>
 						</fieldset>
 					</td>
-				</tr>
+				</tr> -->
 
 			</table>
 
@@ -120,7 +119,7 @@ function roots_theme_activation_options_render_page() { ?>
 <?php }
 
 function roots_theme_activation_action() {
-	if ( !( $roots_theme_activation_options = roots_get_theme_activation_options() ) ) {
+	if ( ! ( $roots_theme_activation_options = roots_get_theme_activation_options() ) ) {
 		return;
 	}
 
@@ -132,7 +131,7 @@ function roots_theme_activation_action() {
 	if ( $roots_theme_activation_options['create_front_page'] === 'true' ) {
 		$roots_theme_activation_options['create_front_page'] = false;
 
-		$default_pages = array( 'Home' );
+		$default_pages  = array( 'Home' );
 		$existing_pages = get_pages();
 		$temp = array();
 
@@ -145,7 +144,7 @@ function roots_theme_activation_action() {
 		foreach ( $pages_to_create as $new_page_title ) {
 			$add_default_pages = array(
 				'post_title'   => $new_page_title,
-				'post_content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consequat, orci ac laoreet cursus, dolor sem luctus lorem, eget consequat magna felis a magna. Aliquam scelerisque condimentum ante, eget facilisis tortor lobortis in. In interdum venenatis justo eget consequat. Morbi commodo rhoncus mi nec pharetra. Aliquam erat volutpat. Mauris non lorem eu dolor hendrerit dapibus. Mauris mollis nisl quis sapien posuere consectetur. Nullam in sapien at nisi ornare bibendum at ut lectus. Pellentesque ut magna mauris. Nam viverra suscipit ligula, sed accumsan enim placerat nec. Cras vitae metus vel dolor ultrices sagittis. Duis venenatis augue sed risus laoreet congue ac ac leo. Donec fermentum accumsan libero sit amet iaculis. Duis tristique dictum enim, ac fringilla risus bibendum in. Nunc ornare, quam sit amet ultricies gravida, tortor mi malesuada urna, quis commodo dui nibh in lacus. Nunc vel tortor mi. Pellentesque vel urna a arcu adipiscing imperdiet vitae sit amet neque. Integer eu lectus et nunc dictum sagittis. Curabitur commodo vulputate fringilla. Sed eleifend, arcu convallis adipiscing congue, dui turpis commodo magna, et vehicula sapien turpis sit amet nisi.',
+				'post_content' => '',
 				'post_status'   => 'publish',
 				'post_type'     => 'page',
 			);
@@ -164,6 +163,18 @@ function roots_theme_activation_action() {
 		wp_update_post( $home_menu_order );
 	}
 
+	// Remove Sample Page and Hello world!
+	$sample_page = get_page_by_title( 'Sample Page', OBJECT, 'page' );
+	$hello_world = get_page_by_title( 'Hello world!', OBJECT, 'post' );
+
+	if ( ! is_null( $sample_page ) ) {
+		wp_delete_post( $sample_page->ID, true );
+	} // if()
+
+	if ( ! is_null( $hello_world ) ) {
+		wp_delete_post( $hello_world->ID, true );
+	} // if()
+
 	if ( $roots_theme_activation_options['change_permalink_structure'] === 'true' ) {
 		$roots_theme_activation_options['change_permalink_structure'] = false;
 
@@ -181,7 +192,7 @@ function roots_theme_activation_action() {
 
 		$primary_nav = wp_get_nav_menu_object( 'Primary Navigation' );
 
-		if ( !$primary_nav ) {
+		if ( ! $primary_nav ) {
 			$primary_nav_id = wp_create_nav_menu( 'Primary Navigation', array( 'slug' => 'primary_navigation' ) );
 			$roots_nav_theme_mod['primary_navigation'] = $primary_nav_id;
 		} else {
@@ -200,7 +211,7 @@ function roots_theme_activation_action() {
 		$primary_nav_term_id = (int) $primary_nav->term_id;
 		$menu_items = wp_get_nav_menu_items( $primary_nav_term_id );
 
-		if ( !$menu_items || empty( $menu_items ) ) {
+		if ( ! $menu_items || empty( $menu_items ) ) {
 			$pages = get_pages();
 			foreach ( $pages as $page ) {
 				$item = array(
@@ -213,6 +224,8 @@ function roots_theme_activation_action() {
 			}
 		}
 	}
+
+
 
 	update_option( 'roots_theme_activation_options', $roots_theme_activation_options );
 }

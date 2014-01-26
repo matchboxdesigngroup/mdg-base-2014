@@ -7,18 +7,22 @@
 				"assets/*.css",
 				"assets/*.min.*",
 				"codekit-config.json",
+				".scss-lint.yml",
+				".jscs.json",
 				"*.sublime*",
 				"config.rb",
 				".editorconfig",
 				".jshintrc",
-				"*.md"
+				"*.md",
+				"*.map"
 			],
 			"folder_exclude_patterns": [
 				".sass-cache",
 				"node_modules",
 				"dev-assets",
 				"lang",
-				"tasks"
+				"tasks",
+				"bower_components"
 			]
 		}
 	]
