@@ -1,0 +1,26 @@
+{
+  "name": "theme-utils",
+  "version": "0.0.1",
+  "description": "Helpful utilities for the mdg-base starter theme.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "dependencies": {
+    "commander" : "2.x.x",
+    "colors": "~0.6.2",
+    "exec-sync": "~0.1.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matchboxdesigngroup/mdg-base"
+  },
+  "keywords": [
+    "mdg-base"
+  ],
+  "author": "Matchbox Design Group",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/matchboxdesigngroup/mdg-base/issues"
+  }
+}
