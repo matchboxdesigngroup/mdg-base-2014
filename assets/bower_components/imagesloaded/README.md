@@ -2,7 +2,7 @@
 
 <p class="tagline">JavaScript is all like "You images done yet or what?"</p>
 
-[desandro.github.io/imagesloaded](http://desandro.github.io/imagesloaded/)
+[imagesloaded.desandro.com](http://imagesloaded.desandro.com)
 
 Detect when images have been loaded.
 
@@ -12,13 +12,19 @@ Detect when images have been loaded.
 
 Get a packaged source file:
 
-+ [imagesloaded.pkgd.min.js](http://desandro.github.io/imagesloaded/imagesloaded.pkgd.min.js)
-+ [imagesloaded.pkgd.js](http://desandro.github.io/imagesloaded/imagesloaded.pkgd.js)
++ [imagesloaded.pkgd.min.js](http://imagesloaded.desandro.com/imagesloaded.pkgd.min.js)
++ [imagesloaded.pkgd.js](http://imagesloaded.desandro.com/imagesloaded.pkgd.js)
 
 Or install via [Bower](http://bower.io):
 
 ``` bash
 bower install imagesloaded
+```
+
+Or install via [Component](https://github.com/component/component):
+
+``` js
+bower install desandro/imagesloaded
 ```
 
 ## Usage
@@ -168,9 +174,9 @@ $('#container').imagesLoaded()
 
 ## RequireJS
 
-imagesLoaded works with [RequireJS](http://require.org).
+imagesLoaded works with [RequireJS](http://requirejs.org).
 
-You can require [imagesloaded.pkgd.js](http://desandro.github.io/imagesloaded/imagesloaded.pkgd.js).
+You can require [imagesloaded.pkgd.js](http://imagesloaded.desandro.com/imagesloaded.pkgd.js).
 
 ``` js
 requirejs( [

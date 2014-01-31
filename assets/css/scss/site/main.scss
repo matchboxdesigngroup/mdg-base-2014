@@ -1,17 +1,17 @@
 $bootstrap-sass-asset-helper: false; // Disables Compass/Ruby asset pipeline
-$icon-font-path: "../bower_components/bootstrap-sass/vendor/assets/fonts/bootstrap/";
-@import "../../../bower_components/bootstrap-sass/vendor/assets/stylesheets/bootstrap";
-$fa-font-path: "../bower_components/font-awesome/fonts";
-@import "../../../bower_components/font-awesome/scss/font-awesome.scss";
-@import "../plugins/_flexslider-2.2.0";
+$icon-font-path: '../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/';
+@import '../../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+$fa-font-path: '../bower_components/font-awesome/fonts';
+@import '../../../bower_components/font-awesome/scss/font-awesome.scss';
+@import '../plugins/_flexslider-2.2.0';
 
-@import "vars_mixins";
-@import "utilities";
-@import "base";
-@import "header";
-@import "nav";
-@import "content";
-@import "error404";
-@import "footer";
-@import "ie10-viewport-bug";
-@import "../plugins/dev-bar";
+@import 'vars_mixins';
+@import 'utilities';
+@import 'base';
+@import 'header';
+@import 'nav';
+@import 'content';
+@import 'error404';
+@import 'footer';
+@import 'ie10-viewport-bug';
+@import '../plugins/dev-bar';

@@ -57,17 +57,31 @@ else
 fi
 
 # Run PHPCS
-grunt phpcs
+# grunt phpcs
+# EXIT_CODE=$?
+# # echo ${EXIT_CODE}
+# if [[ ${EXIT_CODE} -ne 0 ]]; then
+#     echo "[ERRROR] code = " ${EXIT_CODE}
+#     echo "PHPCS detected syntax problems."
+#     echo "Commit aborted."
+#     exit 1
+# else
+# 	echo "PHPCS completed successfully\n"
+# fi
+
+# Run Image Compression
+grunt imagemin
 EXIT_CODE=$?
 # echo ${EXIT_CODE}
 if [[ ${EXIT_CODE} -ne 0 ]]; then
     echo "[ERRROR] code = " ${EXIT_CODE}
-    echo "PHPCS detected syntax problems."
+    echo "Imagemin ran into a problem."
     echo "Commit aborted."
     exit 1
 else
-	echo "PHPCS completed successfully\n"
+    echo "Imagemin completed successfully\n"
 fi
+
 
 #Look for debugger statements
 FILES_PATTERN='\.(js|coffee)(\..+)?$'

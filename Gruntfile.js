@@ -1,4 +1,6 @@
 // Look into a bower copy/concatenate grunt plugin
+// Install grunt bower for githooks
+// Install PHPCS for githooks
 // Look into dploy
 module.exports = function(grunt) {
 	var gc = {};
@@ -88,6 +90,13 @@ module.exports = function(grunt) {
 		}
 	};
 
+	gc.jscs = {
+		files: {
+			src: [ "assets/js/src/**/*.js", "!assets/js/src/plugins/*.js" ]
+		},
+		options: { config: ".jscs.json" }
+	}
+
 	/**
 	 * Image Specific Configurations
 	 */
@@ -101,6 +110,7 @@ module.exports = function(grunt) {
 			}]
 		}
 	};
+
 
 	/**
 	 * Event Specific Configurations
