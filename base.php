@@ -13,10 +13,12 @@ if ( current_theme_supports( 'bootstrap-top-navbar' ) ) {
 }
 ?>
 
-	<div class="wrap" role="document">
+	<div class="wrap clearfix" role="document">
 		<div class="content">
 			<div class="main <?php echo esc_attr( roots_main_class() ); ?>" role="main">
-				<?php include roots_template_path(); ?>
+				<div class="row">
+					<?php include roots_template_path(); ?>
+				</div> <!-- /.row -->
 			</div><!-- /.main -->
 			<?php if ( roots_display_sidebar() ) : ?>
 			<aside class="sidebar <?php echo esc_attr( roots_sidebar_class() ); ?>" role="complementary">
