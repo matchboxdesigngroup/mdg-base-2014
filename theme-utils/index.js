@@ -1,17 +1,19 @@
 #!/usr/bin/env node
-var pjson = require('./package.json');
-var program = require('commander');
+var pjson    = require('./package.json');
+var program  = require('commander');
 var execSync = require('exec-sync');
-var mb = {
+var _        = require('underscore');
+var fs       = require('fs.extra');
+var mb       = {
 	options : {}
 };
 
 // Set program parameters
 program
-  .version(pjson.version)
-  .option('-init, --init', 'Install required theme dependencies and setup theme.')
-  .option('-update, --update', 'Update required theme dependencies.')
-  .parse(process.argv);
+.version(pjson.version)
+.option('-init, --init', 'Install required theme dependencies and setup theme.')
+.option('-update, --update', 'Update required theme dependencies.')
+.parse(process.argv);
 
 // Sets nicer terminal colors
 var colors = require('colors');
@@ -69,30 +71,100 @@ mb.options.ask = function( optionMsg, defaultOption, callback ) {
 /**
  * Verify the dependency tools needed.
  *
- * @param   {Array}    tools  The tool command to execute to test.
- *
  * @return  {Boolean}          If all of the tools are installed.
  */
-mb.verifyDependencyTools = function(tools) {
-	// grunt --version
-	// bower --version
-	// composer --version
-	// ruby --version
-	// sass --version
-	// scss-lint --version
+mb.verifyDependencyTools = function() {
+	// TODO
+	// JSCS
+	// JSHint
 	// brew --version
 	// brew tap
 	// CHECK FOR: homebrew/dupes and josegonzalez/php
 	// phpcs --version (Also check for https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards )
+
+	var tools = 	{
+		grunt    : {
+			name    : 'Grunt',
+			test    : 'grunt --version',
+			info    : 'http://gruntjs.com/',
+		},
+		bower    : {
+			name    : 'Bower',
+			test    : 'bower --version',
+			info    : 'http://bower.io/',
+		},
+		composer : {
+			name    : 'Composer',
+			test    : 'composer --version',
+			info    : 'https://getcomposer.org/',
+		},
+		ruby     : {
+			name    : 'Ruby',
+			test    : 'ruby --version',
+			info    : 'http://rvm.io/',
+		},
+		sass     : {
+			name    : 'SASS',
+			test    : 'sass --version',
+			info    : 'http://sass-lang.com/',
+		},
+		scsslint : {
+			name    : 'SCSS-Lint',
+			test    : 'scss-lint --version',
+			info    : 'https://github.com/causes/scss-lint',
+		},
+	};
+
+	var toolsNotInstalled = [];
+
+	_.each(tools, function(value, key, list) {
+		console.log('Verifying dependency: ' + value.name);
+		var msg          = '';
+		var verification = execSync(value.test, true);
+
+		if ( verification.stderr === '' ) {
+			console.log(verification.stdout.info);
+		} else {
+			msg = value.name + ' is not installed!',
+			console.error(msg.error + ' Please visit ' + value.info + ' for more information.');
+			toolsNotInstalled.push(value.name);
+		} // if/else()
+		console.log('');
+	});
+
+	if ( toolsNotInstalled.length === 0 ) {
+		return true;
+	} // if()
+	msg = '**Please install ' + toolsNotInstalled.join() + ' before continuing**';
+	console.error(msg.error);
+
+	console.log();
+	console.log('exiting');
+	process.exit();
+
+	return false;
 };
 
 /**
- * Initializes the theme.
+ * Asks for the theme name.
+ *
+ * @param   {Function}  callback  Function to execute when complete.
  *
  * @return  {Void}
  */
-mb.init = function() {
-	mb.options.ask( 'Theme Name' );
+mb.askThemeName = function(callback) {
+	mb.options.ask('Theme Name', null, function(data) {
+		var themeName = data;
+
+		mb.options.ask(themeName + ' are you sure? [Y/N]', 'Y', function(data){
+			if (data.toLowerCase() === 'y' || data === '') {
+				mb.themeName = themeName;
+				callback();
+			} else {
+				mb.askThemeName(callback);
+			} // if/else()
+		});
+	});
 };
 
 /**
@@ -101,7 +173,57 @@ mb.init = function() {
  * @return  {Void}
  */
 mb.update = function() {
-	mb.options.ask( 'Theme Name' );
+	process.chdir('../');
+
+	// Grunt NPM
+	console.log('Installing Grunt tasks from NPM (May take awhile)');
+	var npmInstall = execSync('npm install', true);
+	console.log(npmInstall.stdout.info);
+	console.log(npmInstall.stderr.error);
+	console.log('');
+
+	// Bower
+	console.log('Updating Bower components. (May take awhile)');
+	process.chdir('assets/');
+	var bowerUpdate = execSync('bower update', true);
+	console.log(bowerUpdate.stdout.info);
+	console.log(bowerUpdate.stderr.error);
+	console.log('');
+
+	// Composer/WP Plugins
+	console.log('Moving composer.json');
+	process.chdir('../');
+
+	fs.copy('composer.json', '../../../composer.json', function (err) {
+		if (err) {
+			throw err;
+		} // if()
+
+		console.log('Moved composer.json'.info);
+
+		process.chdir('../../../');
+
+		console.log('Installing WordPress plugins and Composer dependencies.');
+		var composerUpdate = execSync( 'composer update', true );
+		console.log(composerUpdate.stdout.info);
+		console.log(composerUpdate.stderr.error);
+		console.log('');
+		console.log('Complete, exiting'.info);
+		process.exit();
+	});
+};
+
+/**
+ * Initializes the theme.
+ *
+ * @return  {Void}
+ */
+mb.init = function() {
+	mb.verifyDependencyTools();
+
+	mb.askThemeName(function(){
+		mb.update()
+	});
 };
 
 // Give help documentation since nothing was passed
@@ -113,7 +235,6 @@ if ( program.rawArgs.length < 3 ) {
 
 if (program.init) {
 	mb.init();
-	mb.verifyDependencyTools();
 };
 if (program.update){
 	mb.update();
