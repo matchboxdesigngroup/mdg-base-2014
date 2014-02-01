@@ -17,6 +17,9 @@
     "grunt-contrib-uglify": "x.x.x",
     "grunt-notify": "x.x.x",
     "load-grunt-tasks": "x.x.x",
-    "grunt-contrib-copy": "~0.5.0"
+    "grunt-scss-lint": "x.x.x",
+    "grunt-jscs-checker": "~0.3.2",
+    "grunt-phpcs": "x.x.x",
+    "grunt-contrib-copy": "x.x.x"
   }
 }
