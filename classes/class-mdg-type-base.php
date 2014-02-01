@@ -487,7 +487,7 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 			'posts_per_page' => -1,
 			'post_status'    => 'publish',
 			'order'          => 'DESC',
-			'orderby'        => 'date',
+			'orderby'        => 'menu_order',
 		);
 		$query_args         = array_merge( $default_query_args, $custom_query_args );
 

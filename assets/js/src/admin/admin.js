@@ -3,6 +3,7 @@
 // @codekit-prepend "../plugins/cleditor/jquery.cleditor.js"
 // @codekit-prepend "../plugins/cleditor/jquery.cleditor.min.js"
 // @codekit-prepend "meta-upload.js"
+// @codekit-prepend "sortable-post-table.js"
 jQuery((function($) {
 	var Meta   = {},
 			Alerts = {}

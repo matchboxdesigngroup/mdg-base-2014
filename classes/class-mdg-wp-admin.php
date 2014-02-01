@@ -58,6 +58,9 @@ class MDG_WP_Admin extends MDG_Generic
 
 		// Add MDG dashboard widget
 		// add_action( 'wp_dashboard_setup', array( &$this, 'add_mdg_dashboard_widget' ) );
+
+		// Sortable posts table AJAX callback
+		add_action( 'wp_ajax_mdg_sortable_posts_table_update_post', array( &$this, 'sortable_posts_table_update_post_callback' ) );
 	} // _add_actions()
 
 
@@ -398,7 +401,7 @@ class MDG_WP_Admin extends MDG_Generic
 	 * Forces the admin theme to use Midnight.
 	 * It has a red that works well for Matchbox.
 	 */
-	function change_admin_color( $result ) {
+	public function change_admin_color( $result ) {
 		return 'midnight';
 	} // change_admin_color()
 
@@ -409,7 +412,7 @@ class MDG_WP_Admin extends MDG_Generic
 	 *
 	 * @return Void
 	 */
-	function add_mdg_dashboard_widget() {
+	public function add_mdg_dashboard_widget() {
 		wp_add_dashboard_widget(
 			'mdg_dashboard_widget',
 			'Matchbox Design Group',
@@ -425,12 +428,74 @@ class MDG_WP_Admin extends MDG_Generic
 	 *
 	 * @return Void
 	 */
-	function mdg_dashboard_widget_callback() {
+	public function mdg_dashboard_widget_callback() {
 		get_template_part( 'templates/widget', 'mdg-dashboard' );
 	} // mdg_dashboard_widget_callback()
 
-	function mdg_dashboard_widget_control_callback() {
+
+
+	/**
+	 * Callback for saving data from the widget.
+	 *
+	 * @return  void
+	 */
+	public function mdg_dashboard_widget_control_callback() {
 	} // mdg_dashboard_widget_control_callback
+
+
+
+	/**
+	 * AJAX callback to update posts sort order.
+	 *
+	 * @return  void
+	 */
+	public function sortable_posts_table_update_post_callback() {
+		$sorted_posts = $_POST['posts'];
+		$posts        = [];
+		$post_type    = $_POST['postType'];
+		$order        = 0;
+
+		foreach ( $sorted_posts as $post ) {
+			$post_data = explode( '|', $post );
+			$id        = $post_data[0];
+			$order     = $post_data[1];
+			$post_ids  = array();
+
+			if ( ! wp_is_post_revision( $id ) ){
+				// unhook this function so it doesn't loop infinitely
+				remove_action( 'save_post', 'my_function' );
+
+				// update the post, which calls save_post again
+				$update = wp_update_post( array( 'ID' => $id, 'menu_order' => $order ) );
+				$update = wp_update_post( array( 'ID' => $id, 'post_title' => 'Stub ' . $order ) );
+
+				$post_ids[] = $id;
+
+				// re-hook this function
+				add_action( 'save_post', 'my_function' );
+			} // if()
+		} // foreach()
+
+		$query_args = array(
+			'post_per_page' => -1,
+			'post_type'     => $post_type,
+			'post_status'   => 'publish',
+			'orderby'       => 'menu_order',
+			'order'         => 'DESC',
+			'post__not_in'  => $post_ids,
+		);
+		$query = new WP_Query( $query_args );
+		$posts = $query->get_posts();
+
+		foreach ( $posts as $post ) {
+			$order  = $order + 1;
+			$update = wp_update_post( array( 'ID' => $id, 'menu_order' => $order ) );
+			$update = wp_update_post( array( 'ID' => $id, 'post_title' => 'Stub ' . $order ) );
+		} // foreach()
+
+		echo json_encode( true );
+		die();
+	} // sortable_posts_table_update_post_callback()
 } // End class MDG_WP_Admin()
 
 // Set global instance
