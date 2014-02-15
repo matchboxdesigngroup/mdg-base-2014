@@ -13,7 +13,7 @@ $color4: #ccc; // light grey
 
 $facebook-blue: #3b5998;
 $twitter-blue: #00aced;
-$youtube-red: #bb0000;
+$youtube-red: #b00;
 
 $theme1: #f00; // Change this and add more theme colors
 
@@ -61,7 +61,6 @@ $theme1: #f00; // Change this and add more theme colors
 @mixin box-shadow($shadow...) {
 	-webkit-box-shadow: $shadow;
 	box-shadow: $shadow;
-	behavior: url();
 }
 
 // Arrow up.
@@ -135,20 +134,20 @@ $theme1: #f00; // Change this and add more theme colors
 
 // Media Query Min Width.
 // @param $screen-size Min device width.
-@mixin bp-min( $screen-size ) {
+@mixin bp-min($screen-size) {
 	@media (min-width: $screen-size) { @content; }
 }
 
 // Media Query Max Width.
 // @param $screen-size Max device width.
-@mixin bp-max( $screen-size ) {
+@mixin bp-max($screen-size) {
 	@media (max-width: $screen-size) { @content; }
 }
 
 // Media Query Min/Max
 // @param $min Min device width.
 // @param $max Max device width.
-@mixin bp-min-max( $min, $max ) {
+@mixin bp-min-max($min, $max) {
 	@media (min-width: $min) and (max-width: $max) { @content; }
 }
 
@@ -158,22 +157,22 @@ $theme1: #f00; // Change this and add more theme colors
 
 // Extra small devices (phones, less than 768px)
 @mixin bp-screen-xs() {
-	@include bp-max( $screen-xs-max ) { @content; }
+	@include bp-max($screen-xs-max) { @content; }
 }
 
 // Small devices (tablets, 768px and up)
 @mixin bp-screen-sm() {
-	@include bp-min( $screen-sm-min) { @content; }
+	@include bp-min($screen-sm-min) { @content; }
 }
 
 // Medium devices (desktops, 992px and up)
 @mixin bp-screen-md() {
-	@include bp-min( $screen-md-min ) { @content; }
+	@include bp-min($screen-md-min) { @content; }
 }
 
 // Large devices (large desktops, 1200px and up)
 @mixin bp-screen-lg() {
-	@include bp-min( $screen-lg-min ) { @content; }
+	@include bp-min($screen-lg-min) { @content; }
 }
 
 // ===============================================
@@ -182,7 +181,7 @@ $theme1: #f00; // Change this and add more theme colors
 
 // Used to target small devices only
 @mixin bp-min-max-sm() {
-	@include bp-min-max( $screen-sm-min, $screen-sm-max ) { @content; }
+	@include bp-min-max($screen-sm-min, $screen-sm-max) { @content; }
 }
 
 // Used to target medium devices only
