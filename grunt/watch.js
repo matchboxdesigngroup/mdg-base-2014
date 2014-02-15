@@ -29,6 +29,13 @@ module.exports = {
 		],
 		options: { spawn: false, },
 	},
+	imagemin: {
+		files: ['**/*.{png,jpg,gif}'],
+		tasks: [
+			'newer:imagemin',
+		],
+		options: { spawn: false, },
+	},
 	livereload: {
 		options: {
 			livereload: true,

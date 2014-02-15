@@ -2,9 +2,9 @@ module.exports = {
 	theme: {
 		files: [{
 			expand: true,
-			cwd: 'assets/img/',
+			cwd: 'assets/',
 			src: ['**/*.{png,jpg,gif}'],
-			dest: 'assets/img/'
+			dest: 'assets/'
 		}]
 	}
 };
