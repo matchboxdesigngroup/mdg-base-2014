@@ -23,6 +23,7 @@
     "grunt-contrib-copy": "x.x.x",
     "load-grunt-config": "x.x.x",
     "grunt-contrib-jshint": "x.x.x",
-    "grunt-newer": "~0.6.1"
+    "grunt-newer": "~0.6.1",
+    "grunt-concurrent": "~0.4.3"
   }
 }
