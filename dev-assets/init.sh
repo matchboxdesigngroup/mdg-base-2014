@@ -3,6 +3,9 @@ echo "\nInstalling NPM modules for Grunt.js.";
 cd ../;
 npm install;
 
+echo "\nLinking Git Hooks."
+ln -s dev-assets/pre-commit.sh .git/hooks/pre-commit
+
 echo "\nUpdating Bower components."
 cd assets/;
 bower update;

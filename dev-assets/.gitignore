@@ -5,3 +5,4 @@
 !composer-plugins.json
 !init.sh
 !sublime-project-template.txt
+!pre-commit.sh
