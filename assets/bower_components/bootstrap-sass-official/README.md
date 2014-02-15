@@ -8,7 +8,7 @@
 
 Please see the appropriate guide for your environment of choice:
 
-### a. Rails
+### a. Ruby on Rails
 
 `bootstrap-sass` is easy to drop into Rails with the asset pipeline.
 
@@ -16,12 +16,18 @@ In your Gemfile you need to add the `bootstrap-sass` gem, and ensure that the `s
 
 ```ruby
 gem 'sass-rails', '>= 3.2' # sass-rails needs to be higher than 3.2
-gem 'bootstrap-sass', '~> 3.1.0'
+gem 'bootstrap-sass', '~> 3.1.1'
 ```
 
 `bundle install` and restart your server to make the files available through the pipeline.
 
-### b. Compass (no Rails)
+
+#### Rails 3.2.x
+
+For Rails 3.2.x, make sure that all the gems are moved out of the `:assets` group, and `config.assets.initialize_on_precompile` is set to `true`.
+
+
+### b. Compass without Rails
 
 Install the gem
 ```sh
@@ -50,8 +56,10 @@ This will create a new Compass project with the following files in it:
 * [_variables.scss](/templates/project/_variables.scss.erb) - all of bootstrap variables (override them here).
 * [styles.scss](/templates/project/styles.scss) - main project SCSS file, import `variables` and `bootstrap`.
 
+Some bootstrap-sass mixins may conflict with the Compass ones.
+If this happens, change the import order so that Compass mixins are loaded later.
 
-### c. Sass-only (no Compass, nor Rails)
+### c. Ruby without Compass / Rails
 
 Require the gem, and load paths and Sass helpers will be configured automatically:
 
@@ -59,17 +67,32 @@ Require the gem, and load paths and Sass helpers will be configured automaticall
 require 'bootstrap-sass'
 ```
 
-Using bootstrap-sass as a Bower package is still being tested. You can install it with:
+### d. Bower
+
+Using bootstrap-sass as a Bower package is still being tested and requires libsass master. You can install it with:
 
 ```bash
-bower install 'git://github.com/twbs/bootstrap-sass.git#v3.1.0'
+bower install git://github.com/twbs/bootstrap-sass.git
+```
+
+`bootstrap-sass` is taken so make sure you use the Git URL above.
+
+Sass, JS, and all other assets are located at [vendor/assets](/vendor/assets).
+
+bootstrap-sass [requires](https://github.com/twbs/bootstrap-sass/issues/409) minimum [Sass number precision][sass-precision] of 10 (default is 5).
+
+
+When using ruby Sass compiler with the bower version you can enforce the limit with:
+
+```ruby
+::Sass::Script::Number.precision = [10, ::Sass::Script::Number.precision].max
 ```
 
 #### JS and fonts
 
-If you are using Rails or Sprockets, see Usage.
+Assets are discovered automatically on Rails, Sprockets, and Compass, using native asset path helpers.
 
-If none of Rails/Sprockets/Compass were detected the fonts will be referenced as:
+Otherwise the fonts are referenced as:
 
 ```sass
 "#{$icon-font-path}/#{$icon-font-name}.eot"
@@ -77,21 +100,13 @@ If none of Rails/Sprockets/Compass were detected the fonts will be referenced as
 
 `$icon-font-path` defaults to `bootstrap/`.
 
-When not using an asset pipeline, you have to copy fonts and javascripts from the gem.
+When not using an asset pipeline, you can copy fonts and JS from bootstrap-sass, they are located at [vendor/assets](/vendor/assets):
 
 ```bash
 mkdir public/fonts
 cp -r $(bundle show bootstrap-sass)/vendor/assets/fonts/ public/fonts/
 mkdir public/javascripts
 cp -r $(bundle show bootstrap-sass)/vendor/assets/javascripts/ public/javascripts/
-```
-
-In ruby you can get the assets' location in the filesystem like this:
-
-```ruby
-Bootstrap.stylesheets_path
-Bootstrap.fonts_path
-Bootstrap.javascripts_path
 ```
 
 ## Usage
@@ -124,9 +139,7 @@ $navbar-default-color: $light-orange;
 You can also import components explicitly. To start with a full list of modules copy this file from the gem:
 
 ```bash
-# copy and prepend "bootstrap/" to the @import paths:
-sed 's/@import "/@import "bootstrap\//' \
- $(bundle show bootstrap-sass)/vendor/assets/stylesheets/bootstrap/bootstrap.scss > \
+cp $(bundle show bootstrap-sass)/vendor/assets/stylesheets/bootstrap.scss \
  app/assets/stylesheets/bootstrap-custom.scss
 ```
 Comment out components you do not want from `bootstrap-custom`.
@@ -207,8 +220,9 @@ bootstrap-sass is used to build some awesome projects all over the web, includin
 Michael Hartl's [Rails Tutorial](http://railstutorial.org/), [gitlabhq](http://gitlabhq.com/) and
 [kandan](http://kandanapp.com/).
 
-[converter]: https://github.com/twbs/bootstrap-sass/blob/3/tasks/converter.rb
-[version]: https://github.com/twbs/bootstrap-sass/blob/3/lib/bootstrap-sass/version.rb
+[converter]: https://github.com/twbs/bootstrap-sass/blob/master/tasks/converter/less_conversion.rb
+[version]: https://github.com/twbs/bootstrap-sass/blob/master/lib/bootstrap-sass/version.rb
 [contrib]: https://github.com/twbs/bootstrap-sass/graphs/contributors
 [antirequire]: https://github.com/twbs/bootstrap-sass/issues/79#issuecomment-4428595
 [jsdocs]: http://getbootstrap.com/javascript/#transitions
+[sass-precision]: http://sass-lang.com/documentation/Sass/Script/Number.html#precision-class_method

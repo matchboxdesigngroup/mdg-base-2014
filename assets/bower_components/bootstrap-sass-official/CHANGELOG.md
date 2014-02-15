@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.1.1.0
+
+- Updated Bower docs
+
+## 3.1.0.2
+
+- #523: Rails 3.2 compatibility
+- Bugfixes from upstream up to 7eb532262fbd1112215b5a547b9285794b5360ab.
+
+## 3.1.0.1
+
+- #518: `scale` mixin Sass compatibility issue
+
 ## 3.1.0.0
 
 * compiles with libsass master
