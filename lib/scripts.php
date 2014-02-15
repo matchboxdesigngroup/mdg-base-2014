@@ -11,7 +11,9 @@ function mdg_enqueue_site_scripts() {
 	$theme_uri     = get_template_directory_uri();
 	$ltie9         = preg_match( '/(?i)msie [6-8]/', $_SERVER['HTTP_USER_AGENT'] );
 
-	wp_enqueue_style( 'main_css', "{$theme_uri}/assets/css/main.min.css", array(), $theme_version, 'all' );
+	// CSS
+	$css_suffix = ( $ltie9 and $is_IE ) ? '-ltie9' : '';
+	wp_enqueue_style( 'main_css', "{$theme_uri}/assets/css/main{$css_suffix}.min.css", array(), $theme_version, 'all' );
 
 	// jQuery is loaded using the same method from HTML5 Boilerplate:
 	// Grab Google CDN's latest jQuery with a protocol relative URL; fallback to local if offline
@@ -28,15 +30,15 @@ function mdg_enqueue_site_scripts() {
 
 	// Register Scripts
 	wp_register_script( 'modernizr', "{$theme_uri}/assets/js/vendor/modernizr-2.7.0.min.js", array(), '2.7.0', false );
-	wp_register_script( 'respond_js', "{$theme_uri}/assets/bower_components/respond/dest/respond.min.js", array( 'modernizer' ), '1.4.0', false );
-	wp_register_script( 'css3pie_js', "{$theme_uri}/assets/js/vendor/css3pie-1.0.0.js", array(), '1.0.0', false );
-	wp_register_script( 'device_js', "{$theme_uri}/assets/bower_components/devicejs/lib/device.min.js", array( 'modernizer' ), null, false );
+	wp_register_script( 'css3pie_js', "{$theme_uri}/assets/js/vendor/css3pie-1.0.0.js", array( 'modernizr' ), '1.0.0', false );
+	wp_register_script( 'device_js', "{$theme_uri}/assets/bower_components/devicejs/lib/device.min.js", array( 'modernizr' ), null, false );
 	wp_register_script( 'main_js', "{$theme_uri}/assets/js/scripts.min.js", array( 'jquery', 'jquery-effects-core' ), $theme_version, true );
+
 	// Add Global PHP -> JS
 	$mdg_globals = array(
 		'ajaxurl' => admin_url( 'admin-ajax.php' ),
+		'isIE'    => ( $ltie9 and $is_IE ),
 	);
-
 	wp_localize_script( 'main_js', 'MDG_GLOBALS', $mdg_globals );
 
 	// Enqueue Scripts

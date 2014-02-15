@@ -1,10 +1,30 @@
+// ===============================================
+// Bootstrap
+// ===============================================
+$container-width:             1170px !default;
+$container-tablet:            $container-width;  // Small screen / tablet
+$container-desktop:           $container-width; // Medium screen / desktop
+$container-large-desktop:     $container-width; // Large screen / wide desktop
 $bootstrap-sass-asset-helper: false; // Disables Compass/Ruby asset pipeline
 $icon-font-path: '../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/';
-@import '../../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+@import 'bootstrap';
+
+// ===============================================
+// Font Awesome
+// ===============================================
 $fa-font-path: '../bower_components/font-awesome/fonts';
 @import '../../../bower_components/font-awesome/scss/font-awesome.scss';
-@import '../plugins/_flexslider-2.2.0';
 
+// ===============================================
+// Plugins
+// ===============================================
+@import '../plugins/_flexslider-2.2.0';
+@import 'ie10-viewport-bug';
+@import '../plugins/dev-bar';
+
+// ===============================================
+// Site
+// ===============================================
 @import 'vars_mixins';
 @import 'utilities';
 @import 'base';
@@ -13,5 +33,3 @@ $fa-font-path: '../bower_components/font-awesome/fonts';
 @import 'content';
 @import 'error404';
 @import 'footer';
-@import 'ie10-viewport-bug';
-@import '../plugins/dev-bar';

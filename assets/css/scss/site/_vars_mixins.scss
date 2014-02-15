@@ -1,3 +1,11 @@
+// ===============================================
+// IE Specific
+// ===============================================
+$old-ie: false !default;
+
+// ===============================================
+// Fonts
+// ===============================================
 $font-main: Arial, Helvetica, sans-serif;
 $font-featured: $font-main;
 
@@ -6,6 +14,9 @@ $med: 16px;
 $large: 32px;
 $xlarge: 42px;
 
+// ===============================================
+// Colors
+// ===============================================
 $color1: #000; // black
 $color2: #fff; // white
 $color3: #666; // medium grey
@@ -128,63 +139,100 @@ $theme1: #f00; // Change this and add more theme colors
 	background: rgba($color, $opacity);
 }
 
+// Only effects ltIE9
+@mixin old-ie {
+	@if $old-ie {
+		@content;
+	}
+}
+
 // ===============================================
 // Media Queries
 // ===============================================
 
 // Media Query Min Width.
 // @param $screen-size Min device width.
-@mixin bp-min($screen-size) {
+@mixin bp-min( $screen-size ) {
 	@media (min-width: $screen-size) { @content; }
 }
 
 // Media Query Max Width.
 // @param $screen-size Max device width.
-@mixin bp-max($screen-size) {
+@mixin bp-max( $screen-size ) {
 	@media (max-width: $screen-size) { @content; }
 }
 
 // Media Query Min/Max
 // @param $min Min device width.
 // @param $max Max device width.
-@mixin bp-min-max($min, $max) {
+@mixin bp-min-max( $min, $max ) {
 	@media (min-width: $min) and (max-width: $max) { @content; }
 }
 
 // ===============================================
 // Media Sizes
+// $screen-xs: 480px;
+// $screen-sm: 768px;
+// $screen-md: 992px;
+// $screen-lg: 1200px;
 // ===============================================
 
 // Extra small devices (phones, less than 768px)
 @mixin bp-screen-xs() {
-	@include bp-max($screen-xs-max) { @content; }
-}
+	@if $old-ie {
+	} @else {
+		@include bp-max($screen-xs) { @content; }
+	} // @if/@else()
+} // bp-screen-xs()
+
+// Small devices (tablets, 768px and down)
+@mixin bp-screen-max-sm() {
+	@if $old-ie {
+	} @else {
+		@include bp-max($screen-sm-min) { @content; }
+	} // @if/@else()
+} // bp-screen-max-sm()
 
 // Small devices (tablets, 768px and up)
 @mixin bp-screen-sm() {
-	@include bp-min($screen-sm-min) { @content; }
-}
+	@if $old-ie {
+		@content;
+	} @else {
+		@include bp-min($screen-sm-min) { @content; }
+	} // @if/@else()
+} // bp-screen-sm()
 
 // Medium devices (desktops, 992px and up)
 @mixin bp-screen-md() {
-	@include bp-min($screen-md-min) { @content; }
-}
+	@if $old-ie {
+	} @else {
+		@include bp-min($screen-md-min) { @content; }
+	} // @if/@else()
+} // bp-screen-md()
 
 // Large devices (large desktops, 1200px and up)
 @mixin bp-screen-lg() {
-	@include bp-min($screen-lg-min) { @content; }
-}
+	@if $old-ie {
+	} @else {
+		@include bp-min($screen-lg-min) { @content; }
+	} // @if/@else()
+} // bp-screen-lg()
 
 // ===============================================
 // Media Quearies to limit CSS to a narrower set of devices.
 // ===============================================
-
 // Used to target small devices only
 @mixin bp-min-max-sm() {
-	@include bp-min-max($screen-sm-min, $screen-sm-max) { @content; }
-}
+	@if $old-ie {
+	} @else {
+		@include bp-min-max($screen-sm-min, $screen-sm-max) { @content; }
+	} // @if/@else()
+} // bp-min-max-sm()
 
 // Used to target medium devices only
 @mixin bp-min-max-md() {
-	@include bp-min-max($screen-md-min, $screen-md-max) { @content; }
-}
+	@if $old-ie {
+	} @else {
+		@include bp-min-max($screen-md-min, $screen-md-max) { @content; }
+	} // @if/@else()
+} // bp-min-max-md()
