@@ -1,7 +1,10 @@
 module.exports = {
 	siteSass: {
 		files: [ 'assets/css/scss/site/**/*.scss' ],
-		tasks: [ 'newer:sass:site' ],
+		tasks: [
+			'newer:sass:site',
+			'newer:sass:ltie9'
+		],
 		options: { spawn: false, },
 	},
 	adminSass: {
