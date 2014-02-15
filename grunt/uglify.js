@@ -19,7 +19,7 @@ module.exports = {
 				// 'assets/bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/affix.js',
 				// 'assets/bower_components/imagesloaded/imagesloaded.js',
 				// 'assets/js/src/plugins/jquery.flexslider.js',
-				// 'assets/js/src/plugins/placeholders.jquery.min.js',
+				// 'assets/bower_components/jquery-placeholder/jquery.placeholder.js',
 				'assets/bower_components/jQuery-ResizeEnd/src/jQuery.resizeEnd.js',
 				// 'assets/bower_components/jquery-selectric/js/jquery.selectric.js',
 				'assets/bower_components/fitvids/jquery.fitvids.js',
