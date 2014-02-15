@@ -12,7 +12,7 @@ MDG Base is a WordPress starter theme based on [Roots](http://roots.io), which u
 
 ###Quick Start
 1. cd /path/to/mdg-base/
-2. chmod +x init.sh
+2. chmod +x dev-assets/init.sh
 3. ./init.sh
 
 #Folder Sturcutre
