@@ -5,3 +5,5 @@ node_modules
 .sass-cache
 *.sublime-*
 *.map
+/composer.lock
+vendor/.git
