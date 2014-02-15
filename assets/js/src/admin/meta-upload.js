@@ -33,6 +33,7 @@ jQuery((function($) {
 					fileSrc : fileUrl
 				};
 				$.getJSON(ajaxurl, ajaxParams, function(json) {
+					console.log(json);
 						var thumbElem = metaWrap.find('.meta-upload-thumb');
 						thumbElem.prev('br').remove();
 						thumbElem.remove();

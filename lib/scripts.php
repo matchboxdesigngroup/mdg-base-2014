@@ -70,7 +70,7 @@ function mdg_enqueue_admin_scripts() {
 	wp_enqueue_style( 'mdg-admin-css', "{$theme_uri}/assets/css/admin.min.css", array( 'wp-color-picker' ), $theme_version, 'all' );
 
 	wp_enqueue_script( 'jquery-ui-datepicker' );
-	wp_register_script( 'admin_scripts', "{$theme_uri}/assets/js/admin.min.js", array( 'jquery', 'jquery-ui-datepicker' ), $theme_version, true );
+	wp_register_script( 'admin_scripts', "{$theme_uri}/assets/js/admin.min.js", array( 'jquery', 'jquery-ui-datepicker', 'wp-color-picker' ), $theme_version, true );
 	wp_enqueue_script( 'admin_scripts' );
 } // mdg_enqueue_admin_scripts()
 add_action( 'admin_enqueue_scripts', 'mdg_enqueue_admin_scripts', 100 );

@@ -59,6 +59,9 @@ class MDG_WP_Admin extends MDG_Generic
 		// Install plugins
 		add_action( 'tgmpa_register', array( &$this, 'register_required_plugins' ) );
 
+		// Meta upload thumbnail
+		add_action( 'wp_ajax_mdg_meta_upload_thumb', array( &$this, 'mdg_meta_upload_thumb_callback' ) );
+
 		// Add MDG dashboard widget
 		// add_action( 'wp_dashboard_setup', array( &$this, 'add_mdg_dashboard_widget' ) );
 	} // _add_actions()
@@ -522,6 +525,24 @@ class MDG_WP_Admin extends MDG_Generic
 		tgmpa( $plugins, $config );
 	} // register_required_plugins
 
+
+
+	/**
+	 * File upload thumbnail HTML AJAX request callback.
+	 *
+	 * @return  Void
+	 */
+	public function mdg_meta_upload_thumb_callback() {
+		if ( ! isset( $_GET['fileSrc'] ) ) {
+			echo json_encode( '' );
+			exit;
+		} // if()
+
+		global $mdg_meta_form_fields;
+		$thumbnail = $mdg_meta_form_fields->file_upload_field_thumbnail( $_GET['fileSrc'] );
+		echo json_encode( $thumbnail );
+		exit;
+	} // mdg_meta_upload_thumb_callback
 } // End class MDG_WP_Admin()
 
 // Set global instance
