@@ -18,8 +18,10 @@
     "grunt-notify": "x.x.x",
     "load-grunt-tasks": "x.x.x",
     "grunt-scss-lint": "x.x.x",
-    "grunt-jscs-checker": "~0.3.2",
+    "grunt-jscs-checker": "x.x.x",
     "grunt-phpcs": "x.x.x",
-    "grunt-contrib-copy": "x.x.x"
+    "grunt-contrib-copy": "x.x.x",
+    "load-grunt-config": "x.x.x",
+    "grunt-contrib-jshint": "x.x.x"
   }
 }
