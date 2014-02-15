@@ -1,12 +1,12 @@
 module.exports = {
 	siteSass: {
 		files: [ 'assets/css/scss/site/**/*.scss' ],
-		tasks: [ 'sass:site' ],
+		tasks: [ 'newer:sass:site' ],
 		options: { spawn: false, },
 	},
 	adminSass: {
 		files: [ 'assets/css/scss/admin/**/*.scss' ],
-		tasks: [ 'sass:admin' ],
+		tasks: [ 'newer:sass:admin' ],
 		options: {
 			spawn: false,
 		},
@@ -14,7 +14,7 @@ module.exports = {
 	siteScripts: {
 		files: [ 'assets/js/src/site/**/*.js' ],
 		tasks: [
-			'uglify:site',
+			'newer:uglify:site',
 			'copy:jsSourceMaps'
 		],
 		options: {
@@ -24,7 +24,7 @@ module.exports = {
 	adminScripts: {
 		files: [ 'assets/js/src/admin/**/*.js' ],
 		tasks: [
-			'uglify:admin',
+			'newer:uglify:admin',
 			'copy:jsSourceMaps',
 		],
 		options: { spawn: false, },

@@ -22,6 +22,7 @@
     "grunt-phpcs": "x.x.x",
     "grunt-contrib-copy": "x.x.x",
     "load-grunt-config": "x.x.x",
-    "grunt-contrib-jshint": "x.x.x"
+    "grunt-contrib-jshint": "x.x.x",
+    "grunt-newer": "~0.6.1"
   }
 }
