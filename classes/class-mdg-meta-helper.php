@@ -78,7 +78,7 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 
 
 
-/**
+ /**
 	 * Renames the featured image meta box.
 	 *
 	 * @return Void
