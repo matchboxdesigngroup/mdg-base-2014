@@ -34,7 +34,7 @@ colors.setTheme({
  *
  * @return  {string}  The new uppercase.
  */
-String.prototype.ucfirst = function () {
+String.prototype.ucfirst = function() {
 	// Split the string into words if string contains multiple words.
 	var x = this.split(/\s+/g);
 
@@ -259,7 +259,7 @@ mb.askThemeName = function(callback) {
 		mb.options.ask('Your theme will be named ' + themeName + ' are you sure? [Y/N]', 'Y', function(data){
 			if (data.toLowerCase() === 'y' || data === '') {
 				// Set theme name
-				mb.themeName = themeName.ucfirst();
+				mb.themeName = themeName;
 				mb.themeSlug = themeName.toLowerCase().replace(/\W/g, ' ').replace(/\s+/g, '-');
 
 				// Set theme path info
@@ -295,11 +295,17 @@ mb.askThemeName = function(callback) {
 mb.composerInstallUpdate = function(callback) {
 	process.chdir(mb.themePath);
 
+	console.log('Installing Composer dependencies... (This may take awhile)');
+	var composerUpdate = execSync( 'composer update', true );
+	console.log(composerUpdate.stdout.info);
+	console.log(composerUpdate.stderr.error);
+	console.log('');
+
 	var cjsonExists = fs.existsSync('../../../composer.json');
 	if ( cjsonExists ) {
 		process.chdir('../../../');
 
-		console.log('Installing WordPress plugins and Composer dependencies... (This may take awhile)');
+		console.log('Installing WordPress plugins... (This may take awhile)');
 		var composerUpdate = execSync( 'composer update', true );
 		console.log(composerUpdate.stdout.info);
 		console.log(composerUpdate.stderr.error);
@@ -308,15 +314,16 @@ mb.composerInstallUpdate = function(callback) {
 		callback();
 	} else {
 		console.log('Moving composer.json...');
-		fs.copy('composer.json', '../../../composer.json', function (err) {
+		fs.copy('dev-assets/composer-plugins.json', '../../../composer.json', function (err) {
 			if (err) {
 				throw err;
 			} // if()
-
+			console.log('');
 			console.log('Moved composer.json'.info);
 
 			process.chdir('../../../');
 
+			console.log('');
 			console.log('Installing WordPress plugins and Composer dependencies... (This may take awhile)');
 			var composerUpdate = execSync( 'composer update', true );
 			console.log(composerUpdate.stdout.info);
@@ -338,18 +345,18 @@ mb.composerInstallUpdate = function(callback) {
  */
 mb.npmInstallUpdate = function(callback) {
 	process.chdir(mb.themePath);
-	console.log('Installing Grunt tasks from NPM... (This may take awhile)');
-	var nodeModulesExists = fs.existsSync('node_modules');
-	var npmInstall;
-	if ( nodeModulesExists ) {
-		npmInstall = execSync('npm install', true);
-	} else {
-		npmInstall = execSync('npm update', true);
-	} // if/else()
+	// console.log('Installing Grunt tasks from NPM... (This may take awhile)');
+	// var nodeModulesExists = fs.existsSync('node_modules');
+	// var npmInstall;
+	// if ( nodeModulesExists ) {
+	// 	npmInstall = execSync('npm install', true);
+	// } else {
+	// 	npmInstall = execSync('npm update', true);
+	// } // if/else()
 
-	console.log(npmInstall.stdout.info);
-	console.log(npmInstall.stderr.error);
-	console.log('');
+	// console.log(npmInstall.stdout.info);
+	// console.log(npmInstall.stderr.error);
+	// console.log('');
 	callback();
 };
 
@@ -370,7 +377,7 @@ mb.bowerInstallUpdate = function(callback) {
 	console.log('');
 	process.chdir(mb.themePath);
 	callback();
-}
+};
 
 /**
  * Handles exiting and any useful information
@@ -394,9 +401,17 @@ mb.updateComplete = function() {
 	process.exit();
 };
 
-mb.moveGitHooks = function(callback) {
+/**
+ * Handles linking the git hooks.
+ *
+ * @todo Fix the hooks.
+ *
+ * @param   {Function}  callback       Function to execute once complete.
+ *
+ * @return  {Void}
+ */
+mb.linkGitHooks = function(callback) {
 	process.chdir(mb.themePath);
-// ln -s ../../pre-commit.sh .git/hooks/pre-commit
 	var precommitExists = fs.existsSync('pre-commit.sh');
 	if ( !precommitExists ) {
 		callback();
@@ -429,13 +444,49 @@ mb.moveGitHooks = function(callback) {
 		callback();
 	} // if()
 
-	var symLinkGitHooks = execSync('ln -s '+mb.themePath+'/pre-commit.sh '+process.cwd()+'/.git/hooks/pre-commit', true);
+	var symLinkGitHooks = execSync('ln -s '+mb.themePath+'/dev-assets/pre-commit.sh '+process.cwd()+'/.git/hooks/pre-commit', true);
 
 	if ( symLinkGitHooks.stderr === '') {
 		var linkedMSg = 'Pre-commit hook '+process.cwd()+'/pre-commit.sh linked to '+process.cwd()+'/.git/hooks/pre-commit...';
 		console.log(linkedMSg.info);
 	} else {
 		console.log(notLinkedMSg.error);
+	} // if/else()
+
+	callback();
+};
+
+/**
+ * Handles linking the JSCS configuration files.
+ *
+ * @param   {Function}  callback       Function to execute once complete.
+ *
+ * @return  {Void}
+ */
+mb.linkJSCSconfig = function(callback) {
+	process.chdir(mb.themePath);
+
+	console.log('');
+	console.log('Linking JSCS configuration files');
+	var linkSiteExists  = fs.existsSync(mb.themePath + '/assets/js/src/site/.jscs.json');
+	var linkSite        = '';
+	var linkAdminExists = fs.existsSync(mb.themePath + '/assets/js/src/admin/.jscs.json');
+	var linkAdmin       = '';
+
+	if ( !linkSiteExists ) {
+		linkSite  = 'ln -s .jscs.json assets/js/src/site/.jscs.json;';
+	} // if()
+
+	if ( !linkAdminExists ) {
+		linkAdmin = 'ln -s .jscs.json assets/js/src/admin/.jscs.json;';
+	} // if()
+
+	var symLinkJSCSHooks = execSync( linkSite + linkAdmin, true);
+
+	if ( symLinkJSCSHooks.stderr === '') {
+		console.log('JSCS configuration files linked.'.info);
+	} else {
+		console.log('JSCS configuration files not linked!'.error);
 	} // if/else()
 
 	callback();
@@ -449,15 +500,17 @@ mb.moveGitHooks = function(callback) {
 mb.update = function() {
 	process.chdir('../');
 
-	mb.moveGitHooks(function(){
-		mb.bowerInstallUpdate(function(){
-			mb.composerInstallUpdate(function(){
-				mb.npmInstallUpdate(function(){
-					mb.updateComplete();
+	mb.linkGitHooks(function() {
+		mb.bowerInstallUpdate(function() {
+			mb.composerInstallUpdate(function() {
+				mb.npmInstallUpdate(function() {
+					mb.linkJSCSconfig(function() {
+						mb.updateComplete();
+					}); // mb.linkJSCSconfig
 				}); // mb.npmInstallUpdate()
 			}); // mb.npmInstallUpdate()
 		}); // mb.composerInstallUpdate()
-	}); // mb.moveGitHooks()
+	}); // mb.linkGitHooks()
 };
 
 /**
@@ -482,7 +535,7 @@ if ( program.rawArgs.length < 3 ) {
 
 if (program.init) {
 	mb.init();
-};
+}
 if (program.update){
 	mb.update();
-};
+}
