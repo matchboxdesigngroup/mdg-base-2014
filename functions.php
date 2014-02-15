@@ -1,5 +1,10 @@
 <?php
 /**
+ * Composer
+ */
+require_once locate_template( 'vendor/autoload.php' );
+
+/**
  * Libs
  */
 $libs = array(
