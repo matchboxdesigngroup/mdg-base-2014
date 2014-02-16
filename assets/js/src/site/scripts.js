@@ -35,6 +35,10 @@ jQuery((function($) {
 		return false;
 	}; // site.initFlexslider()
 
+	site.initFitVids = function() {
+		$("body").fitVids();
+	};
+
 	/**
 	 * Use for elements that need to be linked but should not be wrapped in a <a></a>
 	 * Apply class faux-link to the element and a data attribute of data-link="{somelink}"
@@ -187,6 +191,7 @@ jQuery((function($) {
 		site.initFauxLink();
 		site.initDropDownMenu();
 		site.css3pieAttach();
+		site.initFitVids();
 		// site.fixElement();
 	});
 

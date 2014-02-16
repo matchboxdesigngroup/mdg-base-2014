@@ -237,7 +237,16 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 	 * @return array $cols The current columns with thumbnail column added.
 	 */
 	function add_thumbnail_column( $cols ) {
-		$cols['mdg_post_thumb'] = __( $this->featured_image_title );
+		if ( ! isset( $_GET['post_type'] ) ) {
+			return $cols;
+		} // if()
+
+		$post_type          = $_GET['post_type'];
+		$correct_post_type  = $this->_is_correct_post_type( $post_type );
+		$supports_thumbnail = post_type_supports( get_post_type(), 'thumbnail' );
+		if ( ! $this->disable_image_column and $correct_post_type and $supports_thumbnail  ) {
+			$cols['mdg_post_thumb'] = __( $this->featured_image_title );
+		} // if()
 		return $cols;
 	} // add_thumbnail_column()
 

@@ -94,6 +94,24 @@
 
 	return $css3pie;
 } // stub_css3pie_test() ?>
+
+<?php function stub_arrows_test() {
+	$arrows  = '';
+	$arrows .= '<ul class="list-unstyled">';
+	$arrows .= '<li>Arrow Up</li>';
+	$arrows .= '<li class="arrow-up">&nbsp;</li>';
+	$arrows .= '<li>Arrow Down</li>';
+	$arrows .= '<li class="arrow-down">&nbsp;</li>';
+	$arrows .= '<li>Arrow Right</li>';
+	$arrows .= '<li class="arrow-right">&nbsp;</li>';
+	$arrows .= '<li>Arrow Left</li>';
+	$arrows .= '<li class="arrow-left">&nbsp;</li>';
+	$arrows .= '</ul>';
+
+	return $arrows;
+} // stub_arrows_test()
+
+?>
 	<!-- 'AJAX Loaders'
 	<div class="small progress"><div>Loading…</div></div>
 	<div class="progress"><div>Loading…</div></div>
@@ -145,6 +163,11 @@
 			'content'      => stub_font_awsome_glyphicons_test(),
 			'pretty_print' => false,
 		),
+		array(
+			'title'        => 'CSS Arrows',
+			'content'      => stub_arrows_test(),
+			'pretty_print' => false,
+		),
 	);
 	?>
 	<div class="panel-group" id="stub_accordion">
@@ -161,9 +184,10 @@
 			<div id="<?php echo esc_attr( $id ); ?>" class="panel-collapse collapse">
 				<div class="panel-body">
 					<?php
-					if ( isset( $example ) ) {
+					if ( isset( $example ) and $pretty_print ) {
 						pp( $example );
 					} // if()
+
 					if ( $pretty_print ) {
 						pp( $content );
 					} else {

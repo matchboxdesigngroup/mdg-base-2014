@@ -1,5 +1,13 @@
+// ===============================================
+// Stub Test (You can delete this when starting)
+// ===============================================
 .test {
 	width: 220px;
 	height: 220px;
 	background-image: url('/wp-content/themes/mdg-base-2/assets/img/220x220.png');
 }
+
+.arrow-up { @include arrow-up(#000, 25px, 25px, 25px) }
+.arrow-down { @include arrow-down(#000, 25px, 25px, 25px) }
+.arrow-right { @include arrow-right(#000, 25px, 25px, 25px) }
+.arrow-left { @include arrow-left(#000, 25px, 25px, 25px) }

@@ -1,22 +1,8 @@
 {
     "name": "mdg-base",
     "description": "MDG Base",
-    "repositories":[
-        {
-            "type":"composer",
-            "url":"http://wpackagist.org"
-        }
-    ],
-    "require-dev": {
-        "wpackagist/wordpress-importer":"*",
-        "wpackagist/widget-settings-importexport":"*",
-        "wpackagist/regenerate-thumbnails":"*",
-        "wpackagist/wordpress-database-reset":"*",
-        "wpackagist/debug-bar":"*",
-        "wpackagist/debug-bar-console":"*",
-        "wpackagist/theme-check":"*",
-        "wpackagist/wordpress-importer":"*",
-        "wpackagist/developer":"*"
+    "require": {
+        "tgm/plugin-activation": "dev-develop"
     },
     "autoload": {
     }

@@ -113,12 +113,17 @@ function roots_body_class( $classes ) {
 	}
 
 	// Remove unnecessary classes
-	$home_id_class = 'page-id-' . get_option( 'page_on_front' );
+	$home_id_class  = 'page-id-' . get_option( 'page_on_front' );
 	$remove_classes = array(
 		'page-template-default',
 		$home_id_class,
 	);
 	$classes = array_diff( $classes, $remove_classes );
+
+	// Strip `page-template-` from page templates.
+	foreach ( $classes as $key => $value ) {
+		$classes[$key] = str_replace( 'page-template-', '', $value );
+	} // foreach
 
 	return $classes;
 }
