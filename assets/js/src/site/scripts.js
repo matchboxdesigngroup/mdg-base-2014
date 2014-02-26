@@ -36,7 +36,7 @@ jQuery((function($) {
 	}; // site.initFlexslider()
 
 	site.initFitVids = function() {
-		$("body").fitVids();
+		$('body').fitVids();
 	};
 
 	/**
@@ -99,7 +99,7 @@ jQuery((function($) {
 		offsetTop = ( typeof offsetTop === 'undefined' ) ? 10 : offsetTop;
 
 		var offset = elem.offset().top - offsetTop;
-		$('html,body').animate( { scrollTop: offset }, speed, easing );
+		$('html,body').animate( { scrollTop : offset }, speed, easing );
 
 		return false;
 	}; // site.scollTo()
@@ -132,16 +132,16 @@ jQuery((function($) {
 			return;
 		} // if()
 
-		pageTopLinkElem.click(function(){
-			$(window.opera ? "html" : "html, body").stop(true , true).animate({scrollTop: 0} , 1500 , "easeInOutQuad");
+		pageTopLinkElem.click(function() {
+			$(window.opera ? 'html' : 'html, body').stop(true, true).animate({ scrollTop : 0 }, 1500, 'easeInOutQuad');
 			return false;
 		});
 
-		$(window).scroll(function(){
-			if($(window).scrollTop() > 150){
-				pageTopLinkElem.stop(true , true).fadeIn(1000);
-			}else{
-				pageTopLinkElem.stop(true , true).fadeOut(1000);
+		$(window).scroll(function() {
+			if ($(window).scrollTop() > 150){
+				pageTopLinkElem.stop(true, true).fadeIn(1000);
+			} else {
+				pageTopLinkElem.stop(true, true).fadeOut(1000);
 			}
 		});
 	}; // site.initBackToTop()
@@ -153,36 +153,37 @@ jQuery((function($) {
 	 *
 	 * @return Void
 	 */
-	// site.fixElement = function(offsetTop) {
-	//	var fixedElem = $('.fixed-elem'),
-	//			offset    = (typeof offsetTop === 'undefined') ? 150:offsetTop
-	//	;
+	site.fixElement = function(offsetTop) {
+		console.log(offsetTop);
+		//	var fixedElem = $('.fixed-elem'),
+		//			offset    = (typeof offsetTop === 'undefined') ? 150:offsetTop
+		//	;
 
-	//	if ( fixedElem.length === 0 ) {
-	//		return false;
-	//	} // if
+		//	if ( fixedElem.length === 0 ) {
+		//		return false;
+		//	} // if
 
-	//	$(window).scroll(function(){
-	//		fixedElem.each(function(index,el) {
-	//			var that = $(el);
+		//	$(window).scroll(function(){
+		//		fixedElem.each(function(index,el) {
+		//			var that = $(el);
 
-	//			var offsetTop             = that.offset().top,
-	//					scrollTop             = $(window).scrollTop(),
-	//					// direction            = ( true ) ? 'up' : 'down',
-	//					fixedElemOffset       = ( ( offsetTop - offset ) <= scrollTop ),
-	//					activeFixedElemOffset = ( ( offsetTop - offset ) <= scrollTop )
-	//			;
-	//			if ( fixedElemOffset || activeFixedElemOffset ) {
-	//				if ( ! that.hasClass('fixed') ) {
-	//					that.addClass('fixed');
-	//				} // if()
-	//			} else {
-	//				// that.removeClass('fixed').removeClass('up').removeClass('down');
-	//				// console.log(that.attr('class'));
-	//			} // if/else()
-	//		}); // fixedElem.each()
-	//	}); // $(window).scroll()
-	// }; // site.fixElement()
+		//			var offsetTop             = that.offset().top,
+		//					scrollTop             = $(window).scrollTop(),
+		//					// direction            = ( true ) ? 'up' : 'down',
+		//					fixedElemOffset       = ( ( offsetTop - offset ) <= scrollTop ),
+		//					activeFixedElemOffset = ( ( offsetTop - offset ) <= scrollTop )
+		//			;
+		//			if ( fixedElemOffset || activeFixedElemOffset ) {
+		//				if ( ! that.hasClass('fixed') ) {
+		//					that.addClass('fixed');
+		//				} // if()
+		//			} else {
+		//				// that.removeClass('fixed').removeClass('up').removeClass('down');
+		//				// console.log(that.attr('class'));
+		//			} // if/else()
+		//		}); // fixedElem.each()
+		//	}); // $(window).scroll()
+	}; // site.fixElement()
 
 	/**
 	 * Document Ready
@@ -216,24 +217,24 @@ jQuery((function($) {
  * Avoid `console` errors in browsers that lack a console.
  */
 (function() {
-		var method,
-				noop    = function() {},
-				methods = [
-					'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
-					'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
-					'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
-					'timeStamp', 'trace', 'warn'
-				],
-				length  = methods.length,
-				console = ( window.console = window.console || {} )
-		;
+	var method,
+			noop    = function() {},
+			methods = [
+				'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
+				'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
+				'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
+				'timeStamp', 'trace', 'warn'
+			],
+			length  = methods.length,
+			console = ( window.console = window.console || {} )
+	;
 
-		while ( length-- ) {
-				method = methods[length];
+	while ( length-- ) {
+		method = methods[length];
 
-				// Only stub undefined methods.
-				if (!console[method]) {
-						console[method] = noop;
-				}
+		// Only stub undefined methods.
+		if (!console[method]) {
+			console[method] = noop;
 		}
+	}
 }());
