@@ -47,7 +47,7 @@ function development_url_change() {
 		update_option( 'home', "http://{$host}" );
 	} // if()
 } // development_url_change()
-add_action( 'init', 'development_url_change' );
+// add_action( 'init', 'development_url_change' );
 
 
 /**
