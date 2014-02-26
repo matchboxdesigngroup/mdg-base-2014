@@ -1,0 +1,28 @@
+{
+	"folders":
+	[
+		{
+			"path": "./wp-content/themes/",
+			"file_exclude_patterns": [
+				"assets/*.css",
+				"assets/*.min.*",
+				"codekit-config.json",
+				".scss-lint.yml",
+				".jscs.json",
+				"*.sublime*",
+				"config.rb",
+				".editorconfig",
+				".jshintrc",
+				"*.map",
+				"*.lock",
+				"*.psd"
+			],
+			"folder_exclude_patterns": [
+				".sass-cache",
+				"node_modules",
+				"lang",
+				"bower_components"
+			]
+		}
+	]
+}
