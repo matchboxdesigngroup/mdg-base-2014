@@ -1,27 +1,37 @@
 module.exports = {
-	siteSass: {
-		files: [ 'assets/css/scss/site/**/*.scss' ],
-		tasks: [
+	siteSass : {
+		files : [ 'assets/css/scss/site/**/*.scss' ],
+		tasks : [
 			'sass:site',
-			'sass:ltie9'
+			'group_css_media_queries:site',
+			'sass:ltie9',
+			'group_css_media_queries:ltie9',
+			'autoprefixer',
+			'cssmin:site',
+			'cssmin:ltie9',
 		],
-		options: { spawn: false, },
+		options : { spawn: false, },
 	},
-	adminSass: {
-		files: [ 'assets/css/scss/admin/**/*.scss' ],
-		tasks: [ 'newer:sass:admin' ],
-		options: {
-			spawn: false,
+	adminSass : {
+		files   : [ 'assets/css/scss/admin/**/*.scss' ],
+		tasks   : [
+			'sass:admin',
+			'group_css_media_queries:admin',
+			'autoprefixer',
+			'cssmin:admin'
+		],
+		options : {
+			spawn : false,
 		},
 	},
-	siteScripts: {
-		files: [ 'assets/js/src/site/**/*.js' ],
-		tasks: [
+	siteScripts : {
+		files : [ 'assets/js/src/site/**/*.js' ],
+		tasks : [
 			'newer:uglify:site',
 			'copy:jsSourceMaps'
 		],
-		options: {
-			spawn: false,
+		options : {
+			spawn : false,
 		},
 	},
 	adminScripts: {
@@ -33,7 +43,7 @@ module.exports = {
 		options: { spawn: false, },
 	},
 	imagemin: {
-		files: ['**/*.{png,jpg,gif}'],
+		files: [ '**/*.{png,jpg,gif}' ],
 		tasks: [
 			'newer:imagemin',
 		],
