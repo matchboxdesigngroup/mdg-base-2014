@@ -451,6 +451,10 @@ class MDG_WP_Admin extends MDG_Generic
 	 * @return Void
 	 */
 	function register_required_plugins() {
+		if ( is_admin() and isset( $_GET['page'] ) and $_GET['page'] == 'theme_activation_options' ) {
+			return ;
+		}
+
 		/**
 		 * Array of plugin arrays. Required keys are name and slug.
 		 * If the source is NOT from the .org repo, then source is also required.
@@ -477,6 +481,11 @@ class MDG_WP_Admin extends MDG_Generic
 			array(
 				'name'     => 'Regenerate Thumbnails',
 				'slug'     => 'regenerate-thumbnails',
+				'required' => true,
+			),
+			array(
+				'name'     => 'BackWPup Free',
+				'slug'     => 'backwpup',
 				'required' => true,
 			),
 		);
