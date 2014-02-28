@@ -284,6 +284,31 @@ class MDG_Type_Stub extends MDG_Type_Base
 				'id'    => "{$this->post_type}Checkbox",
 				'type'  => 'checkbox',
 			),
+			// Radio
+			array(
+				'label'   => 'Radio',
+				'desc'    => 'Radio description.',
+				'id'      => "{$this->post_type}Radio",
+				'type'    => 'radio',
+				'options' => array(
+					array(
+						'value' => 'value_1',
+						'label' => 'Radio Label 1',
+					),
+					array(
+						'value' => 'value_2',
+						'label' => 'Radio Label 2',
+					),
+					array(
+						'value' => 'value_3',
+						'label' => 'Radio Label 3',
+					),
+					array(
+						'value' => 'value_4',
+						'label' => 'Radio Label 4',
+					),
+				),
+			),
 			// Select
 			array(
 				'label'   => 'Select',

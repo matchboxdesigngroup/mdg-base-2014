@@ -154,6 +154,31 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	} // checkbox()
 
 
+	/**
+	 * Creates a HTML radio and description.
+	 *
+	 * @param string  $id      id attribute
+	 * @param string  $meta    meta value
+	 * @param string  $desc    description
+	 * @param array   $options select options
+	 *
+	 * @return string            The input field and description
+	 */
+	public function radio( $id, $meta, $desc, $options ) {
+		$i = 1;
+		foreach ( $options as $option ) {
+			extract( $option );
+			$checked = ( $value == $meta ) ? ' checked="checked"' : '';
+			$radio  .= '<input type="radio" name="'.esc_attr( $id ).'" id="'.esc_attr( "{$id}_{$i}" ).'" value="'.esc_attr( $value ).'"'.$checked.'>';
+			$radio  .= '<label for="'.esc_attr( "{$id}_{$i}" ).'">&nbsp;'.esc_attr( $label ).'</label><br><br>';
+			$i = $i + 1;
+		} // foreach()
+		$radio .= '<br>';
+		$radio .= '<span class="description">'.esc_attr( $desc ).'</span>';
+
+		return $radio;
+	} // radio()
+
 
 	/**
 	 * Creates a HTML select and description.
