@@ -10,9 +10,7 @@ function roots_setup() {
 	register_nav_menus(
 		array(
 			'primary_navigation' => __( 'Primary Navigation', 'roots' ),
-			'footer_col_1' => __( 'Footer (Column 1)', 'roots' ),
-			'footer_col_2' => __( 'Footer (Column 2)', 'roots' ),
-			'footer_col_3' => __( 'Footer (Column 3)', 'roots' ),
+			'footer_navigation'  => __( 'Footer Navigation', 'roots' ),
 		)
 	);
 
