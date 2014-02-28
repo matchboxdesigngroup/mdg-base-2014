@@ -1,5 +1,5 @@
 <?php
-if ( !function_exists( 'pp' ) ) {
+if ( ! function_exists( 'pp' ) ) {
 	/**
 	 * Pretty Print Debug Function
 	 *
@@ -8,12 +8,12 @@ if ( !function_exists( 'pp' ) ) {
 	 * @return [type]        [description]
 	 */
 	function pp( $value ) {
+		global $mdg_generic;
+
 		$hosts = array(
-			'127.0.0.1',
-			'localhost',
 			'10.0.2.2',
 		);
-		if ( ! in_array( $_SERVER['HTTP_HOST'], $hosts ) ) return;
+		if ( ! in_array( $_SERVER['HTTP_HOST'], $hosts ) and ! $mdg_generic->is_localhost() ) return;
 		echo '<pre>';
 		if ( $value ) {
 			print_r( $value );

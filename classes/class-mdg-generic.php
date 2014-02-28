@@ -26,8 +26,9 @@ class MDG_Generic {
 	public function is_localhost() {
 		$localhost = array( 'localhost', '127.0.0.1' );
 		$host      = $_SERVER['HTTP_HOST'];
+		$is_vhost  = strpos( $host, '.dev' );
 
-		if ( in_array( $host, $localhost ) ) {
+		if ( in_array( $host, $localhost ) or $is_vhost ) {
 			return true;
 		} // if()
 
