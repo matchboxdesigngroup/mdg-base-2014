@@ -10,8 +10,5 @@ module.exports = function(grunt) {
 	require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
 
 	// Register Tasks
-	grunt.registerTask('default', [ 'sass' ]);
-	grunt.registerTask('default', [ 'newer:imagemin' ]);
-	grunt.registerTask('default', [ 'newer:jshint' ]);
-	grunt.registerTask('default', [ 'newer:scsslint' ]);
+	grunt.registerTask('default', [ 'watch' ]);
 };
