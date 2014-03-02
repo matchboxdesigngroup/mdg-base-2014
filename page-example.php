@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying all pages.
+ * Template Name: Example Page Template
  *
  * @package     WordPress
  * @subpackage  MDGBase
@@ -10,4 +10,10 @@
 $context         = Timber::get_context();
 $post            = new TimberPost();
 $context['post'] = $post;
-Timber::render( 'page.twig', $context );
+Timber::render(
+	array(
+		'page-example.twig',
+		'page.twig',
+	),
+	$context
+);
