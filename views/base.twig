@@ -3,25 +3,19 @@
 		<!--[if lt IE 7]><div class="alert">'You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.'</div><![endif]-->
 
 		{# Header #}
-		{% do action('get_header') %}
-		{% if bootstrap_top_navbar %}
-			{% include 'header-top-navbar.twig' %}
-		{% else %}
-			{% include 'header.twig' %}
-		{% endif %}
+		{% include 'header.twig' %}
 
 		<div class="wrap clearfix" role="document">
 			<div class="content">
 				{# Content #}
 				<div class="main {{main_class}}" role="main">
 					{% block content %}
+					{# Loads template content #}
 					{% endblock %}
 				</div><!-- /.main -->
 
 				{# Sidebar #}
-				{% if roots_display_sidebar %}
-					{% include 'sidebar.twig' %}
-				{% endif %}
+				{% include 'sidebar.twig' %}
 			</div><!-- /.content -->
 		</div><!-- /.wrap -->
 
