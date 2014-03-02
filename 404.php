@@ -2,9 +2,9 @@
 /**
  * The template for displaying 404 pages (Not Found)
  *
- * @package  WordPress
+ * @package     WordPress
  * @subpackage  MDGBase
- * @since    MDGBase 1.0.0
+ * @since       MDGBase 1.0.0
  */
 
 	$context = Timber::get_context();
