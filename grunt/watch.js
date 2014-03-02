@@ -27,7 +27,7 @@ module.exports = {
 	siteScripts : {
 		files : [ 'assets/js/src/site/**/*.js' ],
 		tasks : [
-			'newer:uglify:site',
+			'uglify:site',
 			'copy:jsSourceMaps'
 		],
 		options : {
@@ -37,7 +37,7 @@ module.exports = {
 	adminScripts: {
 		files: [ 'assets/js/src/admin/**/*.js' ],
 		tasks: [
-			'newer:uglify:admin',
+			'uglify:admin',
 			'copy:jsSourceMaps',
 		],
 		options: { spawn: false, },
@@ -45,7 +45,7 @@ module.exports = {
 	imagemin: {
 		files: [ '**/*.{png,jpg,gif}' ],
 		tasks: [
-			'newer:imagemin',
+			'imagemin',
 		],
 		options: { spawn: false, },
 	},
