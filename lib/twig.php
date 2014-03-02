@@ -31,8 +31,8 @@ function base_twig_context( $data ) {
 	$data['home_url']              = esc_url( home_url() );
 	$data['blog_name']             = esc_attr( get_bloginfo( 'name' ) );
 	$date['wp_title']              = esc_attr( wp_title( '|', false, 'right' ) );
-	$data['main_class']            = esc_attr( roots_main_class() );
-	$data['roots_display_sidebar'] = roots_display_sidebar();
+	$data['main_class']            = esc_attr( mdg_main_class() );
+	$data['mdg_display_sidebar'] = mdg_display_sidebar();
 
 	return $data;
 } // base_twig_context()
@@ -59,7 +59,7 @@ function header_twig_context( $data ) {
 	$data['primary_navigation'] = wp_nav_menu( $primary_navigation_attrs );
 
 	$data['display_page_header'] = ( ! is_front_page() );
-	$data['page_title']          = roots_title();
+	$data['page_title']          = mdg_title();
 
 
 	return $data;

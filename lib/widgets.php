@@ -2,7 +2,7 @@
 /**
  * Register sidebars and widgets
  */
-function roots_widgets_init() {
+function mdg_widgets_init() {
 	// Sidebars
 	register_sidebar(
 		array(
@@ -18,7 +18,7 @@ function roots_widgets_init() {
 	// Widgets
 	// register_widget( 'Roots_Vcard_Widget' );
 }
-add_action( 'widgets_init', 'roots_widgets_init' );
+add_action( 'widgets_init', 'mdg_widgets_init' );
 
 /**
  * Example vCard widget
@@ -35,10 +35,10 @@ class Roots_Vcard_Widget extends WP_Widget {
 	);
 
 	function __construct() {
-		$widget_ops = array( 'classname' => 'widget_roots_vcard', 'description' => __( 'Use this widget to add a vCard', 'roots' ) );
+		$widget_ops = array( 'classname' => 'widget_mdg_vcard', 'description' => __( 'Use this widget to add a vCard', 'roots' ) );
 
-		$this->WP_Widget( 'widget_roots_vcard', __( 'Roots: vCard', 'roots' ), $widget_ops );
-		$this->alt_option_name = 'widget_roots_vcard';
+		$this->WP_Widget( 'widget_mdg_vcard', __( 'Roots: vCard', 'roots' ), $widget_ops );
+		$this->alt_option_name = 'widget_mdg_vcard';
 
 		add_action( 'save_post', array( &$this, 'flush_widget_cache' ) );
 		add_action( 'deleted_post', array( &$this, 'flush_widget_cache' ) );
@@ -46,7 +46,7 @@ class Roots_Vcard_Widget extends WP_Widget {
 	}
 
 	function widget( $args, $instance ) {
-		$cache = wp_cache_get( 'widget_roots_vcard', 'widget' );
+		$cache = wp_cache_get( 'widget_mdg_vcard', 'widget' );
 
 		if ( !is_array( $cache ) ) {
 			$cache = array();
@@ -93,7 +93,7 @@ class Roots_Vcard_Widget extends WP_Widget {
 		echo $after_widget;
 
 		$cache[$args['widget_id']] = ob_get_flush();
-		wp_cache_set( 'widget_roots_vcard', $cache, 'widget' );
+		wp_cache_set( 'widget_mdg_vcard', $cache, 'widget' );
 	}
 
 	function update( $new_instance, $old_instance ) {
@@ -103,15 +103,15 @@ class Roots_Vcard_Widget extends WP_Widget {
 
 		$alloptions = wp_cache_get( 'alloptions', 'options' );
 
-		if ( isset( $alloptions['widget_roots_vcard'] ) ) {
-			delete_option( 'widget_roots_vcard' );
+		if ( isset( $alloptions['widget_mdg_vcard'] ) ) {
+			delete_option( 'widget_mdg_vcard' );
 		}
 
 		return $instance;
 	}
 
 	function flush_widget_cache() {
-		wp_cache_delete( 'widget_roots_vcard', 'widget' );
+		wp_cache_delete( 'widget_mdg_vcard', 'widget' );
 	}
 
 	function form( $instance ) {

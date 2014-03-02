@@ -7,7 +7,7 @@
  * Remove inline CSS used by posts with galleries
  * Remove self-closing tag and change ''s to "'s on rel_canonical()
  */
-function roots_head_cleanup() {
+function mdg_head_cleanup() {
 	// Originally from http://wpengineer.com/1438/wordpress-header/
 	remove_action( 'wp_head', 'feed_links', 2 );
 	remove_action( 'wp_head', 'feed_links_extra', 3 );
@@ -22,11 +22,11 @@ function roots_head_cleanup() {
 
 	if ( !class_exists( 'WPSEO_Frontend' ) ) {
 		remove_action( 'wp_head', 'rel_canonical' );
-		add_action( 'wp_head', 'roots_rel_canonical' );
+		add_action( 'wp_head', 'mdg_rel_canonical' );
 	}
 }
 
-function roots_rel_canonical() {
+function mdg_rel_canonical() {
 	global $wp_the_query;
 
 	if ( !is_singular() ) {
@@ -40,7 +40,7 @@ function roots_rel_canonical() {
 	$link = get_permalink( $id );
 	echo "\t<link rel=\"canonical\" href=\"$link\">\n";
 }
-add_action( 'init', 'roots_head_cleanup' );
+add_action( 'init', 'mdg_head_cleanup' );
 
 /**
  * Remove the WordPress version from RSS feeds
@@ -53,7 +53,7 @@ add_filter( 'the_generator', '__return_false' );
  * Change lang="en-US" to lang="en"
  * Remove dir="ltr"
  */
-function roots_language_attributes() {
+function mdg_language_attributes() {
 	$attributes = array();
 	$output = '';
 
@@ -72,16 +72,16 @@ function roots_language_attributes() {
 	}
 
 	$output = implode( ' ', $attributes );
-	$output = apply_filters( 'roots_language_attributes', $output );
+	$output = apply_filters( 'mdg_language_attributes', $output );
 
 	return $output;
 }
-add_filter( 'language_attributes', 'roots_language_attributes' );
+add_filter( 'language_attributes', 'mdg_language_attributes' );
 
 /**
  * Manage output of wp_title()
  */
-function roots_wp_title( $title ) {
+function mdg_wp_title( $title ) {
 	if ( is_feed() ) {
 		return $title;
 	}
@@ -90,23 +90,23 @@ function roots_wp_title( $title ) {
 
 	return $title;
 }
-add_filter( 'wp_title', 'roots_wp_title', 10 );
+add_filter( 'wp_title', 'mdg_wp_title', 10 );
 
 /**
  * Clean up output of stylesheet <link> tags
  */
-function roots_clean_style_tag( $input ) {
+function mdg_clean_style_tag( $input ) {
 	preg_match_all( "!<link rel='stylesheet'\s?(id='[^']+')?\s+href='(.*)' type='text/css' media='(.*)' />!", $input, $matches );
 	// Only display media if it is meaningful
 	$media = $matches[3][0] !== '' && $matches[3][0] !== 'all' ? ' media="' . $matches[3][0] . '"' : '';
 	return '<link rel="stylesheet" href="' . $matches[2][0] . '"' . $media . '>' . "\n";
 }
-add_filter( 'style_loader_tag', 'roots_clean_style_tag' );
+add_filter( 'style_loader_tag', 'mdg_clean_style_tag' );
 
 /**
  * Add and remove body_class() classes
  */
-function roots_body_class( $classes ) {
+function mdg_body_class( $classes ) {
 	// Add post/page slug
 	if ( is_single() || is_page() && !is_front_page() ) {
 		$classes[] = basename( get_permalink() );
@@ -127,7 +127,7 @@ function roots_body_class( $classes ) {
 
 	return $classes;
 }
-add_filter( 'body_class', 'roots_body_class' );
+add_filter( 'body_class', 'mdg_body_class' );
 
 /**
  * Wrap embedded media as suggested by Readability
@@ -135,10 +135,10 @@ add_filter( 'body_class', 'roots_body_class' );
  * @link https://gist.github.com/965956
  * @link http://www.readability.com/publishers/guidelines#publisher
  */
-function roots_embed_wrap( $cache, $url, $attr = '', $post_ID = '' ) {
+function mdg_embed_wrap( $cache, $url, $attr = '', $post_ID = '' ) {
 	return '<div class="entry-content-asset">' . $cache . '</div>';
 }
-add_filter( 'embed_oembed_html', 'roots_embed_wrap', 10, 4 );
+add_filter( 'embed_oembed_html', 'mdg_embed_wrap', 10, 4 );
 
 /**
  * Add Bootstrap thumbnail styling to images with captions
@@ -146,7 +146,7 @@ add_filter( 'embed_oembed_html', 'roots_embed_wrap', 10, 4 );
  *
  * @link http://justintadlock.com/archives/2011/07/01/captions-in-wordpress
  */
-function roots_caption( $output, $attr, $content ) {
+function mdg_caption( $output, $attr, $content ) {
 	if ( is_feed() ) {
 		return $output;
 	}
@@ -177,59 +177,59 @@ function roots_caption( $output, $attr, $content ) {
 
 	return $output;
 }
-add_filter( 'img_caption_shortcode', 'roots_caption', 10, 3 );
+add_filter( 'img_caption_shortcode', 'mdg_caption', 10, 3 );
 
 /**
  * Remove unnecessary dashboard widgets
  *
  * @link http://www.deluxeblogtips.com/2011/01/remove-dashboard-widgets-in-wordpress.html
  */
-function roots_remove_dashboard_widgets() {
+function mdg_remove_dashboard_widgets() {
 	remove_meta_box( 'dashboard_incoming_links', 'dashboard', 'normal' );
 	remove_meta_box( 'dashboard_plugins', 'dashboard', 'normal' );
 	remove_meta_box( 'dashboard_primary', 'dashboard', 'normal' );
 	remove_meta_box( 'dashboard_secondary', 'dashboard', 'normal' );
 }
-add_action( 'admin_init', 'roots_remove_dashboard_widgets' );
+add_action( 'admin_init', 'mdg_remove_dashboard_widgets' );
 
 /**
  * Clean up the_excerpt()
  */
-function roots_excerpt_length( $length ) {
+function mdg_excerpt_length( $length ) {
 	return POST_EXCERPT_LENGTH;
 }
 
-function roots_excerpt_more( $more ) {
+function mdg_excerpt_more( $more ) {
 	return ' &hellip; <a href="' . get_permalink() . '">' . __( 'Continued', 'roots' ) . '</a>';
 }
-add_filter( 'excerpt_length', 'roots_excerpt_length' );
-add_filter( 'excerpt_more', 'roots_excerpt_more' );
+add_filter( 'excerpt_length', 'mdg_excerpt_length' );
+add_filter( 'excerpt_more', 'mdg_excerpt_more' );
 
 /**
  * Remove unnecessary self-closing tags
  */
-function roots_remove_self_closing_tags( $input ) {
+function mdg_remove_self_closing_tags( $input ) {
 	return str_replace( ' />', '>', $input );
 }
-add_filter( 'get_avatar',          'roots_remove_self_closing_tags' ); // <img />
-add_filter( 'comment_id_fields',   'roots_remove_self_closing_tags' ); // <input />
-add_filter( 'post_thumbnail_html', 'roots_remove_self_closing_tags' ); // <img />
+add_filter( 'get_avatar',          'mdg_remove_self_closing_tags' ); // <img />
+add_filter( 'comment_id_fields',   'mdg_remove_self_closing_tags' ); // <input />
+add_filter( 'post_thumbnail_html', 'mdg_remove_self_closing_tags' ); // <img />
 
 /**
  * Don't return the default description in the RSS feed if it hasn't been changed
  */
-function roots_remove_default_description( $bloginfo ) {
+function mdg_remove_default_description( $bloginfo ) {
 	$default_tagline = 'Just another WordPress site';
 	return ( $bloginfo === $default_tagline ) ? '' : $bloginfo;
 }
-add_filter( 'get_bloginfo_rss', 'roots_remove_default_description' );
+add_filter( 'get_bloginfo_rss', 'mdg_remove_default_description' );
 
 /**
  * Redirects search results from /?s=query to /search/query/, converts %20 to +
  *
  * @link http://txfx.net/wordpress-plugins/nice-search/
  */
-function roots_nice_search_redirect() {
+function mdg_nice_search_redirect() {
 	global $wp_rewrite;
 	if ( !isset( $wp_rewrite ) || !is_object( $wp_rewrite ) || !$wp_rewrite->using_permalinks() ) {
 		return;
@@ -242,7 +242,7 @@ function roots_nice_search_redirect() {
 	}
 }
 if ( current_theme_supports( 'nice-search' ) ) {
-	add_action( 'template_redirect', 'roots_nice_search_redirect' );
+	add_action( 'template_redirect', 'mdg_nice_search_redirect' );
 }
 
 /**
@@ -251,21 +251,21 @@ if ( current_theme_supports( 'nice-search' ) ) {
  * @link http://wordpress.org/support/topic/blank-search-sends-you-to-the-homepage#post-1772565
  * @link http://core.trac.wordpress.org/ticket/11330
  */
-function roots_request_filter( $query_vars ) {
+function mdg_request_filter( $query_vars ) {
 	if ( isset( $_GET['s'] ) && empty( $_GET['s'] ) ) {
 		$query_vars['s'] = ' ';
 	}
 
 	return $query_vars;
 }
-add_filter( 'request', 'roots_request_filter' );
+add_filter( 'request', 'mdg_request_filter' );
 
 /**
  * Tell WordPress to use searchform.php from the templates/ directory. Requires WordPress 3.6+
  */
-function roots_get_search_form( $form ) {
+function mdg_get_search_form( $form ) {
 	$form = '';
 	locate_template( '/templates/searchform.php', true, false );
 	return $form;
 }
-add_filter( 'get_search_form', 'roots_get_search_form' );
+add_filter( 'get_search_form', 'mdg_get_search_form' );
