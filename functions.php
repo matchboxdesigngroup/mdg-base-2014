@@ -10,7 +10,7 @@ require_once locate_template( 'vendor/autoload.php' );
 $libs = array(
 	'utils',
 	'init',
-	'wrapper',
+	// 'wrapper',
 	'sidebar',
 	'config',
 	'activation',
@@ -23,6 +23,7 @@ $libs = array(
 	'relative-urls',
 	'widgets',
 	'scripts',
+	'twig',
 	'custom',
 	'debug',
 	'shortcodes',

@@ -45,4 +45,4 @@ class Roots_Wrapping {
 		return new Roots_Wrapping();
 	}
 }
-add_filter( 'template_include', array( 'Roots_Wrapping', 'wrap' ), 99 );
+// add_filter( 'template_include', array( 'Roots_Wrapping', 'wrap' ), 99 );
