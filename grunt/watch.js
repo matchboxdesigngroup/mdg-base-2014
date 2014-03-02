@@ -28,7 +28,8 @@ module.exports = {
 		files : [ 'assets/js/src/site/**/*.js' ],
 		tasks : [
 			'uglify:site',
-			'copy:jsSourceMaps'
+			'copy:jsSourceMaps',
+			'clean:jsMaps',
 		],
 		options : {
 			spawn : false,
@@ -39,6 +40,7 @@ module.exports = {
 		tasks: [
 			'uglify:admin',
 			'copy:jsSourceMaps',
+			'clean:jsMaps',
 		],
 		options: { spawn: false, },
 	},
