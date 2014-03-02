@@ -7,16 +7,24 @@
 
 		<div class="wrap clearfix" role="document">
 			<div class="content">
-				{# Content #}
-				<div class="main {{main_class}}" role="main">
-					{% include 'page-header.twig' %}
-					{% block content %}
-					{# Loads template content #}
-					{% endblock %}
-				</div><!-- /.main -->
+				{% if mdg_display_sidebar %}
+				<div class="container">
+					<div class="row">
+				{% endif %}
+						{# Content #}
+						<div class="main {{main_class}}" role="main">
+							{% include 'page-header.twig' %}
+							{% block content %}
+							{# Loads template content #}
+							{% endblock %}
+						</div><!-- /.main -->
 
-				{# Sidebar #}
-				{% include 'sidebar.twig' %}
+						{# Sidebar #}
+						{% include 'sidebar.twig' %}
+				{% if mdg_display_sidebar %}
+					</div> {# /.row #}
+				</div> {# /.container #}
+				{% endif %}
 			</div><!-- /.content -->
 		</div><!-- /.wrap -->
 
