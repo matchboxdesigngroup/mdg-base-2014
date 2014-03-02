@@ -58,6 +58,10 @@ function header_twig_context( $data ) {
 	);
 	$data['primary_navigation'] = wp_nav_menu( $primary_navigation_attrs );
 
+	$data['display_page_header'] = ( ! is_front_page() );
+	$data['page_title']          = roots_title();
+
+
 	return $data;
 } // header_twig_context()
 
