@@ -488,8 +488,12 @@ class MDG_WP_Admin extends MDG_Generic
 				'slug'     => 'backwpup',
 				'required' => true,
 			),
+			array(
+				'name'     => 'Timber Library',
+				'slug'     => 'timber-library',
+				'required' => true,
+			),
 		);
-
 		// Change this to your theme text domain, used for internationalising strings
 		$theme_text_domain = 'roots';
 
