@@ -2,7 +2,6 @@
 add_filter( 'get_twig', 'add_to_twig' );
 add_filter( 'timber_context', 'add_to_context' );
 
-
 /**
  * Add data to Twig context.
  *
@@ -13,6 +12,7 @@ add_filter( 'timber_context', 'add_to_context' );
 function add_to_context( $data ) {
 	$data = base_twig_context( $data );
 	$data = header_twig_context( $data );
+	$data = post_twig_context( $data );
 	$data = footer_twig_context( $data );
 
 	return $data;
@@ -28,10 +28,10 @@ define( 'THEME_URL', get_template_directory_uri() );
  * @return  array         Modified Twig context data.
  */
 function base_twig_context( $data ) {
-	$data['home_url']              = esc_url( home_url() );
-	$data['blog_name']             = esc_attr( get_bloginfo( 'name' ) );
-	$date['wp_title']              = esc_attr( wp_title( '|', false, 'right' ) );
-	$data['main_class']            = esc_attr( mdg_main_class() );
+	$data['home_url']            = esc_url( home_url() );
+	$data['blog_name']           = esc_attr( get_bloginfo( 'name' ) );
+	$date['wp_title']            = esc_attr( wp_title( '|', false, 'right' ) );
+	$data['main_class']          = esc_attr( mdg_main_class() );
 	$data['mdg_display_sidebar'] = mdg_display_sidebar();
 
 	return $data;
@@ -64,6 +64,23 @@ function header_twig_context( $data ) {
 
 	return $data;
 } // header_twig_context()
+
+
+
+/**
+ * Sets up post twig context.
+ *
+ * @param   array  $data  Twig context data.
+ *
+ * @return  array         Modified Twig context data.
+ */
+function post_twig_context( $data ) {
+	global $wp_query;
+	$data['get_post_format'] = get_post_format();
+	$data['max_num_pages']   = $wp_query->max_num_pages;
+
+	return $data;
+} // post_twig_context()
 
 
 

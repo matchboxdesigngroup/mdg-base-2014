@@ -1,0 +1,7 @@
+{% if posts %}
+	{% for post in posts %}
+		{% include ['content-'~get_post_format~'.twig', 'content.twig'] %}
+	{% endfor %}
+{% else %}
+	{% include 'no-posts.twig' %}
+{% endif %}

@@ -55,9 +55,8 @@ class MDG_Type_Stub extends MDG_Type_Base
 		$this->taxonomy_name = "{$this->post_type}-categories";
 
 		/** @var array   Custom taxonomy arguments used in register_taxonomy() */
-		$this->custom_taxonomy_args  = array(
+		$this->custom_taxonomy_args = array(
 			'hierarchical'      => true,
-			'labels'            => $labels,
 			'public'            => true,
 			'show_in_nav_menus' => true,
 			'show_ui'           => true,
@@ -103,8 +102,8 @@ class MDG_Type_Stub extends MDG_Type_Base
 			'all_items'          => __( "All {$this->post_type_title}" ),
 			'view_item'          => __( "View {$this->post_type_single}" ),
 			'search_items'       => __( "Search {$this->post_type_title}" ),
-			'not_found'          => __( "No {$lowercase_post_type_title} found" ),
-			'not_found_in_trash' => __( "No {$lowercase_post_type_title} found in Trash" ),
+			'not_found'          => __( "No {$this->post_type_title} found" ),
+			'not_found_in_trash' => __( "No {$this->post_type_title} found in Trash" ),
 			'parent_item_colon'  => __( '' ),
 			'menu_name'          => __( $this->post_type_title ),
 		);

@@ -1,0 +1,59 @@
+{# Pagination #}
+{{display_pagination}}
+{% if pagination %}
+
+<ul class="pagination">
+		{# Links to first page #}
+		{% if pagination.pages[0].link %}
+		<li>
+			<a href="{{pagination.pages[0].link}}">&laquo;</a>
+		</li>
+		{% endif %}
+
+		{# Links to previous page #}
+		{% for page in pagination.pages %}
+			{% if page.link %}
+				{% if page.link == pagination.prev.link %}
+				<li>
+					<a href="{{page.link}}">&lsaquo;</a>
+				</li>
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+
+		{# Link to all pages #}
+		{% for page in pagination.pages %}
+			{% if page.link %}
+			<li class="inactive">
+				<a href="{{page.link}}" class="{{page.class}}">{{page.title}}</a>
+			</li>
+			{% else %}
+			<li class="active">
+				<span class="{{page.class}}">{{page.title}}</span>
+			</li>
+			{% endif %}
+		{% endfor %}
+
+		{# Links to next page #}
+		{% for page in pagination.pages %}
+			{% if page.link %}
+				{% if page.link == pagination.next.link %}
+				<li>
+					<a href="{{page.link}}">&rsaquo;</a>
+				</li>
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+
+		{# Links to last page #}
+		{% for page in pagination.pages %}
+			{% if page.link %}
+				{% if page.title == max_num_pages %}
+				<li>
+					<a href="{{page.link}}">&raquo;</a>
+				</li>
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+</ul> {# /.pagination #}
+{% endif %}

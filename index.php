@@ -1,24 +1,21 @@
-<?php get_template_part( 'templates/page', 'header' ); ?>
-	<div class="container">
-		<?php if ( ! have_posts() ) { ?>
-		<div class="alert">
-			<?php _e( 'Sorry, no results were found.', 'roots' ); ?>
-		</div>
-		<?php get_search_form(); ?>
-		<?php } // if() ?>
-	</div> <!-- /.container -->
-	<?php while ( have_posts() ) {
-		the_post();
-		get_template_part( 'templates/content', get_post_format() );
-	} // while() ?>
+<?php
+/**
+ * The main template file
+ * This is the most generic template file in a WordPress theme
+ * and one of the two required files for a theme (the other being style.css).
+ * It is used to display a page when nothing more specific matches a query.
+ * E.g., it puts together the home page when no home.php file
+ *
+ * @package     WordPress
+ * @subpackage  MDGBase
+ * @since       MDGBase 1.0.0
+ */
 
-	<?php if ( $wp_query->max_num_pages > 1 ) { ?>
-	<div class="container">
-		<nav class="post-nav">
-			<ul class="pager">
-				<li class="previous"><?php next_posts_link( __( '&larr; Older posts', 'roots' ) ); ?></li>
-				<li class="next"><?php previous_posts_link( __( 'Newer posts &rarr;', 'roots' ) ); ?></li>
-			</ul>
-		</nav>
-	</div> <!-- /.container -->
-	<?php } // if() ?>
+if ( ! class_exists( 'Timber' ) ) {
+	echo 'Timber not activated. Make sure you activate the plugin in <a href="/wp-admin/plugins.php#timber">/wp-admin/plugins.php</a>';
+}
+$context               = Timber::get_context();
+$context['posts']      = Timber::get_posts();
+$context['pagination'] = Timber::get_pagination();
+$templates             = array( 'index.twig' );
+Timber::render( $templates, $context );
