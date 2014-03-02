@@ -1,0 +1,30 @@
+{% include 'head.twig' %}
+	<body class="{{body_class}}" data-source="base.twig">
+		<!--[if lt IE 7]><div class="alert">'You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.'</div><![endif]-->
+
+		{# Header #}
+		{% do action('get_header') %}
+		{% if bootstrap_top_navbar %}
+			{% include 'header-top-navbar.twig' %}
+		{% else %}
+			{% include 'header.twig' %}
+		{% endif %}
+
+		<div class="wrap clearfix" role="document">
+			<div class="content">
+				{# Content #}
+				<div class="main {{main_class}}" role="main">
+					{% block content %}
+					{% endblock %}
+				</div><!-- /.main -->
+
+				{# Sidebar #}
+				{% if roots_display_sidebar %}
+					{% include 'sidebar.twig' %}
+				{% endif %}
+			</div><!-- /.content -->
+		</div><!-- /.wrap -->
+
+		{% include 'footer.twig' %}
+	</body>
+</html>

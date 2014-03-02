@@ -1,0 +1,12 @@
+<header class="banner container" role="banner">
+	<div class="row">
+		<div class="col-lg-12">
+			<a class="brand" href="{{home_url}}/">{{blog_name}}</a>
+			<nav class="nav-main" role="navigation">
+				{% if has_primary_menu %}
+					{{primary_navigation}}
+				{% endif %}
+			</nav>
+		</div>
+	</div>
+</header>
