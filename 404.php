@@ -1,8 +1,11 @@
-<?php get_template_part( 'templates/page', 'header' ); ?>
-<div class="container error-404">
-	<div class="col-xs-12">
-		<p class="big-404">- 404 ERROR -</p>
-		<p class="message">Maybe we can still help.  What were you trying to find?</p>
-		<div class="col-md-4 col-md-offset-4"><?php get_search_form(); ?></div>
-	</div>
-</div>
+<?php
+/**
+ * The template for displaying 404 pages (Not Found)
+ *
+ * @package  WordPress
+ * @subpackage  MDGBase
+ * @since    MDGBase 1.0.0
+ */
+
+	$context = Timber::get_context();
+	Timber::render( '404.twig', $context );

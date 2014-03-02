@@ -1,0 +1,13 @@
+{% extends "base.twig" %}
+{% block content %}
+
+<div class="container error-404">
+	<div class="col-xs-12">
+		<p class="big-404">- 404 ERROR -</p>
+		<p class="message">Sorry, but we can't find the page you're looking for.</p>
+		<p class="message">Maybe we can still help.  What were you trying to find?</p>
+		<div class="col-md-4 col-md-offset-4">{{fn( 'get_search_form' )}}</div>
+	</div>
+</div>
+
+{% endblock %}
