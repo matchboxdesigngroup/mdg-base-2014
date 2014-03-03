@@ -1,0 +1,9 @@
+<form role="search" method="get" class="search-form form-inline" action="{{home_url|e('html_attr')}}/">
+	<div class="input-group">
+		<input type="search" value="{{search_query}}" name="s" class="search-field form-control" placeholder="Search {{blog_name}}">
+		<label class="hide">Search for:</label>
+		<span class="input-group-btn">
+			<button type="submit" class="search-submit btn btn-default">Search</button>
+		</span>
+	</div>
+</form>

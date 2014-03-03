@@ -14,6 +14,7 @@ function add_to_context( $data ) {
 	$data = header_twig_context( $data );
 	$data = post_twig_context( $data );
 	$data = footer_twig_context( $data );
+	$data = search_twig_context( $data );
 
 	return $data;
 } // add_to_context()
@@ -81,6 +82,20 @@ function post_twig_context( $data ) {
 
 	return $data;
 } // post_twig_context()
+
+
+
+/**
+ * Sets up search twig context.
+ *
+ * @param   array  $data  Twig context data.
+ *
+ * @return  array         Modified Twig context data.
+ */
+function search_twig_context( $data ) {
+	$data['search_query'] = ( is_search() ) ? get_search_query() : '';
+	return $data;
+} // search_twig_context()
 
 
 
