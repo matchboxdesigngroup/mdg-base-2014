@@ -1,5 +1,13 @@
-{% extends "base.twig" %}
-
 {% block content %}
-{# Place all content here #}
+<article {{fn( 'post_class' )|e}}>
+	<header>
+		<h2 class="entry-title">
+			<a href="{{post.permalink|e}}">{{post.title|e}}</a>
+		</h2>
+		{% include 'entry-meta.twig' %}
+	</header>
+	<div class="entry-summary">
+		{{post.get_preview}}
+	</div>
+</article>
 {% endblock %}
