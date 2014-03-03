@@ -28,7 +28,6 @@
     "time-grunt": "x.x.x",
     "grunt-autoprefixer": "~0.7.1",
     "grunt-group-css-media-queries": "~1.0.1",
-    "grunt-contrib-cssmin": "~0.8.0",
-    "grunt-browser-sync": "~0.6.1"
+    "grunt-contrib-cssmin": "~0.8.0"
   }
 }
