@@ -1,0 +1,12 @@
+<div class="container">
+	<article class="{{fn('get_post_class')|e}} post-type-{{post.post_type}}" id="post-{{post.ID}}">
+		<header>
+			<h1 class="entry-title">{{post.title}}</h1>
+			{{% include entry-meta.twig %}}
+		</header>
+		<div class="entry-content">
+			{{post.content}}
+		</div>
+		{{% include comments.twig %}}
+	</article>
+</div> <!-- /.container -->
