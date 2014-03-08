@@ -37,6 +37,25 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 
 
 	/**
+	 * Creates a HTML email field and description.
+	 *
+	 * @param string  $id   id attribute
+	 * @param string  $meta meta value
+	 * @param string  $desc description
+	 *
+	 * @return string       The email field and description
+	 */
+	public function email_field( $id, $meta, $desc ) {
+		$email_field  = '<input type="email" name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" value="'.$meta.'" size="30">';
+		$email_field .= '<br>';
+		$email_field .= '<span class="description">'.esc_attr( $desc ).'</span>';
+
+		return $email_field;
+	} // email_field()
+
+
+
+	/**
 	 * Creates a color picker.
 	 *
 	 * @param string  $id   id attribute
@@ -165,7 +184,8 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	 * @return string            The input field and description
 	 */
 	public function radio( $id, $meta, $desc, $options ) {
-		$i = 1;
+		$i     = 1;
+		$radio = '';
 		foreach ( $options as $option ) {
 			extract( $option );
 			$checked = ( $value == $meta ) ? ' checked="checked"' : '';
@@ -267,7 +287,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	 *
 	 * @return string       The date picker and description
 	 */
-	public function datepicker( $id, $meta, $id ) {
+	public function datepicker( $id, $meta, $desc ) {
 		$datepicker  = '<input type="text" class="mdg-datepicker datepicker" name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" value="'.$meta.'" size="30" />';
 		$datepicker .= '<br />';
 		$datepicker .= '<span class="description">'.esc_attr( $desc ).'</span>';

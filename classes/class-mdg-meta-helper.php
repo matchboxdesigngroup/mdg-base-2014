@@ -143,7 +143,7 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 	 * Will cycle through your fields array, and create your form
 	 *
 	 * Your fields array should look something like the example provided
-	 * and you can pass this array via $args (e.g. $helper->mdg_make_form(array('meta_fields' => $fields_array);
+	 * and you can pass this array via $args (e.g. $helper->make_form(array('meta_fields' => $fields_array);
 	 * array(
 	 *  array(
 	 *   'label' => 'Field one',
@@ -163,7 +163,7 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 	 *
 	 * @return [type]       [description]
 	 */
-	public function mdg_make_form( $args = array() ) {
+	public function make_form( $args = array() ) {
 		global $post;
 		$meta_fields  = isset( $args['meta_fields'] ) ? $args['meta_fields'] : '';
 		$allowed_tags = $this->_get_meta_output_kses_allowed_html();
@@ -195,51 +195,69 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 				case 'divider':
 					echo wp_kses( '<hr>', $allowed_tags );
 					break;
+
 				case 'markup':
 					echo wp_kses( $desc, $allowed_tags );
 					break;
+
 				case 'text':
 					$text_field = $this->text_field( $id, $meta, $desc );
 					echo wp_kses( $text_field, $allowed_tags );
 					break;
+
+				case 'email':
+					$email_field = $this->email_field( $id, $meta, $desc );
+					echo wp_kses( $email_field, $allowed_tags );
+					break;
+
 				case 'file':
 					$file_upload = $this->file_upload_field( $id, $meta, $desc );
 					echo wp_kses( $file_upload, $allowed_tags );
 					break;
+
 				case 'textarea':
 					$textarea = $this->textarea( $id, $meta, $desc );
 					echo wp_kses( $textarea, $allowed_tags );
 					break;
+
 				case 'checkbox':
 					$checkbox = $this->checkbox( $id, $meta, $desc );
 					echo wp_kses( $checkbox, $allowed_tags );
 					break;
+
 				case 'radio':
 					$radio = $this->radio( $id, $meta, $desc, $options );
 					echo wp_kses( $radio, $allowed_tags );
 					break;
+
 				case 'select':
 					$select = $this->select( $id, $meta, $desc, $options );
 					echo wp_kses( $select, $allowed_tags );
 					break;
+
 				case 'chosen_select':
 					$chosen_select = $this->chosen_select( $id, $meta, $desc, $options );
 					echo wp_kses( $chosen_select, $allowed_tags );
 					break;
+
 				case 'chosen_select_multi':
 					$chosen_select_multi = $this->chosen_select_multi( $id, $meta, $desc, $options );
 					echo wp_kses( $chosen_select_multi, $allowed_tags );
 					break;
+
 				case 'date':
 					$datepicker = $this->datepicker( $id, $meta, $id );
 					echo wp_kses( $datepicker, $allowed_tags );
 					break;
+
 				case 'line':
 					echo wp_kses( '</td></tr></table><hr/><table class="form-table">', $allowed_tags );
 					break;
+
 				case 'title':
 					echo wp_kses( '<div class="form-group-title">'.esc_attr( $label ).'</div>', $allowed_tags );
 					break;
+
 				case 'wysiwg_editor':
 					$meta = get_post_meta( $post->ID, $id, true );
 					$wysiwg_editor = $this->wysiwg_editor( $id, $meta, $desc );
@@ -256,15 +274,16 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 						)
 					);
 					break;
+
 				case 'color_picker':
 					$color_picker = $this->color_picker( $id, $meta, $desc );
-					echo $color_picker;
+					echo wp_kses( $color_picker, $allowed_tags );
 					break;
 			} // switch()
 			echo '</td></tr>';
 		} // foreach()
 		echo '</table>'; // end table
-	} // mdg_make_form()
+	} // make_form()
 
 
 
@@ -368,14 +387,14 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 		// We need to look at all fields first to get the titles from them
 
 		// initialize args
-		$post_id   = isset( $args['post_id'] )   ? $args['post_id'] : '';
-		$meta_fields  = isset( $args['meta_fields'] )  ? $args['meta_fields'] : '';
+		$post_id     = isset( $args['post_id'] )   ? $args['post_id'] : '';
+		$meta_fields = isset( $args['meta_fields'] )  ? $args['meta_fields'] : '';
 
 		// get possible available custom meta (see inc/custom-meta.php)
 		$custom_meta_fields = $meta_fields;
 
 		// get actual saved custom meta
-		$custom_meta_data  = get_post_custom( $post_id );
+		$custom_meta_data = get_post_custom( $post_id );
 
 		// create array of custom meta based on what's
 		// available and whats been entered
@@ -385,10 +404,10 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 		// if it exists as saved meta
 		foreach ( $custom_meta_fields as $meta_field ) {
 			if ( array_key_exists( $meta_field['id'], $custom_meta_data ) ) {
-				$value = isset( $custom_meta_data[ $meta_field['id'] ][0] ) ? $custom_meta_data[ $meta_field['id'] ][0] : '';
+				$value   = isset( $custom_meta_data[ $meta_field['id'] ][0] ) ? $custom_meta_data[ $meta_field['id'] ][0] : '';
 				$visible = isset( $meta_field['visible'] ) ? $meta_field['visible'] : true;
 				$type    = isset( $meta_field['type'] ) ? $meta_field['type'] : '';
-				$item = array(
+				$item    = array(
 					'id'      => $meta_field['id'],
 					'title'   => $meta_field['label'],
 					'value'   => $value,
@@ -469,7 +488,7 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 			return;
 
 		global $post;
-		$this->mdg_make_form( array( 'meta_fields' => $custom_meta_fields ) );
+		$this->make_form( array( 'meta_fields' => $custom_meta_fields ) );
 	} // show_meta_box()
 
 
