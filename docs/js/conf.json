@@ -1,0 +1,26 @@
+{
+	"source": {
+		"include": [
+			"assets/js/src/site",
+			"assets/js/src/admin"
+		],
+		"exclude": [
+			"node_modules/"
+		],
+		"includePattern": ".+\\.js(doc)?$",
+		"excludePattern": ".+\\.min.js(doc)?$"
+	},
+	"opts": {
+		"template": "templates/default",
+		"destination": "docs/js",
+		"recurse": true
+	},
+	"templates": {
+		"cleverLinks": true
+	},
+	"plugins": [ "plugins/markdown" ],
+	"markdown": {
+		"parser": "gfm",
+		"hardwrap": true
+	}
+}
