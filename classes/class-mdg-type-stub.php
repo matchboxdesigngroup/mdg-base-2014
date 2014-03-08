@@ -54,10 +54,31 @@ class MDG_Type_Stub extends MDG_Type_Base
 		/** @var array   The taxonomy "name" used in register_taxonomy() */
 		$this->taxonomy_name = "{$this->post_type}-categories";
 
+		/** @var array   Custom taxonomy labels used in register_taxonomy() */
+		$this->custom_taxonomy_labels = array(
+			'name'                       => _x( "{$this->post_type_single} Categories", 'taxonomy general name' ),
+			'singular_name'              => _x( "{$this->post_type_single} Category", 'taxonomy singular name' ),
+			'search_items'               => __( "Search {$this->post_type_single} Categories" ),
+			'all_items'                  => __( "All {$this->post_type_single} Categories" ),
+			'parent_item'                => __( "Parent {$this->post_type_single} Category" ),
+			'parent_item_colon'          => __( "Parent {$this->post_type_single} Category:" ),
+			'edit_item'                  => __( "Edit {$this->post_type_single} Category" ),
+			'update_item'                => __( "Update {$this->post_type_single} Category" ),
+			'add_new_item'               => __( "Add New {$this->post_type_single} Category" ),
+			'new_item_name'              => __( "New {$this->post_type_single} Category Name" ),
+			'menu_name'                  => __( "{$this->post_type_single} Categories" ),
+			'view_item'                  => __( "View {$this->post_type_single} Category" ),
+			'popular_items'              => __( "Popular {$this->post_type_single} Categories" ),
+			'separate_items_with_commas' => __( "Separate {$this->post_type_single} Categories with commas" ),
+			'add_or_remove_items'        => __( "Add or remove  {$this->post_type_single} Categories" ),
+			'choose_from_most_used'      => __( "Choose from the most used {$this->post_type_single} Categories" ),
+			'not_found'                  => __( "No  {$this->post_type_single} Categories found." ),
+		);
+
 		/** @var array   Custom taxonomy arguments used in register_taxonomy() */
-		$this->custom_taxonomy_args  = array(
+		$this->custom_taxonomy_args = array(
 			'hierarchical'      => true,
-			'labels'            => $labels,
+			// 'labels'          => This is handled by $this->custom_taxonomy_labels do not set directly
 			'public'            => true,
 			'show_in_nav_menus' => true,
 			'show_ui'           => true,
@@ -70,6 +91,9 @@ class MDG_Type_Stub extends MDG_Type_Base
 				'hierarchical' => true,
 			),
 		);
+
+		/** @var boolean  Disable/Enable Categories per post type */
+		$this->disable_post_type_categories = false;
 
 		/** @var array   Custom post type supports array used in register_post_type() */
 		$this->custom_post_type_supports = array(
@@ -89,9 +113,6 @@ class MDG_Type_Stub extends MDG_Type_Base
 		// To disable all supports except title, you should always support title no mater what.
 		// $this->custom_post_type_supports = false;
 
-		/** @var boolean  Disable/Enable Categories per post type */
-		$this->disable_post_type_categories = false;
-
 		/** @var array   The post types custom labels used in register_post_type() */
 		$this->custom_post_type_labels = array(
 			'name'               => __( $this->post_type_title ),
@@ -103,8 +124,8 @@ class MDG_Type_Stub extends MDG_Type_Base
 			'all_items'          => __( "All {$this->post_type_title}" ),
 			'view_item'          => __( "View {$this->post_type_single}" ),
 			'search_items'       => __( "Search {$this->post_type_title}" ),
-			'not_found'          => __( "No {$lowercase_post_type_title} found" ),
-			'not_found_in_trash' => __( "No {$lowercase_post_type_title} found in Trash" ),
+			'not_found'          => __( "No {$this->post_type_title} found" ),
+			'not_found_in_trash' => __( "No {$this->post_type_title} found in Trash" ),
 			'parent_item_colon'  => __( '' ),
 			'menu_name'          => __( $this->post_type_title ),
 		);
@@ -317,6 +338,10 @@ class MDG_Type_Stub extends MDG_Type_Base
 				'type'    => 'select',
 				'options' => array(
 					array(
+						'value' => '',
+						'label' => '-- Select an option --',
+					),
+					array(
 						'value' => 'value_1',
 						'label' => 'Select Label 1',
 					),
@@ -341,6 +366,10 @@ class MDG_Type_Stub extends MDG_Type_Base
 				'id'      => "{$this->post_type}ChosenSelect",
 				'type'    => 'chosen_select',
 				'options' => array(
+					array(
+						'value' => '',
+						'label' => '-- Select an option --',
+					),
 					array(
 						'value' => 'value_1',
 						'label' => 'Label 1',
