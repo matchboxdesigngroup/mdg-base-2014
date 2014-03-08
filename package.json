@@ -17,17 +17,15 @@
     "grunt-contrib-uglify": "x.x.x",
     "grunt-notify": "x.x.x",
     "load-grunt-tasks": "x.x.x",
-    "grunt-scss-lint": "0.0.9",
-    "grunt-jscs-checker": "~0.3.2",
-    "grunt-phpcs": "x.x.x",
+    "grunt-scss-lint": "x.x.x",
+    "grunt-jscs-checker": "x.x.x",
     "grunt-contrib-copy": "x.x.x",
     "load-grunt-config": "x.x.x",
     "grunt-contrib-jshint": "x.x.x",
-    "grunt-newer": "x.x.x",
     "grunt-concurrent": "x.x.x",
     "time-grunt": "x.x.x",
-    "grunt-autoprefixer": "~0.7.1",
-    "grunt-group-css-media-queries": "~1.0.1",
-    "grunt-contrib-cssmin": "~0.8.0"
+    "grunt-autoprefixer": "x.x.x",
+    "grunt-group-css-media-queries": "x.x.x",
+    "grunt-contrib-cssmin": "x.x.X"
   }
 }
