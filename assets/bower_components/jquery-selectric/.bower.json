@@ -1,15 +1,14 @@
 {
   "name": "jquery-selectric",
   "homepage": "https://github.com/lcdsantos/jQuery-Selectric",
-  "version": "1.6.1",
-  "_release": "1.6.1",
+  "version": "1.6.4",
+  "_release": "1.6.4",
   "_resolution": {
     "type": "version",
-    "tag": "1.6.1",
-    "commit": "5605f82eae8efa0e7fa70e2e9105e12b387d3963"
+    "tag": "1.6.4",
+    "commit": "10c04fca450fe9660255cb86253010a7a2bab4d6"
   },
   "_source": "git://github.com/lcdsantos/jQuery-Selectric.git",
   "_target": "~1.6.1",
-  "_originalSource": "jquery-selectric",
-  "_direct": true
+  "_originalSource": "jquery-selectric"
 }
