@@ -254,18 +254,18 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 		} // if()
 
 		switch ( $this->post_type ) {
-		case 'post':
-			$manage_filter = 'manage_posts_columns';
-			$custom_column = 'manage_posts_custom_column';
-			break;
-		case 'page':
-			$manage_filter = 'manage_pages_columns';
-			$custom_column = 'manage_pages_custom_column';
-			break;
-		default:
-			$manage_filter = "manage_{$this->post_type}_posts_columns";
-			$custom_column = "manage_{$this->post_type}_posts_custom_column";
-			break;
+			case 'post':
+				$manage_filter = 'manage_posts_columns';
+				$custom_column = 'manage_posts_custom_column';
+				break;
+			case 'page':
+				$manage_filter = 'manage_pages_columns';
+				$custom_column = 'manage_pages_custom_column';
+				break;
+			default:
+				$manage_filter = "manage_{$this->post_type}_posts_columns";
+				$custom_column = "manage_{$this->post_type}_posts_custom_column";
+				break;
 		} // switch()
 
 		add_filter( $manage_filter, array( &$this, 'add_thumbnail_column' ), 5 );
@@ -543,9 +543,8 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 			'order'          => 'DESC',
 			'orderby'        => 'date',
 		);
-		$query_args         = array_merge( $default_query_args, $custom_query_args );
-
-		$transient_title  = $this->_custom_transient_title( $query_args, $query_object );
+		$query_args      = array_merge( $default_query_args, $custom_query_args );
+		$transient_title = $this->_custom_transient_title( $query_args, $query_object );
 
 		// $transient = ( $this->is_localhost() ) ? false : get_transient( $transient_title );
 		$transient = get_transient( $transient_title );
@@ -554,7 +553,7 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 		if ( $transient ) {
 			if ( $query_object ) {
 				$query = $transient;
-				$post = $query->get_posts;
+				$post  = $query->get_posts;
 			} else {
 				$posts = $transient;
 			} // if/else()
@@ -632,11 +631,11 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 			$image_sizes = $this->get_responsive_image_sizes( $base_title );
 		} // if()
 
-		$link         = ( is_null( $link ) ) ? get_permalink( $post_id ) : $link;
-		$data_attr    = '';
-		$upload_dir   = wp_upload_dir();
-		$upload_url   = trailingslashit( $upload_dir['baseurl'] );
-		$faux_link    = ( $link == ''  ) ? '' : "class='faux-link' data-link='{$link}'";
+		$link       = ( is_null( $link ) ) ? get_permalink( $post_id ) : $link;
+		$data_attr  = '';
+		$upload_dir = wp_upload_dir();
+		$upload_url = trailingslashit( $upload_dir['baseurl'] );
+		$faux_link  = ( $link == ''  ) ? '' : "class='faux-link' data-link='{$link}'";
 
 		if ( has_post_thumbnail( $post_id ) ) {
 			$i = 0;
@@ -653,8 +652,8 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 			} // foreach()
 
 			$data_attr = rtrim( $data_attr, ',' );
-			$image = "<img data-src-base='{$upload_url}' data-src='{$data_attr}' {$faux_link} />";
-			$image .= "<noscript><img alt='{$post->post_title}' src='{$full_size[0]}' /></noscript>";
+			$image     = "<img data-src-base='{$upload_url}' data-src='{$data_attr}' {$faux_link} />";
+			$image    .= "<noscript><img alt='{$post->post_title}' src='{$full_size[0]}' /></noscript>";
 		} else {
 			if ( $default_img = null ) {
 				$img_src = '';
@@ -663,7 +662,7 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 		} // if/else()
 
 		if ( $echo ) {
-			echo $image;
+			echo wp_kses( $image , $this->get_allowed_tags() );
 		} // if()
 
 		return $image;
@@ -798,7 +797,7 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 			'order'       => 'DESC',
 			'orderby'     => 'menu_order',
 		);
-		$query_args = array_merge( $default_query_args, $custom_query_args );
+		$query_args  = array_merge( $default_query_args, $custom_query_args );
 		$attachments = $this->get_posts( $query_args );
 
 		// Removes all attachments that are not an image
@@ -834,7 +833,7 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 	 */
 	public function get_posts_with_featured_image( $custom_query_args = array() ) {
 		$default_query_args = array( 'meta_key' => '_thumbnail_id' );
-		$query_args         = array_merge( $default_query_args, $custom_query_args );
+		$query_args = array_merge( $default_query_args, $custom_query_args );
 
 		return $this->get_posts( $query_args );
 	} // get_posts_with_featured_image()
