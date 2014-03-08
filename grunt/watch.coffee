@@ -42,12 +42,6 @@ module.exports =
     options:
       spawn: false
 
-  imagemin:
-    files: ["**/*.{png,jpg,gif}"]
-    tasks: ["imagemin"]
-    options:
-      spawn: false
-
   livereload:
     options:
       livereload: true
