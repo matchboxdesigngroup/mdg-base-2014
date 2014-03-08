@@ -27,7 +27,7 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 
 		$this->_add_actions();
 
-		$this->meta_box_title       = ( isset( $this->meta_box_title ) ) ? $this->meta_box_title : 'Details';
+		$this->meta_box_title       = ( isset( $this->meta_box_title ) ) ? $this->meta_box_title : "{$this->post_type_single} Details";
 		$this->meta_box_position    = ( isset( $this->meta_box_position ) ) ? $this->meta_box_position : 'normal';
 		$this->meta_box_priority    = ( isset( $this->meta_box_priority ) ) ? $this->meta_box_priority : 'high';
 		$this->meta_boxes_to_remove = ( isset( $this->meta_boxes_to_remove ) ) ? $this->meta_boxes_to_remove : array();

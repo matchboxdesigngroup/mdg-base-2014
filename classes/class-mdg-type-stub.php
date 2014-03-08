@@ -119,7 +119,7 @@ class MDG_Type_Stub extends MDG_Type_Base
 			'query_var'          => true,
 			'rewrite'            => array( 'slug' => $this->post_type, 'with_front' => false ),
 			'capability_type'    => 'post',
-			'has_archive'        => true,
+			'has_archive'        => false,
 			'hierarchical'       => true,
 			'menu_position'      => 5,
 			'can_export'         => true,
@@ -135,7 +135,7 @@ class MDG_Type_Stub extends MDG_Type_Base
 	 */
 	private function _set_mdg_meta_helper_options() {
 		/** @var string Sets the meta box title */
-		$this->meta_box_title = 'Details';
+		$this->meta_box_title = "{$this->post_type_single} Details";
 
 		/** @var string Sets the meta box position */
 		$this->meta_box_position = 'normal'; // normal|advanced|side

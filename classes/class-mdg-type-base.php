@@ -398,7 +398,7 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 			'query_var'          => true,
 			'rewrite'            => array( 'slug' => $this->post_type, 'with_front' => false ),
 			'capability_type'    => 'post',
-			'has_archive'        => true,
+			'has_archive'        => false,
 			'hierarchical'       => true,
 			'menu_position'      => 5,
 			'can_export'         => true,
