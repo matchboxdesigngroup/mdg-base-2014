@@ -21,7 +21,8 @@
 				".sass-cache",
 				"node_modules",
 				"lang",
-				"bower_components"
+				"bower_components",
+				"docs"
 			]
 		}
 	]
