@@ -266,6 +266,20 @@ class MDG_Type_Stub extends MDG_Type_Base
 				'id'    => "{$this->post_type}Text",
 				'type'  => 'text',
 			),
+			// URL
+			array(
+				'label' => 'URL',
+				'desc'  => 'URL description.',
+				'id'    => "{$this->post_type}URL",
+				'type'  => 'url',
+			),
+			// Email
+			array(
+				'label' => 'Email',
+				'desc'  => 'Email description.',
+				'id'    => "{$this->post_type}Email",
+				'type'  => 'email',
+			),
 			// Divider
 			array(
 				'type'  => 'divider',

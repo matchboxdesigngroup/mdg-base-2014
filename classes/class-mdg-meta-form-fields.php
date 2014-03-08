@@ -56,6 +56,25 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 
 
 	/**
+	 * Creates a HTML URL field and description.
+	 *
+	 * @param string  $id   id attribute
+	 * @param string  $meta meta value
+	 * @param string  $desc description
+	 *
+	 * @return string       The URL field and description
+	 */
+	public function url_field( $id, $meta, $desc ) {
+		$url_field  = '<input type="url" name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" value="'.$meta.'" size="30">';
+		$url_field .= '<br>';
+		$url_field .= '<span class="description">'.esc_attr( $desc ).'</span>';
+
+		return $url_field;
+	} // email_field()
+
+
+
+	/**
 	 * Creates a color picker.
 	 *
 	 * @param string  $id   id attribute
@@ -86,7 +105,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	public function file_upload_field( $id, $file_src, $desc ) {
 		$image_thumbnail = $this->file_upload_field_thumbnail( $file_src );
 
-		$input_field = '<div id="meta_upload_'.esc_attr( $id ).'" class="mdg-meta-upload">';
+		$input_field  = '<div id="meta_upload_'.esc_attr( $id ).'" class="mdg-meta-upload">';
 		$input_field .= '<input type="text" name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" value="'.$file_src.'" size="30" />';
 		$input_field .= '<a href="#" id="meta_upload_link_'.esc_attr( $id ).'" class="upload-link button">upload</a>';
 		$input_field .= '<br>';
@@ -146,7 +165,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	 * @return string            The input field and description
 	 */
 	public function textarea( $id, $meta, $desc ) {
-		$textarea = '<textarea name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" cols="55" rows="4">'.$meta.'</textarea>';
+		$textarea  = '<textarea name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" cols="55" rows="4">'.$meta.'</textarea>';
 		$textarea .= '<br>';
 		$textarea .= '<span class="description">'.esc_attr( $desc ).'</span>';
 
@@ -165,7 +184,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	 * @return string            The input field and description
 	 */
 	public function checkbox( $id, $meta, $desc ) {
-		$checked = ( $meta == 'on' ) ? ' checked="checked"' : '';
+		$checked   = ( $meta == 'on' ) ? ' checked="checked"' : '';
 		$checkbox  = '<input type="checkbox" name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'"'.$checked.'>';
 		$checkbox .= '<label for="'.esc_attr( $id ).'">&nbsp;'.esc_attr( $desc ).'</label>';
 
@@ -215,7 +234,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 		foreach ( $options as $option ) {
 			extract( $option );
 			$selected = ( $value == $meta ) ? ' selected="selected"' : '';
-			$select .= '<option value="'.esc_attr( $value ).'"'.$selected.'>'.esc_attr( $label ).'</option>';
+			$select  .= '<option value="'.esc_attr( $value ).'"'.$selected.'>'.esc_attr( $label ).'</option>';
 		} // foreach()
 		$select .= '</select>';
 		$select .= '<br>';
@@ -241,7 +260,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 		foreach ( $options as $option ) {
 			extract( $option );
 			$selected = ( $value == $meta ) ? ' selected="selected"' : '';
-			$select .= '<option value="'.esc_attr( $value ).'"'.$selected.'>'.esc_attr( $label ).'</option>';
+			$select  .= '<option value="'.esc_attr( $value ).'"'.$selected.'>'.esc_attr( $label ).'</option>';
 		} // foreach()
 		$select .= '</select>';
 		$select .= '<br>';
@@ -267,7 +286,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 		foreach ( $options as $option ) {
 			extract( $option );
 			$selected = ( $value == $meta ) ? ' selected="selected"' : '';
-			$select .= '<option value="'.esc_attr( $value ).'"'.$selected.'>'.esc_attr( $label ).'</option>';
+			$select  .= '<option value="'.esc_attr( $value ).'"'.$selected.'>'.esc_attr( $label ).'</option>';
 		} // foreach()
 		$select .= '</select>';
 		$select .= '<br>';
@@ -306,7 +325,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	 * @return string            The text area and description
 	 */
 	public function wysiwg_editor( $id, $meta, $desc ) {
-		$wysiwg_editor = '<textarea name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" class="mdg-wyswig-editor" cols="55" rows="4">'.$meta.'</textarea>';
+		$wysiwg_editor  = '<textarea name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" class="mdg-wyswig-editor" cols="55" rows="4">'.$meta.'</textarea>';
 		$wysiwg_editor .= '<br>';
 		$wysiwg_editor .= '<span class="description">'.esc_attr( $desc ).'</span>';
 
@@ -330,7 +349,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 		$meta         = isset( $args['meta'] ) ? $args['meta'] : '';
 
 		$json_fields = '\''.json_encode( $multi_fields ).'\' ';
-		echo $description;
+		echo wp_kses( $description, 'post' );
 		echo '<div class="multi-input" id="'.$id.'_container">';
 		echo '<input '.
 			'type="text" '.

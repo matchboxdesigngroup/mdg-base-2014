@@ -210,6 +210,11 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 					echo wp_kses( $email_field, $allowed_tags );
 					break;
 
+				case 'url':
+					$url_field = $this->url_field( $id, $meta, $desc );
+					echo wp_kses( $url_field, $allowed_tags );
+					break;
+
 				case 'file':
 					$file_upload = $this->file_upload_field( $id, $meta, $desc );
 					echo wp_kses( $file_upload, $allowed_tags );
