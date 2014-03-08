@@ -6,7 +6,7 @@
 function mdg_enqueue_site_scripts() {
 	global $is_IE;
 
-	$theme         = wp_get_theme( $stylesheet, $theme_root );
+	$theme         = wp_get_theme();
 	$theme_version = $theme->get( 'Version' );
 	$theme_uri     = get_template_directory_uri();
 	$ltie9         = preg_match( '/(?i)msie [6-8]/', $_SERVER['HTTP_USER_AGENT'] );
@@ -62,7 +62,7 @@ add_action( 'wp_enqueue_scripts', 'mdg_enqueue_site_scripts', 100 );
  * @return Void
  */
 function mdg_enqueue_admin_scripts() {
-	$theme         = wp_get_theme( $stylesheet, $theme_root );
+	$theme         = wp_get_theme();
 	$theme_version = $theme->get( 'Version' );
 	$theme_uri     = get_template_directory_uri();
 
