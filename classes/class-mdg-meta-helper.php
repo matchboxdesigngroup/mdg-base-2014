@@ -37,6 +37,51 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 
 
 	/**
+	 * All of the allowed tags when outputting meta form fields.
+	 *
+	 * @return array Allowed HTML tags.
+	 */
+	private function _get_meta_output_kses_allowed_html() {
+		$allowed_tags          = wp_kses_allowed_html( 'post' );
+		$allowed_tags['<hr>']  = array();
+		$allowed_tags['input'] = array(
+			'type'        => array(),
+			'name'        => array(),
+			'id'          => array(),
+			'value'       => array(),
+			'size'        => array(),
+			'class'       => array(),
+			'placeholder' => array(),
+			'checked'     => array(),
+		);
+		$allowed_tags['option'] = array(
+			'value'    => array(),
+			'selected' => array(),
+		);
+		$allowed_tags['select'] = array(
+			'name'     => array(),
+			'id'       => array(),
+			'class'    => array(),
+			'style'    => array(),
+			'multiple' => array()
+		);
+		$allowed_tags['span'] = array(
+			'class' => array(),
+			'id'    => array(),
+		);
+		$allowed_tags['textarea'] = array(
+			'name'        => array(),
+			'id'          => array(),
+			'cols'        => array(),
+			'rows'        => array(),
+			'class'       => array(),
+		);
+		return $allowed_tags;
+	} // _get_meta_output_kses_allowed_html()
+
+
+
+	/**
 	 * All action hooks that are required by the class using add_action.
 	 *
 	 * @return Void
@@ -78,7 +123,7 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 
 
 
- /**
+	/**
 	 * Renames the featured image meta box.
 	 *
 	 * @return Void
@@ -120,12 +165,15 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 	 */
 	public function mdg_make_form( $args = array() ) {
 		global $post;
-		$meta_fields = isset( $args['meta_fields'] ) ? $args['meta_fields'] : '';
+		$meta_fields  = isset( $args['meta_fields'] ) ? $args['meta_fields'] : '';
+		$allowed_tags = $this->_get_meta_output_kses_allowed_html();
 
 		// Output description information
-		foreach ( $meta_fields as $field )
-			if ( $field['type'] == 'info' )
-				echo $field['desc'];
+		foreach ( $meta_fields as $field ){
+			if ( $field['type'] == 'info' ) {
+				echo wp_kses( $field['desc'], $allowed_tags );
+			} // if()
+		} // foreach()
 
 			// Use nonce for verification
 			echo '<input type="hidden" name="custom_meta_box_nonce" value="'.wp_create_nonce( basename( __FILE__ ) ).'" />';
@@ -143,116 +191,59 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 			<th><label for="'.esc_attr( $id ).'">'.esc_attr( $label ).'</label></th>
 				<td>';
 
-			$allowed_wp_kses_html = array(
-				'div' => array(
-					'class' => array(),
-					'id'    => array(),
-				),
-				'a' => array(
-					'href' => array(),
-					'class' => array(),
-					'id'    => array(),
-				),
-				'input' => array(
-					'type'        => array(),
-					'name'        => array(),
-					'id'          => array(),
-					'value'       => array(),
-					'size'        => array(),
-					'class'       => array(),
-					'placeholder' => array(),
-					'checked'     => array(),
-				),
-				'textarea' => array(
-					'name'        => array(),
-					'id'          => array(),
-					'cols'        => array(),
-					'rows'        => array(),
-					'class'       => array(),
-				),
-				'img' => array(
-					'src'    => array(),
-					'alt'    => array(),
-					'width'  => array(),
-					'height' => array(),
-					'class'  => array(),
-					'id'    => array(),
-				),
-				'br' => array(),
-				'span' => array(
-					'class' => array(),
-					'id'    => array(),
-				),
-				'label' => array(
-					'class' => array(),
-					'id'    => array(),
-					'for'   => array(),
-				),
-				'select' => array(
-					'name'     => array(),
-					'id'       => array(),
-					'class'    => array(),
-					'style'    => array(),
-					'multiple' => array()
-				),
-				'option' => array(
-					'value'    => array(),
-					'selected' => array(),
-				),
-			);
 			switch ( $type ) {
 				case 'divider':
-					echo '<hr/>';
+					echo wp_kses( '<hr>', $allowed_tags );
 					break;
 				case 'markup':
-					echo $desc;
+					echo wp_kses( $desc, $allowed_tags );
 					break;
 				case 'text':
 					$text_field = $this->text_field( $id, $meta, $desc );
-					echo wp_kses( $text_field, $allowed_wp_kses_html );
+					echo wp_kses( $text_field, $allowed_tags );
 					break;
 				case 'file':
 					$file_upload = $this->file_upload_field( $id, $meta, $desc );
-					echo wp_kses( $file_upload, $allowed_wp_kses_html );
+					echo wp_kses( $file_upload, $allowed_tags );
 					break;
 				case 'textarea':
 					$textarea = $this->textarea( $id, $meta, $desc );
-					echo $textarea;
+					echo wp_kses( $textarea, $allowed_tags );
 					break;
 				case 'checkbox':
 					$checkbox = $this->checkbox( $id, $meta, $desc );
-					echo wp_kses( $checkbox, $allowed_wp_kses_html );
+					echo wp_kses( $checkbox, $allowed_tags );
 					break;
 				case 'radio':
 					$radio = $this->radio( $id, $meta, $desc, $options );
-					echo wp_kses( $radio, $allowed_wp_kses_html );
+					echo wp_kses( $radio, $allowed_tags );
 					break;
 				case 'select':
 					$select = $this->select( $id, $meta, $desc, $options );
-					echo wp_kses( $select, $allowed_wp_kses_html );
+					echo wp_kses( $select, $allowed_tags );
 					break;
 				case 'chosen_select':
 					$chosen_select = $this->chosen_select( $id, $meta, $desc, $options );
-					echo wp_kses( $chosen_select, $allowed_wp_kses_html );
+					echo wp_kses( $chosen_select, $allowed_tags );
 					break;
 				case 'chosen_select_multi':
 					$chosen_select_multi = $this->chosen_select_multi( $id, $meta, $desc, $options );
-					echo wp_kses( $chosen_select_multi, $allowed_wp_kses_html );
+					echo wp_kses( $chosen_select_multi, $allowed_tags );
 					break;
 				case 'date':
 					$datepicker = $this->datepicker( $id, $meta, $id );
-					echo wp_kses( $datepicker, $allowed_wp_kses_html );
+					echo wp_kses( $datepicker, $allowed_tags );
 					break;
 				case 'line':
-					echo '</td></tr></table><hr/><table class="form-table">';
+					echo wp_kses( '</td></tr></table><hr/><table class="form-table">', $allowed_tags );
 					break;
 				case 'title':
-					echo '<div class="form-group-title">'.esc_attr( $label ).'</div>';
+					echo wp_kses( '<div class="form-group-title">'.esc_attr( $label ).'</div>', $allowed_tags );
 					break;
 				case 'wysiwg_editor':
 					$meta = get_post_meta( $post->ID, $id, true );
 					$wysiwg_editor = $this->wysiwg_editor( $id, $meta, $desc );
-					echo wp_kses( $wysiwg_editor, $allowed_wp_kses_html );
+					echo wp_kses( $wysiwg_editor, $allowed_tags );
 					break;
 
 				case 'multi_input':
@@ -267,13 +258,62 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 					break;
 				case 'color_picker':
 					$color_picker = $this->color_picker( $id, $meta, $desc );
-					echo wp_kses( $color_picker, $allowed_wp_kses_html );
+					echo $color_picker;
 					break;
 			} // switch()
 			echo '</td></tr>';
 		} // foreach()
 		echo '</table>'; // end table
-	}
+	} // mdg_make_form()
+
+
+
+	/**
+	 * Handles sanitizing the post meta value dependent of the field type.
+	 *
+	 * @param   string  $field_type  The field id/type.
+	 * @param   mixed   $value       The meta value to be sanitized.
+	 *
+	 * @return  mixed               The sanitized meta data.
+	 */
+	public function sanitize_post_meta( $field_type, $value ) {
+		switch ( $field_type ) {
+			case 'text':
+				$value = sanitize_text_field( $value );
+				break;
+
+			case 'file':
+				$value = esc_url_raw( $value, $protocols );
+				break;
+
+			case 'url':
+				$value = esc_url_raw( $value, $protocols );
+				break;
+
+			case 'email':
+				$value = sanitize_email( $value );
+				break;
+
+			case 'textarea':
+				$value = wp_kses( $value, 'post' );
+				break;
+
+			case 'wysiwg_editor':
+				$value = wp_kses( $value, 'post' );
+				break;
+
+			case 'multi_input':
+				$value = wp_kses( $value, 'post' );
+				break;
+
+			default:
+				$value = esc_attr( $value );
+				break;
+		} // switch()
+
+		return $value;
+	} // sanitize_post_meta()
+
 
 
 	/*
@@ -292,7 +332,7 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 
 		// verify nonce
 		$mb_nonce = isset( $_POST['custom_meta_box_nonce'] ) ? $_POST['custom_meta_box_nonce'] : '';
-		if ( !wp_verify_nonce( $mb_nonce, basename( __FILE__ ) ) )
+		if ( ! wp_verify_nonce( $mb_nonce, basename( __FILE__ ) ) )
 			return $post_id;
 
 		// check autosave
@@ -306,9 +346,7 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 			$old = get_post_meta( $post_id, esc_attr( $id ), true );
 			$new = isset( $_POST[esc_attr( $id )] ) ? $_POST[esc_attr( $id )] : '';
 
-			if ( $type == 'wysiwg_editor' ) {
-				$new = esc_textarea( $new );
-			} // if()
+			$new = $this->sanitize_post_meta( $id, $new );
 
 			if ( $new && $new != $old ) {
 				update_post_meta( $post_id, esc_attr( $id ), $new );
