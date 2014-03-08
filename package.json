@@ -26,6 +26,6 @@
     "time-grunt": "x.x.x",
     "grunt-autoprefixer": "x.x.x",
     "grunt-group-css-media-queries": "x.x.x",
-    "grunt-contrib-cssmin": "x.x.X"
+    "grunt-contrib-cssmin": "x.x.x"
   }
 }
