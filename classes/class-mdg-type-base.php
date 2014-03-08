@@ -197,6 +197,51 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 
 
 	/**
+	 * All of the allowed tags when outputting meta form fields.
+	 *
+	 * @return array Allowed HTML tags.
+	 */
+	private function get_allowed_tags( $context = 'post' ) {
+		$allowed_tags          = wp_kses_allowed_html( $context );
+		$allowed_tags['<hr>']  = array();
+		$allowed_tags['input'] = array(
+			'type'        => array(),
+			'name'        => array(),
+			'id'          => array(),
+			'value'       => array(),
+			'size'        => array(),
+			'class'       => array(),
+			'placeholder' => array(),
+			'checked'     => array(),
+		);
+		$allowed_tags['option'] = array(
+			'value'    => array(),
+			'selected' => array(),
+		);
+		$allowed_tags['select'] = array(
+			'name'     => array(),
+			'id'       => array(),
+			'class'    => array(),
+			'style'    => array(),
+			'multiple' => array()
+		);
+		$allowed_tags['span'] = array(
+			'class' => array(),
+			'id'    => array(),
+		);
+		$allowed_tags['textarea'] = array(
+			'name'        => array(),
+			'id'          => array(),
+			'cols'        => array(),
+			'rows'        => array(),
+			'class'       => array(),
+		);
+		return $allowed_tags;
+	} // _get_meta_output_kses_allowed_html()
+
+
+
+	/**
 	 * Column filter for featured image.
 	 *
 	 * @internal
@@ -371,7 +416,7 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 	public function set_post_type_args( $custom_post_type_args = array() ) {
 		$lowercase_post_type_title  = strtolower( $this->post_type_title );
 		$lowercase_post_type_single = strtolower( $this->post_type_single );
-		$default_post_type_labels = array(
+		$default_post_type_labels   = array(
 			'name'               => __( $this->post_type_title ),
 			'singular_name'      => __( $this->post_type_single ),
 			'add_new'            => __( "Add New {$this->post_type_single}" ),
