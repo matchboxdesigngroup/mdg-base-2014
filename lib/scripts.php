@@ -21,7 +21,7 @@ function mdg_enqueue_site_scripts() {
 	if ( ! is_admin() && current_theme_supports( 'jquery-cdn' ) ) {
 		wp_deregister_script( 'jquery' );
 		wp_register_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', array(), '1.10.2', false );
-		add_filter( 'script_loader_src', 'roots_jquery_local_fallback', 10, 2 );
+		add_filter( 'script_loader_src', 'mdg_jquery_local_fallback', 10, 2 );
 	} // if()
 
 	if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -91,7 +91,7 @@ add_action( 'admin_enqueue_scripts', 'mdg_enqueue_admin_scripts', 100 );
  *
  * @return string          Script src.
  */
-function roots_jquery_local_fallback( $src, $handle ) {
+function mdg_jquery_local_fallback( $src, $handle ) {
 	static $add_jquery_fallback = false;
 
 	if ( $add_jquery_fallback ) {
@@ -104,7 +104,7 @@ function roots_jquery_local_fallback( $src, $handle ) {
 	} // if()
 
 	return $src;
-} // roots_jquery_local_fallback()
+} // mdg_jquery_local_fallback()
 
 
 
@@ -124,7 +124,7 @@ function mdg_add_favicon() {
  *
  * @return Void
  */
-function roots_google_analytics() { ?>
+function mdg_google_analytics() { ?>
 	<script>
 		(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
 		function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
@@ -134,8 +134,8 @@ function roots_google_analytics() { ?>
 		ga( 'create', '<?php echo esc_attr( GOOGLE_ANALYTICS_ID ); ?>');ga('send','pageview' );
 	</script>
 	<?php
-} // roots_google_analytics()
+} // mdg_google_analytics()
 
 if ( GOOGLE_ANALYTICS_ID && ! current_user_can( 'manage_options' ) ) {
-	add_action( 'wp_head', 'roots_google_analytics', 20 );
+	add_action( 'wp_head', 'mdg_google_analytics', 20 );
 } // if()

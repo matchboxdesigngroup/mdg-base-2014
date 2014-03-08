@@ -15,14 +15,14 @@ if ( current_theme_supports( 'bootstrap-top-navbar' ) ) {
 
 	<div class="wrap clearfix" role="document">
 		<div class="content">
-			<div class="main <?php echo esc_attr( roots_main_class() ); ?>" role="main">
+			<div class="main <?php echo esc_attr( mdg_main_class() ); ?>" role="main">
 				<div class="row">
-					<?php include roots_template_path(); ?>
+					<?php include mdg_template_path(); ?>
 				</div> <!-- /.row -->
 			</div><!-- /.main -->
-			<?php if ( roots_display_sidebar() ) : ?>
-			<aside class="sidebar <?php echo esc_attr( roots_sidebar_class() ); ?>" role="complementary">
-				<?php include roots_sidebar_path(); ?>
+			<?php if ( mdg_display_sidebar() ) : ?>
+			<aside class="sidebar <?php echo esc_attr( mdg_sidebar_class() ); ?>" role="complementary">
+				<?php include mdg_sidebar_path(); ?>
 			</aside><!-- /.sidebar -->
 			<?php endif; ?>
 		</div><!-- /.content -->
