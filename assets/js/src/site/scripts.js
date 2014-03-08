@@ -22,9 +22,15 @@ jQuery((function($) {
 	/**
 	 * Initialize FlexSliders here
 	 *
+	 * @example http://flexslider.woothemes.com/
+	 *
 	 * @return boolean false
 	 */
 	site.initFlexslider = function() {
+		if (typeof $.fn.flexslider !== 'function' ) {
+			return;
+		} // if()
+
 		var slider = $('.flexslider');
 
 		// Check if a slider exists
@@ -35,8 +41,44 @@ jQuery((function($) {
 		return false;
 	}; // site.initFlexslider()
 
+	/**
+	 * Initializes FitVid  jQuery plugin.
+	 *
+	 * @example http://fitvidsjs.com/
+	 *
+	 * @return  {Void}
+	 */
 	site.initFitVids = function() {
-		$('body').fitVids();
+		if ( typeof $.fn.fitVids !== 'function' ) {
+			return;
+		} // if()
+
+		$('.fitvid').fitVids();
+	};
+
+	/**
+	 * Adding selectric jQuery plugin.
+	 *
+	 * @example http://lcdsantos.github.io/jQuery-Selectric/
+	 *
+	 * @return  {void}
+	 */
+	site.selectricInit = function() {
+		if ( typeof $.fn.selectric !== 'function' ) {
+			return;
+		} // if()
+
+		var selectElem = $('select');
+		if ( selectElem.length === 0 ) {
+			return;
+		} // if()
+
+		selectElem.selectric();
+
+		if ( $('.selectricWrapper').length === 0 ) {
+			selectElem.addClass('selectric-disabled');
+			$('form').addClass('selectric-disabled-form');
+		} // if()
 	};
 
 	/**
@@ -193,6 +235,7 @@ jQuery((function($) {
 		site.initDropDownMenu();
 		site.css3pieAttach();
 		site.initFitVids();
+		site.selectricInit();
 		// site.fixElement();
 	});
 
