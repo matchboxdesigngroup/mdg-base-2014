@@ -14,7 +14,7 @@ jQuery((function($) {
 	 * @return Void
 	 */
 	Meta.setupChosen = function() {
-		var chosenElem = $(".mdg-chosen-select");
+		var chosenElem = $('.mdg-chosen-select');
 
 		if ( chosenElem === 0 ) {
 			return false;
@@ -58,18 +58,18 @@ jQuery((function($) {
 		} // if()
 
 		var options = {
-				// you can declare a default color here,
-				// or in the data-default-color attribute on the input
-				defaultColor : false,
-				// a callback to fire whenever the color changes to a valid color(optional args event, ui)
-				change       : function() {},
-				// a callback to fire when the input is emptied or an invalid color
-				clear        : function() {},
-				// hide the color picker controls on load
-				hide         : true,
-				// show a group of common colors beneath the square
-				// or, supply an array of colors to customize further
-				palettes     : true
+			// you can declare a default color here,
+			// or in the data-default-color attribute on the input
+			defaultColor : false,
+			// a callback to fire whenever the color changes to a valid color(optional args event, ui)
+			change       : function() {},
+			// a callback to fire when the input is emptied or an invalid color
+			clear        : function() {},
+			// hide the color picker controls on load
+			hide         : true,
+			// show a group of common colors beneath the square
+			// or, supply an array of colors to customize further
+			palettes     : true
 		};
 		colorPicker.wpColorPicker( options );
 	}; // Meta.setupColorPicker()
@@ -121,18 +121,18 @@ jQuery((function($) {
 			$.get(
 				ajaxurl,
 				{ action : 'mdg-image-reference-grid' },
-				function( return_html ) {
+				function( returnHtml ) {
 					trigger.after(
 						'<p class="mdg-image-reference"><a href="#" id="hide-image-grid-reference">hide image sizes</a></p>' +
 						'<p class="mdg-image-reference">please note that image sizes may be smaller to fit into your screen</p>'
 					);
 
-					return_html = '<div class="mdg-image-reference">' +
-													return_html +
+					returnHtml = '<div class="mdg-image-reference">' +
+													returnHtml +
 													'<div style="clear:both"></div>' +
 												'</div>';
 
-					$('.image-size-reference').empty().append( return_html );
+					$('.image-size-reference').empty().append( returnHtml );
 
 					trigger.hide();
 
@@ -165,3 +165,29 @@ jQuery((function($) {
 		Alerts.init();
 	}); // $(document).ready()
 })(jQuery));
+
+/**
+ * Avoid `console` errors in browsers that lack a console.
+ */
+(function() {
+	var method,
+			noop    = function() {},
+			methods = [
+				'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
+				'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
+				'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
+				'timeStamp', 'trace', 'warn'
+			],
+			length  = methods.length,
+			console = ( window.console = window.console || {} )
+	;
+
+	while ( length-- ) {
+		method = methods[length];
+
+		// Only stub undefined methods.
+		if (!console[method]) {
+			console[method] = noop;
+		}
+	}
+}());
