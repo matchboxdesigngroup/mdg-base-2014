@@ -45,11 +45,9 @@ function mdg_enqueue_site_scripts() {
 	wp_enqueue_script( 'modernizr' );
 	wp_enqueue_script( 'device_js' );
 	if ( $ltie9 and $is_IE ) {
-		wp_enqueue_script( 'respond_js' );
 		wp_enqueue_script( 'css3pie_js' );
 	} // if()
 	wp_enqueue_script( 'jquery' );
-	wp_enqueue_script( 'jquery-effects-core' );
 	wp_enqueue_script( 'main_js' );
 } // mdg_enqueue_site_scripts()
 add_action( 'wp_enqueue_scripts', 'mdg_enqueue_site_scripts', 100 );
@@ -62,15 +60,21 @@ add_action( 'wp_enqueue_scripts', 'mdg_enqueue_site_scripts', 100 );
  * @return Void
  */
 function mdg_enqueue_admin_scripts() {
+	global $is_IE;
 	$theme         = wp_get_theme();
 	$theme_version = $theme->get( 'Version' );
 	$theme_uri     = get_template_directory_uri();
+	$ltie9         = preg_match( '/(?i)msie [6-8]/', $_SERVER['HTTP_USER_AGENT'] );
 
-	wp_enqueue_style( 'wp-color-picker' );
 	wp_enqueue_style( 'mdg-admin-css', "{$theme_uri}/assets/css/admin.min.css", array( 'wp-color-picker' ), $theme_version, 'all' );
 
-	wp_enqueue_script( 'jquery-ui-datepicker' );
 	wp_register_script( 'admin_scripts', "{$theme_uri}/assets/js/admin.min.js", array( 'jquery', 'jquery-ui-datepicker', 'wp-color-picker' ), $theme_version, true );
+
+	// Add Global PHP -> JS
+	$mdg_globals = array(
+		'isIE' => ( $ltie9 and $is_IE ),
+	);
+	wp_localize_script( 'admin_scripts', 'MDG_GLOBALS', $mdg_globals );
 	wp_enqueue_script( 'admin_scripts' );
 } // mdg_enqueue_admin_scripts()
 add_action( 'admin_enqueue_scripts', 'mdg_enqueue_admin_scripts', 100 );
