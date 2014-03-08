@@ -553,7 +553,7 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 		if ( $transient ) {
 			if ( $query_object ) {
 				$query = $transient;
-				$post  = $query->get_posts;
+				$post  = $query->get_posts();
 			} else {
 				$posts = $transient;
 			} // if/else()

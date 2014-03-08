@@ -381,53 +381,44 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 	} // save_custom_meta()
 
 
+	/**
+	 * Retrieves custom post meta.
+	 *
+	 * @param   integer        $post_id  Optional post id, defaults to current post.
+	 * @param   string         $key      Optional meta key, to return one meta value instead of all of them.
+	 *
+	 * @return string|array              Specific post meta value | All all post meta values
+	 */
+	public function get_post_meta( $post_id = null, $key = null ) {
+		if ( is_null( $post_id ) ) {
+			global $post;
+			$post_id = $post->ID;
+		} // if()
 
-	public function get_custom_meta( $args ) {
+		$post_type = $this->post_type;
+		if ( ! isset( $post_type ) ) {
+			$post_type = get_post_type( $post_id );
+		} // if()
 
-		// this method is for use on the front end
-		// it will iterated through the fields in the backend ->
-		// then match those to fields that have content ->
-		// then return an array of the custom meta ->
+		if ( ! is_null( $key ) ) {
+			// Protects against absent mindedness.
+			$key = str_replace( $this->post_type, '', $key );
+			return get_post_meta( $post_id, "{$post_type}{$key}", true );
+		} // if()
 
-		// We need to look at all fields first to get the titles from them
+		$meta_fields = $this->get_custom_meta_fields();
+		$all_meta    = array();
+		foreach ( $meta_fields as $field ) {
+			extract( $field );
 
-		// initialize args
-		$post_id     = isset( $args['post_id'] )   ? $args['post_id'] : '';
-		$meta_fields = isset( $args['meta_fields'] )  ? $args['meta_fields'] : '';
+			if ( $type !== 'info' ) {
+				$meta_key            = strtolower( $id );
+				$all_meta[$meta_key] = get_post_meta( $post_id, $id, true );
+			} // if()
+		} // foreach()
 
-		// get possible available custom meta (see inc/custom-meta.php)
-		$custom_meta_fields = $meta_fields;
-
-		// get actual saved custom meta
-		$custom_meta_data = get_post_custom( $post_id );
-
-		// create array of custom meta based on what's
-		// available and whats been entered
-		$actual_meta = array();
-
-		// iterate through the available meta, adding data to our array
-		// if it exists as saved meta
-		foreach ( $custom_meta_fields as $meta_field ) {
-			if ( array_key_exists( $meta_field['id'], $custom_meta_data ) ) {
-				$value   = isset( $custom_meta_data[ $meta_field['id'] ][0] ) ? $custom_meta_data[ $meta_field['id'] ][0] : '';
-				$visible = isset( $meta_field['visible'] ) ? $meta_field['visible'] : true;
-				$type    = isset( $meta_field['type'] ) ? $meta_field['type'] : '';
-				$item    = array(
-					'id'      => $meta_field['id'],
-					'title'   => $meta_field['label'],
-					'value'   => $value,
-					'visible' => $visible,
-					'type'    => $type,
-				);
-
-				array_push( $actual_meta, $item );
-
-			} // end if
-
-		} // end foreach
-
-		return $actual_meta;
-	} // get_custom_meta()
+		return $all_meta;
+	} // get_post_meta()
 
 
 

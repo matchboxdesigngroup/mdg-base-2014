@@ -73,6 +73,23 @@
 	$resp_image = $mdg_stub->get_responsive_image( 'some_image', array( 'link' => 'test', 'echo' => false, ) );
 } // stub_get_responsive_image_test() ?>
 
+
+<?php function stub_get_all_post_meta() {
+	global $mdg_stub;
+
+	$meta = $mdg_stub->get_post_meta();
+
+	return $meta;
+} // stub_get_all_post_meta() ?>
+
+<?php function stub_get_individual_post_meta() {
+	global $mdg_stub;
+
+	$meta = $mdg_stub->get_post_meta( get_the_id(), 'Text' );
+
+	return $meta;
+} // stub_get_individual_post_meta() ?>
+
 <?php function stub_font_awsome_glyphicons_test() {
 	$icons  = '';
 	$icons .= '<i class="fa fa-wheelchair"></i> fa-wheelchair<br>';
@@ -150,6 +167,18 @@
 		array(
 			'title'        => 'Get Posts Custom Query Object',
 			'content'      => stub_get_posts_custom_query_object(),
+			'pretty_print' => true,
+			'example'      => '',
+		),
+		array(
+			'title'        => 'Get All Post Meta',
+			'content'      => stub_get_all_post_meta(),
+			'pretty_print' => true,
+			'example'      => '',
+		),
+		array(
+			'title'        => 'Get Single Post Meta',
+			'content'      => stub_get_individual_post_meta(),
 			'pretty_print' => true,
 			'example'      => '',
 		),

@@ -263,21 +263,21 @@ class MDG_Type_Stub extends MDG_Type_Base
 			array(
 				'label' => 'Text',
 				'desc'  => 'Text description.',
-				'id'    => "{$this->post_type}Text",
+				'id'    => "{$this->post_type}_text",
 				'type'  => 'text',
 			),
 			// URL
 			array(
 				'label' => 'URL',
 				'desc'  => 'URL description.',
-				'id'    => "{$this->post_type}URL",
+				'id'    => "{$this->post_type}_url",
 				'type'  => 'url',
 			),
 			// Email
 			array(
 				'label' => 'Email',
 				'desc'  => 'Email description.',
-				'id'    => "{$this->post_type}Email",
+				'id'    => "{$this->post_type}_email",
 				'type'  => 'email',
 			),
 			// Divider
@@ -288,42 +288,42 @@ class MDG_Type_Stub extends MDG_Type_Base
 			array(
 				'label' => 'Markup',
 				'desc'  => '<span>Custom markup: </span><a href="#">Link to nowhere</a>',
-				'id'    => "{$this->post_type}Markup",
+				'id'    => "{$this->post_type}_markup",
 				'type'  => 'markup',
 			),
 			// File Upload
 			array(
 				'label' => 'File Upload 1',
 				'desc'  => 'File description.',
-				'id'    => "{$this->post_type}File1",
+				'id'    => "{$this->post_type}_file_1",
 				'type'  => 'file',
 			),
 			// File Upload
 			array(
 				'label' => 'File Upload 2',
 				'desc'  => 'File description.',
-				'id'    => "{$this->post_type}File2",
+				'id'    => "{$this->post_type}_file_2",
 				'type'  => 'file',
 			),
 			// Textarea
 			array(
 				'label' => 'Textarea',
 				'desc'  => 'Textarea description.',
-				'id'    => "{$this->post_type}Textarea",
+				'id'    => "{$this->post_type}_textarea",
 				'type'  => 'textarea',
 			),
 			// Checkbox
 			array(
 				'label' => 'Checkbox',
 				'desc'  => 'Checkbox description.',
-				'id'    => "{$this->post_type}Checkbox",
+				'id'    => "{$this->post_type}_checkbox",
 				'type'  => 'checkbox',
 			),
 			// Radio
 			array(
 				'label'   => 'Radio',
 				'desc'    => 'Radio description.',
-				'id'      => "{$this->post_type}Radio",
+				'id'      => "{$this->post_type}_radio",
 				'type'    => 'radio',
 				'options' => array(
 					array(
@@ -348,7 +348,7 @@ class MDG_Type_Stub extends MDG_Type_Base
 			array(
 				'label'   => 'Select',
 				'desc'    => 'Select description.',
-				'id'      => "{$this->post_type}Select",
+				'id'      => "{$this->post_type}_select",
 				'type'    => 'select',
 				'options' => array(
 					array(
@@ -377,7 +377,7 @@ class MDG_Type_Stub extends MDG_Type_Base
 			array(
 				'label'   => 'Chosen Select',
 				'desc'    => 'Chosen select description.',
-				'id'      => "{$this->post_type}ChosenSelect",
+				'id'      => "{$this->post_type}_chosen_select",
 				'type'    => 'chosen_select',
 				'options' => array(
 					array(
@@ -398,7 +398,7 @@ class MDG_Type_Stub extends MDG_Type_Base
 			array(
 				'label'   => 'Chosen Select Multi',
 				'desc'    => 'Chosen select multi description.',
-				'id'      => "{$this->post_type}ChosenSelectMulti",
+				'id'      => "{$this->post_type}_chosen_select_multi",
 				'type'    => 'chosen_select_multi',
 				'options' => array(
 					array(
@@ -415,7 +415,7 @@ class MDG_Type_Stub extends MDG_Type_Base
 			array(
 				'label' => 'Date',
 				'desc'  => 'Date description.',
-				'id'    => "{$this->post_type}Date",
+				'id'    => "{$this->post_type}_date",
 				'type'  => 'date',
 			),
 			// Line
@@ -431,7 +431,7 @@ class MDG_Type_Stub extends MDG_Type_Base
 			array(
 				'label' => 'Color Picker',
 				'desc'  => 'Color Picker description.',
-				'id'    => "{$this->post_type}ColorPicker",
+				'id'    => "{$this->post_type}_color_picker",
 				'type'  => 'color_picker',
 			),
 			// WYSIWG Editor
@@ -439,7 +439,7 @@ class MDG_Type_Stub extends MDG_Type_Base
 			array(
 				'label' => 'WYSIWG Editor',
 				'desc'  => 'WYSIWG Editor description.',
-				'id'    => "{$this->post_type}WYSIWGEditor",
+				'id'    => "{$this->post_type}_wysiwg_editor",
 				'type'  => 'wysiwg_editor',
 			),
 		);
