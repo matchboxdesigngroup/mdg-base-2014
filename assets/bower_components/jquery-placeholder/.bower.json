@@ -10,6 +10,5 @@
   },
   "_source": "git://github.com/mathiasbynens/jquery-placeholder.git",
   "_target": "~2.0.7",
-  "_originalSource": "jquery-placeholder",
-  "_direct": true
+  "_originalSource": "jquery-placeholder"
 }
