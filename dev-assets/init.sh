@@ -1,7 +1,7 @@
 #! /bin/sh
 echo "\nInstalling NPM modules for Grunt.js.";
 cd ../;
-npm install;
+npm update;
 
 # echo "\nLinking Git Hooks."
 # ln -s dev-assets/pre-commit.sh .git/hooks/pre-commit

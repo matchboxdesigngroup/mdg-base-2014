@@ -1,0 +1,31 @@
+{
+  "name": "MDG Base",
+  "version": "0.2.1",
+  "homepage": "https://github.com/matchboxdesigngroup/mdg-base",
+  "authors": [
+    "Matchbox Design Group info@matchboxdesigngroup.com"
+  ],
+  "description": "MDG Base",
+  "main": "index.php",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "eventie": ">=1.0.4 <2",
+    "eventEmitter": "4.x",
+    "bootstrap-sass-official": "~3.1.0",
+    "devicejs": "*",
+    "fitvids": "~1.0.3",
+    "jQuery-ResizeEnd": "https://github.com/nielse63/jQuery-ResizeEnd.git#~0.1.3",
+    "font-awesome": "~4.0.3",
+    "imagesloaded": "~3.1.0",
+    "jquery-placeholder": "~2.0.7",
+    "jquery-selectric": "~1.6.1"
+  }
+}
