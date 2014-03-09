@@ -1,19 +1,29 @@
 <?php
+/**
+ * Debugging/Development specific functionality.
+ *
+ * @package      WordPress
+ * @subpackage   MDG_Base
+ *
+ * @author       Matchbox Design Group <info@matchboxdesigngroup.com>
+ */
+
 if ( ! function_exists( 'pp' ) ) {
 	/**
 	 * Pretty Print Debug Function
 	 *
+	 * <code>
+	 * pp( $something_to_pretty_print );
+	 * </code>
+	 *
 	 * @param mixed   $value Any value.
 	 *
-	 * @return [type]        [description]
+	 * @return Void
 	 */
 	function pp( $value ) {
 		global $mdg_generic;
 
-		$hosts = array(
-			'10.0.2.2',
-		);
-		if ( ! in_array( $_SERVER['HTTP_HOST'], $hosts ) and ! $mdg_generic->is_localhost() ) return;
+		if ( ! $mdg_generic->is_localhost() ) return;
 		echo '<pre>';
 		if ( $value ) {
 			print_r( $value );
@@ -21,16 +31,20 @@ if ( ! function_exists( 'pp' ) ) {
 			var_dump( $value );
 		}
 		echo '</pre>';
-	}
+	} // pp()
 } // if()
 
 
 
 /**
  * Allows for testing on virtual machines like Virtual Box.
- * Since you have to use a different URL to test sometimes
- * this automates the process of changing the URL just add
- * your URL to the $hosts array with out the http:// or https://.
+ *
+ * Since you have to use a different URL to test sometimes this automates the
+ * process of changing the URL just add your URL to the $hosts array with
+ * out the http:// or https://. If you are not using a vHost setup and browser-sync
+ * you can uncomment add_action()
+ *
+ * @deprecated No longer used by internal code and not recommended.
  *
  * @return Void
  */

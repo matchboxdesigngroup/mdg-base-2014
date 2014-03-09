@@ -1,7 +1,16 @@
 <?php
 /**
- * Enqueue scripts and stylesheets
+ * Handles adding JavaScript and CSS.
  *
+ * @package      WordPress
+ * @subpackage   MDG Base
+ */
+
+
+/**
+ * Enqueue front-end scripts and style-sheets
+ *
+ * @return Void
  */
 function mdg_enqueue_site_scripts() {
 	global $is_IE;
@@ -109,18 +118,24 @@ function mdg_jquery_local_fallback( $src, $handle ) {
 
 
 /**
- * Add Favicon
+ * Adds the favicon for the site, login, and administrator section.
+ * Add favicon.png to /assets/img/.
+ *
+ * @return Void
  */
-add_action( 'wp_head', 'mdg_add_favicon' );
-add_action( 'admin_head', 'mdg_add_favicon' );
 function mdg_add_favicon() {
 	echo '<link rel="icon" href="'.get_template_directory_uri().'/assets/img/favicon.png" type="image/png">';
 } // mdg_add_favicon()
-
+add_action( 'wp_head', 'mdg_add_favicon' );
+add_action( 'admin_head', 'mdg_add_favicon' );
 
 
 /**
- * Google Analytics
+ * Handles adding Google Analytics.
+ *
+ * <code>
+ * add_action( 'wp_head', 'mdg_google_analytics', 20 );
+ * </code>
  *
  * @return Void
  */

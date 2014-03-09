@@ -1,6 +1,15 @@
 <?php
 /**
  * Page titles
+ *
+ * @package      WordPress
+ * @subpackage   MDG Base
+ */
+
+/**
+ * Handles selecting the correct page title to display.
+ *
+ * @return  string  The page title.
  */
 function mdg_title() {
 	if ( is_home() ) {

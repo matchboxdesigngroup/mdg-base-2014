@@ -3,6 +3,9 @@
  * Theme wrapper
  *
  * @link http://scribu.net/wordpress/theme-wrappers.html
+ *
+ * @package      WordPress
+ * @subpackage   MDG Base
  */
 function mdg_template_path() {
 	return Roots_Wrapping::$main_template;

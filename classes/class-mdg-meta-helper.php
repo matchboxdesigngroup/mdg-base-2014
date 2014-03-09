@@ -4,6 +4,11 @@
  * Meta helpers should hold some grunt work for making
  * custom meta. This class should contain global work that should work
  * for any environment (that's the idea anyway).
+ *
+ * @package      WordPress
+ * @subpackage   MDG_Base
+ *
+ * @author       Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 	/** @var string Sets the meta box title */

@@ -1,12 +1,18 @@
 <?php
 /**
  * This generic class is really just designed to hold random functions/methods.
- * By putting them in this generic class, we will avoid collisions and
- * make these functions easier to find.  Since you will be forced to instantiate
- * this class before you can use these functions, that instantiation will
- * tell you (and others) that the function lives here.
  *
- * @author Matchbox Design Group <info@matchboxdesigngroup.com>
+ * All classes should at the very minimum extend MDG_Generic so they can
+ * have easy access to all helper methods/properties.
+ */
+
+/**
+ * MDG_Generic class contains methods/properties that can be used by all classes.
+ *
+ * @package      WordPress
+ * @subpackage   MDG_Base
+ *
+ * @author       Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 class MDG_Generic {
 	/**
@@ -24,7 +30,11 @@ class MDG_Generic {
 	 * @return boolean If the current host is localhost.
 	 */
 	public function is_localhost() {
-		$localhost = array( 'localhost', '127.0.0.1' );
+		$localhost = array(
+			'localhost',
+			'127.0.0.1',
+			'10.0.2.2',
+		);
 		$host      = $_SERVER['HTTP_HOST'];
 		$is_vhost  = strpos( $host, '.dev' );
 
@@ -78,14 +88,17 @@ class MDG_Generic {
 	/**
 	 * Adds testing post content to the supplied post type.
 	 *
-	 * Sample use: $mdg_generic->make_dummy_content( 'project', 'Sample Project' 20 );
+	 * @example $mdg_generic->make_dummy_content( 'project', 'Sample Project' 20 );
 	 *
-	 * @param string  $post_type Required. Name of the post type to create content for.
-	 * @param string  $title     Required. The title base you want to use without a trailing space, the post count will be appended to the end.
-	 * @param integer $count     Required. The amount of posts you want to be added.
-	 * @param string[] $options{} Optional.
+	 * @todo Fix all posts having the same exact post date.
+	 * @todo Add options such as adding http://placehold.it featured images.
 	 *
-	 * @return [type]            [description]
+	 * @param string  $post_type Required, Name of the post type to create content for.
+	 * @param string  $title     Required, The title base you want to use without a trailing space, the post count will be appended to the end.
+	 * @param integer $count     Required, The amount of posts you want to be added.
+	 * @param array   $options   Optional, options to customize post generation.
+	 *
+	 * @return Void
 	 */
 	public function make_dummy_content( $post_type, $title, $count, $options = array() ) {
 		global $user_ID;
@@ -248,9 +261,14 @@ class MDG_Generic {
 
 
 	/**
+	 * Cleans the multi input meta field.
 	 *
+	 * @todo Audit and document this method better.
+	 * @todo Move into MDG_Meta_Helper.
 	 *
-	 * @todo Audit and document this method
+	 * @param  string  $multi_input  The multi input meta value.
+	 *
+	 * @return array                 The cleaned multi input values.
 	 */
 	public function clean_multi_input( $multi_input = '' ) {
 		// this converts the multi_input from it's saved state (fake sorta json object thingy)
@@ -268,9 +286,14 @@ class MDG_Generic {
 
 
 	/**
+	 * Groups the multi input meta field.
 	 *
+	 * @todo Audit and document this method better.
+	 * @todo Move into MDG_Meta_Helper.
 	 *
-	 * @todo Audit and document this method
+	 * @param  string  $multi_input  The multi input meta value.
+	 *
+	 * @return array                 The grouped multi input values.
 	 */
 	public function group_multi_input( $multi_input = '' ) {
 

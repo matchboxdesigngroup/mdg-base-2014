@@ -1,8 +1,15 @@
 <?php
 /**
+ * Contains all of the custom meta form fields.
+ */
+
+/**
  * MDG Meta Form Fields
  *
- * @author Matchbox Design Group <info@matchboxdesigngroup.com>
+ * @package      WordPress
+ * @subpackage   MDG_Base
+ *
+ * @author       Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 class MDG_Meta_Form_Fields extends MDG_Generic
 {
@@ -337,9 +344,11 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	/**
 	 * Makes the multi field input
 	 *
-	 * @param :TODO
+	 * @todo Document and fix this method better.
 	 *
-	 * @return :TODO
+	 * @param array   $args  The input field arguments.
+	 *
+	 * @return string The multi input field and description.
 	 */
 	public function multi_input_field( $args = array() ) {
 		// get the fields

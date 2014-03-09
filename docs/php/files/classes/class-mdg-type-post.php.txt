@@ -1,8 +1,15 @@
 <?php
 /**
+ * Handles anything custom for the default WordPress "post" post type
+ */
+
+/**
  * MDG Type Base Post
  *
- * @author Matchbox Design Group <info@matchboxdesigngroup.com>
+ * @package      WordPress
+ * @subpackage   MDG Base
+ *
+ * @author       Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 class MDG_Type_Post extends MDG_Type_Base
 {

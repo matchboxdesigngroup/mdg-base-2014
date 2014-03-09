@@ -1,7 +1,5 @@
 <?php
 /**
- * MDG Type Base Stub
- *
  * This class can be used as a starting point to add new post types.
  *
  * You basically need to change [stub/Stub] to be your post
@@ -14,8 +12,16 @@
  * all in __construct(). Anything thay isn't REQUIRED that you
  * do not use please remove before deploying to production. Also
  * any property that is optional has the defaults as an example.
+ */
+
+
+/**
+ * MDG Type Base Stub
  *
- * @author Matchbox Design Group <info@matchboxdesigngroup.com>
+ * @package      WordPress
+ * @subpackage   MDG_Base
+ *
+ * @author       Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 class MDG_Type_Stub extends MDG_Type_Base
 {

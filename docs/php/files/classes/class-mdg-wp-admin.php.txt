@@ -1,9 +1,15 @@
 <?php
 /**
- * MDG WP Admin
- * Handles all wp-admin customizations
+ * Handles all /wp-admin/ customizations.
+ */
+
+/**
+ * MDG WP Admin.
  *
- * @author Matchbox Design Group <info@matchboxdesigngroup.com>
+ * @package      WordPress
+ * @subpackage   MDG Base
+ *
+ * @author       Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 class MDG_WP_Admin extends MDG_Generic
 {
@@ -35,7 +41,7 @@ class MDG_WP_Admin extends MDG_Generic
 	/**
 	 * Add actions.
 	 *
-	 * @internal Adds internal actions.
+	 * @return Void
 	 */
 	private function _add_actions() {
 		// Login logo.
@@ -70,8 +76,7 @@ class MDG_WP_Admin extends MDG_Generic
 
 	/**
 	 * Add filters.
-	 *
-	 * @internal Adds internal filters.
+	 *@return Void
 	 */
 	private function _add_filters() {
 		// Login logo URL title.
@@ -403,6 +408,10 @@ class MDG_WP_Admin extends MDG_Generic
 	/**
 	 * Forces the admin theme to use Midnight.
 	 * It has a red that works well for Matchbox.
+	 *
+	 * @param String  $result  User administrator color scheme.
+	 *
+	 * @param String           Our default administrator color scheme.
 	 */
 	function change_admin_color( $result ) {
 		return 'midnight';
@@ -435,6 +444,15 @@ class MDG_WP_Admin extends MDG_Generic
 		get_template_part( 'templates/widget', 'mdg-dashboard' );
 	} // mdg_dashboard_widget_callback()
 
+
+
+	/**
+	 * Handles saving form fields for MDG dashboard widget.
+	 *
+	 * @todo Build widget.
+	 *
+	 * @return  Void
+	 */
 	function mdg_dashboard_widget_control_callback() {
 	} // mdg_dashboard_widget_control_callback
 

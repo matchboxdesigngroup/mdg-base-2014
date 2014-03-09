@@ -1,25 +1,51 @@
 <?php
 /**
- * Theme activation
+ * Handles theme activation.
+ *
+ * @package      WordPress
+ * @subpackage   MDG Base
  */
 if ( is_admin() && isset( $_GET['activated'] ) && 'themes.php' == $GLOBALS['pagenow'] ) {
 	wp_redirect( admin_url( 'themes.php?page=theme_activation_options' ) );
 	exit;
-}
+} // if()
 
+
+
+/**
+ * Initializes theme options.
+ *
+ * @return  Void
+ */
 function mdg_theme_activation_options_init() {
 	register_setting(
 		'mdg_activation_options',
 		'mdg_theme_activation_options'
 	);
-}
+} // mdg_theme_activation_options_init()
 add_action( 'admin_init', 'mdg_theme_activation_options_init' );
 
+
+
+/**
+ * Sets the capability as user must have to access the theme options page
+ *
+ * @param   String  $capability  The current capability value.
+ *
+ * @return  String               The new capability value.
+ */
 function mdg_activation_options_page_capability( $capability ) {
 	return 'edit_theme_options';
-}
+} // mdg_activation_options_page_capability()
 add_filter( 'option_page_capability_mdg_activation_options', 'mdg_activation_options_page_capability' );
 
+
+
+/**
+ * Adds the theme options page.
+ *
+ * @return  Void
+ */
 function mdg_theme_activation_options_add_page() {
 	$mdg_activation_options = mdg_get_theme_activation_options();
 
@@ -36,15 +62,31 @@ function mdg_theme_activation_options_add_page() {
 			flush_rewrite_rules();
 			wp_redirect( admin_url( 'themes.php' ) );
 			exit;
-		}
-	}
-}
+		} // if()
+	} // if/else()
+} // mdg_theme_activation_options_add_page()
 add_action( 'admin_menu', 'mdg_theme_activation_options_add_page', 50 );
 
+
+
+/**
+ * Retrieves the theme activation options
+ *
+ * @example $mdg_theme_activation_options = mdg_get_theme_activation_options();
+ *
+ * @return  array  The current theme options.
+ */
 function mdg_get_theme_activation_options() {
 	return get_option( 'mdg_theme_activation_options' );
 }
 
+
+
+/**
+ * Renders the theme activation page.
+ *
+ * @return  Void
+ */
 function mdg_theme_activation_options_render_page() { ?>
 	<div class="wrap">
 		<?php screen_icon(); ?>
@@ -115,18 +157,24 @@ function mdg_theme_activation_options_render_page() { ?>
 			<?php submit_button(); ?>
 		</form>
 	</div>
+	<?php
+} // mdg_theme_activation_options_render_page()
 
-<?php }
 
+
+/**
+ * Handles theme activation.
+ *
+ * @return  Void
+ */
 function mdg_theme_activation_action() {
 	if ( ! ( $mdg_theme_activation_options = mdg_get_theme_activation_options() ) ) {
 		return;
-	}
+	} // if()
 
 	if ( strpos( wp_get_referer(), 'page=theme_activation_options' ) === false ) {
 		return;
-	}
-
+	} // if()
 
 	if ( $mdg_theme_activation_options['create_front_page'] === 'true' ) {
 		$mdg_theme_activation_options['create_front_page'] = false;
@@ -137,7 +185,7 @@ function mdg_theme_activation_action() {
 
 		foreach ( $existing_pages as $page ) {
 			$temp[] = $page->post_title;
-		}
+		} // foreach()
 
 		$pages_to_create = array_diff( $default_pages, $temp );
 
@@ -150,7 +198,7 @@ function mdg_theme_activation_action() {
 			);
 
 			$result = wp_insert_post( $add_default_pages );
-		}
+		} // foreach()
 
 		$home = get_page_by_title( 'Home' );
 		update_option( 'show_on_front', 'page' );
@@ -161,7 +209,7 @@ function mdg_theme_activation_action() {
 			'menu_order' => -1,
 		);
 		wp_update_post( $home_menu_order );
-	}
+	} // if()
 
 	// Remove Sample Page and Hello world!
 	$sample_page = get_page_by_title( 'Sample Page', OBJECT, 'page' );
@@ -182,8 +230,8 @@ function mdg_theme_activation_action() {
 			global $wp_rewrite;
 			$wp_rewrite->set_permalink_structure( '/%postname%/' );
 			flush_rewrite_rules();
-		}
-	}
+		} // if()
+	} // if()
 
 	if ( $mdg_theme_activation_options['create_navigation_menus'] === 'true' ) {
 		$mdg_theme_activation_options['create_navigation_menus'] = false;
@@ -197,12 +245,12 @@ function mdg_theme_activation_action() {
 			$mdg_nav_theme_mod['primary_navigation'] = $primary_nav_id;
 		} else {
 			$mdg_nav_theme_mod['primary_navigation'] = $primary_nav->term_id;
-		}
+		} // if/else()
 
 		if ( $mdg_nav_theme_mod ) {
 			set_theme_mod( 'nav_menu_locations', $mdg_nav_theme_mod );
-		}
-	}
+		} // if()
+	} // if()
 
 	if ( $mdg_theme_activation_options['add_pages_to_primary_navigation'] === 'true' ) {
 		$mdg_theme_activation_options['add_pages_to_primary_navigation'] = false;
@@ -221,18 +269,23 @@ function mdg_theme_activation_action() {
 					'menu-item-status'    => 'publish',
 				);
 				wp_update_nav_menu_item( $primary_nav_term_id, 0, $item );
-			}
-		}
-	}
-
-
+			} // if()
+		} // if()
+	} // if()
 
 	update_option( 'mdg_theme_activation_options', $mdg_theme_activation_options );
-}
+} // mdg_theme_activation_action()
 add_action( 'admin_init', 'mdg_theme_activation_action' );
 
+
+
+/**
+ * Handles theme deactivation.
+ *
+ * @return  Void
+ */
 function mdg_deactivation() {
 	delete_option( 'mdg_theme_activation_options' );
-}
+} // mdg_deactivation()
 add_action( 'switch_theme', 'mdg_deactivation' );
 

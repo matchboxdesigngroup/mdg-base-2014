@@ -9,6 +9,9 @@
  * Roots_Nav_Walker example output:
  *   <li class="menu-home"><a href="/">Home</a></li>
  *   <li class="menu-sample-page"><a href="/sample-page/">Sample Page</a></li>
+ *
+ * @package      WordPress
+ * @subpackage   MDG Base
  */
 class Roots_Nav_Walker extends Walker_Nav_Menu {
 	function check_current( $classes ) {

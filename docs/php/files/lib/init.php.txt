@@ -1,6 +1,15 @@
 <?php
 /**
  * Roots initial setup and constants
+ *
+ * @package      WordPress
+ * @subpackage   MDG Base
+ */
+
+/**
+ * Sets up the theme.
+ *
+ * @return  Void
  */
 function mdg_setup() {
 	// Make theme available for translation

@@ -1,14 +1,29 @@
 <?php
 /**
- * MDG Images handles adding custom image sizes and other global image related functionality
+ * Handles adding custom image sizes and other global image related functionality
+ */
+
+/**
+ * MDG_Images
  *
- * @author Matchbox Design Group <info@matchboxdesigngroup.com>
+ * @package      WordPress
+ * @subpackage   MDG_Base
+ *
+ * @author       Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 class MDG_Images {
-
+	/**
+	 * The available image sizes.
+	 * @var  array
+	 */
 	public $image_sizes = array();
 
-	public function __construct() {
+	/**
+	 * Class constructor
+	 *
+	 * @param array   $config  Class configuration
+	 */
+	public function __construct( $config ) {
 		// Custom Image Sizes
 		$this->set_image_sizes();
 		$this->register_sizes();

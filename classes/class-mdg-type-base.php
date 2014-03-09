@@ -1,9 +1,11 @@
 <?php
+/**
+ * This is a base for custom post type classes so they can all take advantage of the same logic for meta, transients etc.
+ */
+
 
 /**
  * MDG (Post) Type Base
- *
- * This is a base for custom post type classes so they can all take advantage of the same logic for meta, transients etc.
  *
  * You should do your best not to overwrite any method and to use the
  * custom_[some_property] properties for configuring the base class methods which have parameters.
@@ -13,11 +15,12 @@
  * Make sure to include the parameters marked as REQUIRED or else the class will
  * not work at all everything has sensible defaults.
  *
- * @author Matchbox Design Group <info@matchboxdesigngroup.com>
+ * @package      WordPress
+ * @subpackage   MDG_Base
+ *
+ * @author       Matchbox Design Group <info@matchboxdesigngroup.com>
  *
  * @example mdg-bases/classes/class-mdg-type-stub.php
- *
- * @todo  Possibly abstract some of the get_posts and transients outside of this class
  */
 class MDG_Type_Base extends MDG_Meta_Helper {
 
@@ -96,7 +99,6 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 	/**
 	 * Sets all of the classes parameters
 	 *
-	 * @internal
 	 *
 	 * @todo Make this cleaner
 	 *
@@ -152,7 +154,6 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 	 * Actions that need to be set for this base class only using add_action()
 	 * sub-classes will need to set there own actions without overriding this method
 	 *
-	 * @internal
 	 *
 	 * @return Void
 	 */
@@ -175,7 +176,6 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 	/**
 	 * Checks if the current post type is the correct post type.
 	 *
-	 * @internal
 	 *
 	 * @param string   $post_type The post type name to check against
 	 *
@@ -198,6 +198,10 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 
 	/**
 	 * All of the allowed tags when outputting meta form fields.
+	 *
+	 * @uses http://codex.wordpress.org/Function_Reference/wp_kses_allowed_html
+	 *
+	 * @param string  $context  The context to retrieve the tags in.
 	 *
 	 * @return array Allowed HTML tags.
 	 */
@@ -243,8 +247,6 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 
 	/**
 	 * Column filter for featured image.
-	 *
-	 * @internal
 	 *
 	 * @return void
 	 */
@@ -300,7 +302,7 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 	/**
 	 * Grab featured-thumbnail size post thumbnail and display it.
 	 *
-	 * @param array   $cols Current post table columns.
+	 * @param array   $col  Current post table columns.
 	 * @param integer $id   The current post ID.
 	 *
 	 * @return Void
@@ -318,7 +320,6 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 	 * the class will halt and produce a warning instead of throwing an
 	 * error.
 	 *
-	 * @internal
 	 *
 	 * @return bool If all required properties are set TRUE is returned
 	 */
@@ -353,7 +354,11 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 	/**
 	 * Sets the Post Type support array
 	 *
-	 * @return Void
+	 * @link https://codex.wordpress.org/Function_Reference/post_type_supports
+	 *
+	 * @param array  $custom_post_type_supports  What the current post type should support.
+	 *
+	 * @return                                   Void
 	 */
 	public function set_post_type_supports( $custom_post_type_supports ) {
 		$default_post_type_supports = array(
@@ -780,9 +785,14 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 	/**
 	 * Gets the attachments for a post.
 	 *
-	 * @todo Flesh this out.
+	 * @link http://codex.wordpress.org/Class_Reference/WP_Query
 	 *
-	 * @return array The attachments for the post
+	 * @param   integer  $post_id             Optional, post id defaults to current post.
+	 * @param   array    $custom_query_args   Optional, custom query arguments excepts anything WP_Query does.
+	 * @param   boolean  $only_images         Optional, only return images.
+	 * @param   array    $allowed_file_types  Optional, restricts allowed file types.
+	 *
+	 * @return array                           The attachments for the post.
 	 */
 	function get_attachments( $post_id = null, $custom_query_args = array(), $only_images = true, $allowed_file_types = array() ) {
 		if ( is_null( $post_id ) ) {
@@ -826,10 +836,13 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 
 
 	/**
-	 * Retrieves posts that have featured images
+	 * Retrieves posts that have featured images.
 	 *
+	 * @link http://codex.wordpress.org/Class_Reference/WP_Query
 	 *
-	 * @return Retrieved post objects
+	 * @param   array    $custom_query_args   Optional, custom query arguments excepts anything WP_Query does.
+	 *
+	 * @return Retrieved post objects.
 	 */
 	public function get_posts_with_featured_image( $custom_query_args = array() ) {
 		$default_query_args = array( 'meta_key' => '_thumbnail_id' );

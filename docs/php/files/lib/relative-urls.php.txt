@@ -1,7 +1,12 @@
 <?php
 /**
- * Root relative URLs
+ * Handles setting root relative URLs.
  *
+ * @package      WordPress
+ * @subpackage   MDG Base
+ */
+
+/**
  * WordPress likes to use absolute URLs on everything - let's clean that up.
  * Inspired by http://www.456bereastreet.com/archive/201010/how_to_make_wordpress_urls_root_relative/
  *
@@ -9,6 +14,10 @@
  * current_theme_supports('root-relative-urls');
  *
  * @author Scott Walkinshaw <scott.walkinshaw@gmail.com>
+ *
+ * @param string $input URL input.
+ *
+ * @return string       Relative URL.
  */
 function mdg_root_relative_url( $input ) {
 	preg_match( '|https?://([^/]+)(/.*)|i', $input, $matches );
@@ -17,12 +26,19 @@ function mdg_root_relative_url( $input ) {
 		return wp_make_link_relative( $input );
 	} else {
 		return $input;
-	}
-}
+	} // if/else()
+} // mdg_root_relative_url()
 
+
+
+/**
+ * Determines if root relative URLs are enabled/should be used.
+ *
+ * @return  boolean  If root relative URLs are enabled/should be used.
+ */
 function mdg_enable_root_relative_urls() {
-	return !( is_admin() || in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ) ) ) && current_theme_supports( 'root-relative-urls' );
-}
+	return ! ( is_admin() || in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ) ) ) && current_theme_supports( 'root-relative-urls' );
+} // mdg_enable_root_relative_urls()
 
 if ( mdg_enable_root_relative_urls() ) {
 	$root_rel_filters = array(
@@ -45,5 +61,5 @@ if ( mdg_enable_root_relative_urls() ) {
 	);
 
 	add_filters( $root_rel_filters, 'mdg_root_relative_url' );
-}
+} // if()
 

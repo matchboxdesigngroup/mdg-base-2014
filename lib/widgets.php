@@ -1,6 +1,9 @@
 <?php
 /**
  * Register sidebars and widgets
+ *
+ * @package      WordPress
+ * @subpackage   MDG_Base
  */
 function mdg_widgets_init() {
 	// Sidebars

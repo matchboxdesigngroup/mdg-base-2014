@@ -1,7 +1,14 @@
 <?php
 /**
- * Enable theme features
+ * Handles setting theme configurations
+ * Sets theme features, theme constants, and main/sidebar classes.
  */
+
+/**
+ * @package      WordPress
+ * @subpackage   MDG_Base
+ */
+
 // add_theme_support( 'root-relative-urls' );    // Enable relative URLs
 // add_theme_support( 'rewrites' );              // Enable URL rewrites
 add_theme_support( 'bootstrap-top-navbar' );  // Enable Bootstrap's top navbar
@@ -10,13 +17,26 @@ add_theme_support( 'nice-search' );           // Enable /?s= to /search/ redirec
 add_theme_support( 'jquery-cdn' );            // Enable to load jQuery from the Google CDN
 
 /**
- * Configuration values
+ * Google Analytics ID (UA-XXXXX-Y).
+ *
+ * @link https://support.google.com/analytics/answer/1032385?hl=en
+ *
+ *  @var string
  */
-define( 'GOOGLE_ANALYTICS_ID', '' ); // UA-XXXXX-Y
+define( 'GOOGLE_ANALYTICS_ID', '' );
 define( 'POST_EXCERPT_LENGTH', 40 );
 
+
+
 /**
- * .main classes
+ * Selects the column class the .main element.
+ * The class is dependent upon if the sidebar is visible or not.
+ *
+ * <code>
+ * <?php echo esc_attr( mdg_main_class() ); ?>
+ * </code>
+ *
+ * @return string  The correct column class
  */
 function mdg_main_class() {
 	if ( mdg_display_sidebar() ) {
@@ -25,22 +45,34 @@ function mdg_main_class() {
 	} else {
 		// Classes on full width pages
 		$class = 'col-sm-12';
-	}
+	} // if/else()
 
 	return $class;
-}
+} // mdg_main_class()
+
+
 
 /**
- * .sidebar classes
+ * Selects the column class the sidebar element.
+ *
+ * <code>
+ * <?php echo esc_attr( mdg_sidebar_class() ); ?>
+ * </code>
+ *
+ * @return string  The sidebar column class.
  */
 function mdg_sidebar_class() {
 	return 'col-sm-4';
-}
+} // mdg_sidebar_class()
+
+
 
 /**
  * Define which pages shouldn't have the sidebar
  *
- * See lib/sidebar.php for more details
+ * @see lib/sidebar.php for more details
+ *
+ * @return boolean If the sidebar should be displayed.
  */
 function mdg_display_sidebar() {
 	$sidebar_config = new Roots_Sidebar(
@@ -62,12 +94,14 @@ function mdg_display_sidebar() {
 		 * Any of these page templates that return true won't show the sidebar
 		 */
 		array(
-			'template-custom.php'
-		)
+			'template-custom.php',
+		),
 	);
 
 	return apply_filters( 'mdg_display_sidebar', $sidebar_config->display );
-}
+} // mdg_display_sidebar()
+
+
 
 /**
  * $content_width is a global variable used by WordPress for max image upload sizes
@@ -84,7 +118,6 @@ if ( ! isset( $content_width ) ) {
  * Define helper constants
  */
 $get_theme_name = explode( '/themes/', get_template_directory() );
-
 define( 'RELATIVE_PLUGIN_PATH',  str_replace( home_url() . '/', '', plugins_url() ) );
 define( 'RELATIVE_CONTENT_PATH', str_replace( home_url() . '/', '', content_url() ) );
 define( 'THEME_NAME',            next( $get_theme_name ) );

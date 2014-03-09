@@ -1,6 +1,9 @@
 <?php
 /**
  * Utility functions
+ *
+ * @package      WordPress
+ * @subpackage   MDG_Base
  */
 function add_filters( $tags, $function ) {
 	foreach ( $tags as $tag ) {
