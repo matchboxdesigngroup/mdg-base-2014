@@ -7,11 +7,9 @@ npm update;
 # ln -s dev-assets/pre-commit.sh .git/hooks/pre-commit
 
 echo "\nUpdating Bower components."
-cd assets/;
 bower update;
 
 echo "\nUpdating theme Composer requirements";
-cd ../;
 composer update
 
 echo "\nInstalling development WordPress plugins"
