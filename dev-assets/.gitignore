@@ -6,3 +6,4 @@
 !init.sh
 !sublime-project-template.txt
 !pre-commit.sh
+!deployment-ignores.txt
