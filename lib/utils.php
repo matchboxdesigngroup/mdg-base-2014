@@ -34,7 +34,9 @@ function add_filters( $tags, $function ) {
 /**
  * Checks to see if an element is empty.
  *
- * <code>is_element_empty( '<p>test</p>' ); // false</code>
+ * <code>
+ * is_element_empty( '&lt;p&gt;test&lt;/p&gt;' ); // false
+ * </code>
  *
  * @param   string   $element  The element to check against.
  *
