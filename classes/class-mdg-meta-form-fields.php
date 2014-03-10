@@ -1,10 +1,10 @@
 <?php
 /**
- * Contains all of the custom meta form fields.
+ * MDG Meta Form Fields Class.
  */
 
 /**
- * MDG Meta Form Fields
+ * Contains all of the custom meta form fields.
  *
  * @package      WordPress
  * @subpackage   MDG_Base

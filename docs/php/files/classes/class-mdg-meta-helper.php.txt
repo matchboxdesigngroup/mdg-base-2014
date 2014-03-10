@@ -1,12 +1,13 @@
 <?php
+/**
+ * MDG Meta Helper Class
+ */
 
 /**
- * Meta helpers should hold some grunt work for making
- * custom meta. This class should contain global work that should work
- * for any environment (that's the idea anyway).
+ * Handles anything to do with custom meta.
  *
  * @package      WordPress
- * @subpackage   MDG Base
+ * @subpackage   MDG_Base
  *
  * @author       Matchbox Design Group <info@matchboxdesigngroup.com>
  */
@@ -345,30 +346,30 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 
 
 
-	/*
-	 * Saves your custom meta when the post is saved
-	 * You should pass it the post_id and the meta fields in an array as an argument
-	 * something like...
-	 *	$meta_helper->save_custom_meta(array(
-	 *		'post_id'				=> 12,
-	 *		'custom_meta_fields'	=> $meta_fields_array
-	 *	));
+	/**
+	 * Saves your custom meta when the post is saved.
 	 *
+	 * @param   integer $post_id             The post id to attribute the meta.
+	 * @param   array   $custom_meta_fields  All of the meta fields to save.
+	 *
+	 * @return  Void
 	 */
-	public function save_custom_meta( $args = array() ) {
-		$post_id    = isset( $args['post_id'] ) ? $args['post_id'] : '';
-		$custom_meta_fields = isset( $args['custom_meta_fields'] ) ? $args['custom_meta_fields'] : '';
+	public function save_custom_meta( $post_id = null, $custom_meta_fields = array() ) {
+		if ( is_null( $post_id ) ) {
+			return '';
+		} // if()
 
 		// verify nonce
 		$mb_nonce = isset( $_POST['custom_meta_box_nonce'] ) ? $_POST['custom_meta_box_nonce'] : '';
-		if ( ! wp_verify_nonce( $mb_nonce, basename( __FILE__ ) ) )
+		if ( ! wp_verify_nonce( $mb_nonce, basename( __FILE__ ) ) ){
 			return $post_id;
+		} // if()
 
 		// check autosave
-		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ){
 			return $post_id;
+		} // if()
 
-		// loop through fields and save the data
 		foreach ( $custom_meta_fields as $field ) {
 			extract( $field );
 
@@ -386,13 +387,14 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 	} // save_custom_meta()
 
 
+
 	/**
 	 * Retrieves custom post meta.
 	 *
 	 * @param   integer        $post_id  Optional post id, defaults to current post.
 	 * @param   string         $key      Optional meta key, to return one meta value instead of all of them.
 	 *
-	 * @return string|array              Specific post meta value | All all post meta values
+	 * @return string|array              Specific post meta value | All all post meta values.
 	 */
 	public function get_post_meta( $post_id = null, $key = null ) {
 		if ( is_null( $post_id ) ) {
@@ -417,10 +419,12 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 			extract( $field );
 
 			if ( $type !== 'info' ) {
-				$meta_key            = strtolower( $id );
+				$meta_key            = trim( str_replace( "{$this->post_type}_", '', strtolower( $id ) ) );
 				$all_meta[$meta_key] = get_post_meta( $post_id, $id, true );
 			} // if()
 		} // foreach()
+
+		ksort( $all_meta );
 
 		return $all_meta;
 	} // get_post_meta()
@@ -433,22 +437,24 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 	 * By returning an empty array in this method, we're telling the class to not to
 	 * do anything will custom meta (e.g. meta boxes, and saving meta etc...)
 	 * The overridden method should return an array like..
+	 * <code>
 	 * return array(
 	 *  array(
 	 *   'label' => 'Title/Position',
 	 *   'desc'  => '',
 	 *   'id'    => $prefix.'Title',
-	 *   'type'  => 'text'
+	 *   'type'  => 'text',
 	 *  ),
 	 *  array(
 	 *   'label' => 'Quote',
 	 *   'desc'  => '',
 	 *   'id'    => $prefix.'Quote',
-	 *   'type'  => 'textarea'
+	 *   'type'  => 'textarea',
 	 *  )
 	 * );
+	 * </code>
 	 *
-	 * @return array Custom meta fields
+	 * @return array Custom meta fields.
 	 */
 	public function get_custom_meta_fields() {
 		return array();
@@ -457,7 +463,7 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 
 
 	/**
-	 * Handles registering and generating the custom meta box
+	 * Handles registering and generating the custom meta box.
 	 *
 	 * @return Void
 	 */
@@ -479,7 +485,7 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 
 
 	/**
-	 * Handles outputting of the metabox form
+	 * Handles outputting of the meta box form.
 	 *
 	 * @return Void
 	 */
@@ -495,7 +501,7 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 
 
 	/**
-	 * Handles the saving of custom meta
+	 * Handles the saving of custom meta.
 	 *
 	 * @param integer $post_id ID of the post that you wish to save custom meta for
 	 *
@@ -506,12 +512,7 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 		if ( empty( $custom_meta_fields ) )
 			return;
 
-		$this->save_custom_meta(
-			array(
-				'post_id'            => $post_id,
-				'custom_meta_fields' => $custom_meta_fields,
-			)
-		);
+		$this->save_custom_meta( $post_id, $custom_meta_fields );
 	} // save_meta()
 } // END Class MDG_Meta_Helper
 

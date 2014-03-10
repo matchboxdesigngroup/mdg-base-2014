@@ -1,10 +1,10 @@
 <?php
 /**
- * Handles adding custom image sizes and other global image related functionality
+ * MDG Images Class.
  */
 
 /**
- * MDG_Images
+ * Handles adding custom image sizes and other global image related functionality.
  *
  * @package      WordPress
  * @subpackage   MDG_Base
@@ -18,12 +18,14 @@ class MDG_Images {
 	 */
 	public $image_sizes = array();
 
+
+
 	/**
 	 * Class constructor
 	 *
 	 * @param array   $config  Class configuration
 	 */
-	public function __construct( $config ) {
+	public function __construct( $config = array() ) {
 		// Custom Image Sizes
 		$this->set_image_sizes();
 		$this->register_sizes();

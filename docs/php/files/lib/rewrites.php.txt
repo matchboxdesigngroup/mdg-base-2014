@@ -5,7 +5,7 @@
  * @see          http://codex.wordpress.org/Class_Reference/WP_Rewrite
  *
  * @package      WordPress
- * @subpackage   MDG Base
+ * @subpackage   MDG_Base
  */
 
 

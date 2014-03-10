@@ -1,13 +1,13 @@
 <?php
 /**
- * This generic class is really just designed to hold random functions/methods.
- *
- * All classes should at the very minimum extend MDG_Generic so they can
- * have easy access to all helper methods/properties.
+ * MDG Generic Class.
  */
 
 /**
- * MDG_Generic class contains methods/properties that can be used by all classes.
+ * Contains methods/properties that can be used by all classes.
+ *
+ * All classes should at the very minimum extend MDG_Generic so they can
+ * have easy access to all helper methods/properties.
  *
  * @package      WordPress
  * @subpackage   MDG_Base

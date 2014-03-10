@@ -1,7 +1,9 @@
 <?php
 /**
- * This class can be used as a starting point to add new post types.
- *
+ * MDG Type Stub Class.
+ */
+
+/**
  * You basically need to change [stub/Stub] to be your post
  * type name and then add your custom meta if needed, if no
  * custom meta is needed then delete the get_custom_meta_fields.
@@ -16,10 +18,10 @@
 
 
 /**
- * MDG Type Base Stub
+ * This class can be used as a starting point to add new post types.
  *
  * @package      WordPress
- * @subpackage   MDG Base
+ * @subpackage   MDG_Base
  *
  * @author       Matchbox Design Group <info@matchboxdesigngroup.com>
  */

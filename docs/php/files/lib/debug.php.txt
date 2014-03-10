@@ -3,7 +3,7 @@
  * Debugging/Development specific functionality.
  *
  * @package      WordPress
- * @subpackage   MDG Base
+ * @subpackage   MDG_Base
  *
  * @author       Matchbox Design Group <info@matchboxdesigngroup.com>
  */

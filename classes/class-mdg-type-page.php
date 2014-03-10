@@ -1,10 +1,10 @@
 <?php
 /**
- * Handles anything custom for the default WordPress "page" post type
+ * MDG Type Page Class.
  */
 
 /**
- * MDG Type Base Page
+ * Handles anything custom for the default WordPress "page" post type
  *
  * @package      WordPress
  * @subpackage   MDG_Base

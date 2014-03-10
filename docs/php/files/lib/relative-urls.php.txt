@@ -3,7 +3,7 @@
  * Handles setting root relative URLs.
  *
  * @package      WordPress
- * @subpackage   MDG Base
+ * @subpackage   MDG_Base
  */
 
 /**

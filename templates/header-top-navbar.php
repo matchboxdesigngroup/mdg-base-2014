@@ -11,11 +11,9 @@
 		</div>
 
 		<nav class="collapse navbar-collapse primary-navigation" role="navigation">
-			<?php
-if ( has_nav_menu( 'primary_navigation' ) ) :
-	wp_nav_menu( array( 'theme_location' => 'primary_navigation', 'menu_class' => 'nav navbar-nav' ) );
-endif;
-?>
+			<?php if ( has_nav_menu( 'primary_navigation' ) ) { ?>
+				<?php wp_nav_menu( array( 'theme_location' => 'primary_navigation', 'menu_class' => 'nav navbar-nav' ) ); ?>
+			<?php } ?>
 		</nav>
 	</div>
 </header>

@@ -3,7 +3,7 @@
  * Roots initial setup and constants
  *
  * @package      WordPress
- * @subpackage   MDG Base
+ * @subpackage   MDG_Base
  */
 
 /**

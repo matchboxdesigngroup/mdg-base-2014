@@ -1,10 +1,10 @@
 <?php
 /**
- * Handles all /wp-admin/ customizations.
+ * MDG WP Admin Class
  */
 
 /**
- * MDG WP Admin.
+ * Handles all of the customizations wp-admin.
  *
  * @package      WordPress
  * @subpackage   MDG_Base

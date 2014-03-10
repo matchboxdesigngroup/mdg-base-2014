@@ -113,7 +113,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">96</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
                                 </a>
                             </li>
                             <li>
@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-2096398071"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-181819006"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-2096398071" class="accordion-body collapse in">
+            <div id="namespace-181819006" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -149,17 +149,17 @@
                                                                                                     <li class="class"><a href="../classes/MDG_WP_Admin.html">MDG_WP_Admin</a></li>
                                                     <li class="class"><a href="../classes/MDG_Type_Page.html">MDG_Type_Page</a></li>
                                                     <li class="class"><a href="../classes/MDG_Images.html">MDG_Images</a></li>
-                                                    <li class="class"><a href="../classes/Roots_Sidebar.html">Roots_Sidebar</a></li>
+                                                    <li class="class"><a href="../classes/MDG_Sidebar.html">MDG_Sidebar</a></li>
                                                     <li class="class"><a href="../classes/MDG_Type_Base.html">MDG_Type_Base</a></li>
-                                                    <li class="class"><a href="../classes/Roots_Vcard_Widget.html">Roots_Vcard_Widget</a></li>
-                                                    <li class="class"><a href="../classes/Roots_Nav_Walker.html">Roots_Nav_Walker</a></li>
+                                                    <li class="class"><a href="../classes/MDG_Vcard_Widget.html">MDG_Vcard_Widget</a></li>
+                                                    <li class="class"><a href="../classes/MDG_Nav_Walker.html">MDG_Nav_Walker</a></li>
                                                     <li class="class"><a href="../classes/MDG_Type_Post.html">MDG_Type_Post</a></li>
-                                                    <li class="class"><a href="../classes/Roots_Walker_Comment.html">Roots_Walker_Comment</a></li>
+                                                    <li class="class"><a href="../classes/MDG_Walker_Comment.html">MDG_Walker_Comment</a></li>
                                                     <li class="class"><a href="../classes/MDG_Meta_Helper.html">MDG_Meta_Helper</a></li>
                                                     <li class="class"><a href="../classes/MDG_Type_Stub.html">MDG_Type_Stub</a></li>
                                                     <li class="class"><a href="../classes/MDG_Meta_Form_Fields.html">MDG_Meta_Form_Fields</a></li>
                                                     <li class="class"><a href="../classes/MDG_Generic.html">MDG_Generic</a></li>
-                                                    <li class="class"><a href="../classes/Roots_Wrapping.html">Roots_Wrapping</a></li>
+                                                    <li class="class"><a href="../classes/MDG_Wrapping.html">MDG_Wrapping</a></li>
                                             </ul>
                 </div>
             </div>
@@ -178,7 +178,7 @@
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
                     <h1><small>\</small>MDG_Type_Base</h1>
-                    <p><em>MDG (Post) Type Base</em></p>
+                    <p><em>This is a base for custom post type classes so they can all take advantage of the same logic for meta, transients etc.</em></p>
                     <p>You should do your best not to overwrite any method and to use the
 custom_[some_property] properties for configuring the base class methods which have parameters.
 Feel free to over write any of the parameters you see fit to make the sub-classes
@@ -317,7 +317,7 @@ not work at all everything has sensible defaults.</p>
                         <dt>File</dt>
                             <dd><a href="../files/classes.class-mdg-type-base.php.html"><div class="path-wrapper">classes/class-mdg-type-base.php</div></a></dd>
                                                 <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">\WordPress\MDG Base\MDG Base</div></dd>
+                            <dd><div class="namespace-wrapper">\WordPress\MDG_Base\MDG_Base</div></dd>
                                                 <dt>Class hierarchy</dt>
                             <dd class="hierarchy">
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
@@ -1860,21 +1860,28 @@ array(
             <article class="method">
                 <h3 class="public ">save_custom_meta()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">save_custom_meta( <span class="argument">$args</span>)</pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">save_custom_meta(integer <span class="argument">$post_id</span>, array <span class="argument">$custom_meta_fields</span>) : Void</pre>
+                <p><em>Saves your custom meta when the post is saved.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
-                                <td>$args</td>
-                                <td></td>
+                                <td>integer</td>
+                                <td>$post_id</td>
+                                <td><p>The post id to attribute the meta.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$custom_meta_fields</td>
+                                <td><p>All of the meta fields to save.</p></td>
                             </tr>
                                             </table>
                 
                 
-                            </article>
+                                    <h4>Returns</h4>
+                    Void
+                                                </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -1922,7 +1929,7 @@ array(
                 
                                     <h4>Returns</h4>
                     string|array
-                                            &mdash; <p>Specific post meta value | All all post meta values</p>
+                                            &mdash; <p>Specific post meta value | All all post meta values.</p>
                                                 </article>
         </div>
         <aside class="span4 detailsbar">
@@ -1954,27 +1961,29 @@ array(
                 <p><em>Override this method to create custom meta fields.</em></p>
                 <p>By returning an empty array in this method, we're telling the class to not to
 do anything will custom meta (e.g. meta boxes, and saving meta etc...)
-The overridden method should return an array like..
+The overridden method should return an array like..</p>
+<code>
 return array(
  array(
   'label' => 'Title/Position',
   'desc'  => '',
   'id'    => $prefix.'Title',
-  'type'  => 'text'
+  'type'  => 'text',
  ),
  array(
   'label' => 'Quote',
   'desc'  => '',
   'id'    => $prefix.'Quote',
-  'type'  => 'textarea'
+  'type'  => 'textarea',
  )
-);</p>
+);
+</code>
 
                 
                 
                                     <h4>Returns</h4>
                     array
-                                            &mdash; <p>Custom meta fields</p>
+                                            &mdash; <p>Custom meta fields.</p>
                                                 </article>
         </div>
         <aside class="span4 detailsbar">
@@ -2003,7 +2012,7 @@ return array(
                 <h3 class="public ">make_meta_box()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">make_meta_box() : Void</pre>
-                <p><em>Handles registering and generating the custom meta box</em></p>
+                <p><em>Handles registering and generating the custom meta box.</em></p>
                 
 
                 
@@ -2038,7 +2047,7 @@ return array(
                 <h3 class="public ">show_meta_box()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">show_meta_box() : Void</pre>
-                <p><em>Handles outputting of the metabox form</em></p>
+                <p><em>Handles outputting of the meta box form.</em></p>
                 
 
                 
@@ -2073,7 +2082,7 @@ return array(
                 <h3 class="public ">save_meta()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">save_meta(integer <span class="argument">$post_id</span>) : Void</pre>
-                <p><em>Handles the saving of custom meta</em></p>
+                <p><em>Handles the saving of custom meta.</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -3787,7 +3796,7 @@ error.</em></p>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on March 9th, 2014 at 02:36.
+                    on March 10th, 2014 at 00:59.
                 </section>
             </section>
         </section>

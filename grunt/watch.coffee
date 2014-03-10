@@ -48,6 +48,15 @@ module.exports =
     options:
       spawn: false
 
+  phpdoc:
+    files: [
+      "lib/**/*.php",
+      "classes/**/*.php"
+    ]
+    tasks: ["phpdoc"]
+    options:
+      spawn: false
+
   livereload:
     options:
       livereload: true

@@ -1,12 +1,14 @@
 <?php
 /**
- * Handles setting theme configurations
- * Sets theme features, theme constants, and main/sidebar classes.
+ * Configuration file.
  */
 
 /**
+ * Handles setting theme configurations
+ * Sets theme features, theme constants, and main/sidebar classes.
+ *
  * @package      WordPress
- * @subpackage   MDG Base
+ * @subpackage   MDG_Base
  */
 
 // add_theme_support( 'root-relative-urls' );    // Enable relative URLs
@@ -20,10 +22,14 @@ add_theme_support( 'jquery-cdn' );            // Enable to load jQuery from the 
  * Google Analytics ID (UA-XXXXX-Y).
  *
  * @link https://support.google.com/analytics/answer/1032385?hl=en
- *
- *  @var string
  */
 define( 'GOOGLE_ANALYTICS_ID', '' );
+
+/**
+ * How many words the_excerpt() should contain.
+ *
+ * @link http://codex.wordpress.org/Function_Reference/the_excerpt
+ */
 define( 'POST_EXCERPT_LENGTH', 40 );
 
 
@@ -75,7 +81,7 @@ function mdg_sidebar_class() {
  * @return boolean If the sidebar should be displayed.
  */
 function mdg_display_sidebar() {
-	$sidebar_config = new Roots_Sidebar(
+	$sidebar_config = new MDG_Sidebar(
 		/**
 		 * Conditional tag checks (http://codex.wordpress.org/Conditional_Tags)
 		 * Any of these conditional tags that return true won't show the sidebar
@@ -95,7 +101,7 @@ function mdg_display_sidebar() {
 		 */
 		array(
 			'template-custom.php',
-		),
+		)
 	);
 
 	return apply_filters( 'mdg_display_sidebar', $sidebar_config->display );
@@ -114,12 +120,17 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 1140;
 }
 
-/**
- * Define helper constants
- */
-$get_theme_name = explode( '/themes/', get_template_directory() );
+
+/** Relative path to wp-content/plugins */
 define( 'RELATIVE_PLUGIN_PATH',  str_replace( home_url() . '/', '', plugins_url() ) );
+
+/** Relative path to wp-content */
 define( 'RELATIVE_CONTENT_PATH', str_replace( home_url() . '/', '', content_url() ) );
-define( 'THEME_NAME',            next( $get_theme_name ) );
-define( 'THEME_PATH',            RELATIVE_CONTENT_PATH . '/themes/' . THEME_NAME );
+
+/** The current theme name */
+$get_theme_name = explode( '/themes/', get_template_directory() );
+define( 'THEME_NAME', next( $get_theme_name ) );
+
+/** Relative path to wp-content/themes/{{THEME_NAME}} */
+define( 'THEME_PATH', RELATIVE_CONTENT_PATH . '/themes/' . THEME_NAME );
 

@@ -3,7 +3,7 @@
  * Page titles
  *
  * @package      WordPress
- * @subpackage   MDG Base
+ * @subpackage   MDG_Base
  */
 
 /**

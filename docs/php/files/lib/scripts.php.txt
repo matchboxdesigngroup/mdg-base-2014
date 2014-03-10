@@ -3,7 +3,7 @@
  * Handles adding JavaScript and CSS.
  *
  * @package      WordPress
- * @subpackage   MDG Base
+ * @subpackage   MDG_Base
  */
 
 

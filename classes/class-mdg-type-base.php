@@ -1,11 +1,10 @@
 <?php
 /**
- * This is a base for custom post type classes so they can all take advantage of the same logic for meta, transients etc.
+ * MDG Type Base Class
  */
 
-
 /**
- * MDG (Post) Type Base
+ * This is a base for custom post type classes so they can all take advantage of the same logic for meta, transients etc.
  *
  * You should do your best not to overwrite any method and to use the
  * custom_[some_property] properties for configuring the base class methods which have parameters.

@@ -5,7 +5,7 @@
  * @see http://codex.wordpress.org/Shortcode_API
  *
  * @package      WordPress
- * @subpackage   MDG Base
+ * @subpackage   MDG_Base
  *
  * @author       Matchbox Design Group <info@matchboxdesigngroup.com>
  */

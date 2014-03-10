@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1982336904"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1445492539"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1982336904" class="accordion-body collapse in">
+            <div id="namespace-1445492539" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -177,10 +177,9 @@
                                             </nav>
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
-                    <h1><small>\</small>MDG_Generic</h1>
-                    <p><em>Contains methods/properties that can be used by all classes.</em></p>
-                    <p>All classes should at the very minimum extend MDG_Generic so they can
-have easy access to all helper methods/properties.</p>
+                    <h1><small>\</small>MDG_Sidebar</h1>
+                    <p><em>Determines whether or not to display the sidebar based on an array of conditional tags or page templates.</em></p>
+                    <p>If any of the is_* conditional tags or is_page_template(template_file) checks return true, the sidebar will NOT be displayed.</p>
 
                     <section id="summary">
                         <h2>Summary</h2>
@@ -197,20 +196,10 @@ have easy access to all helper methods/properties.</p>
                         </section>
                         <section class="row-fluid public">
                             <section class="span4">
-                                                                    <a href="../classes/MDG_Generic.html#method___construct" class="">__construct()</a><br />
-                                                                    <a href="../classes/MDG_Generic.html#method_is_localhost" class="">is_localhost()</a><br />
-                                                                    <a href="../classes/MDG_Generic.html#method_is_staging" class="">is_staging()</a><br />
-                                                                    <a href="../classes/MDG_Generic.html#method_get_id_by_slug" class="">get_id_by_slug()</a><br />
-                                                                    <a href="../classes/MDG_Generic.html#method_make_dummy_content" class="">make_dummy_content()</a><br />
-                                                                    <a href="../classes/MDG_Generic.html#method_truncate_string" class="">truncate_string()</a><br />
-                                                                    <a href="../classes/MDG_Generic.html#method_pagination" class="">pagination()</a><br />
-                                                                    <a href="../classes/MDG_Generic.html#method_get_youtube_id" class="">get_youtube_id()</a><br />
-                                                                    <a href="../classes/MDG_Generic.html#method_clean_multi_input" class="">clean_multi_input()</a><br />
-                                                                    <a href="../classes/MDG_Generic.html#method_group_multi_input" class="">group_multi_input()</a><br />
-                                                                    <a href="../classes/MDG_Generic.html#method_get_attachment_id_from_src" class="">get_attachment_id_from_src()</a><br />
+                                                                    <a href="../classes/MDG_Sidebar.html#method___construct" class="">__construct()</a><br />
                                                             </section>
                             <section class="span4">
-                                                                    <em>No public properties found</em>
+                                                                    <a href="../classes/MDG_Sidebar.html#property_display" class="">$display</a><br />
                                                             </section>
                             <section class="span4">
                                                                     <em>No constants found</em>
@@ -229,10 +218,12 @@ have easy access to all helper methods/properties.</p>
                         </section>
                         <section class="row-fluid private">
                             <section class="span4">
-                                                                    <em>No private methods found</em>
+                                                                    <a href="../classes/MDG_Sidebar.html#method_check_conditional_tag" class="">check_conditional_tag()</a><br />
+                                                                    <a href="../classes/MDG_Sidebar.html#method_check_page_template" class="">check_page_template()</a><br />
                                                             </section>
                             <section class="span4">
-                                                                    <em>No private properties found</em>
+                                                                    <a href="../classes/MDG_Sidebar.html#property_conditionals" class="">$conditionals</a><br />
+                                                                    <a href="../classes/MDG_Sidebar.html#property_templates" class="">$templates</a><br />
                                                             </section>
                             <section class="span4">
                                 <em>N/A</em>
@@ -245,12 +236,12 @@ have easy access to all helper methods/properties.</p>
                     
                     <dl>
                         <dt>File</dt>
-                            <dd><a href="../files/classes.class-mdg-generic.php.html"><div class="path-wrapper">classes/class-mdg-generic.php</div></a></dd>
+                            <dd><a href="../files/lib.sidebar.php.html"><div class="path-wrapper">lib/sidebar.php</div></a></dd>
                                                 <dt>Package</dt>
                             <dd><div class="namespace-wrapper">\WordPress\MDG_Base\MDG_Base</div></dd>
                                                 <dt>Class hierarchy</dt>
                             <dd class="hierarchy">
-                                                                                                                                                                    <div class="namespace-wrapper">\MDG_Generic</div>
+                                                                                                                                                                    <div class="namespace-wrapper">\MDG_Sidebar</div>
                             </dd>
 
                         
@@ -262,10 +253,19 @@ have easy access to all helper methods/properties.</p>
                     <table class="table table-condensed">
                                             <tr>
                             <th>
-                                author
+                                param
                             </th>
                             <td>
-                                                                    <p>Matchbox Design Group <info@matchboxdesigngroup.com></p>
+                                                                    <p>list of conditional tags (<a href="http://codex.wordpress.org/Conditional_Tags">http://codex.wordpress.org/Conditional_Tags</a>)</p>
+                                                                    <p>list of page templates. These will be checked via is_page_template()</p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                return
+                            </th>
+                            <td>
+                                                                    <p>True will display the sidebar, False will not</p>
                                                             </td>
                         </tr>
                                             <tr>
@@ -280,7 +280,107 @@ have easy access to all helper methods/properties.</p>
             </div>
 
                         
-                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_display" name="property_display" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$display</h3>
+                <pre class="signature">$display : boolean</pre>
+                <p><em>If the sidebar should be displayed.</em></p>
+                
+
+                                <h4>Type</h4>
+                boolean
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_conditionals" name="property_conditionals" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$conditionals</h3>
+                <pre class="signature">$conditionals : array</pre>
+                <p><em>WordPress conditional tags to check against.</em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_templates" name="property_templates" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$templates</h3>
+                <pre class="signature">$templates : array</pre>
+                <p><em>Page template checks (via is_page_template())</em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
                                     <a id="methods" name="methods"></a>
             <div class="row-fluid">
                 <div class="span8 content class"><h2>Methods</h2></div>
@@ -293,181 +393,26 @@ have easy access to all helper methods/properties.</p>
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct() : Void</pre>
-                <p><em>Class Constructor</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    Void
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_is_localhost" name="method_is_localhost" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">is_localhost()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">is_localhost() : boolean</pre>
-                <p><em>Checks if the current host is localhost.</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    boolean
-                                            &mdash; <p>If the current host is localhost.</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_is_staging" name="method_is_staging" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">is_staging()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">is_staging() : boolean</pre>
-                <p><em>Checks if the current host is a staging site.</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    boolean
-                                            &mdash; <p>If the current host is a staging site.</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_get_id_by_slug" name="method_get_id_by_slug" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">get_id_by_slug()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_id_by_slug(string <span class="argument">$slug</span>) : integer</pre>
-                <p><em>Retrieves a page/post/custom post type ID when provided a slug.</em></p>
+                <pre class="signature" style="margin-right: 54px;">__construct(array <span class="argument">$conditionals</span>, array <span class="argument">$templates</span>)</pre>
+                <p><em>Class constructor.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>string</td>
-                                <td>$slug</td>
-                                <td><p>The slug of the page/post/custom post type you want an ID for.</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    integer
-                                            &mdash; <p>The ID of the page/post/custom post type</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_make_dummy_content" name="method_make_dummy_content" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">make_dummy_content()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">make_dummy_content(string <span class="argument">$post_type</span>, string <span class="argument">$title</span>, integer <span class="argument">$count</span>, array <span class="argument">$options</span>) : Void</pre>
-                <p><em>Adds testing post content to the supplied post type.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$post_type</td>
-                                <td><p>Required, Name of the post type to create content for.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$title</td>
-                                <td><p>Required, The title base you want to use without a trailing space, the post count will be appended to the end.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>integer</td>
-                                <td>$count</td>
-                                <td><p>Required, The amount of posts you want to be added.</p></td>
+                                <td>array</td>
+                                <td>$conditionals</td>
+                                <td><p>WordPress conditional tags to check against.</p></td>
                             </tr>
                                                     <tr>
                                 <td>array</td>
-                                <td>$options</td>
-                                <td><p>Optional, options to customize post generation.</p></td>
+                                <td>$templates</td>
+                                <td><p>Page template checks (via is_page_template())</p></td>
                             </tr>
                                             </table>
                 
                 
-                                    <h4>Returns</h4>
-                    Void
-                                                </article>
+                            </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -477,65 +422,38 @@ have easy access to all helper methods/properties.</p>
             <table class="table table-condensed">
                                     <tr>
                         <th>
-                            example
-                        </th>
-                        <td>
-                                                                                            <p>'project', 'Sample Project' 20 );</p>
-                                                    </td>
-                    </tr>
-                                    <tr>
-                        <th>
                             todo
                         </th>
                         <td>
-                                                                                            <p>Fix all posts having the same exact post date.</p>
-                                                                                            <p>Add options such as adding <a href="http://placehold.it">http://placehold.it</a> featured images.</p>
                                                     </td>
                     </tr>
                             </table>
         </aside>
     </div>
 
-                                    <div class="row-fluid">
+                                                                    <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_truncate_string" name="method_truncate_string" class="anchor"></a>
+            <a id="method_check_conditional_tag" name="method_check_conditional_tag" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">truncate_string()</h3>
+                <h3 class="private ">check_conditional_tag()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">truncate_string(string <span class="argument">$string</span>, integer <span class="argument">$limit</span>, string <span class="argument">$break</span>, string <span class="argument">$pad</span>) : string</pre>
-                <p><em>Truncates a string with the supplied information</em></p>
-                <p>Example:
-global $mdg_generic;
-$mdg_generic->truncate( $string, 30, " " )</p>
+                <pre class="signature" style="margin-right: 54px;">check_conditional_tag(string <span class="argument">$conditional_tag</span>) : boolean</pre>
+                <p><em>Checks the supplied conditional tag.</em></p>
+                
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
                                 <td>string</td>
-                                <td>$string</td>
-                                <td><p>The string to be truncated</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>integer</td>
-                                <td>$limit</td>
-                                <td><p>The length of the truncated string</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$break</td>
-                                <td><p>The break point</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$pad</td>
-                                <td><p>The string padding to use</p></td>
+                                <td>$conditional_tag</td>
+                                <td><p>The conditional tag to check against.</p></td>
                             </tr>
                                             </table>
                 
                 
                                     <h4>Returns</h4>
-                    string
-                                            &mdash; <p>The truncated string if $string &lt;= $limit or the input $string</p>
+                    boolean
+                                            &mdash; <p>The conditional tag check result.</p>
                                                 </article>
         </div>
         <aside class="span4 detailsbar">
@@ -557,37 +475,27 @@ $mdg_generic->truncate( $string, 30, " " )</p>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_pagination" name="method_pagination" class="anchor"></a>
+            <a id="method_check_page_template" name="method_check_page_template" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">pagination()</h3>
+                <h3 class="private ">check_page_template()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">pagination(string <span class="argument">$max_num_pages</span>, integer <span class="argument">$range</span>, boolean <span class="argument">$output</span>) : string</pre>
-                <p><em>Creates and optionally outputs pagination</em></p>
+                <pre class="signature" style="margin-right: 54px;">check_page_template(string <span class="argument">$page_template</span>) : boolean</pre>
+                <p><em>Checks the supplied page template.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
                                 <td>string</td>
-                                <td>$max_num_pages</td>
-                                <td><p>Optional. The amount of pages to be paginated through, defaults to the global $wp_query->max_num_pages.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>integer</td>
-                                <td>$range</td>
-                                <td><p>Optional. The minimum amount of items to show</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>boolean</td>
-                                <td>$output</td>
-                                <td><p>Optional. Output the content</p></td>
+                                <td>$page_template</td>
+                                <td><p>Page template to check against.</p></td>
                             </tr>
                                             </table>
                 
                 
                                     <h4>Returns</h4>
-                    string
-                                            &mdash; <p>The pagination HTML</p>
+                    boolean
+                                            &mdash; <p>The page template check result.</p>
                                                 </article>
         </div>
         <aside class="span4 detailsbar">
@@ -607,188 +515,16 @@ $mdg_generic->truncate( $string, 30, " " )</p>
         </aside>
     </div>
 
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_get_youtube_id" name="method_get_youtube_id" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">get_youtube_id()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_youtube_id(string <span class="argument">$embed</span>) : \[type]</pre>
-                <p><em>Retrieves the YouTube video ID from the supplied embed code</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$embed</td>
-                                <td><p>YouTube embed code</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    \[type]
-                                            &mdash; <p>[description]</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_clean_multi_input" name="method_clean_multi_input" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">clean_multi_input()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">clean_multi_input(string <span class="argument">$multi_input</span>) : array</pre>
-                <p><em>Cleans the multi input meta field.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$multi_input</td>
-                                <td><p>The multi input meta value.</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    array
-                                            &mdash; <p>The cleaned multi input values.</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                                                            <p>Audit and document this method better.</p>
-                                                                                            <p>Move into MDG_Meta_Helper.</p>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_group_multi_input" name="method_group_multi_input" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">group_multi_input()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">group_multi_input(string <span class="argument">$multi_input</span>) : array</pre>
-                <p><em>Groups the multi input meta field.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$multi_input</td>
-                                <td><p>The multi input meta value.</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    array
-                                            &mdash; <p>The grouped multi input values.</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                                                            <p>Audit and document this method better.</p>
-                                                                                            <p>Move into MDG_Meta_Helper.</p>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_get_attachment_id_from_src" name="method_get_attachment_id_from_src" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">get_attachment_id_from_src()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_attachment_id_from_src(string <span class="argument">$attachment_url</span>) : integer</pre>
-                <p><em>Get attachment ID from src url</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$attachment_url</td>
-                                <td><p>Absolute URI to an attachment</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    integer
-                                            &mdash; <p>Post ID</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                                                    </div>
+                                    </div>
     </section>
 
     <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="source-view-label">class-mdg-generic.php</h3>
+            <h3 id="source-view-label">sidebar.php</h3>
         </div>
         <div class="modal-body">
-            <pre data-src="../files/classes/class-mdg-generic.php.txt" class="language-php line-numbers"></pre>
+            <pre data-src="../files/lib/sidebar.php.txt" class="language-php line-numbers"></pre>
         </div>
     </div>
 

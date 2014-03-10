@@ -113,7 +113,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">96</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
                                 </a>
                             </li>
                             <li>
@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1111730545"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1814628853"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1111730545" class="accordion-body collapse in">
+            <div id="namespace-1814628853" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -149,17 +149,17 @@
                                                                                                     <li class="class"><a href="../classes/MDG_WP_Admin.html">MDG_WP_Admin</a></li>
                                                     <li class="class"><a href="../classes/MDG_Type_Page.html">MDG_Type_Page</a></li>
                                                     <li class="class"><a href="../classes/MDG_Images.html">MDG_Images</a></li>
-                                                    <li class="class"><a href="../classes/Roots_Sidebar.html">Roots_Sidebar</a></li>
+                                                    <li class="class"><a href="../classes/MDG_Sidebar.html">MDG_Sidebar</a></li>
                                                     <li class="class"><a href="../classes/MDG_Type_Base.html">MDG_Type_Base</a></li>
-                                                    <li class="class"><a href="../classes/Roots_Vcard_Widget.html">Roots_Vcard_Widget</a></li>
-                                                    <li class="class"><a href="../classes/Roots_Nav_Walker.html">Roots_Nav_Walker</a></li>
+                                                    <li class="class"><a href="../classes/MDG_Vcard_Widget.html">MDG_Vcard_Widget</a></li>
+                                                    <li class="class"><a href="../classes/MDG_Nav_Walker.html">MDG_Nav_Walker</a></li>
                                                     <li class="class"><a href="../classes/MDG_Type_Post.html">MDG_Type_Post</a></li>
-                                                    <li class="class"><a href="../classes/Roots_Walker_Comment.html">Roots_Walker_Comment</a></li>
+                                                    <li class="class"><a href="../classes/MDG_Walker_Comment.html">MDG_Walker_Comment</a></li>
                                                     <li class="class"><a href="../classes/MDG_Meta_Helper.html">MDG_Meta_Helper</a></li>
                                                     <li class="class"><a href="../classes/MDG_Type_Stub.html">MDG_Type_Stub</a></li>
                                                     <li class="class"><a href="../classes/MDG_Meta_Form_Fields.html">MDG_Meta_Form_Fields</a></li>
                                                     <li class="class"><a href="../classes/MDG_Generic.html">MDG_Generic</a></li>
-                                                    <li class="class"><a href="../classes/Roots_Wrapping.html">Roots_Wrapping</a></li>
+                                                    <li class="class"><a href="../classes/MDG_Wrapping.html">MDG_Wrapping</a></li>
                                             </ul>
                 </div>
             </div>
@@ -190,7 +190,7 @@ Remove self-closing tag and change ''s to "'s on rel_canonical()</p>
                 <aside class="span4 detailsbar">
                     <dl>
                                                     <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">WordPress\MDG Base</div></dd>
+                            <dd><div class="namespace-wrapper">WordPress\MDG_Base</div></dd>
                         
                         
                     </dl>
@@ -216,20 +216,24 @@ Remove self-closing tag and change ''s to "'s on rel_canonical()</p>
             <article class="method">
                 <h3 class=" ">mdg_head_cleanup()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">mdg_head_cleanup()</pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">mdg_head_cleanup() : Void</pre>
+                <p><em>Cleans up excess junk in wp_head.</em></p>
                 
 
                 
                 
-                            </article>
+                                    <h4>Returns</h4>
+                    Void
+                                                </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
                                     <dt>File</dt>
                     <dd><a href=""><div class="path-wrapper">lib/cleanup.php</div></a></dd>
-                                                                            </dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr>
@@ -256,13 +260,15 @@ Remove self-closing tag and change ''s to "'s on rel_canonical()</p>
             <article class="method">
                 <h3 class=" ">mdg_rel_canonical()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">mdg_rel_canonical()</pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">mdg_rel_canonical() : Void</pre>
+                <p><em>Handles adding a canonical link to the head.</em></p>
                 
 
                 
                 
-                            </article>
+                                    <h4>Returns</h4>
+                    Void
+                                                </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -296,14 +302,17 @@ Remove self-closing tag and change ''s to "'s on rel_canonical()</p>
             <article class="method">
                 <h3 class=" ">mdg_language_attributes()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">mdg_language_attributes()</pre>
+                <pre class="signature" style="margin-right: 54px;">mdg_language_attributes() : string</pre>
                 <p><em>Clean up language_attributes() used in &lt;html&gt; tag</em></p>
                 <p>Change lang="en-US" to lang="en"
 Remove dir="ltr"</p>
 
                 
                 
-                            </article>
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Language attributes.</p>
+                                                </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -337,28 +346,33 @@ Remove dir="ltr"</p>
             <article class="method">
                 <h3 class=" ">mdg_wp_title()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">mdg_wp_title( <span class="argument">$title</span>)</pre>
+                <pre class="signature" style="margin-right: 54px;">mdg_wp_title(string <span class="argument">$title</span>) : string</pre>
                 <p><em>Manage output of wp_title()</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$title</td>
-                                <td></td>
+                                <td><p>The current page title.</p></td>
                             </tr>
                                             </table>
                 
                 
-                            </article>
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Title to be display when using wp_title().</p>
+                                                </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
                                     <dt>File</dt>
                     <dd><a href=""><div class="path-wrapper">lib/cleanup.php</div></a></dd>
-                                                                            </dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr>
@@ -385,21 +399,24 @@ Remove dir="ltr"</p>
             <article class="method">
                 <h3 class=" ">mdg_clean_style_tag()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">mdg_clean_style_tag( <span class="argument">$input</span>)</pre>
-                <p><em>Clean up output of stylesheet &lt;link&gt; tags</em></p>
+                <pre class="signature" style="margin-right: 54px;">mdg_clean_style_tag(string <span class="argument">$input</span>) : string</pre>
+                <p><em>Clean up output of stylesheet &lt;link&gt; tags.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$input</td>
-                                <td></td>
+                                <td><p>The stylesheet link.</p></td>
                             </tr>
                                             </table>
                 
                 
-                            </article>
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The cleaned stylesheet link.</p>
+                                                </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -433,21 +450,24 @@ Remove dir="ltr"</p>
             <article class="method">
                 <h3 class=" ">mdg_body_class()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">mdg_body_class( <span class="argument">$classes</span>)</pre>
-                <p><em>Add and remove body_class() classes</em></p>
+                <pre class="signature" style="margin-right: 54px;">mdg_body_class(array <span class="argument">$classes</span>) : array</pre>
+                <p><em>Add and remove body_class() classes.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>array</td>
                                 <td>$classes</td>
-                                <td></td>
+                                <td><p>The current body classes.</p></td>
                             </tr>
                                             </table>
                 
                 
-                            </article>
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>The filtered body classes.</p>
+                                                </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -481,36 +501,39 @@ Remove dir="ltr"</p>
             <article class="method">
                 <h3 class=" ">mdg_embed_wrap()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">mdg_embed_wrap( <span class="argument">$cache</span>,  <span class="argument">$url</span>,  <span class="argument">$attr</span>,  <span class="argument">$post_ID</span>)</pre>
+                <pre class="signature" style="margin-right: 54px;">mdg_embed_wrap(string <span class="argument">$cache</span>, string <span class="argument">$url</span>, string <span class="argument">$attr</span>, string <span class="argument">$post_ID</span>) : string</pre>
                 <p><em>Wrap embedded media as suggested by Readability</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$cache</td>
-                                <td></td>
+                                <td><p>oEmbed cached value.</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$url</td>
-                                <td></td>
+                                <td><p>oEmbed URL.</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$attr</td>
-                                <td></td>
+                                <td><p>oEmbed attributes.</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$post_ID</td>
-                                <td></td>
+                                <td><p>oEmbed post ID.</p></td>
                             </tr>
                                             </table>
                 
                 
-                            </article>
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Wrapped oEmbed.</p>
+                                                </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -547,7 +570,7 @@ Remove dir="ltr"</p>
             <article class="method">
                 <h3 class=" ">mdg_caption()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">mdg_caption( <span class="argument">$output</span>,  <span class="argument">$attr</span>,  <span class="argument">$content</span>)</pre>
+                <pre class="signature" style="margin-right: 54px;">mdg_caption(string <span class="argument">$output</span>, array <span class="argument">$attr</span>, string <span class="argument">$content</span>) : string</pre>
                 <p><em>Add Bootstrap thumbnail styling to images with captions
 Use &lt;figure&gt; and &lt;figcaption&gt;</em></p>
                 
@@ -555,24 +578,27 @@ Use &lt;figure&gt; and &lt;figcaption&gt;</em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$output</td>
-                                <td></td>
+                                <td><p>The caption shortcode output.</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>array</td>
                                 <td>$attr</td>
-                                <td></td>
+                                <td><p>Image caption shortcode attributes.</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$content</td>
-                                <td></td>
+                                <td><p>Image caption shortcode content.</p></td>
                             </tr>
                                             </table>
                 
                 
-                            </article>
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The new caption shortcode output.</p>
+                                                </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -608,13 +634,15 @@ Use &lt;figure&gt; and &lt;figcaption&gt;</em></p>
             <article class="method">
                 <h3 class=" ">mdg_remove_dashboard_widgets()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">mdg_remove_dashboard_widgets()</pre>
+                <pre class="signature" style="margin-right: 54px;">mdg_remove_dashboard_widgets() : Void</pre>
                 <p><em>Remove unnecessary dashboard widgets</em></p>
                 
 
                 
                 
-                            </article>
+                                    <h4>Returns</h4>
+                    Void
+                                                </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -650,28 +678,32 @@ Use &lt;figure&gt; and &lt;figcaption&gt;</em></p>
             <article class="method">
                 <h3 class=" ">mdg_excerpt_length()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">mdg_excerpt_length( <span class="argument">$length</span>)</pre>
+                <pre class="signature" style="margin-right: 54px;">mdg_excerpt_length(integer <span class="argument">$length</span>) : Void</pre>
                 <p><em>Clean up the_excerpt()</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>integer</td>
                                 <td>$length</td>
-                                <td></td>
+                                <td><p>The word count of the excerpt.</p></td>
                             </tr>
                                             </table>
                 
                 
-                            </article>
+                                    <h4>Returns</h4>
+                    Void
+                                                </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
                                     <dt>File</dt>
                     <dd><a href=""><div class="path-wrapper">lib/cleanup.php</div></a></dd>
-                                                                            </dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr>
@@ -698,28 +730,33 @@ Use &lt;figure&gt; and &lt;figcaption&gt;</em></p>
             <article class="method">
                 <h3 class=" ">mdg_excerpt_more()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">mdg_excerpt_more( <span class="argument">$more</span>)</pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">mdg_excerpt_more(string <span class="argument">$more</span>) : string</pre>
+                <p><em>Custom more text for the_excerpt().</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$more</td>
-                                <td></td>
+                                <td><p>Current read more text.</p></td>
                             </tr>
                                             </table>
                 
                 
-                            </article>
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>New read more text.</p>
+                                                </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
                                     <dt>File</dt>
                     <dd><a href=""><div class="path-wrapper">lib/cleanup.php</div></a></dd>
-                                                                            </dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr>
@@ -746,21 +783,24 @@ Use &lt;figure&gt; and &lt;figcaption&gt;</em></p>
             <article class="method">
                 <h3 class=" ">mdg_remove_self_closing_tags()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">mdg_remove_self_closing_tags( <span class="argument">$input</span>)</pre>
+                <pre class="signature" style="margin-right: 54px;">mdg_remove_self_closing_tags(string <span class="argument">$input</span>) : string</pre>
                 <p><em>Remove unnecessary self-closing tags</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$input</td>
-                                <td></td>
+                                <td><p>The input to remove self-closing tags.</p></td>
                             </tr>
                                             </table>
                 
                 
-                            </article>
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The input with unnecessary self-closing tags removed.</p>
+                                                </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -794,21 +834,24 @@ Use &lt;figure&gt; and &lt;figcaption&gt;</em></p>
             <article class="method">
                 <h3 class=" ">mdg_remove_default_description()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">mdg_remove_default_description( <span class="argument">$bloginfo</span>)</pre>
+                <pre class="signature" style="margin-right: 54px;">mdg_remove_default_description(string <span class="argument">$bloginfo</span>) : string</pre>
                 <p><em>Don&#039;t return the default description in the RSS feed if it hasn&#039;t been changed</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$bloginfo</td>
-                                <td></td>
+                                <td><p>Current blog description.</p></td>
                             </tr>
                                             </table>
                 
                 
-                            </article>
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Current blog description or an empty string if it is default.</p>
+                                                </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -884,21 +927,24 @@ Use &lt;figure&gt; and &lt;figcaption&gt;</em></p>
             <article class="method">
                 <h3 class=" ">mdg_request_filter()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">mdg_request_filter( <span class="argument">$query_vars</span>)</pre>
+                <pre class="signature" style="margin-right: 54px;">mdg_request_filter(array <span class="argument">$query_vars</span>) : array</pre>
                 <p><em>Fix for empty search queries redirecting to home page</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>array</td>
                                 <td>$query_vars</td>
-                                <td></td>
+                                <td><p>Current page query vars.</p></td>
                             </tr>
                                             </table>
                 
                 
-                            </article>
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>Current page query vars.</p>
+                                                </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -935,21 +981,24 @@ Use &lt;figure&gt; and &lt;figcaption&gt;</em></p>
             <article class="method">
                 <h3 class=" ">mdg_get_search_form()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">mdg_get_search_form( <span class="argument">$form</span>)</pre>
-                <p><em>Tell WordPress to use searchform.php from the templates/ directory. Requires WordPress 3.6+</em></p>
+                <pre class="signature" style="margin-right: 54px;">mdg_get_search_form(string <span class="argument">$form</span>) : string</pre>
+                <p><em>Tell WordPress to use searchform.php from the templates/ directory. Requires WordPress 3.6+.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$form</td>
-                                <td></td>
+                                <td><p>Current search form.</p></td>
                             </tr>
                                             </table>
                 
                 
-                            </article>
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Empty search form.</p>
+                                                </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -1027,7 +1076,7 @@ Use &lt;figure&gt; and &lt;figcaption&gt;</em></p>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on March 9th, 2014 at 02:36.
+                    on March 10th, 2014 at 00:59.
                 </section>
             </section>
         </section>

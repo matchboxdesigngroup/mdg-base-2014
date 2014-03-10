@@ -1,13 +1,13 @@
 <?php
 /**
- * Handles all /wp-admin/ customizations.
+ * MDG WP Admin Class
  */
 
 /**
- * MDG WP Admin.
+ * Handles all of the customizations wp-admin.
  *
  * @package      WordPress
- * @subpackage   MDG Base
+ * @subpackage   MDG_Base
  *
  * @author       Matchbox Design Group <info@matchboxdesigngroup.com>
  */
