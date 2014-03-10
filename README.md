@@ -22,7 +22,8 @@ MDG Base is a WordPress starter theme based on [Roots](http://roots.io), which u
 - PHP 5.5 `brew php55`
 - [Composer](http://getcomposer.org/) `brew composer`
 - [PHPDocumentor](http://www.phpdoc.org/) `brew phpdocumentor`
-	
+	- [GraphViz](http://www.graphviz.org/Download_macos.php) (used to create graphs)
+
 ####[RVM/Ruby](http://rvm.io/)
 - [SASS](http://sass-lang.com/install) `gem install sass`
 - [SCSSLint](https://github.com/causes/scss-lint) `gem install scss-lint`
@@ -53,8 +54,8 @@ docs/php/index.html
 
 	```
 	# NOTE: Change *:80 to *:8888 if not using default apache ports
-	# NOTE: Change Sitename to your sitename.extension, I suggest using sitename.dev 
-	<VirtualHost *:80>  
+	# NOTE: Change Sitename to your sitename.extension, I suggest using sitename.dev
+	<VirtualHost *:80>
 	ServerName sitename.dev
 	DocumentRoot /Applications/MAMP/htdocs/sitename
 	<Directory /Applications/MAMP/sitename/>
@@ -72,7 +73,7 @@ docs/php/index.html
 	NameVirtualHost *:80
 	Include /Applications/MAMP/conf/apache/vhosts.conf
 	```
-4. Add site to `/etc/hosts` with nano, vim, or other editor `127.0.0.1 sitename.dev` 
+4. Add site to `/etc/hosts` with nano, vim, or other editor `127.0.0.1 sitename.dev`
 5. Restart server
 6. Access site at http://sitename.dev
 7. To add more sites duplicate steps 2(add vHost) and 4(add site to hosts)
@@ -95,7 +96,7 @@ $custom       = $custom_query->get_posts();
 #####MDG_Custom_Post_Type Query
 - Builds in transient caching
 - Returns the exact same data as the default WP_Query above.
-- Should not be used with orderby random or if you are using a drag/drop sorting plugin when using orderly menu_order 
+- Should not be used with orderby random or if you are using a drag/drop sorting plugin when using orderly menu_order
 
 ```
 // Default
@@ -117,7 +118,7 @@ $custom = $mdg_custom_post_type->get_posts( $custom_query_args ); // Returns the
 
 ###Folder Sturcutre
 ```
-├── assets  
+├── assets
 │   ├── bower_components (Bower componenets)
 │   ├── css (Minified production CSS files)
 │   │   └── scss
