@@ -22,6 +22,7 @@ module.exports = function(grunt) {
 
 	// Register Tasks
 	grunt.registerTask('default', [ 'watch' ]);
+	grunt.registerTask('setup', [ '' ]);
 	grunt.registerTask('conflict', [ 'sass:site', 'sass:ltie9', 'uglify:site' ]);
 	grunt.registerTask('build', [ 'sass', 'imagemin', 'uglify:build', 'autoprefixer', 'group_css_media_queries', 'cssmin', 'phpdoc' ]);
 };
