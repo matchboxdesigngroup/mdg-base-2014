@@ -1,792 +1,142 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <meta charset="utf-8"/>
-    <title>API Documentation</title>
-    <meta name="author" content=""/>
-    <meta name="description" content=""/>
-
-    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../css/prism.css" rel="stylesheet" media="all"/>
-    <link href="../css/template.css" rel="stylesheet" media="all"/>
-    
-    <!--[if lt IE 9]>
-    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-    <![endif]-->
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-    <script src="../js/jquery.smooth-scroll.js"></script>
-    <script src="../js/prism.min.js"></script>
-    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-    <script type="text/javascript">
-    function loadExternalCodeSnippets() {
-        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
-            var src = pre.getAttribute('data-src');
-            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-            var language = 'php';
-
-            var code = document.createElement('code');
-            code.className = 'language-' + language;
-
-            pre.textContent = '';
-
-            code.textContent = 'Loading…';
-
-            pre.appendChild(code);
-
-            var xhr = new XMLHttpRequest();
-
-            xhr.open('GET', src, true);
-
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4) {
-
-                    if (xhr.status < 400 && xhr.responseText) {
-                        code.textContent = xhr.responseText;
-
-                        Prism.highlightElement(code);
-                    }
-                    else if (xhr.status >= 400) {
-                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                    }
-                    else {
-                        code.textContent = '✖ Error: File does not exist or is empty';
-                    }
-                }
-            };
-
-            xhr.send(null);
-        });
-    }
-
-    $(document).ready(function(){
-        loadExternalCodeSnippets();
-    });
-    $('#source-view').on('shown', function () {
-        loadExternalCodeSnippets();
-    })
-</script>
-
-    <link rel="shortcut icon" href="../images/favicon.ico"/>
-    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
-    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
-    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>API Documentation » \MDG_Meta_Helper</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
 </head>
 <body>
-
 <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <i class="icon-ellipsis-vertical"></i>
-            </a>
-            <a class="brand" href="../index.html">API Documentation</a>
-
-            <div class="nav-collapse">
-                <ul class="nav pull-right">
-                    <li class="dropdown">
-                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
-                            API Documentation <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                                                    </ul>
-                    </li>
-                    <li class="dropdown" id="charts-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Charts <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="../graphs/class.html">
-                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown" id="reports-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Reports <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">10</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!--<div class="go_to_top">-->
-    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
-    <!--</div>-->
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">API Documentation</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/WordPress.html"><i class="icon-folder-open"></i> WordPress</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">1</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
 </div>
-
-<div id="___" class="container-fluid">
-        <section class="row-fluid">
-        <div class="span2 sidebar">
-                                <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1886465624"></a>
-                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
-            </div>
-            <div id="namespace-1886465624" class="accordion-body collapse in">
-                <div class="accordion-inner">
-
-                    
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div class="btn-toolbar">
+<div class="btn-group visibility" data-toggle="buttons-checkbox">
+<button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button>
+</div>
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i title="Methods" class="icon-custom icon-method"></i> Methods
                     <ul>
-                                                                                                    <li class="class"><a href="../classes/MDG_WP_Admin.html">MDG_WP_Admin</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Type_Page.html">MDG_Type_Page</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Images.html">MDG_Images</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Sidebar.html">MDG_Sidebar</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Type_Base.html">MDG_Type_Base</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Vcard_Widget.html">MDG_Vcard_Widget</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Nav_Walker.html">MDG_Nav_Walker</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Type_Post.html">MDG_Type_Post</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Walker_Comment.html">MDG_Walker_Comment</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Meta_Helper.html">MDG_Meta_Helper</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Type_Stub.html">MDG_Type_Stub</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Meta_Form_Fields.html">MDG_Meta_Form_Fields</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Generic.html">MDG_Generic</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Wrapping.html">MDG_Wrapping</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-        </div>
-    </section>
-    <section class="row-fluid">
-        <div class="span10 offset2">
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <nav>
-                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
-                                            </nav>
-                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
-
-                    <h1><small>\</small>MDG_Meta_Helper</h1>
-                    <p><em>Handles anything to do with custom meta.</em></p>
-                    <p>All classes should at the very minimum extend MDG_Generic so they can
-have easy access to all helper methods/properties.</p>
-
-                    <section id="summary">
-                        <h2>Summary</h2>
-                        <section class="row-fluid heading">
-                            <section class="span4">
-                                <a href="#methods">Methods</a>
-                            </section>
-                            <section class="span4">
-                                <a href="#properties">Properties</a>
-                            </section>
-                            <section class="span4">
-                                <a href="#constants">Constants</a>
-                            </section>
-                        </section>
-                        <section class="row-fluid public">
-                            <section class="span4">
-                                                                    <a href="../classes/MDG_Generic.html#method___construct" class="">__construct()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Helper.html#method_remove_metaboxes" class="">remove_metaboxes()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Helper.html#method_rename_featured_image_meta_box" class="">rename_featured_image_meta_box()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Helper.html#method_make_form" class="">make_form()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Helper.html#method_sanitize_post_meta" class="">sanitize_post_meta()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Helper.html#method_save_custom_meta" class="">save_custom_meta()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Helper.html#method_get_post_meta" class="">get_post_meta()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Helper.html#method_get_custom_meta_fields" class="">get_custom_meta_fields()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Helper.html#method_make_meta_box" class="">make_meta_box()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Helper.html#method_show_meta_box" class="">show_meta_box()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Helper.html#method_save_meta" class="">save_meta()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Form_Fields.html#method_text_field" class="">text_field()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Form_Fields.html#method_email_field" class="">email_field()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Form_Fields.html#method_url_field" class="">url_field()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Form_Fields.html#method_color_picker" class="">color_picker()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Form_Fields.html#method_file_upload_field" class="">file_upload_field()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Form_Fields.html#method_file_upload_field_thumbnail" class="">file_upload_field_thumbnail()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Form_Fields.html#method_textarea" class="">textarea()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Form_Fields.html#method_checkbox" class="">checkbox()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Form_Fields.html#method_radio" class="">radio()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Form_Fields.html#method_select" class="">select()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Form_Fields.html#method_chosen_select" class="">chosen_select()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Form_Fields.html#method_chosen_select_multi" class="">chosen_select_multi()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Form_Fields.html#method_datepicker" class="">datepicker()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Form_Fields.html#method_wysiwg_editor" class="">wysiwg_editor()</a><br />
-                                                                    <a href="../classes/MDG_Meta_Form_Fields.html#method_multi_input_field" class="">multi_input_field()</a><br />
-                                                                    <a href="../classes/MDG_Generic.html#method_is_localhost" class="">is_localhost()</a><br />
-                                                                    <a href="../classes/MDG_Generic.html#method_is_staging" class="">is_staging()</a><br />
-                                                                    <a href="../classes/MDG_Generic.html#method_get_id_by_slug" class="">get_id_by_slug()</a><br />
-                                                                    <a href="../classes/MDG_Generic.html#method_make_dummy_content" class="">make_dummy_content()</a><br />
-                                                                    <a href="../classes/MDG_Generic.html#method_truncate_string" class="">truncate_string()</a><br />
-                                                                    <a href="../classes/MDG_Generic.html#method_pagination" class="">pagination()</a><br />
-                                                                    <a href="../classes/MDG_Generic.html#method_get_youtube_id" class="">get_youtube_id()</a><br />
-                                                                    <a href="../classes/MDG_Generic.html#method_clean_multi_input" class="">clean_multi_input()</a><br />
-                                                                    <a href="../classes/MDG_Generic.html#method_group_multi_input" class="">group_multi_input()</a><br />
-                                                                    <a href="../classes/MDG_Generic.html#method_get_attachment_id_from_src" class="">get_attachment_id_from_src()</a><br />
-                                                            </section>
-                            <section class="span4">
-                                                                    <a href="../classes/MDG_Meta_Helper.html#property_meta_box_title" class="">$meta_box_title</a><br />
-                                                                    <a href="../classes/MDG_Meta_Helper.html#property_meta_box_position" class="">$meta_box_position</a><br />
-                                                                    <a href="../classes/MDG_Meta_Helper.html#property_meta_box_priority" class="">$meta_box_priority</a><br />
-                                                                    <a href="../classes/MDG_Meta_Helper.html#property_featured_image_title" class="">$featured_image_title</a><br />
-                                                                    <a href="../classes/MDG_Meta_Helper.html#property_meta_boxes_to_remove" class="">$meta_boxes_to_remove</a><br />
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No constants found</em>
-                                                            </section>
-                        </section>
-                        <section class="row-fluid protected">
-                            <section class="span4">
-                                                                    <a href="../classes/MDG_Meta_Helper.html#method__add_actions" class="">_add_actions()</a><br />
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No protected properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                <em>N/A</em>
-                            </section>
-                        </section>
-                        <section class="row-fluid private">
-                            <section class="span4">
-                                                                    <a href="../classes/MDG_Meta_Helper.html#method__get_meta_output_kses_allowed_html" class="">_get_meta_output_kses_allowed_html()</a><br />
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No private properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                <em>N/A</em>
-                            </section>
-                        </section>
-                    </section>
-                </div>
-                <aside class="span4 detailsbar">
-                                        
-                    
-                    <dl>
-                        <dt>File</dt>
-                            <dd><a href="../files/classes.class-mdg-meta-helper.php.html"><div class="path-wrapper">classes/class-mdg-meta-helper.php</div></a></dd>
-                                                <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">\WordPress\MDG_Base\MDG_Base</div></dd>
-                                                <dt>Class hierarchy</dt>
-                            <dd class="hierarchy">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-                                        <div class="namespace-wrapper"><a href="../classes/MDG_Generic.html">\MDG_Generic</a></div>
-                                                                    
-                                        <div class="namespace-wrapper"><a href="../classes/MDG_Meta_Form_Fields.html">\MDG_Meta_Form_Fields</a></div>
-                                                                                                    <div class="namespace-wrapper">\MDG_Meta_Helper</div>
-                            </dd>
-
-                        
-                        
-                        
-                        
-                                                                        </dl>
-                    <h2>Tags</h2>
-                    <table class="table table-condensed">
-                                            <tr>
-                            <th>
-                                author
-                            </th>
-                            <td>
-                                                                    <p>Matchbox Design Group <info@matchboxdesigngroup.com></p>
-                                                            </td>
-                        </tr>
-                                            <tr>
-                            <th>
-                                todo
-                            </th>
-                            <td>
-                                                            </td>
-                        </tr>
-                                        </table>
-                </aside>
-            </div>
-
-                        
-                                    <a id="properties" name="properties"></a>
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <h2>Properties</h2>
-                </div>
-                <aside class="span4 detailsbar"></aside>
-            </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_meta_box_title" name="property_meta_box_title" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$meta_box_title</h3>
-                <pre class="signature">$meta_box_title : string</pre>
-                <p><em></em></p>
-                
-
-                                <h4>Type</h4>
-                string
-                &mdash; Sets the meta box title                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_meta_box_position" name="property_meta_box_position" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$meta_box_position</h3>
-                <pre class="signature">$meta_box_position : string</pre>
-                <p><em></em></p>
-                
-
-                                <h4>Type</h4>
-                string
-                &mdash; Sets the meta box position                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_meta_box_priority" name="property_meta_box_priority" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$meta_box_priority</h3>
-                <pre class="signature">$meta_box_priority : string</pre>
-                <p><em></em></p>
-                
-
-                                <h4>Type</h4>
-                string
-                &mdash; Sets the meta box priority                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_featured_image_title" name="property_featured_image_title" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$featured_image_title</h3>
-                <pre class="signature">$featured_image_title : string</pre>
-                <p><em></em></p>
-                
-
-                                <h4>Type</h4>
-                string
-                &mdash; Renames the featured image meta box                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_meta_boxes_to_remove" name="property_meta_boxes_to_remove" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$meta_boxes_to_remove</h3>
-                <pre class="signature">$meta_boxes_to_remove : array</pre>
-                <p><em></em></p>
-                
-
-                                <h4>Type</h4>
-                array
-                &mdash; Meta box id(s) to be removed                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                                            
-                                    <a id="methods" name="methods"></a>
-            <div class="row-fluid">
-                <div class="span8 content class"><h2>Methods</h2></div>
-                <aside class="span4 detailsbar"></aside>
-            </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method___construct" name="method___construct" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">__construct()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct() : Void</pre>
-                <p><em>Class Constructor</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    Void
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Generic.html"><div class="path-wrapper">\MDG_Generic</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_remove_metaboxes" name="method_remove_metaboxes" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">remove_metaboxes()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">remove_metaboxes() : Void</pre>
-                <p><em>Removes unwanted meta boxes</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    Void
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_rename_featured_image_meta_box" name="method_rename_featured_image_meta_box" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">rename_featured_image_meta_box()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">rename_featured_image_meta_box() : Void</pre>
-                <p><em>Renames the featured image meta box.</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    Void
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_make_form" name="method_make_form" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">make_form()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">make_form(array <span class="argument">$args</span>) : \[type]</pre>
-                <p><em>Will cycle through your fields array, and create your form</em></p>
-                <p>Your fields array should look something like the example provided
-and you can pass this array via $args (e.g. $helper->make_form(array('meta_fields' => $fields_array);
-array(
- array(
-  'label' => 'Field one',
-  'desc' => 'helper text,
-  'id' => 'fieldOneID',
-  'type' => 'text'
- ),
- array(
-  'label' => 'Field Two',
-  'desc' => 'helper text,
-  'id' => 'fieldTwoID',
-  'type' => 'text'
- )
-);</p>
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>array</td>
-                                <td>$args</td>
-                                <td><p>[description]</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    \[type]
-                                            &mdash; <p>[description]</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_sanitize_post_meta" name="method_sanitize_post_meta" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">sanitize_post_meta()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">sanitize_post_meta(string <span class="argument">$field_type</span>, mixed <span class="argument">$value</span>) : mixed</pre>
-                <p><em>Handles sanitizing the post meta value dependent of the field type.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$field_type</td>
-                                <td><p>The field id/type.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>mixed</td>
-                                <td>$value</td>
-                                <td><p>The meta value to be sanitized.</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    mixed
-                                            &mdash; <p>The sanitized meta data.</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_save_custom_meta" name="method_save_custom_meta" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">save_custom_meta()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">save_custom_meta(integer <span class="argument">$post_id</span>, array <span class="argument">$custom_meta_fields</span>) : Void</pre>
-                <p><em>Saves your custom meta when the post is saved.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>integer</td>
-                                <td>$post_id</td>
-                                <td><p>The post id to attribute the meta.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$custom_meta_fields</td>
-                                <td><p>All of the meta fields to save.</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    Void
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_get_post_meta" name="method_get_post_meta" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">get_post_meta()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_post_meta(integer <span class="argument">$post_id</span>, string <span class="argument">$key</span>) : string|array</pre>
-                <p><em>Retrieves custom post meta.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>integer</td>
-                                <td>$post_id</td>
-                                <td><p>Optional post id, defaults to current post.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$key</td>
-                                <td><p>Optional meta key, to return one meta value instead of all of them.</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    string|array
-                                            &mdash; <p>Specific post meta value | All all post meta values.</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_get_custom_meta_fields" name="method_get_custom_meta_fields" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">get_custom_meta_fields()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_custom_meta_fields() : array</pre>
-                <p><em>Override this method to create custom meta fields.</em></p>
-                <p>By returning an empty array in this method, we're telling the class to not to
+<li class="method public "><a href="#method___construct" title="__construct() :: Class Constructor"><span class="description">Class Constructor</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_get_custom_meta_fields" title="get_custom_meta_fields() :: Override this method to create custom meta fields."><span class="description">Override this method to create custom meta fields.</span><pre>get_custom_meta_fields()</pre></a></li>
+<li class="method public "><a href="#method_get_post_meta" title="get_post_meta() :: Retrieves custom post meta."><span class="description">Retrieves custom post meta.</span><pre>get_post_meta()</pre></a></li>
+<li class="method public "><a href="#method_make_form" title="make_form() :: Will cycle through your fields array, and create your form"><span class="description">Will cycle through your fields array, and create your form</span><pre>make_form()</pre></a></li>
+<li class="method public "><a href="#method_make_meta_box" title="make_meta_box() :: Handles registering and generating the custom meta box."><span class="description">Handles registering and generating the custom meta box.</span><pre>make_meta_box()</pre></a></li>
+<li class="method public "><a href="#method_remove_metaboxes" title="remove_metaboxes() :: Removes unwanted meta boxes"><span class="description">Removes unwanted meta boxes</span><pre>remove_metaboxes()</pre></a></li>
+<li class="method public "><a href="#method_rename_featured_image_meta_box" title="rename_featured_image_meta_box() :: Renames the featured image meta box."><span class="description">Renames the featured image meta box.</span><pre>rename_featured_image_meta_box()</pre></a></li>
+<li class="method public "><a href="#method_sanitize_post_meta" title="sanitize_post_meta() :: Handles sanitizing the post meta value dependent of the field type."><span class="description">Handles sanitizing the post meta value dependent of the field type.</span><pre>sanitize_post_meta()</pre></a></li>
+<li class="method public "><a href="#method_save_custom_meta" title="save_custom_meta() :: Saves your custom meta when the post is saved."><span class="description">Saves your custom meta when the post is saved.</span><pre>save_custom_meta()</pre></a></li>
+<li class="method public "><a href="#method_save_meta" title="save_meta() :: Handles the saving of custom meta."><span class="description">Handles the saving of custom meta.</span><pre>save_meta()</pre></a></li>
+<li class="method public "><a href="#method_show_meta_box" title="show_meta_box() :: Handles outputting of the meta box form."><span class="description">Handles outputting of the meta box form.</span><pre>show_meta_box()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul><li class="method protected "><a href="#method__add_actions" title="_add_actions() :: All action hooks that are required by the class using add_action."><span class="description">All action hooks that are required by the class using add_action.</span><pre>_add_actions()</pre></a></li></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul><li class="method private "><a href="#method__get_meta_output_kses_allowed_html" title="_get_meta_output_kses_allowed_html() :: All of the allowed tags when outputting meta form fields."><span class="description">All of the allowed tags when outputting meta form fields.</span><pre>_get_meta_output_kses_allowed_html()</pre></a></li></ul>
+</li>
+<li class="nav-header">
+<i title="Properties" class="icon-custom icon-property"></i> Properties
+                    <ul>
+<li class="property public "><a href="#property_featured_image_title" title="$featured_image_title() :: "><span class="description">Renames the featured image meta box</span><pre>$featured_image_title</pre></a></li>
+<li class="property public "><a href="#property_meta_box_position" title="$meta_box_position() :: "><span class="description">Sets the meta box position</span><pre>$meta_box_position</pre></a></li>
+<li class="property public "><a href="#property_meta_box_priority" title="$meta_box_priority() :: "><span class="description">Sets the meta box priority</span><pre>$meta_box_priority</pre></a></li>
+<li class="property public "><a href="#property_meta_box_title" title="$meta_box_title() :: "><span class="description">Sets the meta box title</span><pre>$meta_box_title</pre></a></li>
+<li class="property public "><a href="#property_meta_boxes_to_remove" title="$meta_boxes_to_remove() :: "><span class="description">Meta box id(s) to be removed</span><pre>$meta_boxes_to_remove</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\MDG_Meta_Helper"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/MDG_Meta_Helper.html">MDG_Meta_Helper</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">Handles anything to do with custom meta.</p>
+<div class="details">
+<div class="long_description">All classes should at the very minimum extend MDG_Generic so they can
+have easy access to all helper methods/properties.</div>
+<table class="table table-bordered">
+<tr>
+<th>package</th>
+<td><a href="../packages/WordPress.MDG_Product_Builder.html">WordPress</a></td>
+</tr>
+<tr>
+<th>subpackage</th>
+<td>MDG_Product_Builder</td>
+</tr>
+<tr>
+<th>author</th>
+<td><a href="mailto:info@matchboxdesigngroup.com">Matchbox Design Group</a></td>
+</tr>
+</table>
+<h3>
+<i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse" title="public">
+<h2>Class Constructor</h2>
+<pre>__construct() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_get_custom_meta_fields"></a><div class="element clickable method public method_get_custom_meta_fields" data-toggle="collapse" data-target=".method_get_custom_meta_fields .collapse" title="public">
+<h2>Override this method to create custom meta fields.</h2>
+<pre>get_custom_meta_fields() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">By returning an empty array in this method, we're telling the class to not to
 do anything will custom meta (e.g. meta boxes, and saving meta etc...)
-The overridden method should return an array like..</p>
+The overridden method should return an array like..
 <code>
 return array(
  array(
@@ -802,1551 +152,231 @@ return array(
   'type'  => 'textarea',
  )
 );
-</code>
-
-                
-                
-                                    <h4>Returns</h4>
-                    array
-                                            &mdash; <p>Custom meta fields.</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_make_meta_box" name="method_make_meta_box" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">make_meta_box()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">make_meta_box() : Void</pre>
-                <p><em>Handles registering and generating the custom meta box.</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    Void
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_show_meta_box" name="method_show_meta_box" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">show_meta_box()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">show_meta_box() : Void</pre>
-                <p><em>Handles outputting of the meta box form.</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    Void
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_save_meta" name="method_save_meta" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">save_meta()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">save_meta(integer <span class="argument">$post_id</span>) : Void</pre>
-                <p><em>Handles the saving of custom meta.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>integer</td>
-                                <td>$post_id</td>
-                                <td><p>ID of the post that you wish to save custom meta for</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    Void
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_text_field" name="method_text_field" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">text_field()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">text_field(string <span class="argument">$id</span>, string <span class="argument">$meta</span>, string <span class="argument">$desc</span>) : string</pre>
-                <p><em>Creates a HTML text field and description.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$id</td>
-                                <td><p>id attribute</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$meta</td>
-                                <td><p>meta value</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$desc</td>
-                                <td><p>description</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                            &mdash; <p>The text field and description</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Meta_Form_Fields.html"><div class="path-wrapper">\MDG_Meta_Form_Fields</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_email_field" name="method_email_field" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">email_field()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">email_field(string <span class="argument">$id</span>, string <span class="argument">$meta</span>, string <span class="argument">$desc</span>) : string</pre>
-                <p><em>Creates a HTML email field and description.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$id</td>
-                                <td><p>id attribute</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$meta</td>
-                                <td><p>meta value</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$desc</td>
-                                <td><p>description</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                            &mdash; <p>The email field and description</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Meta_Form_Fields.html"><div class="path-wrapper">\MDG_Meta_Form_Fields</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_url_field" name="method_url_field" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">url_field()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">url_field(string <span class="argument">$id</span>, string <span class="argument">$meta</span>, string <span class="argument">$desc</span>) : string</pre>
-                <p><em>Creates a HTML URL field and description.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$id</td>
-                                <td><p>id attribute</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$meta</td>
-                                <td><p>meta value</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$desc</td>
-                                <td><p>description</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                            &mdash; <p>The URL field and description</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Meta_Form_Fields.html"><div class="path-wrapper">\MDG_Meta_Form_Fields</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_color_picker" name="method_color_picker" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">color_picker()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">color_picker(string <span class="argument">$id</span>, string <span class="argument">$meta</span>, string <span class="argument">$desc</span>) : string</pre>
-                <p><em>Creates a color picker.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$id</td>
-                                <td><p>id attribute</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$meta</td>
-                                <td><p>meta value</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$desc</td>
-                                <td><p>description</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                            &mdash; <p>The color picker and description</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Meta_Form_Fields.html"><div class="path-wrapper">\MDG_Meta_Form_Fields</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_file_upload_field" name="method_file_upload_field" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">file_upload_field()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">file_upload_field(string <span class="argument">$id</span>, string <span class="argument">$file_src</span>, string <span class="argument">$desc</span>) : string</pre>
-                <p><em>Creates a HTML input field and description.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$id</td>
-                                <td><p>id attribute</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$file_src</td>
-                                <td><p>meta value</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$desc</td>
-                                <td><p>description</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                            &mdash; <p>The input field and description</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Meta_Form_Fields.html"><div class="path-wrapper">\MDG_Meta_Form_Fields</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_file_upload_field_thumbnail" name="method_file_upload_field_thumbnail" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">file_upload_field_thumbnail()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">file_upload_field_thumbnail(string <span class="argument">$file_src</span>) : string</pre>
-                <p><em>Retrieves file upload field thumbnails</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$file_src</td>
-                                <td><p>The files source url</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                            &mdash; <p>The image HTML or an empty string</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Meta_Form_Fields.html"><div class="path-wrapper">\MDG_Meta_Form_Fields</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_textarea" name="method_textarea" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">textarea()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">textarea(string <span class="argument">$id</span>, string <span class="argument">$meta</span>, string <span class="argument">$desc</span>) : string</pre>
-                <p><em>Creates a HTML textarea and description.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$id</td>
-                                <td><p>id attribute</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$meta</td>
-                                <td><p>meta value</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$desc</td>
-                                <td><p>description</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                            &mdash; <p>The input field and description</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Meta_Form_Fields.html"><div class="path-wrapper">\MDG_Meta_Form_Fields</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_checkbox" name="method_checkbox" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">checkbox()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">checkbox(string <span class="argument">$id</span>, string <span class="argument">$meta</span>, string <span class="argument">$desc</span>) : string</pre>
-                <p><em>Creates a HTML checkbox and description.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$id</td>
-                                <td><p>id attribute</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$meta</td>
-                                <td><p>meta value</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$desc</td>
-                                <td><p>description</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                            &mdash; <p>The input field and description</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Meta_Form_Fields.html"><div class="path-wrapper">\MDG_Meta_Form_Fields</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_radio" name="method_radio" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">radio()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">radio(string <span class="argument">$id</span>, string <span class="argument">$meta</span>, string <span class="argument">$desc</span>, array <span class="argument">$options</span>) : string</pre>
-                <p><em>Creates a HTML radio and description.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$id</td>
-                                <td><p>id attribute</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$meta</td>
-                                <td><p>meta value</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$desc</td>
-                                <td><p>description</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$options</td>
-                                <td><p>select options</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                            &mdash; <p>The input field and description</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Meta_Form_Fields.html"><div class="path-wrapper">\MDG_Meta_Form_Fields</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_select" name="method_select" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">select()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">select(string <span class="argument">$id</span>, string <span class="argument">$meta</span>, string <span class="argument">$desc</span>, array <span class="argument">$options</span>) : string</pre>
-                <p><em>Creates a HTML select and description.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$id</td>
-                                <td><p>id attribute</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$meta</td>
-                                <td><p>meta value</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$desc</td>
-                                <td><p>description</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$options</td>
-                                <td><p>select options</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                            &mdash; <p>The input field and description</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Meta_Form_Fields.html"><div class="path-wrapper">\MDG_Meta_Form_Fields</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_chosen_select" name="method_chosen_select" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">chosen_select()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">chosen_select(string <span class="argument">$id</span>, string <span class="argument">$meta</span>, string <span class="argument">$desc</span>, array <span class="argument">$options</span>) : string</pre>
-                <p><em>Creates a HTML chosen select and description.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$id</td>
-                                <td><p>id attribute</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$meta</td>
-                                <td><p>meta value</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$desc</td>
-                                <td><p>description</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$options</td>
-                                <td><p>select options</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                            &mdash; <p>The input field and description</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Meta_Form_Fields.html"><div class="path-wrapper">\MDG_Meta_Form_Fields</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_chosen_select_multi" name="method_chosen_select_multi" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">chosen_select_multi()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">chosen_select_multi(string <span class="argument">$id</span>, string <span class="argument">$meta</span>, string <span class="argument">$desc</span>, array <span class="argument">$options</span>) : string</pre>
-                <p><em>Creates a HTML chosen select multiple and description.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$id</td>
-                                <td><p>id attribute</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$meta</td>
-                                <td><p>meta value</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$desc</td>
-                                <td><p>description</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$options</td>
-                                <td><p>select options</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                            &mdash; <p>The input field and description</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Meta_Form_Fields.html"><div class="path-wrapper">\MDG_Meta_Form_Fields</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_datepicker" name="method_datepicker" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">datepicker()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">datepicker(string <span class="argument">$id</span>, string <span class="argument">$meta</span>, string <span class="argument">$desc</span>) : string</pre>
-                <p><em>Creates a date picker.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$id</td>
-                                <td><p>id attribute</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$meta</td>
-                                <td><p>meta value</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$desc</td>
-                                <td><p>description</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                            &mdash; <p>The date picker and description</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Meta_Form_Fields.html"><div class="path-wrapper">\MDG_Meta_Form_Fields</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_wysiwg_editor" name="method_wysiwg_editor" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">wysiwg_editor()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">wysiwg_editor(string <span class="argument">$id</span>, string <span class="argument">$meta</span>, string <span class="argument">$desc</span>) : string</pre>
-                <p><em>Creates a HTML text area WYSWIG editor and description.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$id</td>
-                                <td><p>id attribute</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$meta</td>
-                                <td><p>meta value</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$desc</td>
-                                <td><p>description</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                            &mdash; <p>The text area and description</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Meta_Form_Fields.html"><div class="path-wrapper">\MDG_Meta_Form_Fields</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_multi_input_field" name="method_multi_input_field" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">multi_input_field()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">multi_input_field(array <span class="argument">$args</span>) : string</pre>
-                <p><em>Makes the multi field input</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>array</td>
-                                <td>$args</td>
-                                <td><p>The input field arguments.</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                            &mdash; <p>The multi input field and description.</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Meta_Form_Fields.html"><div class="path-wrapper">\MDG_Meta_Form_Fields</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                                                            <p>Document and fix this method better.</p>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_is_localhost" name="method_is_localhost" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">is_localhost()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">is_localhost() : boolean</pre>
-                <p><em>Checks if the current host is localhost.</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    boolean
-                                            &mdash; <p>If the current host is localhost.</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Generic.html"><div class="path-wrapper">\MDG_Generic</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_is_staging" name="method_is_staging" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">is_staging()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">is_staging() : boolean</pre>
-                <p><em>Checks if the current host is a staging site.</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    boolean
-                                            &mdash; <p>If the current host is a staging site.</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Generic.html"><div class="path-wrapper">\MDG_Generic</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_get_id_by_slug" name="method_get_id_by_slug" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">get_id_by_slug()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_id_by_slug(string <span class="argument">$slug</span>) : integer</pre>
-                <p><em>Retrieves a page/post/custom post type ID when provided a slug.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$slug</td>
-                                <td><p>The slug of the page/post/custom post type you want an ID for.</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    integer
-                                            &mdash; <p>The ID of the page/post/custom post type</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Generic.html"><div class="path-wrapper">\MDG_Generic</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_make_dummy_content" name="method_make_dummy_content" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">make_dummy_content()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">make_dummy_content(string <span class="argument">$post_type</span>, string <span class="argument">$title</span>, integer <span class="argument">$count</span>, array <span class="argument">$options</span>) : Void</pre>
-                <p><em>Adds testing post content to the supplied post type.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$post_type</td>
-                                <td><p>Required, Name of the post type to create content for.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$title</td>
-                                <td><p>Required, The title base you want to use without a trailing space, the post count will be appended to the end.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>integer</td>
-                                <td>$count</td>
-                                <td><p>Required, The amount of posts you want to be added.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$options</td>
-                                <td><p>Optional, options to customize post generation.</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    Void
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Generic.html"><div class="path-wrapper">\MDG_Generic</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            example
-                        </th>
-                        <td>
-                                                                                            <p>'project', 'Sample Project' 20 );</p>
-                                                    </td>
-                    </tr>
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                                                            <p>Fix all posts having the same exact post date.</p>
-                                                                                            <p>Add options such as adding <a href="http://placehold.it">http://placehold.it</a> featured images.</p>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_truncate_string" name="method_truncate_string" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">truncate_string()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">truncate_string(string <span class="argument">$string</span>, integer <span class="argument">$limit</span>, string <span class="argument">$break</span>, string <span class="argument">$pad</span>) : string</pre>
-                <p><em>Truncates a string with the supplied information</em></p>
-                <p>Example:
-global $mdg_generic;
-$mdg_generic->truncate( $string, 30, " " )</p>
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$string</td>
-                                <td><p>The string to be truncated</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>integer</td>
-                                <td>$limit</td>
-                                <td><p>The length of the truncated string</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$break</td>
-                                <td><p>The break point</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$pad</td>
-                                <td><p>The string padding to use</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                            &mdash; <p>The truncated string if $string &lt;= $limit or the input $string</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Generic.html"><div class="path-wrapper">\MDG_Generic</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_pagination" name="method_pagination" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">pagination()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">pagination(string <span class="argument">$max_num_pages</span>, integer <span class="argument">$range</span>, boolean <span class="argument">$output</span>) : string</pre>
-                <p><em>Creates and optionally outputs pagination</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$max_num_pages</td>
-                                <td><p>Optional. The amount of pages to be paginated through, defaults to the global $wp_query->max_num_pages.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>integer</td>
-                                <td>$range</td>
-                                <td><p>Optional. The minimum amount of items to show</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>boolean</td>
-                                <td>$output</td>
-                                <td><p>Optional. Output the content</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                            &mdash; <p>The pagination HTML</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Generic.html"><div class="path-wrapper">\MDG_Generic</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_get_youtube_id" name="method_get_youtube_id" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">get_youtube_id()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_youtube_id(string <span class="argument">$embed</span>) : \[type]</pre>
-                <p><em>Retrieves the YouTube video ID from the supplied embed code</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$embed</td>
-                                <td><p>YouTube embed code</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    \[type]
-                                            &mdash; <p>[description]</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Generic.html"><div class="path-wrapper">\MDG_Generic</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_clean_multi_input" name="method_clean_multi_input" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">clean_multi_input()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">clean_multi_input(string <span class="argument">$multi_input</span>) : array</pre>
-                <p><em>Cleans the multi input meta field.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$multi_input</td>
-                                <td><p>The multi input meta value.</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    array
-                                            &mdash; <p>The cleaned multi input values.</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Generic.html"><div class="path-wrapper">\MDG_Generic</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                                                            <p>Audit and document this method better.</p>
-                                                                                            <p>Move into MDG_Meta_Helper.</p>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_group_multi_input" name="method_group_multi_input" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">group_multi_input()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">group_multi_input(string <span class="argument">$multi_input</span>) : array</pre>
-                <p><em>Groups the multi input meta field.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$multi_input</td>
-                                <td><p>The multi input meta value.</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    array
-                                            &mdash; <p>The grouped multi input values.</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Generic.html"><div class="path-wrapper">\MDG_Generic</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                                                            <p>Audit and document this method better.</p>
-                                                                                            <p>Move into MDG_Meta_Helper.</p>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_get_attachment_id_from_src" name="method_get_attachment_id_from_src" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">get_attachment_id_from_src()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_attachment_id_from_src(string <span class="argument">$attachment_url</span>) : integer</pre>
-                <p><em>Get attachment ID from src url</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$attachment_url</td>
-                                <td><p>Absolute URI to an attachment</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    integer
-                                            &mdash; <p>Post ID</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/MDG_Generic.html"><div class="path-wrapper">\MDG_Generic</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method__add_actions" name="method__add_actions" class="anchor"></a>
-            <article class="method">
-                <h3 class="protected ">_add_actions()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">_add_actions() : Void</pre>
-                <p><em>All action hooks that are required by the class using add_action.</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    Void
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method__get_meta_output_kses_allowed_html" name="method__get_meta_output_kses_allowed_html" class="anchor"></a>
-            <article class="method">
-                <h3 class="private ">_get_meta_output_kses_allowed_html()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">_get_meta_output_kses_allowed_html() : array</pre>
-                <p><em>All of the allowed tags when outputting meta form fields.</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    array
-                                            &mdash; <p>Allowed HTML tags.</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    </div>
-    </section>
-
-    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="source-view-label">class-mdg-meta-helper.php</h3>
-        </div>
-        <div class="modal-body">
-            <pre data-src="../files/classes/class-mdg-meta-helper.php.txt" class="language-php line-numbers"></pre>
-        </div>
-    </div>
-
-    <footer class="row-fluid">
-        <section class="span10 offset2">
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <section class="row-fluid footer-sections">
-                        <section class="span4">
-                                                        <h1><i class="icon-code"></i></h1>
-                            <div>
-                                <ul>
-                                                                    </ul>
-                            </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-bar-chart"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-pushpin"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="../reports/errors.html">Errors</a></li>
-                                    <li><a href="../reports/markers.html">Markers</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                    </section>
-                </section>
-            </section>
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <hr />
-                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on March 9th, 2014 at 20:23.
-                </section>
-            </section>
-        </section>
-    </footer>
+</code></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>Custom meta fields.</div>
+</div></div>
 </div>
-
+<a id="method_get_post_meta"></a><div class="element clickable method public method_get_post_meta" data-toggle="collapse" data-target=".method_get_post_meta .collapse" title="public">
+<h2>Retrieves custom post meta.</h2>
+<pre>get_post_meta(integer $post_id<code> = null</code>, string $key<code> = null</code>) : string | array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$post_id</h4>
+<code>integer</code><p>Optional post id, defaults to current post.</p></div>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><p>Optional meta key, to return one meta value instead of all of them.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code><code>array</code>Specific post meta value | All all post meta values.</div>
+</div></div>
+</div>
+<a id="method_make_form"></a><div class="element clickable method public method_make_form" data-toggle="collapse" data-target=".method_make_form .collapse" title="public">
+<h2>Will cycle through your fields array, and create your form</h2>
+<pre>make_form(array $args<code> = array()</code>) : <a href="%5Btype%5D.html">\[type]</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">Your fields array should look something like the example provided
+and you can pass this array via $args (e.g. $helper->make_form(array('meta_fields' => $fields_array);
+array(
+ array(
+  'label' => 'Field one',
+  'desc' => 'helper text,
+  'id' => 'fieldOneID',
+  'type' => 'text'
+ ),
+ array(
+  'label' => 'Field Two',
+  'desc' => 'helper text,
+  'id' => 'fieldTwoID',
+  'type' => 'text'
+ )
+);</div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$args</h4>
+<code>array</code><p>[description]</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="%5Btype%5D.html">\[type]</a></code>[description]</div>
+</div></div>
+</div>
+<a id="method_make_meta_box"></a><div class="element clickable method public method_make_meta_box" data-toggle="collapse" data-target=".method_make_meta_box .collapse" title="public">
+<h2>Handles registering and generating the custom meta box.</h2>
+<pre>make_meta_box() : Void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>Void</code></div>
+</div></div>
+</div>
+<a id="method_remove_metaboxes"></a><div class="element clickable method public method_remove_metaboxes" data-toggle="collapse" data-target=".method_remove_metaboxes .collapse" title="public">
+<h2>Removes unwanted meta boxes</h2>
+<pre>remove_metaboxes() : Void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>Void</code></div>
+</div></div>
+</div>
+<a id="method_rename_featured_image_meta_box"></a><div class="element clickable method public method_rename_featured_image_meta_box" data-toggle="collapse" data-target=".method_rename_featured_image_meta_box .collapse" title="public">
+<h2>Renames the featured image meta box.</h2>
+<pre>rename_featured_image_meta_box() : Void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>Void</code></div>
+</div></div>
+</div>
+<a id="method_sanitize_post_meta"></a><div class="element clickable method public method_sanitize_post_meta" data-toggle="collapse" data-target=".method_sanitize_post_meta .collapse" title="public">
+<h2>Handles sanitizing the post meta value dependent of the field type.</h2>
+<pre>sanitize_post_meta(string $field_type, mixed $value) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$field_type</h4>
+<code>string</code><p>The field id/type.</p></div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><p>The meta value to be sanitized.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>The sanitized meta data.</div>
+</div></div>
+</div>
+<a id="method_save_custom_meta"></a><div class="element clickable method public method_save_custom_meta" data-toggle="collapse" data-target=".method_save_custom_meta .collapse" title="public">
+<h2>Saves your custom meta when the post is saved.</h2>
+<pre>save_custom_meta(integer $post_id<code> = null</code>, array $custom_meta_fields<code> = array()</code>) : Void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$post_id</h4>
+<code>integer</code><p>The post id to attribute the meta.</p></div>
+<div class="subelement argument">
+<h4>$custom_meta_fields</h4>
+<code>array</code><p>All of the meta fields to save.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>Void</code></div>
+</div></div>
+</div>
+<a id="method_save_meta"></a><div class="element clickable method public method_save_meta" data-toggle="collapse" data-target=".method_save_meta .collapse" title="public">
+<h2>Handles the saving of custom meta.</h2>
+<pre>save_meta(integer $post_id) : Void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$post_id</h4>
+<code>integer</code><p>ID of the post that you wish to save custom meta for</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>Void</code></div>
+</div></div>
+</div>
+<a id="method_show_meta_box"></a><div class="element clickable method public method_show_meta_box" data-toggle="collapse" data-target=".method_show_meta_box .collapse" title="public">
+<h2>Handles outputting of the meta box form.</h2>
+<pre>show_meta_box() : Void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>Void</code></div>
+</div></div>
+</div>
+<a id="method__add_actions"></a><div class="element clickable method protected method__add_actions" data-toggle="collapse" data-target=".method__add_actions .collapse" title="protected">
+<h2>All action hooks that are required by the class using add_action.</h2>
+<pre>_add_actions() : Void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>Void</code></div>
+</div></div>
+</div>
+<a id="method__get_meta_output_kses_allowed_html"></a><div class="element clickable method private method__get_meta_output_kses_allowed_html" data-toggle="collapse" data-target=".method__get_meta_output_kses_allowed_html .collapse" title="private">
+<h2>All of the allowed tags when outputting meta form fields.</h2>
+<pre>_get_meta_output_kses_allowed_html() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>Allowed HTML tags.</div>
+</div></div>
+</div>
+<h3>
+<i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_featured_image_title"> </a><div class="element clickable property public property_featured_image_title" data-toggle="collapse" data-target=".property_featured_image_title .collapse" title="public">
+<h2>Renames the featured image meta box</h2>
+<pre>$featured_image_title : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_meta_box_position"> </a><div class="element clickable property public property_meta_box_position" data-toggle="collapse" data-target=".property_meta_box_position .collapse" title="public">
+<h2>Sets the meta box position</h2>
+<pre>$meta_box_position : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_meta_box_priority"> </a><div class="element clickable property public property_meta_box_priority" data-toggle="collapse" data-target=".property_meta_box_priority .collapse" title="public">
+<h2>Sets the meta box priority</h2>
+<pre>$meta_box_priority : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_meta_box_title"> </a><div class="element clickable property public property_meta_box_title" data-toggle="collapse" data-target=".property_meta_box_title .collapse" title="public">
+<h2>Sets the meta box title</h2>
+<pre>$meta_box_title : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_meta_boxes_to_remove"> </a><div class="element clickable property public property_meta_boxes_to_remove" data-toggle="collapse" data-target=".property_meta_boxes_to_remove .collapse" title="public">
+<h2>Meta box id(s) to be removed</h2>
+<pre>$meta_boxes_to_remove : array</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.2.0
+</a> and<br>
+            generated on 2014-03-13T18:34:38-05:00.<br></footer></div>
+</div>
 </body>
 </html>

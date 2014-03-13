@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>API Documentation » global</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">API Documentation</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/WordPress.html"><i class="icon-folder-open"></i> WordPress</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">1</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-map-marker"></i> Namespaces</li>
+<li>
+<span class="empty-namespace"><i class="icon-stop"></i>global</span><ul class="nav nav-list nav-namespaces"></ul>
+</li>
+<li class="nav-header">
+<i title="Functions" class="icon-custom icon-function"></i> Functions</li>
+<li class="function  "><a href="#function_add_filters" title="add_filters() :: Adds one function to multiple filters."><span class="description">Adds one function to multiple filters.</span><pre>add_filters</pre></a></li>
+<li class="function  "><a href="#function_development_url_change" title="development_url_change() :: Allows for testing on virtual machines like Virtual Box."><span class="description">Allows for testing on virtual machines like Virtual Box.</span><pre>development_url_change</pre></a></li>
+<li class="function  "><a href="#function_is_element_empty" title="is_element_empty() :: Checks to see if an element is empty."><span class="description">Checks to see if an element is empty.</span><pre>is_element_empty</pre></a></li>
+<li class="function  "><a href="#function_mdg_activation_options_page_capability" title="mdg_activation_options_page_capability() :: Sets the capability as user must have to access the theme options page"><span class="description">Sets the capability as user must have to access the theme options page</span><pre>mdg_activation_options_page_capability</pre></a></li>
+<li class="function  "><a href="#function_mdg_add_favicon" title="mdg_add_favicon() :: Adds the favicon for the site, login, and administrator section."><span class="description">Adds the favicon for the site, login, and administrator section.</span><pre>mdg_add_favicon</pre></a></li>
+<li class="function  "><a href="#function_mdg_add_rewrites" title="mdg_add_rewrites() :: URL rewriting"><span class="description">URL rewriting</span><pre>mdg_add_rewrites</pre></a></li>
+<li class="function  "><a href="#function_mdg_attachment_link_class" title='mdg_attachment_link_class() :: Add class="thumbnail img-thumbnail" to attachment items.'><span class="description">Add class="thumbnail img-thumbnail" to attachment items.</span><pre>mdg_attachment_link_class</pre></a></li>
+<li class="function  "><a href="#function_mdg_body_class" title="mdg_body_class() :: Add and remove body_class() classes."><span class="description">Add and remove body_class() classes.</span><pre>mdg_body_class</pre></a></li>
+<li class="function  "><a href="#function_mdg_caption" title="mdg_caption() :: Add Bootstrap thumbnail styling to images with captions
+Use &lt;figure&gt; and &lt;figcaption&gt;"><span class="description">Add Bootstrap thumbnail styling to images with captions
+Use &lt;figure&gt; and &lt;figcaption&gt;</span><pre>mdg_caption</pre></a></li>
+<li class="function  "><a href="#function_mdg_clean_style_tag" title="mdg_clean_style_tag() :: Clean up output of stylesheet &lt;link&gt; tags."><span class="description">Clean up output of stylesheet &lt;link&gt; tags.</span><pre>mdg_clean_style_tag</pre></a></li>
+<li class="function  "><a href="#function_mdg_clean_urls" title="mdg_clean_urls() :: Cleans URLs."><span class="description">Cleans URLs.</span><pre>mdg_clean_urls</pre></a></li>
+<li class="function  "><a href="#function_mdg_clear_shortcode" title="mdg_clear_shortcode() :: Adds a clearing div."><span class="description">Adds a clearing div.</span><pre>mdg_clear_shortcode</pre></a></li>
+<li class="function  "><a href="#function_mdg_col_half" title="mdg_col_half() :: Creates a 50% column"><span class="description">Creates a 50% column</span><pre>mdg_col_half</pre></a></li>
+<li class="function  "><a href="#function_mdg_col_quarter" title="mdg_col_quarter() :: Creates a 25% column"><span class="description">Creates a 25% column</span><pre>mdg_col_quarter</pre></a></li>
+<li class="function  "><a href="#function_mdg_col_third" title="mdg_col_third() :: Creates a 33.3333% column"><span class="description">Creates a 33.3333% column</span><pre>mdg_col_third</pre></a></li>
+<li class="function  "><a href="#function_mdg_deactivation" title="mdg_deactivation() :: Handles theme deactivation."><span class="description">Handles theme deactivation.</span><pre>mdg_deactivation</pre></a></li>
+<li class="function  "><a href="#function_mdg_display_sidebar" title="mdg_display_sidebar() :: Define which pages shouldn't have the sidebar"><span class="description">Define which pages shouldn't have the sidebar</span><pre>mdg_display_sidebar</pre></a></li>
+<li class="function  "><a href="#function_mdg_divider_shortcode" title="mdg_divider_shortcode() :: Adds a simple divider."><span class="description">Adds a simple divider.</span><pre>mdg_divider_shortcode</pre></a></li>
+<li class="function  "><a href="#function_mdg_embed_wrap" title="mdg_embed_wrap() :: Wrap embedded media as suggested by Readability"><span class="description">Wrap embedded media as suggested by Readability</span><pre>mdg_embed_wrap</pre></a></li>
+<li class="function  "><a href="#function_mdg_enable_root_relative_urls" title="mdg_enable_root_relative_urls() :: Determines if root relative URLs are enabled/should be used."><span class="description">Determines if root relative URLs are enabled/should be used.</span><pre>mdg_enable_root_relative_urls</pre></a></li>
+<li class="function  "><a href="#function_mdg_enqueue_admin_scripts" title="mdg_enqueue_admin_scripts() :: Enqueue administrator scripts/styles."><span class="description">Enqueue administrator scripts/styles.</span><pre>mdg_enqueue_admin_scripts</pre></a></li>
+<li class="function  "><a href="#function_mdg_enqueue_site_scripts" title="mdg_enqueue_site_scripts() :: Enqueue front-end scripts and style-sheets"><span class="description">Enqueue front-end scripts and style-sheets</span><pre>mdg_enqueue_site_scripts</pre></a></li>
+<li class="function  "><a href="#function_mdg_excerpt_length" title="mdg_excerpt_length() :: Clean up the_excerpt()"><span class="description">Clean up the_excerpt()</span><pre>mdg_excerpt_length</pre></a></li>
+<li class="function  "><a href="#function_mdg_excerpt_more" title="mdg_excerpt_more() :: Custom more text for the_excerpt()."><span class="description">Custom more text for the_excerpt().</span><pre>mdg_excerpt_more</pre></a></li>
+<li class="function  "><a href="#function_mdg_gallery" title="mdg_gallery() :: Re-create the [gallery] shortcode and use thumbnails styling from Bootstrap
+The number of columns must be a factor of 12."><span class="description">Re-create the [gallery] shortcode and use thumbnails styling from Bootstrap
+The number of columns must be a factor of 12.</span><pre>mdg_gallery</pre></a></li>
+<li class="function  "><a href="#function_mdg_get_avatar" title="mdg_get_avatar() :: Adds Bootstrap classes to a users avatar."><span class="description">Adds Bootstrap classes to a users avatar.</span><pre>mdg_get_avatar</pre></a></li>
+<li class="function  "><a href="#function_mdg_get_search_form" title="mdg_get_search_form() :: Tell WordPress to use searchform.php from the templates/ directory. Requires WordPress 3.6+."><span class="description">Tell WordPress to use searchform.php from the templates/ directory. Requires WordPress 3.6+.</span><pre>mdg_get_search_form</pre></a></li>
+<li class="function  "><a href="#function_mdg_get_theme_activation_options" title="mdg_get_theme_activation_options() :: Retrieves the theme activation options"><span class="description">Retrieves the theme activation options</span><pre>mdg_get_theme_activation_options</pre></a></li>
+<li class="function  "><a href="#function_mdg_google_analytics" title="mdg_google_analytics() :: Handles adding Google Analytics."><span class="description">Handles adding Google Analytics.</span><pre>mdg_google_analytics</pre></a></li>
+<li class="function  "><a href="#function_mdg_head_cleanup" title="mdg_head_cleanup() :: Cleans up excess junk in wp_head."><span class="description">Cleans up excess junk in wp_head.</span><pre>mdg_head_cleanup</pre></a></li>
+<li class="function  "><a href="#function_mdg_jquery_local_fallback" title="mdg_jquery_local_fallback() :: jQuery local fallback"><span class="description">jQuery local fallback</span><pre>mdg_jquery_local_fallback</pre></a></li>
+<li class="function  "><a href="#function_mdg_language_attributes" title="mdg_language_attributes() :: Clean up language_attributes() used in &lt;html&gt; tag"><span class="description">Clean up language_attributes() used in &lt;html&gt; tag</span><pre>mdg_language_attributes</pre></a></li>
+<li class="function  "><a href="#function_mdg_main_class" title="mdg_main_class() :: Selects the column class the .main element."><span class="description">Selects the column class the .main element.</span><pre>mdg_main_class</pre></a></li>
+<li class="function  "><a href="#function_mdg_missing_content_shortcode" title="mdg_missing_content_shortcode() :: Adds a missing content notice."><span class="description">Adds a missing content notice.</span><pre>mdg_missing_content_shortcode</pre></a></li>
+<li class="function  "><a href="#function_mdg_nav_menu_args" title="mdg_nav_menu_args() :: Clean up wp_nav_menu_args."><span class="description">Clean up wp_nav_menu_args.</span><pre>mdg_nav_menu_args</pre></a></li>
+<li class="function  "><a href="#function_mdg_nav_menu_css_class" title='mdg_nav_menu_css_class() :: Removes the id="" on navigation menu items.'><span class="description">Removes the id="" on navigation menu items.</span><pre>mdg_nav_menu_css_class</pre></a></li>
+<li class="function  "><a href="#function_mdg_nice_search_redirect" title="mdg_nice_search_redirect() :: Redirects search results from /?s=query to /search/query/, converts %20 to +"><span class="description">Redirects search results from /?s=query to /search/query/, converts %20 to +</span><pre>mdg_nice_search_redirect</pre></a></li>
+<li class="function  "><a href="#function_mdg_rel_canonical" title="mdg_rel_canonical() :: Handles adding a canonical link to the head."><span class="description">Handles adding a canonical link to the head.</span><pre>mdg_rel_canonical</pre></a></li>
+<li class="function  "><a href="#function_mdg_remove_dashboard_widgets" title="mdg_remove_dashboard_widgets() :: Remove unnecessary dashboard widgets"><span class="description">Remove unnecessary dashboard widgets</span><pre>mdg_remove_dashboard_widgets</pre></a></li>
+<li class="function  "><a href="#function_mdg_remove_default_description" title="mdg_remove_default_description() :: Don't return the default description in the RSS feed if it hasn't been changed"><span class="description">Don't return the default description in the RSS feed if it hasn't been changed</span><pre>mdg_remove_default_description</pre></a></li>
+<li class="function  "><a href="#function_mdg_remove_self_closing_tags" title="mdg_remove_self_closing_tags() :: Remove unnecessary self-closing tags"><span class="description">Remove unnecessary self-closing tags</span><pre>mdg_remove_self_closing_tags</pre></a></li>
+<li class="function  "><a href="#function_mdg_request_filter" title="mdg_request_filter() :: Fix for empty search queries redirecting to home page"><span class="description">Fix for empty search queries redirecting to home page</span><pre>mdg_request_filter</pre></a></li>
+<li class="function  "><a href="#function_mdg_root_relative_url" title="mdg_root_relative_url() :: WordPress likes to use absolute URLs on everything - let's clean that up."><span class="description">WordPress likes to use absolute URLs on everything - let's clean that up.</span><pre>mdg_root_relative_url</pre></a></li>
+<li class="function  "><a href="#function_mdg_setup" title="mdg_setup() :: Sets up the theme."><span class="description">Sets up the theme.</span><pre>mdg_setup</pre></a></li>
+<li class="function  "><a href="#function_mdg_sidebar_class" title="mdg_sidebar_class() :: Selects the column class the sidebar element."><span class="description">Selects the column class the sidebar element.</span><pre>mdg_sidebar_class</pre></a></li>
+<li class="function  "><a href="#function_mdg_sidebar_path" title="mdg_sidebar_path() :: Retrieves the path to the sidebar template."><span class="description">Retrieves the path to the sidebar template.</span><pre>mdg_sidebar_path</pre></a></li>
+<li class="function  "><a href="#function_mdg_template_path" title="mdg_template_path() :: Retrieves the current template path."><span class="description">Retrieves the current template path.</span><pre>mdg_template_path</pre></a></li>
+<li class="function  "><a href="#function_mdg_theme_activation_action" title="mdg_theme_activation_action() :: Handles theme activation."><span class="description">Handles theme activation.</span><pre>mdg_theme_activation_action</pre></a></li>
+<li class="function  "><a href="#function_mdg_theme_activation_options_add_page" title="mdg_theme_activation_options_add_page() :: Adds the theme options page."><span class="description">Adds the theme options page.</span><pre>mdg_theme_activation_options_add_page</pre></a></li>
+<li class="function  "><a href="#function_mdg_theme_activation_options_init" title="mdg_theme_activation_options_init() :: Initializes theme options."><span class="description">Initializes theme options.</span><pre>mdg_theme_activation_options_init</pre></a></li>
+<li class="function  "><a href="#function_mdg_theme_activation_options_render_page" title="mdg_theme_activation_options_render_page() :: Renders the theme activation page."><span class="description">Renders the theme activation page.</span><pre>mdg_theme_activation_options_render_page</pre></a></li>
+<li class="function  "><a href="#function_mdg_title" title="mdg_title() :: Handles selecting the correct page title to display."><span class="description">Handles selecting the correct page title to display.</span><pre>mdg_title</pre></a></li>
+<li class="function  "><a href="#function_mdg_toolbar_body_class" title="mdg_toolbar_body_class() :: Adds MDG toolbar body class on staging and localhost."><span class="description">Adds MDG toolbar body class on staging and localhost.</span><pre>mdg_toolbar_body_class</pre></a></li>
+<li class="function  "><a href="#function_mdg_widgets_init" title="mdg_widgets_init() :: Initializes all widgets and sidebars."><span class="description">Initializes all widgets and sidebars.</span><pre>mdg_widgets_init</pre></a></li>
+<li class="function  "><a href="#function_mdg_wp_title" title="mdg_wp_title() :: Manage output of wp_title()"><span class="description">Manage output of wp_title()</span><pre>mdg_wp_title</pre></a></li>
+<li class="function  "><a href="#function_mdgdev_tool_bar_html" title="mdgdev_tool_bar_html() :: Adds a localhost/staging bar for development purposes"><span class="description">Adds a localhost/staging bar for development purposes</span><pre>mdgdev_tool_bar_html</pre></a></li>
+<li class="function  "><a href="#function_pp" title="pp() :: Pretty Print Debug Function"><span class="description">Pretty Print Debug Function</span><pre>pp</pre></a></li>
+<li class="nav-header">
+<i title="Classes" class="icon-custom icon-class"></i> Classes</li>
+<li><a href="#MDG_WP_Admin" title="Handles all of the customizations wp-admin.">MDG_WP_Admin</a></li>
+<li><a href="#MDG_Type_Page" title='Handles anything custom for the default WordPress "page" post type'>MDG_Type_Page</a></li>
+<li><a href="#MDG_Images" title="Handles adding custom image sizes and other global image related functionality.">MDG_Images</a></li>
+<li><a href="#MDG_Sidebar" title="Determines whether or not to display the sidebar based on an array of conditional tags or page templates.">MDG_Sidebar</a></li>
+<li><a href="#MDG_Type_Base" title="This is a base for custom post type classes so they can all take advantage of the same logic for meta, transients etc.">MDG_Type_Base</a></li>
+<li><a href="#MDG_Vcard_Widget" title="Example vCard widget">MDG_Vcard_Widget</a></li>
+<li><a href="#MDG_Nav_Walker" title="Cleaner walker for wp_nav_menu()">MDG_Nav_Walker</a></li>
+<li><a href="#MDG_Type_Post" title='Handles anything custom for the default WordPress "post" post type.'>MDG_Type_Post</a></li>
+<li><a href="#MDG_Walker_Comment" title="Use Bootstrap's media object for listing comments">MDG_Walker_Comment</a></li>
+<li><a href="#MDG_Meta_Helper" title="Handles anything to do with custom meta.">MDG_Meta_Helper</a></li>
+<li><a href="#MDG_Type_Stub" title="This class can be used as a starting point to add new post types.">MDG_Type_Stub</a></li>
+<li><a href="#MDG_Meta_Form_Fields" title="Contains all of the custom meta form fields.">MDG_Meta_Form_Fields</a></li>
+<li><a href="#MDG_Generic" title="Contains methods/properties that can be used by all classes.">MDG_Generic</a></li>
+<li><a href="#MDG_Wrapping" title="Handles the theme wrapper.">MDG_Wrapping</a></li>
+<li class="nav-header">
+<i title="Constants" class="icon-custom icon-constant"></i> Constants</li>
+<li class="constant  "><a href="#constant_GOOGLE_ANALYTICS_ID" title="GOOGLE_ANALYTICS_ID() :: Google Analytics ID (UA-XXXXX-Y)."><span class="description">Google Analytics ID (UA-XXXXX-Y).</span><pre>GOOGLE_ANALYTICS_ID</pre></a></li>
+<li class="constant  "><a href="#constant_POST_EXCERPT_LENGTH" title="POST_EXCERPT_LENGTH() :: How many words the_excerpt() should contain."><span class="description">How many words the_excerpt() should contain.</span><pre>POST_EXCERPT_LENGTH</pre></a></li>
+<li class="constant  "><a href="#constant_RELATIVE_CONTENT_PATH" title="RELATIVE_CONTENT_PATH() :: Relative path to wp-content"><span class="description">Relative path to wp-content</span><pre>RELATIVE_CONTENT_PATH</pre></a></li>
+<li class="constant  "><a href="#constant_RELATIVE_PLUGIN_PATH" title="RELATIVE_PLUGIN_PATH() :: Relative path to wp-content/plugins"><span class="description">Relative path to wp-content/plugins</span><pre>RELATIVE_PLUGIN_PATH</pre></a></li>
+<li class="constant  "><a href="#constant_THEME_NAME" title="THEME_NAME() :: "><span class="description">THEME_NAME</span><pre>THEME_NAME</pre></a></li>
+<li class="constant  "><a href="#constant_THEME_PATH" title="THEME_PATH() :: Relative path to wp-content/themes/{{THEME_NAME}}"><span class="description">Relative path to wp-content/themes/{{THEME_NAME}}</span><pre>THEME_PATH</pre></a></li>
+<li class="constant  "><a href="#constant___DIR__" title="__DIR__() :: "><span class="description">__DIR__</span><pre>__DIR__</pre></a></li>
+</ul>
+</div>
+<div class="span8 namespace-contents"></div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.2.0
+</a> and<br>
+            generated on 2014-03-13T18:34:38-05:00.<br></footer></div>
+</div>
+</body>
+</html>

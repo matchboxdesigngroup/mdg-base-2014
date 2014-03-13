@@ -1,570 +1,221 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <meta charset="utf-8"/>
-    <title>API Documentation</title>
-    <meta name="author" content=""/>
-    <meta name="description" content=""/>
-
-    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../css/prism.css" rel="stylesheet" media="all"/>
-    <link href="../css/template.css" rel="stylesheet" media="all"/>
-    
-    <!--[if lt IE 9]>
-    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-    <![endif]-->
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-    <script src="../js/jquery.smooth-scroll.js"></script>
-    <script src="../js/prism.min.js"></script>
-    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-    <script type="text/javascript">
-    function loadExternalCodeSnippets() {
-        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
-            var src = pre.getAttribute('data-src');
-            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-            var language = 'php';
-
-            var code = document.createElement('code');
-            code.className = 'language-' + language;
-
-            pre.textContent = '';
-
-            code.textContent = 'Loading…';
-
-            pre.appendChild(code);
-
-            var xhr = new XMLHttpRequest();
-
-            xhr.open('GET', src, true);
-
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4) {
-
-                    if (xhr.status < 400 && xhr.responseText) {
-                        code.textContent = xhr.responseText;
-
-                        Prism.highlightElement(code);
-                    }
-                    else if (xhr.status >= 400) {
-                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                    }
-                    else {
-                        code.textContent = '✖ Error: File does not exist or is empty';
-                    }
-                }
-            };
-
-            xhr.send(null);
-        });
-    }
-
-    $(document).ready(function(){
-        loadExternalCodeSnippets();
-    });
-    $('#source-view').on('shown', function () {
-        loadExternalCodeSnippets();
-    })
-</script>
-
-    <link rel="shortcut icon" href="../images/favicon.ico"/>
-    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
-    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
-    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>API Documentation » \MDG_Nav_Walker</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
 </head>
 <body>
-
 <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <i class="icon-ellipsis-vertical"></i>
-            </a>
-            <a class="brand" href="../index.html">API Documentation</a>
-
-            <div class="nav-collapse">
-                <ul class="nav pull-right">
-                    <li class="dropdown">
-                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
-                            API Documentation <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                                                    </ul>
-                    </li>
-                    <li class="dropdown" id="charts-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Charts <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="../graphs/class.html">
-                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown" id="reports-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Reports <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">10</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!--<div class="go_to_top">-->
-    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
-    <!--</div>-->
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">API Documentation</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/WordPress.html"><i class="icon-folder-open"></i> WordPress</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">1</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
 </div>
-
-<div id="___" class="container-fluid">
-        <section class="row-fluid">
-        <div class="span2 sidebar">
-                                <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-185560531"></a>
-                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
-            </div>
-            <div id="namespace-185560531" class="accordion-body collapse in">
-                <div class="accordion-inner">
-
-                    
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div class="btn-toolbar">
+<div class="btn-group visibility" data-toggle="buttons-checkbox">
+<button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button>
+</div>
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+</div>
+<ul class="side-nav nav nav-list"><li class="nav-header">
+<i title="Methods" class="icon-custom icon-method"></i> Methods
                     <ul>
-                                                                                                    <li class="class"><a href="../classes/MDG_WP_Admin.html">MDG_WP_Admin</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Type_Page.html">MDG_Type_Page</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Images.html">MDG_Images</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Sidebar.html">MDG_Sidebar</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Type_Base.html">MDG_Type_Base</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Vcard_Widget.html">MDG_Vcard_Widget</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Nav_Walker.html">MDG_Nav_Walker</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Type_Post.html">MDG_Type_Post</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Walker_Comment.html">MDG_Walker_Comment</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Meta_Helper.html">MDG_Meta_Helper</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Type_Stub.html">MDG_Type_Stub</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Meta_Form_Fields.html">MDG_Meta_Form_Fields</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Generic.html">MDG_Generic</a></li>
-                                                    <li class="class"><a href="../classes/MDG_Wrapping.html">MDG_Wrapping</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-        </div>
-    </section>
-    <section class="row-fluid">
-        <div class="span10 offset2">
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <nav>
-                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
-                                            </nav>
-                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
-
-                    <h1><small>\</small>MDG_Nav_Walker</h1>
-                    <p><em>Cleaner walker for wp_nav_menu()</em></p>
-                    <p>Walker_Nav_Menu (WordPress default) example output:</p>
-<li id="menu-item-8" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8"><a href="/">Home</a></li>
-<li id="menu-item-9" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9"><a href="/sample-page/">Sample Page</a></l
+<li class="method public "><a href="#method_check_current" title="check_current() :: Checks current navigation classes."><span class="description">Checks current navigation classes.</span><pre>check_current()</pre></a></li>
+<li class="method public "><a href="#method_display_element" title="display_element() :: Traverse elements to create list from elements."><span class="description">Traverse elements to create list from elements.</span><pre>display_element()</pre></a></li>
+<li class="method public "><a href="#method_start_el" title="start_el() :: Start the element output."><span class="description">Start the element output.</span><pre>start_el()</pre></a></li>
+<li class="method public "><a href="#method_start_lvl" title="start_lvl() :: Starts the list before the elements are added."><span class="description">Starts the list before the elements are added.</span><pre>start_lvl()</pre></a></li>
+</ul>
+</li></ul>
+</div>
+<div class="span8">
+<a id="\MDG_Nav_Walker"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/MDG_Nav_Walker.html">MDG_Nav_Walker</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">Cleaner walker for wp_nav_menu()</p>
+<div class="details">
+<div class="long_description">Walker_Nav_Menu (WordPress default) example output:
+  <li id="menu-item-8" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8"><a href="/">Home</a></li>
+  <li id="menu-item-9" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9"><a href="/sample-page/">Sample Page</a></l
 
 MDG_Nav_Walker example output:
   <li class="menu-home"><a href="/">Home</a></li>
-<li class="menu-sample-page"><a href="/sample-page/">Sample Page</a></li>
-
-                    <section id="summary">
-                        <h2>Summary</h2>
-                        <section class="row-fluid heading">
-                            <section class="span4">
-                                <a href="#methods">Methods</a>
-                            </section>
-                            <section class="span4">
-                                <a href="#properties">Properties</a>
-                            </section>
-                            <section class="span4">
-                                <a href="#constants">Constants</a>
-                            </section>
-                        </section>
-                        <section class="row-fluid public">
-                            <section class="span4">
-                                                                    <a href="../classes/MDG_Nav_Walker.html#method_check_current" class="">check_current()</a><br />
-                                                                    <a href="../classes/MDG_Nav_Walker.html#method_start_lvl" class="">start_lvl()</a><br />
-                                                                    <a href="../classes/MDG_Nav_Walker.html#method_start_el" class="">start_el()</a><br />
-                                                                    <a href="../classes/MDG_Nav_Walker.html#method_display_element" class="">display_element()</a><br />
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No public properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No constants found</em>
-                                                            </section>
-                        </section>
-                        <section class="row-fluid protected">
-                            <section class="span4">
-                                                                    <em>No protected methods found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No protected properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                <em>N/A</em>
-                            </section>
-                        </section>
-                        <section class="row-fluid private">
-                            <section class="span4">
-                                                                    <em>No private methods found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No private properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                <em>N/A</em>
-                            </section>
-                        </section>
-                    </section>
-                </div>
-                <aside class="span4 detailsbar">
-                                        
-                    
-                    <dl>
-                        <dt>File</dt>
-                            <dd><a href="../files/lib.nav.php.html"><div class="path-wrapper">lib/nav.php</div></a></dd>
-                                                <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">\WordPress\MDG_Base\MDG_Base</div></dd>
-                                                <dt>Class hierarchy</dt>
-                            <dd class="hierarchy">
-                                                                                                                                                                                                                                                                                                
-                                        <div class="namespace-wrapper">\Walker_Nav_Menu</div>
-                                                                                                    <div class="namespace-wrapper">\MDG_Nav_Walker</div>
-                            </dd>
-
-                        
-                        
-                        
-                        
-                                                                        </dl>
-                    <h2>Tags</h2>
-                    <table class="table table-condensed">
-                                            <tr>
-                            <th>
-                                todo
-                            </th>
-                            <td>
-                                                            </td>
-                        </tr>
-                                        </table>
-                </aside>
-            </div>
-
-                        
-                        
-                                    <a id="methods" name="methods"></a>
-            <div class="row-fluid">
-                <div class="span8 content class"><h2>Methods</h2></div>
-                <aside class="span4 detailsbar"></aside>
-            </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_check_current" name="method_check_current" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">check_current()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">check_current(string <span class="argument">$classes</span>) : string</pre>
-                <p><em>Checks current navigation classes.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$classes</td>
-                                <td><p>Current classes.</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                            &mdash; <p>If the current classes container active or dropdown.</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_start_lvl" name="method_start_lvl" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">start_lvl()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">start_lvl(string <span class="argument">$output</span>, int <span class="argument">$depth</span>, array <span class="argument">$args</span>) : Void</pre>
-                <p><em>Starts the list before the elements are added.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$output</td>
-                                <td><p>Passed by reference. Used to append additional content.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>int</td>
-                                <td>$depth</td>
-                                <td><p>Depth of menu item. Used for padding.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$args</td>
-                                <td><p>An array of arguments. @see wp_nav_menu()</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    Void
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                                            <dt>See also</dt>
-                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
-                                                                </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_start_el" name="method_start_el" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">start_el()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">start_el(string <span class="argument">$output</span>, object <span class="argument">$item</span>, int <span class="argument">$depth</span>, array <span class="argument">$args</span>, int <span class="argument">$id</span>) : Void</pre>
-                <p><em>Start the element output.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$output</td>
-                                <td><p>Passed by reference. Used to append additional content.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>object</td>
-                                <td>$item</td>
-                                <td><p>Menu item data object.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>int</td>
-                                <td>$depth</td>
-                                <td><p>Depth of menu item. Used for padding.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$args</td>
-                                <td><p>An array of arguments. @see wp_nav_menu()</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>int</td>
-                                <td>$id</td>
-                                <td><p>Current item ID.</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    Void
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                                            <dt>See also</dt>
-                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
-                                                                </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_display_element" name="method_display_element" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">display_element()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">display_element(object <span class="argument">$element</span>, array <span class="argument">$children_elements</span>, int <span class="argument">$max_depth</span>, int <span class="argument">$depth</span>, array <span class="argument">$args</span>, string <span class="argument">$output</span>) : null</pre>
-                <p><em>Traverse elements to create list from elements.</em></p>
-                <p>Display one element if the element doesn't have any children otherwise,
+  <li class="menu-sample-page"><a href="/sample-page/">Sample Page</a></li></div>
+<table class="table table-bordered">
+<tr>
+<th>package</th>
+<td><a href="../packages/WordPress.MDG_Base.html">WordPress</a></td>
+</tr>
+<tr>
+<th>subpackage</th>
+<td>MDG_Base</td>
+</tr>
+</table>
+<h3>
+<i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
+<a id="method_check_current"></a><div class="element clickable method public method_check_current" data-toggle="collapse" data-target=".method_check_current .collapse" title="public">
+<h2>Checks current navigation classes.</h2>
+<pre>check_current(string $classes) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$classes</h4>
+<code>string</code><p>Current classes.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>If the current classes container active or dropdown.</div>
+</div></div>
+</div>
+<a id="method_display_element"></a><div class="element clickable method public method_display_element" data-toggle="collapse" data-target=".method_display_element .collapse" title="public">
+<h2>Traverse elements to create list from elements.</h2>
+<pre>display_element(object $element, array $children_elements, int $max_depth, int $depth<code> = 0</code>, array $args, string $output) : null</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">Display one element if the element doesn't have any children otherwise,
 display the element and its children. Will only traverse up to the max
 depth and no ignore elements under that depth. It is possible to set the
-max depth to include all depths, see walk() method.</p>
-<p>This method should not be called directly, use the walk() method instead.</p>
+max depth to include all depths, see walk() method.
 
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>object</td>
-                                <td>$element</td>
-                                <td><p>Data object.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$children_elements</td>
-                                <td><p>List of elements to continue traversing.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>int</td>
-                                <td>$max_depth</td>
-                                <td><p>Max depth to traverse.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>int</td>
-                                <td>$depth</td>
-                                <td><p>Depth of current element.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$args</td>
-                                <td><p>An array of arguments.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$output</td>
-                                <td><p>Passed by reference. Used to append additional content.</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    null
-                                            &mdash; <p>Null on failure with no changes to parameters.</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                                            <dt>See also</dt>
-                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
-                                                                </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            todo
-                        </th>
-                        <td>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                                                    </div>
-    </section>
-
-    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="source-view-label">nav.php</h3>
-        </div>
-        <div class="modal-body">
-            <pre data-src="../files/lib/nav.php.txt" class="language-php line-numbers"></pre>
-        </div>
-    </div>
-
-    <footer class="row-fluid">
-        <section class="span10 offset2">
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <section class="row-fluid footer-sections">
-                        <section class="span4">
-                                                        <h1><i class="icon-code"></i></h1>
-                            <div>
-                                <ul>
-                                                                    </ul>
-                            </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-bar-chart"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-pushpin"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="../reports/errors.html">Errors</a></li>
-                                    <li><a href="../reports/markers.html">Markers</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                    </section>
-                </section>
-            </section>
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <hr />
-                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on March 9th, 2014 at 20:23.
-                </section>
-            </section>
-        </section>
-    </footer>
+This method should not be called directly, use the walk() method instead.</div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="%5CWalker::start_lvl()"></a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$element</h4>
+<code>object</code><p>Data object.</p></div>
+<div class="subelement argument">
+<h4>$children_elements</h4>
+<code>array</code><p>List of elements to continue traversing.</p></div>
+<div class="subelement argument">
+<h4>$max_depth</h4>
+<code>int</code><p>Max depth to traverse.</p></div>
+<div class="subelement argument">
+<h4>$depth</h4>
+<code>int</code><p>Depth of current element.</p></div>
+<div class="subelement argument">
+<h4>$args</h4>
+<code>array</code><p>An array of arguments.</p></div>
+<div class="subelement argument">
+<h4>$output</h4>
+<code>string</code><p>Passed by reference. Used to append additional content.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>null</code>Null on failure with no changes to parameters.</div>
+</div></div>
 </div>
-
+<a id="method_start_el"></a><div class="element clickable method public method_start_el" data-toggle="collapse" data-target=".method_start_el .collapse" title="public">
+<h2>Start the element output.</h2>
+<pre>start_el(string $output, object $item, int $depth<code> = 0</code>, array $args<code> = array()</code>, int $id<code> = 0</code>) : Void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="%5CWalker_Nav_Menu::start_el()"></a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$output</h4>
+<code>string</code><p>Passed by reference. Used to append additional content.</p></div>
+<div class="subelement argument">
+<h4>$item</h4>
+<code>object</code><p>Menu item data object.</p></div>
+<div class="subelement argument">
+<h4>$depth</h4>
+<code>int</code><p>Depth of menu item. Used for padding.</p></div>
+<div class="subelement argument">
+<h4>$args</h4>
+<code>array</code><p>An array of arguments. @see wp_nav_menu()</p></div>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>int</code><p>Current item ID.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>Void</code></div>
+</div></div>
+</div>
+<a id="method_start_lvl"></a><div class="element clickable method public method_start_lvl" data-toggle="collapse" data-target=".method_start_lvl .collapse" title="public">
+<h2>Starts the list before the elements are added.</h2>
+<pre>start_lvl(string $output, int $depth<code> = 0</code>, array $args<code> = array()</code>) : Void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="%5CWalker_Nav_Menu::start_lvl()"></a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$output</h4>
+<code>string</code><p>Passed by reference. Used to append additional content.</p></div>
+<div class="subelement argument">
+<h4>$depth</h4>
+<code>int</code><p>Depth of menu item. Used for padding.</p></div>
+<div class="subelement argument">
+<h4>$args</h4>
+<code>array</code><p>An array of arguments. @see wp_nav_menu()</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>Void</code></div>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.2.0
+</a> and<br>
+            generated on 2014-03-13T18:34:38-05:00.<br></footer></div>
+</div>
 </body>
 </html>
