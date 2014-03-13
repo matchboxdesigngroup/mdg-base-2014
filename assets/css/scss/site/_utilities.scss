@@ -13,6 +13,16 @@
 .default-font-color-3 { color: $color3; } // medium grey
 .default-font-color-4 { color: $color4; } // light grey
 
+// =========================================================
+// ShortCodes
+// =========================================================
+.missing-content {
+	background: $alert-warning-bg;
+	color: $alert-warning-text;
+	border: 1px solid $alert-warning-border;
+	padding: 1px 10px;
+} // .missing-content
+
 // Hide Large screen / wide desktop
 .hide-lg {
 	display: block;
