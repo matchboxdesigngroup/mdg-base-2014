@@ -9,3 +9,5 @@ node_modules
 vendor/.git
 /assets/js/src/admin/.jscs.json
 /assets/js/src/site/.jscs.json
+
+phpdoc-cache-*
