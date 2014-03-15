@@ -391,8 +391,20 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 	/**
 	 * Retrieves custom post meta.
 	 *
+	 * <code>
+	 * global $my_post_type;
+	 *
+	 * // Retrieves all the current posts meta.
+	 * $all_post_meta    = $my_post_type->get_post_meta();
+	 * extract( $all_post_meta );
+	 *
+	 * // Retrieves a single post meta value.
+	 * $single_post_meta = $my_post_type->get_post_meta( get_the_id(), 'meta_key');
+	 * extract( $single_post_meta );
+	 * </code>
+	 *
 	 * @param   integer        $post_id  Optional post id, defaults to current post.
-	 * @param   string         $key      Optional meta key, to return one meta value instead of all of them.
+	 * @param   string         $key      Optional meta key minus the post type, to return one meta value instead of all of them.
 	 *
 	 * @return string|array              Specific post meta value | All all post meta values.
 	 */
@@ -409,6 +421,8 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 
 		if ( ! is_null( $key ) ) {
 			// Protects against absent mindedness.
+			$key = str_replace( "$this->post_type_", '', $key );
+			$key = str_replace( "$this->post_type-", '', $key );
 			$key = str_replace( $this->post_type, '', $key );
 			return get_post_meta( $post_id, "{$post_type}{$key}", true );
 		} // if()

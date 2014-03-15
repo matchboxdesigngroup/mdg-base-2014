@@ -19,9 +19,9 @@ MDG Base is a WordPress starter theme based on [Roots](http://roots.io), which u
 
 ####[Homebrew](http://brew.sh/)
 - [Homebrew PHP](https://github.com/josegonzalez/homebrew-php/)
-- PHP 5.5 `brew php55`
-- [Composer](http://getcomposer.org/) `brew composer`
-- [PHPDocumentor](http://www.phpdoc.org/) `brew phpdocumentor`
+- PHP 5.5 `brew install php55`
+- [Composer](http://getcomposer.org/) `brew install composer`
+- [PHPDocumentor](http://www.phpdoc.org/) `brew install phpdocumentor`
 	- [GraphViz](http://www.graphviz.org/Download_macos.php) (used to create graphs)
 
 ####[RVM/Ruby](http://rvm.io/)
@@ -113,7 +113,23 @@ $custom = $mdg_custom_post_type->get_posts( $custom_query_args ); // Returns the
 
 ===
 ####Custom Meta Example(work in progress)
+```
+global $my_post_type;
 
+// Retrieves all the current posts meta.
+$all_post_meta    = $my_post_type->get_post_meta();
+
+// Retrieves a single post meta value
+$single_post_meta = $my_post_type->get_post_meta();
+
+// Then you can use extract() and have quick access to the meta using the meta id minus the post type and lower case
+// if the meta id = posttype_meta_key then the variable will be $meta_key;
+extract( $all_post_meta );
+extract( $single_post_meta );
+
+// You can use pp() to check what meta this post has.
+pp( $all_post_meta );
+```
 ===
 
 ###Folder Sturcutre
