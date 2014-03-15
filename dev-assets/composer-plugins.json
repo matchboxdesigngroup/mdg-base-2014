@@ -16,7 +16,13 @@
         "wpackagist/theme-check":"*",
         "wpackagist/wordpress-importer":"*",
         "wpackagist/developer":"*",
-        "wpackagist/duplicate-post":"*"
+        "wpackagist/duplicate-post":"*",
+        "wpackagist/debug-bar-extender":"*",
+        "wpackagist/log-deprecated-notices":"*",
+        "wpackagist/regenerate-thumbnails":"*",
+        "wpackagist/simply-show-ids":"*",
+        "wpackagist/user-switching":"*",
+        "wpackagist/query-monitor":"*"
     },
     "autoload": {
     }
