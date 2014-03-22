@@ -29,7 +29,7 @@ function mdg_enqueue_site_scripts() {
 	// It's kept in the header instead of footer to avoid conflicts with plugins.
 	if ( ! is_admin() && current_theme_supports( 'jquery-cdn' ) ) {
 		wp_deregister_script( 'jquery' );
-		wp_register_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', array(), '1.10.2', false );
+		wp_register_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js', array(), '1.10.2', false );
 		add_filter( 'script_loader_src', 'mdg_jquery_local_fallback', 10, 2 );
 	} // if()
 
@@ -130,7 +130,7 @@ function mdg_jquery_local_fallback( $src, $handle ) {
 	static $add_jquery_fallback = false;
 
 	if ( $add_jquery_fallback ) {
-		echo '<script>window.jQuery || document.write(\'<script src="' . get_template_directory_uri() . '/assets/js/vendor/jquery-1.10.2.min.js"><\/script>\')</script>' . "\n";
+		echo '<script>window.jQuery || document.write(\'<script src="' . get_template_directory_uri() . '/assets/js/vendor/jquery-1.11.0.min.js"><\/script>\')</script>' . "\n";
 		$add_jquery_fallback = false;
 	} // if()
 
