@@ -53,7 +53,9 @@ module.exports =
         "assets/js/src/plugins/chosen.jquery.js"
         "assets/js/src/admin/*.js"
       ]
+
   build:
     files:
       "assets/js/scripts.min.js": "assets/js/scripts.min.js"
       "assets/js/admin.min.js": "assets/js/admin.min.js"
+      "assets/js/env-tests.min.js" : "assets/js/env-tests.min.js"
