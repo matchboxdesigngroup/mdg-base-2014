@@ -110,11 +110,11 @@ have easy access to all helper methods/properties.</div>
 <table class="table table-bordered">
 <tr>
 <th>package</th>
-<td><a href="../packages/WordPress.MDG_Product_Builder.html">WordPress</a></td>
+<td><a href="../packages/WordPress.MDG_Base.html">WordPress</a></td>
 </tr>
 <tr>
 <th>subpackage</th>
-<td>MDG_Product_Builder</td>
+<td>MDG_Base</td>
 </tr>
 <tr>
 <th>author</th>
@@ -163,14 +163,24 @@ return array(
 <pre>get_post_meta(integer $post_id<code> = null</code>, string $key<code> = null</code>) : string | array</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
+<div class="long_description"><code>
+global $my_post_type;
+
+// Retrieves all the current posts meta.
+$all_post_meta    = $my_post_type->get_post_meta();
+extract( $all_post_meta );
+
+// Retrieves a single post meta value.
+$single_post_meta = $my_post_type->get_post_meta( get_the_id(), 'meta_key');
+extract( $single_post_meta );
+</code></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$post_id</h4>
 <code>integer</code><p>Optional post id, defaults to current post.</p></div>
 <div class="subelement argument">
 <h4>$key</h4>
-<code>string</code><p>Optional meta key, to return one meta value instead of all of them.</p></div>
+<code>string</code><p>Optional meta key minus the post type, to return one meta value instead of all of them.</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
 <code>string</code><code>array</code>Specific post meta value | All all post meta values.</div>
@@ -376,7 +386,7 @@ array(
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.2.0
 </a> and<br>
-            generated on 2014-03-13T18:34:38-05:00.<br></footer></div>
+            generated on 2014-03-22T08:38:00-05:00.<br></footer></div>
 </div>
 </body>
 </html>
