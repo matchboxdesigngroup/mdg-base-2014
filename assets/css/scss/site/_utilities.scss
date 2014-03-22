@@ -2,30 +2,53 @@
 .faux-link { cursor: pointer; }
 
 .cl,
-.clear { clear: both; }
+.clear {
+	clear: both;
+} // .cl, .clear
 
-// Color Vars Backgrounds
+// ====================================
+// DefaultColor Background Variables
+// ====================================
 .default-bg-1 { background-color: $color1; } // black
 .default-bg-2 { background-color: $color2; } // white
 .default-bg-3 { background-color: $color3; } // medium grey
 .default-bg-4 { background-color: $color4; } // light grey
 
-// Color Vars Backgrounds
+// ====================================
+// Default Font Color Variables
+// ====================================
 .default-font-color-1 { color: $color1; } // black
 .default-font-color-2 { color: $color2; } // white
 .default-font-color-3 { color: $color3; } // medium grey
 .default-font-color-4 { color: $color4; } // light grey
 
-// =========================================================
-// ShortCodes
-// =========================================================
-.missing-content {
-	background: $alert-warning-bg;
-	color: $alert-warning-text;
-	border: 1px solid $alert-warning-border;
-	padding: 1px 10px;
-} // .missing-content
+// ====================================
+// Theme Color Background Variables
+// ====================================
+.theme-bg-1 { background-color: $theme1; } // Theme color one (Change my comment)
 
+// ====================================
+// Theme Font Color Variables
+// ====================================
+.theme-font-color-1 { color: $theme1; } // Theme color one (Change my comment)
+
+// ====================================
+// Theme Font Family Variables
+// ====================================
+.font-main { font-family: $font-main; }
+.font-featured { font-family: $font-featured; }
+
+// ====================================
+// Theme Font Size Variables
+// ====================================
+.font-small { font-size: $small; }
+.font-med { font-size: $med; }
+.font-large { font-size: $large; }
+.font-xlarge { font-size: $xlarge; }
+
+// ====================================
+// Hide Screen Size Utilities
+// ====================================
 // Hide Large screen / wide desktop
 .hide-lg {
 	display: block;
@@ -50,6 +73,9 @@
 	@include bp-max($screen-xs-max) { display: none; }
 } // .hide-xs
 
+// ====================================
+// Show Screen Size Utilities
+// ====================================
 // Show Large screen / wide desktop
 .show-lg {
 	display: none;
