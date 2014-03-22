@@ -421,8 +421,8 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 
 		if ( ! is_null( $key ) ) {
 			// Protects against absent mindedness.
-			$key = str_replace( "$this->post_type_", '', $key );
-			$key = str_replace( "$this->post_type-", '', $key );
+			$key = str_replace( "{$this->post_type}_", '', $key );
+			$key = str_replace( "{$this->post_type}-", '', $key );
 			$key = str_replace( $this->post_type, '', $key );
 			return get_post_meta( $post_id, "{$post_type}{$key}", true );
 		} // if()
