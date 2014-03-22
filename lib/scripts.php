@@ -60,6 +60,7 @@ add_action( 'wp_enqueue_scripts', 'mdg_enqueue_site_scripts', 100 );
  * @return Void
  */
 function mdg_add_global_js() {
+	$ltie9 = preg_match( '/(?i)msie [6-8]/', $_SERVER['HTTP_USER_AGENT'] );
 	// Add Global PHP -> JS
 	$mdg_globals = array(
 		'ajaxurl' => admin_url( 'admin-ajax.php' ),
@@ -105,6 +106,7 @@ add_action( 'admin_enqueue_scripts', 'mdg_enqueue_admin_scripts', 100 );
  * @return Void
  */
 function mdg_add_admin_global_js() {
+	$ltie9 = preg_match( '/(?i)msie [6-8]/', $_SERVER['HTTP_USER_AGENT'] );
 	// Add Global PHP -> JS
 	$mdg_globals = array(
 		'isIE' => ( $ltie9 and $is_IE ),
