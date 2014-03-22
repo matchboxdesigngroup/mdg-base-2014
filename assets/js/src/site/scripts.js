@@ -189,43 +189,36 @@ jQuery((function($) {
 	}; // site.initBackToTop()
 
 	/**
-	 * Handles the locking of an element on scroll.
+	 * Affix an element on scroll.
+	 * Requires Bootstrap affix plugin.
 	 *
-	 * @param {integer} offsetTop The distance from the top to trigger the fixing of the element.
+	 * @see http://getbootstrap.com/javascript/#affix
+	 *
+	 * @param {integer} topOffset Optional offset to above element to trigger, default 0.
+	 * @param {object}  elem      Optional jQuery selector, defaults to .fix-elem
 	 *
 	 * @return Void
 	 */
-	site.fixElement = function(offsetTop) {
-		console.log(offsetTop);
-		//	var fixedElem = $('.fixed-elem'),
-		//			offset    = (typeof offsetTop === 'undefined') ? 150:offsetTop
-		//	;
+	site.affixElementTop = function(topOffset, elem) {
+		elem = (typeof elem === 'undefined') ? $('.affix-elem') : elem;
+		if ( elem.length === 0 ) {
+			return false;
+		} // if()
 
-		//	if ( fixedElem.length === 0 ) {
-		//		return false;
-		//	} // if
+		topOffset = (typeof topOffset === 'undefined') ? 0 : topOffset;
+		elem.each(function(index, el) {
+			var that = $(el),
+					top  = that.offset().top + topOffset
+			;
+			that.affix({
+				offset : {
+					top : top
+				}
+			});
+		});
 
-		//	$(window).scroll(function(){
-		//		fixedElem.each(function(index,el) {
-		//			var that = $(el);
-
-		//			var offsetTop             = that.offset().top,
-		//					scrollTop             = $(window).scrollTop(),
-		//					// direction            = ( true ) ? 'up' : 'down',
-		//					fixedElemOffset       = ( ( offsetTop - offset ) <= scrollTop ),
-		//					activeFixedElemOffset = ( ( offsetTop - offset ) <= scrollTop )
-		//			;
-		//			if ( fixedElemOffset || activeFixedElemOffset ) {
-		//				if ( ! that.hasClass('fixed') ) {
-		//					that.addClass('fixed');
-		//				} // if()
-		//			} else {
-		//				// that.removeClass('fixed').removeClass('up').removeClass('down');
-		//				// console.log(that.attr('class'));
-		//			} // if/else()
-		//		}); // fixedElem.each()
-		//	}); // $(window).scroll()
-	}; // site.fixElement()
+		return false;
+	}; // site.affixElementTop()
 
 	/**
 	 * Document Ready
@@ -236,7 +229,7 @@ jQuery((function($) {
 		site.css3pieAttach();
 		site.initFitVids();
 		site.selectricInit();
-		// site.fixElement();
+		// site.affixElementTop();
 	});
 
 	/**
