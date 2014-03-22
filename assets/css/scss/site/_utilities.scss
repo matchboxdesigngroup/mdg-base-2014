@@ -1,6 +1,9 @@
 // General
 .faux-link { cursor: pointer; }
 
+.cl,
+.clear { clear: both; }
+
 // Color Vars Backgrounds
 .default-bg-1 { background-color: $color1; } // black
 .default-bg-2 { background-color: $color2; } // white
