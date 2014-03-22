@@ -1,0 +1,40 @@
+// ===============================================
+// IE Specific
+// ===============================================
+$old-ie: false !default;
+
+// ===============================================
+// Fonts
+// ===============================================
+$font-main: Arial, Helvetica, sans-serif;
+$font-main-bold: bold; // Does this font support bold? If not change this to the font weight ex: 700.
+$font-featured: $font-main;
+$font-featured-bold: bold; // Does this font support bold? If not change this to the font weight ex: 700.
+
+// ===============================================
+// Font Sizes
+// ===============================================
+$small: 14px;
+$med: 16px;
+$large: 32px;
+$xlarge: 42px;
+
+// ===============================================
+// Default Colors
+// ===============================================
+$color1: #000; // black
+$color2: #fff; // white
+$color3: #666; // medium grey
+$color4: #ccc; // light grey
+
+// ===============================================
+// Social Services Colors
+// ===============================================
+$facebook-blue: #3b5998;
+$twitter-blue: #00aced;
+$youtube-red: #b00;
+
+// ===============================================
+// Theme Colors
+// ===============================================
+$theme1: #f00; // Change this and add more theme colors

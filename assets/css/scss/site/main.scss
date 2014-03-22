@@ -25,11 +25,13 @@ $fa-font-path: '../bower_components/font-awesome/fonts';
 // ===============================================
 // Site
 // ===============================================
-@import 'vars_mixins';
+@import 'variables';
+@import 'mixins';
 @import 'utilities';
 @import 'base';
 @import 'header';
 @import 'nav';
+@import 'shortcodes';
 @import 'content';
 @import 'error404';
 @import 'footer';
