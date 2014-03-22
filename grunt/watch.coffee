@@ -33,6 +33,15 @@ module.exports =
     options:
       spawn: false
 
+  envScripts:
+    files: ["assets/js/src/env/**/*.js"]
+    tasks: [
+      "uglify:env"
+      "copy:jsSourceMaps"
+    ]
+    options:
+      spawn: false
+
   adminScripts:
     files: ["assets/js/src/admin/**/*.js"]
     tasks: [

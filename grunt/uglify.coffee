@@ -39,7 +39,7 @@ module.exports =
 
     files:
       "assets/js/env-tests.min.js": [
-        "assets/js/vendor/modernizr**.js"
+        "assets/js/src/env/modernizr**.js"
         "assets/bower_components/devicejs/lib/device.min.js"
       ]
 
