@@ -27,10 +27,20 @@ module.exports =
         "assets/bower_components/jQuery-ResizeEnd/src/jQuery.resizeEnd.js"
         # 'assets/bower_components/jquery-selectric/js/jquery.selectric.js',
         "assets/bower_components/fitvids/jquery.fitvids.js"
-        "assets/js/src/plugins/responsive-img.js"
+        # "assets/js/src/plugins/responsive-img.js"
         "assets/js/src/site/ie10-viewport-bug.js"
         "assets/js/src/site/bp.js"
         "assets/js/src/site/scripts.js"
+      ]
+
+  env:
+    options:
+      sourceMap: "env-tests.min.js.map"
+
+    files:
+      "assets/js/env-tests.min.js": [
+        "assets/js/vendor/modernizr**.js"
+        "assets/bower_components/devicejs/lib/device.min.js"
       ]
 
   admin:

@@ -38,21 +38,12 @@ function mdg_enqueue_site_scripts() {
 	} // if()
 
 	// Register Scripts
-	wp_register_script( 'modernizr', "{$theme_uri}/assets/js/vendor/modernizr-2.7.0.min.js", array(), '2.7.0', false );
-	wp_register_script( 'css3pie_js', "{$theme_uri}/assets/js/vendor/css3pie-1.0.0.js", array( 'modernizr' ), '1.0.0', false );
-	wp_register_script( 'device_js', "{$theme_uri}/assets/bower_components/devicejs/lib/device.min.js", array( 'modernizr' ), null, false );
+	wp_register_script( 'mdg_env_tests_js', "{$theme_uri}/assets/js/env-tests.min.js", array(), $theme_version, false );
+	wp_register_script( 'css3pie_js', "{$theme_uri}/assets/js/vendor/css3pie-1.0.0.js", array( 'mdg_env_tests_js' ), '1.0.0', false );
 	wp_register_script( 'main_js', "{$theme_uri}/assets/js/scripts.min.js", array( 'jquery', 'jquery-effects-core' ), $theme_version, true );
 
-	// Add Global PHP -> JS
-	$mdg_globals = array(
-		'ajaxurl' => admin_url( 'admin-ajax.php' ),
-		'isIE'    => ( $ltie9 and $is_IE ),
-	);
-	wp_localize_script( 'main_js', 'MDG_GLOBALS', $mdg_globals );
-
 	// Enqueue Scripts
-	wp_enqueue_script( 'modernizr' );
-	wp_enqueue_script( 'device_js' );
+	wp_enqueue_script( 'mdg_env_tests_js' );
 	if ( $ltie9 and $is_IE ) {
 		wp_enqueue_script( 'css3pie_js' );
 	} // if()
@@ -60,6 +51,24 @@ function mdg_enqueue_site_scripts() {
 	wp_enqueue_script( 'main_js' );
 } // mdg_enqueue_site_scripts()
 add_action( 'wp_enqueue_scripts', 'mdg_enqueue_site_scripts', 100 );
+
+
+
+/**
+ * Adds a global JS object.
+ *
+ * @return Void
+ */
+function mdg_add_global_js() {
+	// Add Global PHP -> JS
+	$mdg_globals = array(
+		'ajaxurl' => admin_url( 'admin-ajax.php' ),
+		'isIE'    => ( $ltie9 and $is_IE ),
+	);
+	$mdg_globals = json_encode( $mdg_globals ); ?>
+	<script>var MDG_GLOBALS = <?php echo wp_kses( $mdg_globals, 'data' ); ?>;</script>
+<?php } // mdg_add_global_js()
+add_action( 'wp_head', 'mdg_add_global_js' );
 
 
 
@@ -87,6 +96,23 @@ function mdg_enqueue_admin_scripts() {
 	wp_enqueue_script( 'admin_scripts' );
 } // mdg_enqueue_admin_scripts()
 add_action( 'admin_enqueue_scripts', 'mdg_enqueue_admin_scripts', 100 );
+
+
+
+/**
+ * Adds a global JS object for wp-admin.
+ *
+ * @return Void
+ */
+function mdg_add_admin_global_js() {
+	// Add Global PHP -> JS
+	$mdg_globals = array(
+		'isIE' => ( $ltie9 and $is_IE ),
+	);
+	$mdg_globals = json_encode( $mdg_globals ); ?>
+	<script>var MDG_GLOBALS = <?php echo wp_kses( $mdg_globals, 'data' ); ?>;</script>
+<?php } // mdg_add_admin_global_js()
+add_action( 'admin_head', 'mdg_add_admin_global_js' );
 
 
 
