@@ -40,7 +40,7 @@ class MDG_Images {
 	/**
 	 * Sets all of the custom image sizes
 	 *
-	 * Example:
+	 * <code>
 	 * $this->image_sizes['example_size'] = array(
 	 *  'width'  => 220,
 	 *  'height' => 130,
@@ -50,28 +50,29 @@ class MDG_Images {
 	 *   'link'  => '' // Link to an image of the created size to be used in Media notification
 	 *  )
 	 * );
+	 * </code>
 	 *
 	 * @return Void
 	 */
 	public function set_image_sizes() {
 		// Example size - Duplicate this and get image resizing (for normal sizes)
 		// $this->image_sizes[] = array(
-		//  'width'  => 220,
-		//  'height' => 130,
-		//  'title'  => '220x130', // The default will be widthxheight but any string can be used
-		//  'used_in' => array(
-		//   'title' => 'Example Size', // Title to be used in Media notification
-		//   'link'  => '' // Link to an image of the created size to be used in Media notification
-		//  )
+		// 	'width'   => 220,
+		// 	'height'  => 130,
+		// 	'title'   => '220x130', // The default will be widthxheight but any string can be used
+		// 	'used_in' => array(
+		// 			'title' => 'Example Size', // Title to be used in Media notification
+		// 			'link'  => '', // Link to an image of the created size to be used in Media notification
+		// 		)
 		// );
 
 		// For responsive images
-		$responsive_image_sizes = array(
-			'med'      => 400,
-			'small'    => 300,
-			'xs_small' => 300,
-		);
-		$this->set_responsive_image_sizes( 500, 200, 'some_image', $responsive_image_sizes, 'Used in some image spot' );
+		// $responsive_image_sizes = array(
+		// 	'med'      => 400,
+		// 	'small'    => 300,
+		// 	'xs_small' => 300,
+		// );
+		// $this->set_responsive_image_sizes( 500, 200, 'some_image', $responsive_image_sizes, 'Used in some image spot' );
 
 		// Featured image administrator column image size
 		$this->image_sizes[] = array(
