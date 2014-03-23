@@ -252,7 +252,7 @@ function mdg_theme_activation_action() {
 		} // if()
 	} // if()
 
-	if ( $mdg_theme_activation_options['add_pages_to_primary_navigation'] === 'true' ) {
+	if ( isset( $mdg_theme_activation_options['add_pages_to_primary_navigation'] ) and $mdg_theme_activation_options['add_pages_to_primary_navigation'] === 'true' ) {
 		$mdg_theme_activation_options['add_pages_to_primary_navigation'] = false;
 
 		$primary_nav = wp_get_nav_menu_object( 'Primary Navigation' );
