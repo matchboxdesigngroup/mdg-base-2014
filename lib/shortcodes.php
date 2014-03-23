@@ -150,13 +150,13 @@ add_shortcode( 'clear','mdg_clear_shortcode' );
  *
  * @return  string            The missing content HTML.
  */
-function mdg_missing_content_shortcode( $atts ) {
-	$atts = extract( shortcode_atts( array(),$atts ) );
+// function mdg_missing_content_shortcode( $atts ) {
+// 	$atts = extract( shortcode_atts( array(),$atts ) );
 
-	$html  = '<div class="missing-content clearfix">';
-	$html .= '<p>Vestibulum rhoncus, nibh nec faucibus porta, nulla diam ornare lacus, nec ullamcorper orci lorem lobortis eros. Nunc ac tellus dolor. Mauris ac interdum augue, in aliquet quam. Sed volutpat euismod dui. Integer gravida purus a ante consequat tempor. Ut ut metus erat. Vestibulum ullamcorper vehicula est vel vulputate. Vestibulum dapibus lectus sed eros malesuada aliquam.</p>';
-	$html .= '<p>Suspendisse non tristique urna, eu tristique turpis. Pellentesque lobortis elit a ante vestibulum, eget interdum felis posuere. Nam tristique tellus et placerat dapibus. Suspendisse cursus interdum elit sed dictum. Vivamus sed sem vitae massa sollicitudin mollis vitae nec massa. Pellentesque sodales sodales nulla vel tempus. Fusce iaculis ultrices dui et porttitor. Nam enim purus, sagittis et tellus sit amet, cursus ullamcorper quam. Sed bibendum erat convallis, malesuada diam a, lacinia lectus. Duis sit amet arcu orci. Phasellus eu neque vitae mauris tincidunt commodo. Quisque in sagittis erat. Curabitur tristique dui dui, id elementum quam laoreet sed. Curabitur in tincidunt tortor. Nunc et lacinia risus. Integer suscipit venenatis ligula, et egestas arcu pellentesque at.</p>';
-	$html .= '</div>';
-	return $html;
-} // mdg_missing_content_shortcode()
-add_shortcode( 'missing-content','mdg_missing_content_shortcode' );
+// 	$html  = '<div class="missing-content clearfix">';
+// 	$html .= '<p>Vestibulum rhoncus, nibh nec faucibus porta, nulla diam ornare lacus, nec ullamcorper orci lorem lobortis eros. Nunc ac tellus dolor. Mauris ac interdum augue, in aliquet quam. Sed volutpat euismod dui. Integer gravida purus a ante consequat tempor. Ut ut metus erat. Vestibulum ullamcorper vehicula est vel vulputate. Vestibulum dapibus lectus sed eros malesuada aliquam.</p>';
+// 	$html .= '<p>Suspendisse non tristique urna, eu tristique turpis. Pellentesque lobortis elit a ante vestibulum, eget interdum felis posuere. Nam tristique tellus et placerat dapibus. Suspendisse cursus interdum elit sed dictum. Vivamus sed sem vitae massa sollicitudin mollis vitae nec massa. Pellentesque sodales sodales nulla vel tempus. Fusce iaculis ultrices dui et porttitor. Nam enim purus, sagittis et tellus sit amet, cursus ullamcorper quam. Sed bibendum erat convallis, malesuada diam a, lacinia lectus. Duis sit amet arcu orci. Phasellus eu neque vitae mauris tincidunt commodo. Quisque in sagittis erat. Curabitur tristique dui dui, id elementum quam laoreet sed. Curabitur in tincidunt tortor. Nunc et lacinia risus. Integer suscipit venenatis ligula, et egestas arcu pellentesque at.</p>';
+// 	$html .= '</div>';
+// 	return $html;
+// } // mdg_missing_content_shortcode()
+// add_shortcode( 'missing-content','mdg_missing_content_shortcode' );
