@@ -27,6 +27,7 @@
     "grunt-autoprefixer": "x.x.x",
     "grunt-group-css-media-queries": "x.x.x",
     "grunt-contrib-cssmin": "x.x.x",
-    "grunt-spritesmith": "~1.23.0"
+    "grunt-spritesmith": "~1.23.0",
+    "grunt-imageoptim": "~1.4.1"
   }
 }

@@ -51,9 +51,19 @@ module.exports =
     options:
       spawn: false
 
-  imagemin:
-    files: ["**/*.{png,jpg,gif}"]
-    tasks: ["imagemin"]
+  imageoptim:
+    files: [
+      "**/*.{png,jpg,gif}"
+      "!assets/img/sprite/**/*.{png,jpg,gif}"
+      "!assets/img/sprite.png"
+    ]
+    tasks: ["imageoptim:all"]
+    options:
+      spawn: false
+
+  sprite:
+    files: ["assets/img/sprite/**/*.{png,jpg,gif}"]
+    tasks: ["imageoptim:sprite", "sprite"]
     options:
       spawn: false
 
