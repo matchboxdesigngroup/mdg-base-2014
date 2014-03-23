@@ -569,7 +569,7 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 			// Set all transients as an option value so we have
 			// access them to reset them when a post is saved
 			$transient_titles = get_option( $this->_transient_title_option, array() );
-			$current_titles   = $transient_titles[$this->post_type];
+			$current_titles   = ( ! empty( $transient_titles ) ) ? $transient_titles[$this->post_type] : null;
 			if ( isset( $current_titles ) ) {
 				$new_title                          = array( $transient_title );
 				$transient_titles[$this->post_type] = array_merge( $current_titles, $new_title );
