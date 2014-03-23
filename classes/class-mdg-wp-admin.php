@@ -486,7 +486,7 @@ class MDG_WP_Admin extends MDG_Generic
 				'source'             => get_template_directory_uri() . '/lib/plugins/gravityforms.zip', // The plugin source
 				'required'           => true,
 				'version'            => '',
-				'force_activation'   => true,
+				'force_activation'   => false,
 				'force_deactivation' => false,
 				'external_url'       => '',
 			),
