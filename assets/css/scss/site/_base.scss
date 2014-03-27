@@ -1,3 +1,13 @@
+object,
+embed,
+a,
+a:hover,
+a:active,
+a:focus,
+input::-moz-focus-inner {
+  outline: 0;
+}
+
 // ===========================================
 // WordPress specific image classes.
 // ===========================================
