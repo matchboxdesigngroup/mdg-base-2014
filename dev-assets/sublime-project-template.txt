@@ -13,16 +13,16 @@
 				"config.rb",
 				".editorconfig",
 				".jshintrc",
-				"*.md",
-				"*.map"
+				"*.map",
+				"*.lock",
+				"*.psd"
 			],
 			"folder_exclude_patterns": [
 				".sass-cache",
 				"node_modules",
-				"dev-assets",
 				"lang",
-				"tasks",
-				"bower_components"
+				"bower_components",
+				"docs"
 			]
 		}
 	]

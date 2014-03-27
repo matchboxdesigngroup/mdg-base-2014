@@ -483,8 +483,18 @@ class MDG_WP_Admin extends MDG_Generic
 			array(
 				'name'               => 'Gravity Forms',
 				'slug'               => 'gravityforms',
-				'source'             => get_template_directory_uri() . '/lib/plugins/gravityforms.zip', // The plugin source
-				'required'           => true,
+				'source'             => get_template_directory_uri() . '/dev-assets/packaged-plugins/gravityforms.zip', // The plugin source
+				'required'           => false,
+				'version'            => '',
+				'force_activation'   => false,
+				'force_deactivation' => false,
+				'external_url'       => '',
+			),
+			array(
+				'name'               => 'WordPress.com Thumbnail Editor',
+				'slug'               => 'wpcom-thumbnail-editor',
+				'source'             => get_template_directory_uri() . '/dev-assets/packaged-plugins/wpcom-thumbnail-editor.zip', // The plugin source
+				'required'           => false,
 				'version'            => '',
 				'force_activation'   => false,
 				'force_deactivation' => false,
@@ -494,17 +504,42 @@ class MDG_WP_Admin extends MDG_Generic
 			array(
 				'name'     => 'WordPress Importer',
 				'slug'     => 'wordpress-importer',
-				'required' => true,
+				'required' => false,
 			),
 			array(
 				'name'     => 'Regenerate Thumbnails',
 				'slug'     => 'regenerate-thumbnails',
-				'required' => true,
+				'required' => false,
 			),
 			array(
 				'name'     => 'BackWPup Free',
 				'slug'     => 'backwpup',
-				'required' => true,
+				'required' => false,
+			),
+			array(
+				'name'     => 'Jetpack',
+				'slug'     => 'jetpack',
+				'required' => false,
+			),
+			array(
+				'name'     => 'Duplicate Post',
+				'slug'     => 'duplicate-post',
+				'required' => false,
+			),
+			array(
+				'name'     => 'Launch Check',
+				'slug'     => 'launch-check',
+				'required' => false,
+			),
+			array(
+				'name'     => 'Missing Content',
+				'slug'     => 'missing-content',
+				'required' => false,
+			),
+			array(
+				'name'     => 'Yoast - WordPress SEO',
+				'slug'     => 'wordpress-seo',
+				'required' => false,
 			),
 		);
 
