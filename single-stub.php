@@ -11,7 +11,11 @@ Nullam ultricies mi sed erat commodo venenatis. Sed malesuada vestibulum nibh ne
 In lobortis et ante vitae ultricies. Maecenas quis porta quam. Duis et purus ligula. Quisque bibendum, sem a pulvinar venenatis, sem tortor mattis risus, eu tempor leo eros at justo. Proin sit amet lectus sed mi aliquam tincidunt id tincidunt felis. Sed fringilla, turpis non consequat dictum, velit massa auctor sem, non auctor felis nisl ut felis. Cras et nisl tortor. Aliquam erat volutpat. Suspendisse ipsum dolor, mattis sit amet ullamcorper nec, scelerisque vitae neque. Nam quam elit, luctus eu mi eget, pellentesque varius justo. Vivamus id ipsum id eros venenatis sodales. Quisque malesuada dapibus dolor, sed vulputate ante rhoncus ut. Fusce sapien metus, ornare et commodo eu, imperdiet id dui. Quisque commodo vehicula nunc, at tempus enim tempor in. Nullam non sapien volutpat, rutrum purus et, consectetur tellus.
 Etiam ante velit, sagittis sit amet sem ut, rutrum imperdiet tellus. Praesent lectus nisi, aliquam eu ligula non, aliquam sagittis risus. Pellentesque ut arcu et lectus adipiscing vestibulum ac vitae quam. Donec condimentum, sapien faucibus pretium lobortis, est urna porta magna, nec ornare est sapien id velit. Morbi a ipsum commodo, placerat lacus in, adipiscing enim. Curabitur euismod pharetra velit quis semper. Ut quam nisi, rhoncus nec congue vitae, feugiat eget risus. Cras eget quam lectus. Cras a egestas neque, a facilisis sem. Morbi imperdiet gravida sem, sit amet varius arcu sagittis pharetra. Suspendisse ut porta tellus. Ut vehicula imperdiet libero. Cras sit amet sapien at magna interdum imperdiet. Nam orci odio, molestie non convallis dignissim, rhoncus ac nulla.
 
-<div class="container">
+<div class="">
+	<?php
+	global $mdg_stub;
+	$resp_image = $mdg_stub->get_responsive_image( get_the_id(), 'some_image', null, true, array( 'title' => 'My title image' ) ); ?>
+
 <?php function stub_get_posts() {
 	global $mdg_stub;
 
@@ -63,8 +67,6 @@ Etiam ante velit, sagittis sit amet sem ut, rutrum imperdiet tellus. Praesent le
 	$stubs = $mdg_stub->get_attachments( null, array() );
 	$ret   = array();
 
-	// pp( $stubs );
-
 	foreach ( $stubs as $stub ) {
 		$ret[] = wp_get_attachment_url( $stub->ID );
 	} // foreach()
@@ -83,7 +85,7 @@ Etiam ante velit, sagittis sit amet sem ut, rutrum imperdiet tellus. Praesent le
 <?php function stub_get_responsive_image_test() {
 	global $mdg_stub;
 
-	$resp_image = $mdg_stub->get_responsive_image( 'some_image', array( 'link' => 'test', 'echo' => false, ) );
+	$resp_image = $mdg_stub->get_responsive_image( 'some_image', true, array( 'link' => 'test' ) );
 } // stub_get_responsive_image_test() ?>
 
 

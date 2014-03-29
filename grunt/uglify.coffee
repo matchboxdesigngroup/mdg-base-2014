@@ -27,7 +27,7 @@ module.exports =
         "assets/bower_components/jQuery-ResizeEnd/src/jQuery.resizeEnd.js"
         # 'assets/bower_components/jquery-selectric/js/jquery.selectric.js',
         "assets/bower_components/fitvids/jquery.fitvids.js"
-        # "assets/js/src/plugins/responsive-img.js"
+        # "assets/js/src/plugins/responsive-img-1.1.js"
         "assets/js/src/site/ie10-viewport-bug.js"
         "assets/js/src/site/bp.js"
         "assets/js/src/site/scripts.js"

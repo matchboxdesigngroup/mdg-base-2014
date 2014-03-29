@@ -437,7 +437,6 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 		);
 
 		$labels = array_merge( $default_post_type_labels, $this->custom_post_type_labels );
-
 		$default_post_type_args = array(
 			'labels'             => $labels,
 			'public'             => true,
@@ -598,123 +597,31 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 	} // get_posts()
 
 
-
 	/**
 	 * Retrieves the responsive image.
+	 * Requires responsive images plugin to be activated in Grunt uglify config.
 	 *
-	 * @param  string  $base_title  The base image size used when adding responsive image sizes.
-	 * @param  string[] $args {
-	 * @type  array   $image_sizes The image sizes image_size_name => <|>size, optional default all image sizes that match $base_title.
-	 * @type  integer $post_id     ID of the post to get image for blog post, optional default global $post.
-	 * @type  boolean $echo        Echo or return the image, optional default true.
-	 * @type  string  $link        The link for the image, use '' to disable link, optional default post permalink.
-	 * @type  string  $default_img Link to a default image, optional default null.
-	 * }
+	 * <code>
+	 * <?php $resp_image = $mdg_stub->get_responsive_image( get_the_id(), 'some_image', null, true, array( 'title' => 'My title image' ) ); ?>
+	 * </code>
 	 *
-	 * @todo Make this easy to use.
+	 * @see https://github.com/kvendrik/responsive-images.js
 	 *
-	 * @return string           The posts featured image
+	 * @uses MDG_Images()
+	 *
+	 * @param   integer  $src_id       The attachment ID or the post ID to get the featured image from.
+	 * @param   string   $base_title   The base title of your responsive image size set in MDG_Images->set_image_sizes().
+	 * @param   string   $default_img  Optional, default image URL, defaults to the 'full' size image, used if Javascript is not supported.
+	 * @param   boolean  $echo         Optional, to output the responsive image, default true.
+	 * @param   array    $attrs        Optional, HTML attributes to add to the img tag.
+	 *
+	 * @return string                  The responsive image HTML with no script fall back.
 	 */
-	public function get_responsive_image( $base_title, $args ) {
-		$default_args = array(
-			'image_sizes' => array(),
-			'post_id' => null,
-			'echo' => true,
-			'link' => null,
-			'default_img' => null,
-		);
-		$args = array_merge( $default_args, $args );
-		extract( $args );
+	public function get_responsive_image( $src_id, $base_title, $default_img = null, $echo = true, $attrs = array() ) {
+		global $mdg_images;
 
-		if ( is_null( $post_id ) ) {
-			global $post;
-			$post_id = $post->ID;
-		} // if()
-
-		if ( empty( $image_sizes ) ) {
-			$image_sizes = $this->get_responsive_image_sizes( $base_title );
-		} // if()
-
-		$link       = ( is_null( $link ) ) ? get_permalink( $post_id ) : $link;
-		$data_attr  = '';
-		$upload_dir = wp_upload_dir();
-		$upload_url = trailingslashit( $upload_dir['baseurl'] );
-		$faux_link  = ( $link == ''  ) ? '' : "class='faux-link' data-link='{$link}'";
-
-		if ( has_post_thumbnail( $post_id ) ) {
-			$i = 0;
-			foreach ( $image_sizes as $title => $size ) {
-				$thumbnail_id = get_post_thumbnail_id( $post_id );
-				$img_src      = wp_get_attachment_image_src( $thumbnail_id, $title, false );
-				$file_path    = str_replace( $upload_url, '', $img_src[0] );
-				$data_attr   .= "{$size}:{$file_path},";
-
-				if ( $i == count( $image_sizes ) - 1 ) {
-					$full_size = $img_src;
-					$i = $i + 1;
-				} // if()
-			} // foreach()
-
-			$data_attr = rtrim( $data_attr, ',' );
-			$image     = "<img data-src-base='{$upload_url}' data-src='{$data_attr}' {$faux_link} />";
-			$image    .= "<noscript><img alt='{$post->post_title}' src='{$full_size[0]}' /></noscript>";
-		} else {
-			if ( $default_img = null ) {
-				$img_src = '';
-			}
-			$img_src = "<img alt='{$post->post_title}' src='{$default_img}' />";
-		} // if/else()
-
-		if ( $echo ) {
-			echo wp_kses( $image , $this->get_allowed_tags() );
-		} // if()
-
-		return $image;
+		return $mdg_images->get_responsive_image( $src_id, $base_title, $default_img, $echo, $attrs );
 	} // get_responsive_image()
-
-
-
-	/**
-	 * Retrieves the responsive image sizes.
-	 *
-	 * @param  string  $base_title The base image size used when adding responsive image sizes.
-	 *
-	 * @return array               The responsive image sizes.
-	 */
-	public function get_responsive_image_sizes( $base_title ) {
-		global $_wp_additional_image_sizes;
-		$image_sizes = get_intermediate_image_sizes();
-		$resp_sizes  = array();
-		$sizes       = array();
-
-		// Get the sizes that match the base title
-		foreach ( $image_sizes as $image_size ) {
-			if ( strpos( $image_size, $base_title ) !== false ) {
-				$resp_sizes[] = $image_size;
-			} // if()
-		} // foreach()
-
-		// Get the responsive image sizes
-		foreach ( $resp_sizes as $size ) {
-			if ( in_array( $size, array( 'thumbnail', 'medium', 'large' ) ) ) {
-				$sizes[$size] = get_option( $size . '_size_w' );
-			} elseif ( isset( $_wp_additional_image_sizes ) && isset( $_wp_additional_image_sizes[ $size ] ) ) {
-				$sizes[$size] = $_wp_additional_image_sizes[ $size ]['width'];
-			} //if/else
-		} // foreach()
-
-		// Sort the sizes from largest to smallest
-		asort( $sizes, SORT_NUMERIC );
-
-		// Add the greater/less than so it will load them correctly.
-		$i = 0;
-		foreach ( $sizes as $key => $size ) {
-			$sizes[$key] = ( $i == count( $sizes ) - 1 ) ? ">{$size}" : "<{$size}";
-			$i = $i + 1;
-		} // foreach()
-
-		return $sizes;
-	} // get_responsive_image_sizes()
 
 
 	/**
