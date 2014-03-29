@@ -53,7 +53,7 @@ module.exports =
 
   imageoptim:
     files: [
-      "**/*.{png,jpg,gif}"
+      "assets/**/*.{png,jpg,gif}"
       "!assets/img/sprite/**/*.{png,jpg,gif}"
       "!assets/img/sprite.png"
     ]
@@ -72,7 +72,7 @@ module.exports =
       "lib/**/*.php",
       "classes/**/*.php"
     ]
-    tasks: ["phpdoc"]
+    tasks: []
     options:
       spawn: false
 
