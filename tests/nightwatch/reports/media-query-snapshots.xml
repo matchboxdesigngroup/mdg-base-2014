@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="media-query-snapshots"
+             errors="0"
+             failures="0"
+             tests="undefined">
+  
+  <testsuite errors="0" failures="0" hostname="" id=""
+    name="mediaQuerySnapshots" package="media-query-snapshots" skipped="0" 
+    tests="0" time="" timestamp="">
+    
+    
+    
+      <system-err>
+        Object #&lt;Nightwatch&gt; has no method &#39;mediaQuerySnapshots&#39;
+      </system-err>
+    
+    </testsuite>
+  
+</testsuites>

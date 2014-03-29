@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="media-queries"
+             errors="0"
+             failures="1"
+             tests="undefined">
+  
+  <testsuite errors="0" failures="1" hostname="" id=""
+    name="Media Query Test" package="media-queries" skipped="9" 
+    tests="10" time="" timestamp="">
+    
+    
+      <testcase name="Element &lt;body&gt; was not present in 1000 milliseconds.">
+          
+          <failure message="Expected &quot;false&quot; but got: &quot;false&quot;"></failure>
+        
+      </testcase>  
+    
+    
+    </testsuite>
+  
+</testsuites>

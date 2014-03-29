@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="contact-form"
+             errors="0"
+             failures="0"
+             tests="undefined">
+  
+  <testsuite errors="0" failures="0" hostname="" id=""
+    name="Demo test Google" package="contact-form" skipped="0" 
+    tests="2" time="" timestamp="">
+    
+    
+      <testcase name="Element &lt;body&gt; was visible after 147 milliseconds.">
+        
+      </testcase>  
+    
+      <testcase name="Testing if element &lt;.gform_confirmation_message&gt; is present.">
+        
+      </testcase>  
+    
+    
+    </testsuite>
+  
+</testsuites>

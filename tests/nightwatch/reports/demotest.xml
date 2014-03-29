@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="demotest"
+             errors="5"
+             failures="1"
+             tests="undefined">
+  
+  <testsuite errors="5" failures="1" hostname="" id=""
+    name="Demo test Google" package="demotest" skipped="1" 
+    tests="3" time="" timestamp="">
+    
+    
+      <testcase name="Element &lt;body&gt; was visible after 68 milliseconds.">
+        
+      </testcase>  
+    
+      <testcase name="Testing if element &lt;.gform_confirmation_message&gt; is present.">
+          
+          <failure message="Expected &quot;true&quot; but got: &quot;null&quot;"></failure>
+        
+      </testcase>  
+    
+    
+      <system-err>
+        Unable to locate element: &quot;.contact-form-wrapper address input[type=text]&quot; using: css selector
+Unable to locate element: &quot;.contact-form-wrapper city input[type=text]&quot; using: css selector
+Unable to locate element: &quot;.contact-form-wrapper state input[type=text]&quot; using: css selector
+Unable to locate element: &quot;.contact-form-wrapper zip input[type=text]&quot; using: css selector
+Unable to locate element: &quot;.contact-form-wrapper comments input[type=text]&quot; using: css selector
+      </system-err>
+    
+    </testsuite>
+  
+</testsuites>
