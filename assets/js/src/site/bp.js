@@ -1,4 +1,6 @@
 /* global MDG_GLOBALS */
+/* global Modernizr */
+
 /**
  * Handles checking what size the window is and applies a class to  the HTML element.
  * Also applies all methods and properties to MDG_Globals.bp
@@ -9,21 +11,32 @@
  */
 jQuery((function($){
 	var bp = {
-				xsMin   : 480,				// X-Small screen
-				smMin   : 768,				// Small screen / tablet
-				mdMin   : 992,				// Medium screen / desktop
-				lgMin   : 1200,				// Large screen / wide desktop
-				xsMax   : (768 - 1),	// screen-sm-min - 1
-				smMax   : (992 - 1),	// screen-md-min - 1
-				mdMax   : (1200 - 1),	// screen-lg-min - 1
+				xxsMax  : (480 - 1),  // xx-small screen
+				xsMin   : 480,        // x-small screen
+				smMin   : 768,        // small screen / tablet
+				mdMin   : 992,        // medium screen / desktop
+				lgMin   : 1200,       // large screen / wide desktop
+				xsMax   : (768 - 1),  // screen-sm-min - 1
+				smMax   : (992 - 1),  // screen-md-min - 1
+				mdMax   : (1200 - 1), // screen-lg-min - 1
 				classes : {
-					xs: 'bp-screen-xs',
-					sm: 'bp-screen-sm',
-					md: 'bp-screen-md',
-					lg: 'bp-screen-lg'
+					xxs : 'bp-screen-xxs',
+					xs  : 'bp-screen-xs',
+					sm  : 'bp-screen-sm',
+					md  : 'bp-screen-md',
+					lg  : 'bp-screen-lg'
 				}
 			}
 	;
+
+	bp.mediaQueriesSupported = function() {
+		// Dependent on Modernizr and MEdia Query browser support
+		if ( typeof Modernizr !== 'object' || ! Modernizr.mq('only all') ) {
+			return false;
+		} // if()
+
+		return true;
+	}; // if()
 
 	/**
 	 * Applies the current bp-{size} class and removes all others
@@ -50,44 +63,31 @@ jQuery((function($){
 		return false;
 	}; // bp.applyHtmlClass()
 
-
-
-	/**
-	 * Sets bp.testElem = jQuery selector for the test element if not already defined.
-	 */
-	bp.getTestElemWidth = function() {
-		if (typeof bp.testElem === 'undefined') {
-			bp.testElem = $('html');
-		} // if()
-
-		return parseInt( bp.testElem.css('width').replace('px', ''), 10);
-	}; // bp.setTestElem()
-
-
-
 	/**
 	 * Min width check like @media (min-width:...
 	 *
-	 * @param screenSize Min device width.
+	 * @param mediaSize Min device width.
 	 */
-	bp.min = function( screenSize ) {
-		screenSize = parseInt( screenSize, 10);
-		return screenSize <= bp.getTestElemWidth();
+	bp.min = function( mediaSize ) {
+		if ( ! bp.mediaQueriesSupported() ) {
+			return false;
+		} // if()
+
+		return Modernizr.mq('(min-width: ' + mediaSize + ')');
 	}; // bp.min()
-
-
 
 	/**
 	 * Max width check like @media (max-width:...
 	 *
-	 * @param screenSize Max device width.
+	 * @param mediaSize Max device width.
 	 */
-	bp.max = function( screenSize ) {
-		screenSize = parseInt( screenSize, 10);
-		return screenSize >= bp.getTestElemWidth();
+	bp.max = function( mediaSize ) {
+		if ( ! bp.mediaQueriesSupported() ) {
+			return false;
+		} // if()
+
+		return Modernizr.mq('(max-width: ' + mediaSize + ')');
 	}; // bp.max()
-
-
 
 	/**
 	 * Min/Max check like @media (min-width: min) and (max-width: max)...
@@ -95,31 +95,41 @@ jQuery((function($){
 	 * @param min Min device width.
 	 * @param max Max device width.
 	 */
-	bp.minMax = function( min,max ) {
-		min   = parseInt( min, 10);
-		max   = parseInt( max, 10);
-		var width = bp.getTestElemWidth();
+	bp.minMax = function( min, max ) {
+		if ( ! bp.mediaQueriesSupported() ) {
+			return false;
+		} // if()
 
-		return ( min <= width && max >= width );
+		return Modernizr.mq('(min-width: ' + min + ') and (max-width: ' + max + ')');
 	}; // bp.minMax()
 
+	/**
+	 * Checks if current screen width is a xx-small screen.
+	 *
+	 * @return {Boolean} If current screen width is a xx-small screen.
+	 */
+	bp.isScreenXXS = function () {
+		var isScreenXXS = bp.max(bp.xxsMax + 'px');
 
+		if ( isScreenXXS ) {
+			bp.applyHtmlClass(bp.classes.xxs);
+		} // if()
+		return isScreenXXS;
+	}; // bp.isScreenXS()
 
 	/**
 	 * Checks if current screen width is a x-small screen.
 	 *
 	 * @return {Boolean} If current screen width is a x-small screen.
 	 */
-	bp.isScreenXs = function () {
-		var isScreenXs = bp.max(bp.xsMax);
+	bp.isScreenXS = function () {
+		var isScreenXS = bp.minMax(bp.xsMin + 'px', bp.xsMax + 'px');
 
-		if ( isScreenXs ) {
+		if ( isScreenXS ) {
 			bp.applyHtmlClass(bp.classes.xs);
 		} // if()
-		return isScreenXs;
-	}; // bp.isScreenXs()
-
-
+		return isScreenXS;
+	}; // bp.isScreenXS()
 
 	/**
 	 * Checks if current screen width is a small screen.
@@ -127,7 +137,7 @@ jQuery((function($){
 	 * @return {Boolean} If current screen width is a small screen.
 	 */
 	bp.isScreenSm = function () {
-		var isScreenSm = bp.minMax( bp.smMin, bp.smMax);
+		var isScreenSm = bp.minMax( bp.smMin + 'px', bp.smMax + 'px');
 		if ( isScreenSm ) {
 			bp.applyHtmlClass(bp.classes.sm);
 		} // if()
@@ -135,15 +145,13 @@ jQuery((function($){
 		return isScreenSm;
 	}; // bp.isScreenSm()
 
-
-
 	/**
 	 * Checks if current screen width is a medium screen.
 	 *
 	 * @return {Boolean} If current screen width is a medium screen.
 	 */
 	bp.isScreenMd = function () {
-		var isScreenMd = bp.minMax( bp.mdMin, bp.mdMax);
+		var isScreenMd = bp.minMax( bp.mdMin + 'px', bp.mdMax + 'px');
 		if ( isScreenMd ) {
 			bp.applyHtmlClass(bp.classes.md);
 		} // if()
@@ -151,15 +159,13 @@ jQuery((function($){
 		return isScreenMd;
 	}; // bp.isScreenMd()
 
-
-
 	/**
 	 * Checks if current screen width is a large screen.
 	 *
 	 * @return {Boolean} If current screen width is a large screen.
 	 */
 	bp.isScreenLg = function () {
-		var isScreenLg = bp.min(bp.lgMin);
+		var isScreenLg = bp.min(bp.lgMin + 'px');
 		if ( isScreenLg ) {
 			bp.applyHtmlClass(bp.classes.lg);
 		} // if()
@@ -167,18 +173,26 @@ jQuery((function($){
 		return isScreenLg;
 	}; // bp.isScreenLg()
 
-
-
 	/**
 	 * Runs all of the breakpoint checks.
 	 *
-	 * @return Void
+	 * @return {Void}
 	 */
 	bp.check = function() {
-		bp.isScreenXs();
-		bp.isScreenSm();
-		bp.isScreenMd();
-		bp.isScreenLg();
+		if ( ! bp.mediaQueriesSupported() ) {
+			return;
+		} // if()
+
+		var isScreenXXS = bp.isScreenXXS();
+		var isScreenXS  = bp.isScreenXS();
+		var isScreenSm  = bp.isScreenSm();
+		var isScreenMd  = bp.isScreenMd();
+		var isScreenLg  = bp.isScreenLg();
+
+		// Remove the class if something goes wrong or not supported
+		if ( ! isScreenXXS && ! isScreenXS && ! isScreenSm && ! isScreenMd && ! isScreenLg ) {
+			bp.applyHtmlClass('');
+		} // if()
 	};
 
 	/**
@@ -188,15 +202,19 @@ jQuery((function($){
 		bp.check();
 	});
 
-
 	/**
 	 * Window Resize.
-	 * Resize end requires /assets/js/src/plugins/jQuery.resizeEnd.js
-	 * to be included if it is not included change resizeEnd to resize.
+	 * $(window).resizeEnd() requires jQuery.resizeEnd.js to be included in Grunt uglify configuration.
 	 */
-	$(window).resizeEnd(function() {
-		bp.check();
-	});
+	if ( typeof $(window).resizeEnd === 'function' ) {
+		$(window).resizeEnd(function() {
+			bp.check();
+		});
+	} else {
+		$(window).resize(function() {
+			bp.check();
+		});
+	} // if/else()
 
 	MDG_GLOBALS.bp = bp;
 })(jQuery));
