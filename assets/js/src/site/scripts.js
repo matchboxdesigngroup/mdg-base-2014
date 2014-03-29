@@ -1,17 +1,5 @@
 /** global MDG_GLOBALS */
 /** global PIE */
-/**
- * To activate the plugins for CodeKit remove the space between @ and codekit-prepend this
- * mirrors the order and default setup from Gruntfile.js
- */
-// @codekit-prepend "../plugins/bootstrap/plugins.js"
-// @ codekit-prepend "../plugins/imagesloaded.pkgd.js"
-// @ codekit-prepend "../plugins/jquery.flexslider.js"
-// @ codekit-prepend "../plugins/placeholders.jquery.min.js"
-// @codekit-prepend "../plugins/jQuery.resizeEnd.js"
-// @ codekit-prepend "../plugins/jquery.selectric.js"
-// @codekit-prepend "../plugins/responsive-img.js"
-// @codekit-prepend "bp.js"
 jQuery((function($) {
 	var site    = {};
 
@@ -221,6 +209,23 @@ jQuery((function($) {
 	}; // site.affixElementTop()
 
 	/**
+	 * Initalizes sticky footer on pages shorter than the window height
+	 *
+	 * @return  {void}
+	 */
+	site.stickyFooterInit = function() {
+		if ( $('html').outerHeight() < $(window).outerHeight() ) {
+			$('body>.wrap').addClass('page-wrap');
+			$('html,body').addClass('sticky-footer-wrap');
+		} else {
+			$('body>.wrap').removeClass('page-wrap');
+			$('html,body').removeClass('sticky-footer-wrap');
+		} // if/else()
+
+		return;
+	}; // site.stickyFooterInit()
+
+	/**
 	 * Document Ready
 	 */
 	$(document).ready(function() {
@@ -229,15 +234,14 @@ jQuery((function($) {
 		site.css3pieAttach();
 		site.initFitVids();
 		site.selectricInit();
-		// site.affixElementTop();
+		site.stickyFooterInit();
+		site.affixElementTop();
 	});
 
 	/**
 	 * Window Resize.
-	 * Resize end requires /assets/js/src/plugins/jQuery.resizeEnd.js
-	 * to be included if it is not included change resizeEnd to resize.
 	 */
-	$(window).resizeEnd(function() {
+	$(window).resize(function() {
 	});
 
 	/**

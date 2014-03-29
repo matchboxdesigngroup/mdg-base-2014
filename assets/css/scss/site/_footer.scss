@@ -1,3 +1,7 @@
+$footer-height: 29px; // Used for sticky footer
+
+.content-info {} // .content-info
+
 // ==================================================
 // Back to top
 // ==================================================
@@ -33,23 +37,24 @@
 } // .back-to-top
 
 // Sticky Footer
-// * { margin: 0; }
-// html, body {
-//   height: 100%;
-// }
-// .page-wrap {
-//   min-height: 100%;
-//   /* equal to footer height */
-//   margin-bottom: -142px;
-// }
-// .page-wrap:after {
-//   content: "";
-//   display: block;
-// }
-// .site-footer, .page-wrap:after {
-//   /* .push must be the same height as footer */
-//   height: 142px;
-// }
-// .site-footer {
-//   background: orange;
-// }
+@include bp-screen-sm {
+	* { margin: 0; }
+
+	.sticky-footer-wrap {
+		height: 100%;
+		.page-wrap {
+			min-height: 100%;
+			margin-bottom: -1 * $footer-height;
+
+			&:after {
+				content: "";
+				display: block;
+			} // &:after
+		} // .page-wrap
+
+		.content-info,
+		.page-wrap:after {
+			height: $footer-height;
+		} // .content-info, .page-wrap:after
+	} // .sticky-footer-wrap
+} // @include bp-screen-sm
