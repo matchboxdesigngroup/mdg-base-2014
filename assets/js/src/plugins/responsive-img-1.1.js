@@ -1,3 +1,11 @@
+/*
+// @name: Responsive-img.js
+// @version: 1.1
+// 
+// Copyright 2013-2014 Koen Vendrik, http://kvendrik.com
+// Licensed under the MIT license
+*/
+
 	function makeImagesResponsive(){
 
 			var viewport = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -66,7 +74,7 @@
 				for(var j = 0; j < queries_array.length; j++){
 
 					//split each individual query
-					var query = queries_array[j].split(':');
+					var query = queries_array[j].replace(':','||').split('||');
 
 					//get condition and response
 					var condition = query[0];
@@ -104,7 +112,7 @@
 
 							var next_query = queries_array[(j +1)].split(/:(.+)/);
 							var next_cond = next_query[0].split('>');
-
+							
 							bool = (viewport >= conditionpx[1] && viewport < next_cond[1]);
 
 						} else {
@@ -119,8 +127,14 @@
 					//check if document.width meets condition
 					if(bool){
 
-						//console.log('vieport:'+viewport + 'src:' + basePath + response);
-						var new_source = basePath + response;
+						var isCrossDomain = response.indexOf('//') !== -1 ? 1 : 0;
+
+						var new_source;
+						if(isCrossDomain === 1){
+							new_source = response;
+						} else {
+							new_source = basePath + response;
+						}
 
 						if(image.src !== new_source){
 
