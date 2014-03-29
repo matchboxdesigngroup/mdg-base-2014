@@ -11,14 +11,11 @@ $libs = array(
 	'utils',
 	'init',
 	'wrapper',
-	'sidebar',
 	'config',
 	'activation',
 	'titles',
 	'cleanup',
-	'nav',
 	'gallery',
-	'comments',
 	'rewrites',
 	'relative-urls',
 	'widgets',
@@ -49,6 +46,9 @@ $classes = array(
 	'class-mdg-type-post',
 	'class-mdg-type-page',
 	'class-mdg-wp-admin',
+	'class-mdg-walker-comments',
+	'class-mdg-nav-walker',
+	'class-mdg-sidebar',
 );
 
 foreach ( $classes as $class ) {
