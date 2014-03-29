@@ -65,7 +65,9 @@
 <li class="function  "><a href="#function_development_url_change" title="development_url_change() :: Allows for testing on virtual machines like Virtual Box."><span class="description">Allows for testing on virtual machines like Virtual Box.</span><pre>development_url_change</pre></a></li>
 <li class="function  "><a href="#function_is_element_empty" title="is_element_empty() :: Checks to see if an element is empty."><span class="description">Checks to see if an element is empty.</span><pre>is_element_empty</pre></a></li>
 <li class="function  "><a href="#function_mdg_activation_options_page_capability" title="mdg_activation_options_page_capability() :: Sets the capability as user must have to access the theme options page"><span class="description">Sets the capability as user must have to access the theme options page</span><pre>mdg_activation_options_page_capability</pre></a></li>
+<li class="function  "><a href="#function_mdg_add_admin_global_js" title="mdg_add_admin_global_js() :: Adds a global JS object for wp-admin."><span class="description">Adds a global JS object for wp-admin.</span><pre>mdg_add_admin_global_js</pre></a></li>
 <li class="function  "><a href="#function_mdg_add_favicon" title="mdg_add_favicon() :: Adds the favicon for the site, login, and administrator section."><span class="description">Adds the favicon for the site, login, and administrator section.</span><pre>mdg_add_favicon</pre></a></li>
+<li class="function  "><a href="#function_mdg_add_global_js" title="mdg_add_global_js() :: Adds a global JS object."><span class="description">Adds a global JS object.</span><pre>mdg_add_global_js</pre></a></li>
 <li class="function  "><a href="#function_mdg_add_rewrites" title="mdg_add_rewrites() :: URL rewriting"><span class="description">URL rewriting</span><pre>mdg_add_rewrites</pre></a></li>
 <li class="function  "><a href="#function_mdg_attachment_link_class" title='mdg_attachment_link_class() :: Add class="thumbnail img-thumbnail" to attachment items.'><span class="description">Add class="thumbnail img-thumbnail" to attachment items.</span><pre>mdg_attachment_link_class</pre></a></li>
 <li class="function  "><a href="#function_mdg_body_class" title="mdg_body_class() :: Add and remove body_class() classes."><span class="description">Add and remove body_class() classes.</span><pre>mdg_body_class</pre></a></li>
@@ -98,7 +100,6 @@ The number of columns must be a factor of 12.</span><pre>mdg_gallery</pre></a></
 <li class="function  "><a href="#function_mdg_jquery_local_fallback" title="mdg_jquery_local_fallback() :: jQuery local fallback"><span class="description">jQuery local fallback</span><pre>mdg_jquery_local_fallback</pre></a></li>
 <li class="function  "><a href="#function_mdg_language_attributes" title="mdg_language_attributes() :: Clean up language_attributes() used in &lt;html&gt; tag"><span class="description">Clean up language_attributes() used in &lt;html&gt; tag</span><pre>mdg_language_attributes</pre></a></li>
 <li class="function  "><a href="#function_mdg_main_class" title="mdg_main_class() :: Selects the column class the .main element."><span class="description">Selects the column class the .main element.</span><pre>mdg_main_class</pre></a></li>
-<li class="function  "><a href="#function_mdg_missing_content_shortcode" title="mdg_missing_content_shortcode() :: Adds a missing content notice."><span class="description">Adds a missing content notice.</span><pre>mdg_missing_content_shortcode</pre></a></li>
 <li class="function  "><a href="#function_mdg_nav_menu_args" title="mdg_nav_menu_args() :: Clean up wp_nav_menu_args."><span class="description">Clean up wp_nav_menu_args.</span><pre>mdg_nav_menu_args</pre></a></li>
 <li class="function  "><a href="#function_mdg_nav_menu_css_class" title='mdg_nav_menu_css_class() :: Removes the id="" on navigation menu items.'><span class="description">Removes the id="" on navigation menu items.</span><pre>mdg_nav_menu_css_class</pre></a></li>
 <li class="function  "><a href="#function_mdg_nice_search_redirect" title="mdg_nice_search_redirect() :: Redirects search results from /?s=query to /search/query/, converts %20 to +"><span class="description">Redirects search results from /?s=query to /search/query/, converts %20 to +</span><pre>mdg_nice_search_redirect</pre></a></li>
@@ -124,19 +125,19 @@ The number of columns must be a factor of 12.</span><pre>mdg_gallery</pre></a></
 <li class="function  "><a href="#function_pp" title="pp() :: Pretty Print Debug Function"><span class="description">Pretty Print Debug Function</span><pre>pp</pre></a></li>
 <li class="nav-header">
 <i title="Classes" class="icon-custom icon-class"></i> Classes</li>
-<li><a href="#MDG_Generic" title="Contains methods/properties that can be used by all classes.">MDG_Generic</a></li>
-<li><a href="#MDG_Images" title="Handles adding custom image sizes and other global image related functionality.">MDG_Images</a></li>
-<li><a href="#MDG_Meta_Form_Fields" title="Contains all of the custom meta form fields.">MDG_Meta_Form_Fields</a></li>
-<li><a href="#MDG_Meta_Helper" title="Handles anything to do with custom meta.">MDG_Meta_Helper</a></li>
-<li><a href="#MDG_Type_Base" title="This is a base for custom post type classes so they can all take advantage of the same logic for meta, transients etc.">MDG_Type_Base</a></li>
-<li><a href="#MDG_Type_Page" title='Handles anything custom for the default WordPress "page" post type'>MDG_Type_Page</a></li>
-<li><a href="#MDG_Type_Post" title='Handles anything custom for the default WordPress "post" post type.'>MDG_Type_Post</a></li>
-<li><a href="#MDG_Type_Stub" title="This class can be used as a starting point to add new post types.">MDG_Type_Stub</a></li>
 <li><a href="#MDG_WP_Admin" title="Handles all of the customizations wp-admin.">MDG_WP_Admin</a></li>
-<li><a href="#MDG_Walker_Comment" title="Use Bootstrap's media object for listing comments">MDG_Walker_Comment</a></li>
-<li><a href="#MDG_Nav_Walker" title="Cleaner walker for wp_nav_menu()">MDG_Nav_Walker</a></li>
+<li><a href="#MDG_Type_Page" title='Handles anything custom for the default WordPress "page" post type'>MDG_Type_Page</a></li>
+<li><a href="#MDG_Images" title="Handles adding custom image sizes and other global image related functionality.">MDG_Images</a></li>
 <li><a href="#MDG_Sidebar" title="Determines whether or not to display the sidebar based on an array of conditional tags or page templates.">MDG_Sidebar</a></li>
+<li><a href="#MDG_Type_Base" title="This is a base for custom post type classes so they can all take advantage of the same logic for meta, transients etc.">MDG_Type_Base</a></li>
 <li><a href="#MDG_Vcard_Widget" title="Example vCard widget">MDG_Vcard_Widget</a></li>
+<li><a href="#MDG_Nav_Walker" title="Cleaner walker for wp_nav_menu()">MDG_Nav_Walker</a></li>
+<li><a href="#MDG_Type_Post" title='Handles anything custom for the default WordPress "post" post type.'>MDG_Type_Post</a></li>
+<li><a href="#MDG_Walker_Comment" title="Use Bootstrap's media object for listing comments">MDG_Walker_Comment</a></li>
+<li><a href="#MDG_Meta_Helper" title="Handles anything to do with custom meta.">MDG_Meta_Helper</a></li>
+<li><a href="#MDG_Type_Stub" title="This class can be used as a starting point to add new post types.">MDG_Type_Stub</a></li>
+<li><a href="#MDG_Meta_Form_Fields" title="Contains all of the custom meta form fields.">MDG_Meta_Form_Fields</a></li>
+<li><a href="#MDG_Generic" title="Contains methods/properties that can be used by all classes.">MDG_Generic</a></li>
 <li><a href="#MDG_Wrapping" title="Handles the theme wrapper.">MDG_Wrapping</a></li>
 <li class="nav-header">
 <i title="Constants" class="icon-custom icon-constant"></i> Constants</li>
@@ -155,7 +156,7 @@ The number of columns must be a factor of 12.</span><pre>mdg_gallery</pre></a></
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.2.0
 </a> and<br>
-            generated on 2014-03-22T08:38:00-05:00.<br></footer></div>
+            generated on 2014-03-29T09:37:40-05:00.<br></footer></div>
 </div>
 </body>
 </html>

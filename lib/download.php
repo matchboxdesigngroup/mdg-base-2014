@@ -2,15 +2,24 @@
 /**
  * Allows for forcing a file to be downloaded instead of opened by the browser.
  * Uses wp_nonce_url() to verify the request is legitimate.
- *
+ */
+
+/**
  * @see http://codex.wordpress.org/Function_Reference/wp_nonce_url
  *
  * @todo Add a version that forces the user to login.
+ *
+ * @package      WordPress
+ * @subpackage   MDG_Base
+ *
+ * @author       Matchbox Design Group <info@matchboxdesigngroup.com>
  *
  * <code>
  * <a href="<?php echo esc_url( wp_nonce_url( 'http://site.com/wp-content/uploads/my-file.php' ) ); ?>">My File(PDF)</a>
  * </code>
  */
+
+// Allows access to WordPress functionality.
 require( '../../../../wp-blog-header.php' );
 
 // Make sure it is a legitimate request.

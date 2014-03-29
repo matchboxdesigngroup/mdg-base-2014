@@ -64,6 +64,7 @@
                     <ul>
 <li class="method public "><a href="#method___construct" title="__construct() :: Class Constructor"><span class="description">Class Constructor</span><pre>__construct()</pre></a></li>
 <li class="method public "><a href="#method_get_custom_meta_fields" title="get_custom_meta_fields() :: Override this method to create custom meta fields."><span class="description">Override this method to create custom meta fields.</span><pre>get_custom_meta_fields()</pre></a></li>
+<li class="method public "><a href="#method_get_meta_output_kses_allowed_html" title="get_meta_output_kses_allowed_html() :: All of the allowed tags when outputting meta form fields."><span class="description">All of the allowed tags when outputting meta form fields.</span><pre>get_meta_output_kses_allowed_html()</pre></a></li>
 <li class="method public "><a href="#method_get_post_meta" title="get_post_meta() :: Retrieves custom post meta."><span class="description">Retrieves custom post meta.</span><pre>get_post_meta()</pre></a></li>
 <li class="method public "><a href="#method_make_form" title="make_form() :: Will cycle through your fields array, and create your form"><span class="description">Will cycle through your fields array, and create your form</span><pre>make_form()</pre></a></li>
 <li class="method public "><a href="#method_make_meta_box" title="make_meta_box() :: Handles registering and generating the custom meta box."><span class="description">Handles registering and generating the custom meta box.</span><pre>make_meta_box()</pre></a></li>
@@ -77,9 +78,6 @@
 </li>
 <li class="nav-header protected">» Protected
                     <ul><li class="method protected "><a href="#method__add_actions" title="_add_actions() :: All action hooks that are required by the class using add_action."><span class="description">All action hooks that are required by the class using add_action.</span><pre>_add_actions()</pre></a></li></ul>
-</li>
-<li class="nav-header private">» Private
-                    <ul><li class="method private "><a href="#method__get_meta_output_kses_allowed_html" title="_get_meta_output_kses_allowed_html() :: All of the allowed tags when outputting meta form fields."><span class="description">All of the allowed tags when outputting meta form fields.</span><pre>_get_meta_output_kses_allowed_html()</pre></a></li></ul>
 </li>
 <li class="nav-header">
 <i title="Properties" class="icon-custom icon-property"></i> Properties
@@ -156,6 +154,17 @@ return array(
 <h3>Returns</h3>
 <div class="subelement response">
 <code>array</code>Custom meta fields.</div>
+</div></div>
+</div>
+<a id="method_get_meta_output_kses_allowed_html"></a><div class="element clickable method public method_get_meta_output_kses_allowed_html" data-toggle="collapse" data-target=".method_get_meta_output_kses_allowed_html .collapse" title="public">
+<h2>All of the allowed tags when outputting meta form fields.</h2>
+<pre>get_meta_output_kses_allowed_html() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>Allowed HTML tags.</div>
 </div></div>
 </div>
 <a id="method_get_post_meta"></a><div class="element clickable method public method_get_post_meta" data-toggle="collapse" data-target=".method_get_post_meta .collapse" title="public">
@@ -315,17 +324,6 @@ array(
 <div class="subelement response"><code>Void</code></div>
 </div></div>
 </div>
-<a id="method__get_meta_output_kses_allowed_html"></a><div class="element clickable method private method__get_meta_output_kses_allowed_html" data-toggle="collapse" data-target=".method__get_meta_output_kses_allowed_html .collapse" title="private">
-<h2>All of the allowed tags when outputting meta form fields.</h2>
-<pre>_get_meta_output_kses_allowed_html() : array</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>array</code>Allowed HTML tags.</div>
-</div></div>
-</div>
 <h3>
 <i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
 <a id="property_featured_image_title"> </a><div class="element clickable property public property_featured_image_title" data-toggle="collapse" data-target=".property_featured_image_title .collapse" title="public">
@@ -386,7 +384,7 @@ array(
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.2.0
 </a> and<br>
-            generated on 2014-03-22T08:38:00-05:00.<br></footer></div>
+            generated on 2014-03-29T09:37:40-05:00.<br></footer></div>
 </div>
 </body>
 </html>

@@ -67,7 +67,9 @@
 <li class="function  "><a href="#function_development_url_change" title="development_url_change() :: Allows for testing on virtual machines like Virtual Box."><span class="description">Allows for testing on virtual machines like Virtual Box.</span><pre>development_url_change</pre></a></li>
 <li class="function  "><a href="#function_is_element_empty" title="is_element_empty() :: Checks to see if an element is empty."><span class="description">Checks to see if an element is empty.</span><pre>is_element_empty</pre></a></li>
 <li class="function  "><a href="#function_mdg_activation_options_page_capability" title="mdg_activation_options_page_capability() :: Sets the capability as user must have to access the theme options page"><span class="description">Sets the capability as user must have to access the theme options page</span><pre>mdg_activation_options_page_capability</pre></a></li>
+<li class="function  "><a href="#function_mdg_add_admin_global_js" title="mdg_add_admin_global_js() :: Adds a global JS object for wp-admin."><span class="description">Adds a global JS object for wp-admin.</span><pre>mdg_add_admin_global_js</pre></a></li>
 <li class="function  "><a href="#function_mdg_add_favicon" title="mdg_add_favicon() :: Adds the favicon for the site, login, and administrator section."><span class="description">Adds the favicon for the site, login, and administrator section.</span><pre>mdg_add_favicon</pre></a></li>
+<li class="function  "><a href="#function_mdg_add_global_js" title="mdg_add_global_js() :: Adds a global JS object."><span class="description">Adds a global JS object.</span><pre>mdg_add_global_js</pre></a></li>
 <li class="function  "><a href="#function_mdg_add_rewrites" title="mdg_add_rewrites() :: URL rewriting"><span class="description">URL rewriting</span><pre>mdg_add_rewrites</pre></a></li>
 <li class="function  "><a href="#function_mdg_attachment_link_class" title='mdg_attachment_link_class() :: Add class="thumbnail img-thumbnail" to attachment items.'><span class="description">Add class="thumbnail img-thumbnail" to attachment items.</span><pre>mdg_attachment_link_class</pre></a></li>
 <li class="function  "><a href="#function_mdg_body_class" title="mdg_body_class() :: Add and remove body_class() classes."><span class="description">Add and remove body_class() classes.</span><pre>mdg_body_class</pre></a></li>
@@ -97,7 +99,6 @@ The number of columns must be a factor of 12.</span><pre>mdg_gallery</pre></a></
 <li class="function  "><a href="#function_mdg_head_cleanup" title="mdg_head_cleanup() :: Cleans up excess junk in wp_head."><span class="description">Cleans up excess junk in wp_head.</span><pre>mdg_head_cleanup</pre></a></li>
 <li class="function  "><a href="#function_mdg_jquery_local_fallback" title="mdg_jquery_local_fallback() :: jQuery local fallback"><span class="description">jQuery local fallback</span><pre>mdg_jquery_local_fallback</pre></a></li>
 <li class="function  "><a href="#function_mdg_language_attributes" title="mdg_language_attributes() :: Clean up language_attributes() used in &lt;html&gt; tag"><span class="description">Clean up language_attributes() used in &lt;html&gt; tag</span><pre>mdg_language_attributes</pre></a></li>
-<li class="function  "><a href="#function_mdg_missing_content_shortcode" title="mdg_missing_content_shortcode() :: Adds a missing content notice."><span class="description">Adds a missing content notice.</span><pre>mdg_missing_content_shortcode</pre></a></li>
 <li class="function  "><a href="#function_mdg_nice_search_redirect" title="mdg_nice_search_redirect() :: Redirects search results from /?s=query to /search/query/, converts %20 to +"><span class="description">Redirects search results from /?s=query to /search/query/, converts %20 to +</span><pre>mdg_nice_search_redirect</pre></a></li>
 <li class="function  "><a href="#function_mdg_rel_canonical" title="mdg_rel_canonical() :: Handles adding a canonical link to the head."><span class="description">Handles adding a canonical link to the head.</span><pre>mdg_rel_canonical</pre></a></li>
 <li class="function  "><a href="#function_mdg_remove_dashboard_widgets" title="mdg_remove_dashboard_widgets() :: Remove unnecessary dashboard widgets"><span class="description">Remove unnecessary dashboard widgets</span><pre>mdg_remove_dashboard_widgets</pre></a></li>
@@ -207,12 +208,32 @@ is_element_empty( '&lt;p&gt;test&lt;/p&gt;' ); // false
 <code>String</code>The new capability value.</div>
 </div></div>
 </div>
+<a id="function_mdg_add_admin_global_js"></a><div class="element clickable function  function_mdg_add_admin_global_js" data-toggle="collapse" data-target=".function_mdg_add_admin_global_js .collapse" title="">
+<h2>Adds a global JS object for wp-admin.</h2>
+<pre>mdg_add_admin_global_js() : Void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>Void</code></div>
+</div></div>
+</div>
 <a id="function_mdg_add_favicon"></a><div class="element clickable function  function_mdg_add_favicon" data-toggle="collapse" data-target=".function_mdg_add_favicon .collapse" title="">
 <h2>Adds the favicon for the site, login, and administrator section.</h2>
 <pre>mdg_add_favicon() : Void</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description">Add favicon.png to /assets/img/.</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>Void</code></div>
+</div></div>
+</div>
+<a id="function_mdg_add_global_js"></a><div class="element clickable function  function_mdg_add_global_js" data-toggle="collapse" data-target=".function_mdg_add_global_js .collapse" title="">
+<h2>Adds a global JS object.</h2>
+<pre>mdg_add_global_js() : Void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
 <h3>Returns</h3>
 <div class="subelement response"><code>Void</code></div>
 </div></div>
@@ -687,21 +708,6 @@ Remove dir="ltr"</div>
 <code>string</code>Language attributes.</div>
 </div></div>
 </div>
-<a id="function_mdg_missing_content_shortcode"></a><div class="element clickable function  function_mdg_missing_content_shortcode" data-toggle="collapse" data-target=".function_mdg_missing_content_shortcode .collapse" title="">
-<h2>Adds a missing content notice.</h2>
-<pre>mdg_missing_content_shortcode(array $atts) : string</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"><code>[missing-content]</code></div>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$atts</h4>
-<code>array</code><p>ShortCode attributes.</p></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>string</code>The missing content HTML.</div>
-</div></div>
-</div>
 <a id="function_mdg_nice_search_redirect"></a><div class="element clickable function  function_mdg_nice_search_redirect" data-toggle="collapse" data-target=".function_mdg_nice_search_redirect .collapse" title="">
 <h2>Redirects search results from /?s=query to /search/query/, converts %20 to +</h2>
 <pre>mdg_nice_search_redirect() </pre>
@@ -1099,7 +1105,7 @@ pp( $something_to_pretty_print );
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.2.0
 </a> and<br>
-            generated on 2014-03-22T08:38:00-05:00.<br></footer></div>
+            generated on 2014-03-29T09:37:40-05:00.<br></footer></div>
 </div>
 </body>
 </html>

@@ -63,6 +63,11 @@
 <i title="Methods" class="icon-custom icon-method"></i> Methods
                     <ul>
 <li class="method public "><a href="#method___construct" title="__construct() :: Class constructor"><span class="description">Class constructor</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_get_responsive_attachment_id" title="get_responsive_attachment_id() :: Handles retrieving the thumbnail ID if the src_id is not an attachment."><span class="description">Handles retrieving the thumbnail ID if the src_id is not an attachment.</span><pre>get_responsive_attachment_id()</pre></a></li>
+<li class="method public "><a href="#method_get_responsive_image" title="get_responsive_image() :: Retrieves the responsive image."><span class="description">Retrieves the responsive image.</span><pre>get_responsive_image()</pre></a></li>
+<li class="method public "><a href="#method_get_responsive_image_data_src" title="get_responsive_image_data_src() :: Handles merging together the different sizes for the data-src attribute."><span class="description">Handles merging together the different sizes for the data-src attribute.</span><pre>get_responsive_image_data_src()</pre></a></li>
+<li class="method public "><a href="#method_get_responsive_image_sizes" title="get_responsive_image_sizes() :: Retrieves the responsive image sizes."><span class="description">Retrieves the responsive image sizes.</span><pre>get_responsive_image_sizes()</pre></a></li>
+<li class="method public "><a href="#method_merge_responsive_image_attrs" title="merge_responsive_image_attrs() :: Merges the supplied attributes so they can be added to the image."><span class="description">Merges the supplied attributes so they can be added to the image.</span><pre>merge_responsive_image_attrs()</pre></a></li>
 <li class="method public "><a href="#method_output_reference_grid" title="output_reference_grid() :: Outputs the reference grid in the Media Library"><span class="description">Outputs the reference grid in the Media Library</span><pre>output_reference_grid()</pre></a></li>
 <li class="method public "><a href="#method_reference_grid_html" title="reference_grid_html() :: Creates the HTML for the image size reference grid in the Media Library"><span class="description">Creates the HTML for the image size reference grid in the Media Library</span><pre>reference_grid_html()</pre></a></li>
 <li class="method public "><a href="#method_register_sizes" title="register_sizes() :: Registers all of the new image sizes for use in our theme"><span class="description">Registers all of the new image sizes for use in our theme</span><pre>register_sizes()</pre></a></li>
@@ -119,6 +124,111 @@
 <code>array</code><p>Class configuration</p></div>
 </div></div>
 </div>
+<a id="method_get_responsive_attachment_id"></a><div class="element clickable method public method_get_responsive_attachment_id" data-toggle="collapse" data-target=".method_get_responsive_attachment_id .collapse" title="public">
+<h2>Handles retrieving the thumbnail ID if the src_id is not an attachment.</h2>
+<pre>get_responsive_attachment_id(integer $src_id) : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$src_id</h4>
+<code>integer</code><p>Either an attachment ID or the post ID to retrieve the thumbnail ID.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>integer</code>The attachment ID.</div>
+</div></div>
+</div>
+<a id="method_get_responsive_image"></a><div class="element clickable method public method_get_responsive_image" data-toggle="collapse" data-target=".method_get_responsive_image .collapse" title="public">
+<h2>Retrieves the responsive image.</h2>
+<pre>get_responsive_image(integer $src_id, string $base_title, string $default_img<code> = null</code>, boolean $echo<code> = true</code>, array $attrs<code> = array()</code>) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">Requires responsive images plugin to be activated in Grunt uglify config.
+
+<code>
+<?php $resp_image = $mdg_stub->get_responsive_image( get_the_id(), 'some_image', null, true, array( 'title' => 'My title image' ) ); ?>
+</code></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="%5Chttps://github.com/kvendrik/responsive-images.js"></a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$src_id</h4>
+<code>integer</code><p>The attachment ID or the post ID to get the featured image from.</p></div>
+<div class="subelement argument">
+<h4>$base_title</h4>
+<code>string</code><p>The base title of your responsive image size set in MDG_Images->set_image_sizes().</p></div>
+<div class="subelement argument">
+<h4>$default_img</h4>
+<code>string</code><p>Optional, default image URL, defaults to the 'full' size image, used if Javascript is not supported.</p></div>
+<div class="subelement argument">
+<h4>$echo</h4>
+<code>boolean</code><p>Optional, to output the responsive image, default true.</p></div>
+<div class="subelement argument">
+<h4>$attrs</h4>
+<code>array</code><p>Optional, HTML attributes to add to the img tag.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>The responsive image HTML with no script fall back.</div>
+</div></div>
+</div>
+<a id="method_get_responsive_image_data_src"></a><div class="element clickable method public method_get_responsive_image_data_src" data-toggle="collapse" data-target=".method_get_responsive_image_data_src .collapse" title="public">
+<h2>Handles merging together the different sizes for the data-src attribute.</h2>
+<pre>get_responsive_image_data_src(integer $attachment_id, \[type] $base_title) : <a href="%5Btype%5D.html">\[type]</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="%5Chttps://github.com/kvendrik/responsive-images.js"></a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$attachment_id</h4>
+<code>integer</code><p>The attachment ID to use when retrieving the image(s).</p></div>
+<div class="subelement argument">
+<h4>$base_title</h4>
+<code><a href="%5Btype%5D.html">\[type]</a></code><p>[description]</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="%5Btype%5D.html">\[type]</a></code>[description]</div>
+</div></div>
+</div>
+<a id="method_get_responsive_image_sizes"></a><div class="element clickable method public method_get_responsive_image_sizes" data-toggle="collapse" data-target=".method_get_responsive_image_sizes .collapse" title="public">
+<h2>Retrieves the responsive image sizes.</h2>
+<pre>get_responsive_image_sizes(string $base_title) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$base_title</h4>
+<code>string</code><p>The base image size used when adding responsive image sizes.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>The responsive image sizes.</div>
+</div></div>
+</div>
+<a id="method_merge_responsive_image_attrs"></a><div class="element clickable method public method_merge_responsive_image_attrs" data-toggle="collapse" data-target=".method_merge_responsive_image_attrs .collapse" title="public">
+<h2>Merges the supplied attributes so they can be added to the image.</h2>
+<pre>merge_responsive_image_attrs(array $attrs, integer $attachment_id) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$attrs</h4>
+<code>array</code><p>The attributes to be merged.</p></div>
+<div class="subelement argument">
+<h4>$attachment_id</h4>
+<code>integer</code><p>The attachment ID of the responsive image.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>The merged attributes.</div>
+</div></div>
+</div>
 <a id="method_output_reference_grid"></a><div class="element clickable method public method_output_reference_grid" data-toggle="collapse" data-target=".method_output_reference_grid .collapse" title="public">
 <h2>Outputs the reference grid in the Media Library</h2>
 <pre>output_reference_grid() : Void</pre>
@@ -155,7 +265,7 @@
 <pre>set_image_sizes() : Void</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<div class="long_description">Example:
+<div class="long_description"><code>
 $this->image_sizes['example_size'] = array(
  'width'  => 220,
  'height' => 130,
@@ -164,7 +274,8 @@ $this->image_sizes['example_size'] = array(
   'title' => 'Example Size', // Title to be used in Media notification
   'link'  => '' // Link to an image of the created size to be used in Media notification
  )
-);</div>
+);
+</code></div>
 <h3>Returns</h3>
 <div class="subelement response"><code>Void</code></div>
 </div></div>
@@ -220,7 +331,7 @@ $this->image_sizes['example_size'] = array(
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.2.0
 </a> and<br>
-            generated on 2014-03-22T08:38:00-05:00.<br></footer></div>
+            generated on 2014-03-29T09:37:40-05:00.<br></footer></div>
 </div>
 </body>
 </html>

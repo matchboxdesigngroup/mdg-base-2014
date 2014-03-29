@@ -69,7 +69,6 @@
 <li class="method public "><a href="#method_get_posts" title="get_posts() :: Retrieves the current post types posts."><span class="description">Retrieves the current post types posts.</span><pre>get_posts()</pre></a></li>
 <li class="method public "><a href="#method_get_posts_with_featured_image" title="get_posts_with_featured_image() :: Retrieves posts that have featured images."><span class="description">Retrieves posts that have featured images.</span><pre>get_posts_with_featured_image()</pre></a></li>
 <li class="method public "><a href="#method_get_responsive_image" title="get_responsive_image() :: Retrieves the responsive image."><span class="description">Retrieves the responsive image.</span><pre>get_responsive_image()</pre></a></li>
-<li class="method public "><a href="#method_get_responsive_image_sizes" title="get_responsive_image_sizes() :: Retrieves the responsive image sizes."><span class="description">Retrieves the responsive image sizes.</span><pre>get_responsive_image_sizes()</pre></a></li>
 <li class="method public "><a href="#method_init" title="init() :: This method runs after __construct() just a way for sub classes to run custom
 initialization stuff while still inheriting the constructor from this class"><span class="description">This method runs after __construct() just a way for sub classes to run custom
 initialization stuff while still inheriting the constructor from this class</span><pre>init()</pre></a></li>
@@ -272,62 +271,43 @@ not work at all everything has sensible defaults.</div>
 </div>
 <a id="method_get_responsive_image"></a><div class="element clickable method public method_get_responsive_image" data-toggle="collapse" data-target=".method_get_responsive_image .collapse" title="public">
 <h2>Retrieves the responsive image.</h2>
-<pre>get_responsive_image(string $base_title, string[] $args) : string</pre>
+<pre>get_responsive_image(integer $src_id, string $base_title, string $default_img<code> = null</code>, boolean $echo<code> = true</code>, array $attrs<code> = array()</code>) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
+<div class="long_description">Requires responsive images plugin to be activated in Grunt uglify config.
+
+<code>
+<?php $resp_image = $mdg_stub->get_responsive_image( get_the_id(), 'some_image', null, true, array( 'title' => 'My title image' ) ); ?>
+</code></div>
 <table class="table table-bordered">
 <tr>
-<th>type</th>
-<td>array   $image_sizes The image sizes image_size_name => <|>size, optional default all image sizes that match $base_title.</td>
+<th>see</th>
+<td><a href="%5Chttps://github.com/kvendrik/responsive-images.js"></a></td>
 </tr>
 <tr>
-<th>type</th>
-<td>integer $post_id     ID of the post to get image for blog post, optional default global $post.</td>
-</tr>
-<tr>
-<th>type</th>
-<td>boolean $echo        Echo or return the image, optional default true.</td>
-</tr>
-<tr>
-<th>type</th>
-<td>string  $link        The link for the image, use '' to disable link, optional default post permalink.</td>
-</tr>
-<tr>
-<th>type</th>
-<td>string  $default_img Link to a default image, optional default null.
-}</td>
-</tr>
-<tr>
-<th>todo</th>
-<td>Make this easy to use.</td>
+<th>uses</th>
+<td><a href="MDG_Images()"></a></td>
 </tr>
 </table>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$base_title</h4>
-<code>string</code><p>The base image size used when adding responsive image sizes.</p></div>
-<div class="subelement argument">
-<h4>$args</h4>
-<code>string[]</code><p>{</p></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>string</code>The posts featured image</div>
-</div></div>
-</div>
-<a id="method_get_responsive_image_sizes"></a><div class="element clickable method public method_get_responsive_image_sizes" data-toggle="collapse" data-target=".method_get_responsive_image_sizes .collapse" title="public">
-<h2>Retrieves the responsive image sizes.</h2>
-<pre>get_responsive_image_sizes(string $base_title) : array</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Parameters</h3>
+<h4>$src_id</h4>
+<code>integer</code><p>The attachment ID or the post ID to get the featured image from.</p></div>
 <div class="subelement argument">
 <h4>$base_title</h4>
-<code>string</code><p>The base image size used when adding responsive image sizes.</p></div>
+<code>string</code><p>The base title of your responsive image size set in MDG_Images->set_image_sizes().</p></div>
+<div class="subelement argument">
+<h4>$default_img</h4>
+<code>string</code><p>Optional, default image URL, defaults to the 'full' size image, used if Javascript is not supported.</p></div>
+<div class="subelement argument">
+<h4>$echo</h4>
+<code>boolean</code><p>Optional, to output the responsive image, default true.</p></div>
+<div class="subelement argument">
+<h4>$attrs</h4>
+<code>array</code><p>Optional, HTML attributes to add to the img tag.</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>array</code>The responsive image sizes.</div>
+<code>string</code>The responsive image HTML with no script fall back.</div>
 </div></div>
 </div>
 <a id="method_init"></a><div class="element clickable method public method_init" data-toggle="collapse" data-target=".method_init .collapse" title="public">
@@ -689,7 +669,7 @@ sub-classes will need to set there own actions without overriding this method</h
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.2.0
 </a> and<br>
-            generated on 2014-03-22T08:38:00-05:00.<br></footer></div>
+            generated on 2014-03-29T09:37:40-05:00.<br></footer></div>
 </div>
 </body>
 </html>
