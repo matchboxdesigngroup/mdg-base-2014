@@ -162,20 +162,20 @@
 // ===============================================
 
 // Extra small devices (phones, less than 768px)
-@mixin bp-screen-xs() {
+@mixin bp-screen-xxs() {
 	@if $old-ie {
 	} @else {
 		@include bp-max($screen-xs) { @content; }
 	} // @if/@else()
-} // bp-screen-xs()
+} // bp-screen-xxs()
 
 // Small devices (tablets, 768px and down)
-@mixin bp-screen-max-sm() {
+@mixin bp-screen-xs() {
 	@if $old-ie {
 	} @else {
 		@include bp-max($screen-sm-min) { @content; }
 	} // @if/@else()
-} // bp-screen-max-sm()
+} // bp-screen-xs()
 
 // Small devices (tablets, 768px and up)
 @mixin bp-screen-sm() {
