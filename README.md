@@ -15,7 +15,11 @@ MDG Base is a WordPress starter theme based on [Roots](http://roots.io), which u
 - [Browser Sync](https://github.com/shakyShane/browser-sync) `npm install -g browser-sync`
 - [JSDoc](https://github.com/jsdoc3/jsdoc) (work in progress)
 
-####[Growl/Growl Notify](http://growl.info/) ( for grunt-notify )
+####[Growl/Growl Notify](http://growl.info/) ( optional for grunt-notify )
+
+####[Image Optim](http://imageoptim.com/) ( required for grunt-imageoptim )
+####[Image Alpha](http://pngmini.com/) ( required for grunt-imageoptim )
+####[JPEG Mini](http://www.jpegmini.com/)  ( optional for grunt-imageoptim )
 
 ####[Homebrew](http://brew.sh/)
 - [Homebrew PHP](https://github.com/josegonzalez/homebrew-php/)
