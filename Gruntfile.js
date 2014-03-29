@@ -24,6 +24,6 @@ module.exports = function(grunt) {
 	grunt.registerTask('default', [ 'watch' ]);
 	grunt.registerTask('setup', [ '' ]);
 	grunt.registerTask('conflict', [ 'sass:site', 'sass:ltie9', 'uglify:site' ]);
-	grunt.registerTask('build', [ 'sass:siteBuild', 'sass:ltie9Build', 'sass:adminBuild', 'imagemin', 'uglify:build', 'autoprefixer', 'group_css_media_queries', 'cssmin', 'phpdoc' ]);
+	grunt.registerTask('build', [ 'sass:siteBuild', 'sass:ltie9Build', 'sass:adminBuild', 'imageoptim:all', 'uglify:build', 'autoprefixer', 'group_css_media_queries', 'cssmin', 'phpdoc' ]);
 	grunt.registerTask('process', [ 'uglify:site', 'uglify:env', 'uglify:admin', 'copy', 'sass:site', 'sass:ltie9', 'sass:admin', 'autoprefixer', 'group_css_media_queries', 'cssmin' ]);
 };
