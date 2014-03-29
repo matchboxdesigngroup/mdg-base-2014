@@ -47,7 +47,7 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 	 *
 	 * @return array Allowed HTML tags.
 	 */
-	private function _get_meta_output_kses_allowed_html() {
+	public function get_meta_output_kses_allowed_html() {
 		$allowed_tags          = wp_kses_allowed_html( 'post' );
 		$allowed_tags['<hr>']  = array();
 		$allowed_tags['input'] = array(
@@ -83,7 +83,7 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 			'class'       => array(),
 		);
 		return $allowed_tags;
-	} // _get_meta_output_kses_allowed_html()
+	} // get_meta_output_kses_allowed_html()
 
 
 
@@ -172,7 +172,7 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 	public function make_form( $args = array() ) {
 		global $post;
 		$meta_fields  = isset( $args['meta_fields'] ) ? $args['meta_fields'] : '';
-		$allowed_tags = $this->_get_meta_output_kses_allowed_html();
+		$allowed_tags = $this->get_meta_output_kses_allowed_html();
 
 		// Output description information
 		foreach ( $meta_fields as $field ){
