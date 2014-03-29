@@ -152,6 +152,7 @@ class MDG_Type_Stub extends MDG_Type_Base
 			'hierarchical'       => true,
 			'menu_position'      => 5,
 			'can_export'         => true,
+			'menu_icon'          => 'dashicons-edit',
 			// 'supports'        => This is handled by $this->post_type_supports do not set directly
 		);
 	} // _set_mdg_type_base_options()

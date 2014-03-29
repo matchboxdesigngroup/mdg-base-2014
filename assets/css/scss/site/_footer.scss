@@ -25,13 +25,13 @@ $footer-height: 29px; // Used for sticky footer
 		top: 5px;
 		left: 5px;
 		@include border-radius(999px);
-		background: url("../img/page-top-link.png") center center no-repeat $theme1;
+		background: url("../../img/page-top-link.png") center center no-repeat $theme1;
 	} // a
 
 	&:hover a { background-color: #333; }
 
 	.backgroundsize & a {
-		background: url("../img/page-top-link@2x.png") center center no-repeat $theme1;
+		background: url("../../img/page-top-link@2x.png") center center no-repeat $theme1;
 		background-size: 30px 30px;
 	} // .backgroundsize & a
 } // .back-to-top

@@ -193,6 +193,10 @@ jQuery((function($) {
 			return false;
 		} // if()
 
+		if ( typeof elem.affix != 'function' ) {
+			return false;
+		} // if()
+
 		topOffset = (typeof topOffset === 'undefined') ? 0 : topOffset;
 		elem.each(function(index, el) {
 			var that = $(el),

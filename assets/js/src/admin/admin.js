@@ -1,8 +1,4 @@
 /* global pagenow */
-// @codekit-prepend "../plugins/chosen.jquery.js"
-// @codekit-prepend "../plugins/cleditor/jquery.cleditor.js"
-// @codekit-prepend "../plugins/cleditor/jquery.cleditor.min.js"
-// @codekit-prepend "meta-upload.js"
 jQuery((function($) {
 	var Meta   = {},
 			Alerts = {}

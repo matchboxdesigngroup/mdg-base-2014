@@ -1,57 +1,17 @@
 module.exports =
-  siteSass:
-    files: ["assets/css/scss/site/**/*.scss"]
-    tasks: [
-      "sass:site"
-      "group_css_media_queries:site"
-      "sass:ltie9"
-      "group_css_media_queries:ltie9"
-      "autoprefixer"
-      "cssmin:site"
-      "cssmin:ltie9"
-    ]
+  css:
+    files: ["assets/css/scss/**/*.scss"]
+    tasks: ["css"]
     options:
       spawn: false
 
-  adminSass:
-    files: ["assets/css/scss/admin/**/*.scss"]
-    tasks: [
-      "sass:admin"
-      "group_css_media_queries:admin"
-      "autoprefixer"
-      "cssmin:admin"
-    ]
+  js:
+    files: ["assets/js/src/**/*.js"]
+    tasks: ["js"]
     options:
       spawn: false
 
-  siteScripts:
-    files: ["assets/js/src/site/**/*.js"]
-    tasks: [
-      "uglify:site"
-      "copy:jsSourceMaps"
-    ]
-    options:
-      spawn: false
-
-  envScripts:
-    files: ["assets/js/src/env/**/*.js"]
-    tasks: [
-      "uglify:env"
-      "copy:jsSourceMaps"
-    ]
-    options:
-      spawn: false
-
-  adminScripts:
-    files: ["assets/js/src/admin/**/*.js"]
-    tasks: [
-      "uglify:admin"
-      "copy:jsSourceMaps"
-    ]
-    options:
-      spawn: false
-
-  imageoptim:
+  img:
     files: [
       "assets/**/*.{png,jpg,gif}"
       "!assets/img/sprite/**/*.{png,jpg,gif}"
@@ -67,24 +27,14 @@ module.exports =
     options:
       spawn: false
 
-  phpdoc:
-    files: [
-      "lib/**/*.php",
-      "classes/**/*.php"
-    ]
-    tasks: []
-    options:
-      spawn: false
-
   livereload:
     options:
       livereload: true
       spawn: false
-
     files: [
-      "assets/css/*.css"
-      "assets/js/*.js"
+      "assets/css/dist/*.css"
+      "assets/js/dist/*.js"
       "**/*.php"
-      "!**/node_modules/**"
       "**/*.{png,jpg,gif}"
+      "!**/node_modules/**"
     ]

@@ -9,21 +9,61 @@ module.exports = function(grunt) {
 	// This will load all grunt-* tasks that are in the package.json devDependencies
 	require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
 
-	/**
-	 * Runs the phpdoc command to generate  PHPDocumentation.
-	 *
-	 * @return  {void}
-	 */
-	grunt.registerTask('phpdoc', 'Executes PHPDocumentor command.', function() {
-		var exec = require('child_process').exec;
-
-		exec('phpdoc', this.async());
-	});
-
-	// Register Tasks
+	// Default task
 	grunt.registerTask('default', [ 'watch' ]);
+
+ // Setup task
 	grunt.registerTask('setup', [ '' ]);
-	grunt.registerTask('conflict', [ 'sass:site', 'sass:ltie9', 'uglify:site' ]);
-	grunt.registerTask('build', [ 'sass:siteBuild', 'sass:ltie9Build', 'sass:adminBuild', 'imageoptim:all', 'uglify:build', 'autoprefixer', 'group_css_media_queries', 'cssmin', 'phpdoc' ]);
-	grunt.registerTask('process', [ 'uglify:site', 'uglify:env', 'uglify:admin', 'copy', 'sass:site', 'sass:ltie9', 'sass:admin', 'autoprefixer', 'group_css_media_queries', 'cssmin' ]);
+
+	// CSS
+	grunt.registerTask('css', [
+		'clean:distCSS',
+		'sass:site',
+		'sass:ltie9',
+		'sass:admin',
+		'autoprefixer',
+		'group_css_media_queries',
+		'cssmin',
+		'version'
+	]);
+
+	// JS
+	grunt.registerTask('js', [
+		'clean:distJS',
+		'uglify:site',
+		'uglify:env',
+		'uglify:admin',
+		'version'
+	]);
+
+	// Cleans up conflicts
+	grunt.registerTask('conflict', [
+		'js',
+		'css'
+	]);
+
+	// Run all SASS, Uglify, and related tasks
+	grunt.registerTask('process', [
+		'js',
+		'css'
+	]);
+
+	// Run Build process
+	grunt.registerTask('build', [
+		'clean:distCSS',
+		'clean:distJS',
+		'sass:siteBuild',
+		'sass:ltie9Build',
+		'sass:adminBuild',
+		'imageoptim:all',
+		'uglify:build',
+		'autoprefixer',
+		'group_css_media_queries',
+		'cssmin',
+		'version',
+		'phpdoc'
+	]);
+
+	// Distribution task
+	grunt.registerTask('build', [ 'dist' ]);
 };

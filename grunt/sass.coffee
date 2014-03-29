@@ -8,7 +8,7 @@ module.exports =
       expand: true
       cwd: "assets/css/scss/site"
       src: ["main.scss"]
-      dest: "assets/css/"
+      dest: "assets/css/dist"
       ext: ".min.css"
     ]
 
@@ -21,7 +21,7 @@ module.exports =
       expand: true
       cwd: "assets/css/scss/site"
       src: ["main.scss"]
-      dest: "assets/css/"
+      dest: "assets/css/dist"
       ext: ".min.css"
     ]
 
@@ -35,7 +35,7 @@ module.exports =
       expand: true
       cwd: "assets/css/scss/site"
       src: ["main-ltie9.scss"]
-      dest: "assets/css/"
+      dest: "assets/css/dist"
       ext: ".min.css"
     ]
 
@@ -48,7 +48,7 @@ module.exports =
       expand: true
       cwd: "assets/css/scss/site"
       src: ["main-ltie9.scss"]
-      dest: "assets/css/"
+      dest: "assets/css/dist"
       ext: ".min.css"
     ]
 
@@ -61,7 +61,7 @@ module.exports =
       expand: true
       cwd: "assets/css/scss/admin"
       src: ["admin.scss"]
-      dest: "assets/css/"
+      dest: "assets/css/dist"
       ext: ".min.css"
     ]
 
@@ -74,6 +74,6 @@ module.exports =
       expand: true
       cwd: "assets/css/scss/admin"
       src: ["admin.scss"]
-      dest: "assets/css/"
+      dest: "assets/css/dist"
       ext: ".min.css"
     ]

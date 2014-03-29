@@ -451,6 +451,7 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 			'menu_position'      => 5,
 			'can_export'         => true,
 			'supports'           => $this->_post_type_supports,
+			'menu_icon'          => 'dashicons-edit',
 		);
 
 		$this->_post_type_args = array_merge( $default_post_type_args, $custom_post_type_args );

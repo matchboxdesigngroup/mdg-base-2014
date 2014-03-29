@@ -29,6 +29,8 @@
     "grunt-contrib-cssmin": "x.x.x",
     "grunt-spritesmith": "~1.23.0",
     "grunt-imageoptim": "~1.4.1",
-    "gm": "~1.14.2"
+    "gm": "~1.14.2",
+    "grunt-wp-assets": "~0.2.3",
+    "grunt-contrib-clean": "~0.5.0"
   }
 }

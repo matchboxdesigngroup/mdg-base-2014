@@ -1,12 +1,12 @@
 module.exports =
 	admin:
-		src: "assets/css/admin.min.css"
-		dest: "assets/css/admin.min.css"
+		src: "assets/css/dist/admin.min.css"
+		dest: "assets/css/dist/admin.min.css"
 
 	site:
-		src: "assets/css/main.min.css"
-		dest: "assets/css/main.min.css"
+		src: "assets/css/dist/main.min.css"
+		dest: "assets/css/dist/main.min.css"
 
 	ltie9:
-		src: "assets/css/main-ltie9.min.css"
-		dest: "assets/css/main-ltie9.min.css"
+		src: "assets/css/dist/main-ltie9.min.css"
+		dest: "assets/css/dist/main-ltie9.min.css"

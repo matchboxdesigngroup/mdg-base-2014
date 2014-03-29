@@ -6,13 +6,13 @@ $container-tablet:            $container-width;  // Small screen / tablet
 $container-desktop:           $container-width; // Medium screen / desktop
 $container-large-desktop:     $container-width; // Large screen / wide desktop
 $bootstrap-sass-asset-helper: false; // Disables Compass/Ruby asset pipeline
-$icon-font-path: '../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/';
+$icon-font-path: '../../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/';
 @import 'bootstrap';
 
 // ===============================================
 // Font Awesome
 // ===============================================
-$fa-font-path: '../bower_components/font-awesome/fonts';
+$fa-font-path: '../../bower_components/font-awesome/fonts';
 @import '../../../bower_components/font-awesome/scss/font-awesome.scss';
 
 // ===============================================

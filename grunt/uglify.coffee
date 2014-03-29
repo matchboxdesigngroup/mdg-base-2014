@@ -7,7 +7,7 @@ module.exports =
       sourceMap: "scripts.min.js.map"
 
     files:
-      "assets/js/scripts.min.js": [
+      "assets/js/dist/scripts.min.js": [
         "!assets/bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/plugins.js"
         "assets/bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/transition.js"
         # 'assets/bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/alert.js',
@@ -38,7 +38,7 @@ module.exports =
       sourceMap: "env-tests.min.js.map"
 
     files:
-      "assets/js/env-tests.min.js": [
+      "assets/js/dist/env-tests.min.js": [
         "assets/js/src/env/modernizr**.js"
         "assets/bower_components/devicejs/lib/device.min.js"
       ]
@@ -48,7 +48,7 @@ module.exports =
       sourceMap: "admin.min.js.map"
 
     files:
-      "assets/js/admin.min.js": [
+      "assets/js/dist/admin.min.js": [
         "assets/js/src/plugins/jquery.cleditor.js"
         "assets/js/src/plugins/chosen.jquery.js"
         "assets/js/src/admin/*.js"
@@ -56,6 +56,6 @@ module.exports =
 
   build:
     files:
-      "assets/js/scripts.min.js": "assets/js/scripts.min.js"
-      "assets/js/admin.min.js": "assets/js/admin.min.js"
-      "assets/js/env-tests.min.js" : "assets/js/env-tests.min.js"
+      "assets/js/dist/scripts.min.js": "assets/js/dist/scripts.min.js"
+      "assets/js/dist/admin.min.js": "assets/js/dist/admin.min.js"
+      "assets/js/dist/env-tests.min.js" : "assets/js/dist/env-tests.min.js"

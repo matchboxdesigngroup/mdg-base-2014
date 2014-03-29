@@ -15,14 +15,15 @@
 function mdg_enqueue_site_scripts() {
 	global $is_IE;
 
-	$theme         = wp_get_theme();
-	$theme_version = $theme->get( 'Version' );
-	$theme_uri     = get_template_directory_uri();
-	$ltie9         = preg_match( '/(?i)msie [6-8]/', $_SERVER['HTTP_USER_AGENT'] );
+	$theme_uri = get_template_directory_uri();
+	$ltie9     = preg_match( '/(?i)msie [6-8]/', $_SERVER['HTTP_USER_AGENT'] );
 
 	// CSS
-	$css_suffix = ( $ltie9 and $is_IE ) ? '-ltie9' : '';
-	wp_enqueue_style( 'main_css', "{$theme_uri}/assets/css/main{$css_suffix}.min.css", array(), $theme_version, 'all' );
+	if ( $ltie9 and $is_IE ) {
+		wp_enqueue_style( 'main_css', "{$theme_uri}/assets/css/dist/main-ltie9.1069.min.css", array(), null, 'all' );
+	} else {
+		wp_enqueue_style( 'main_css', "{$theme_uri}/assets/css/dist/main.e529.min.css", array(), null, 'all' );
+	} // if/else()
 
 	// jQuery is loaded using the same method from HTML5 Boilerplate:
 	// Grab Google CDN's latest jQuery with a protocol relative URL; fallback to local if offline
@@ -38,9 +39,9 @@ function mdg_enqueue_site_scripts() {
 	} // if()
 
 	// Register Scripts
-	wp_register_script( 'mdg_env_tests_js', "{$theme_uri}/assets/js/env-tests.min.js", array(), $theme_version, false );
-	wp_register_script( 'css3pie_js', "{$theme_uri}/assets/js/vendor/css3pie-1.0.0.js", array( 'mdg_env_tests_js' ), '1.0.0', false );
-	wp_register_script( 'main_js', "{$theme_uri}/assets/js/scripts.min.js", array( 'jquery', 'jquery-effects-core' ), $theme_version, true );
+	wp_register_script( 'mdg_env_tests_js', "{$theme_uri}/assets/js/dist/env-tests.1b49.min.js", array(), null, false );
+	wp_register_script( 'css3pie_js', "{$theme_uri}/assets/js/vendor/css3pie-1.0.0.js", array( 'mdg_env_tests_js' ), null, false );
+	wp_register_script( 'main_js', "{$theme_uri}/assets/js/dist/scripts.0adb.min.js", array( 'jquery', 'jquery-effects-core' ), null, true );
 
 	// Enqueue Scripts
 	wp_enqueue_script( 'mdg_env_tests_js' );
@@ -80,14 +81,12 @@ add_action( 'wp_head', 'mdg_add_global_js' );
  */
 function mdg_enqueue_admin_scripts() {
 	global $is_IE;
-	$theme         = wp_get_theme();
-	$theme_version = $theme->get( 'Version' );
-	$theme_uri     = get_template_directory_uri();
-	$ltie9         = preg_match( '/(?i)msie [6-8]/', $_SERVER['HTTP_USER_AGENT'] );
+	$theme_uri = get_template_directory_uri();
+	$ltie9     = preg_match( '/(?i)msie [6-8]/', $_SERVER['HTTP_USER_AGENT'] );
 
-	wp_enqueue_style( 'mdg-admin-css', "{$theme_uri}/assets/css/admin.min.css", array( 'wp-color-picker' ), $theme_version, 'all' );
+	wp_enqueue_style( 'mdg-admin-css', "{$theme_uri}/assets/css/dist/admin.a27f.min.css", array( 'wp-color-picker' ), null, 'all' );
 
-	wp_register_script( 'admin_scripts', "{$theme_uri}/assets/js/admin.min.js", array( 'jquery', 'jquery-ui-datepicker', 'wp-color-picker' ), $theme_version, true );
+	wp_register_script( 'admin_scripts', "{$theme_uri}/assets/js/dist/admin.b29c.min.js", array( 'jquery', 'jquery-ui-datepicker', 'wp-color-picker' ), null, true );
 
 	// Add Global PHP -> JS
 	$mdg_globals = array(
