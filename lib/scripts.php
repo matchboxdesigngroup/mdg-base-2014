@@ -20,8 +20,10 @@ function mdg_enqueue_site_scripts() {
 
 	// CSS
 	if ( $ltie9 and $is_IE ) {
+		// CSS for IE.
 		wp_enqueue_style( 'main_css', "{$theme_uri}/assets/css/dist/main-ltie9.1069.min.css", array(), null, 'all' );
 	} else {
+		// CSS for good browsers.
 		wp_enqueue_style( 'main_css', "{$theme_uri}/assets/css/dist/main.e529.min.css", array(), null, 'all' );
 	} // if/else()
 
@@ -34,21 +36,24 @@ function mdg_enqueue_site_scripts() {
 		add_filter( 'script_loader_src', 'mdg_jquery_local_fallback', 10, 2 );
 	} // if()
 
-	if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	} // if()
+	// Required for comments
+	// if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {
+	// 	wp_enqueue_script( 'comment-reply' );
+	// } // if()
 
-	// Register Scripts
-	wp_register_script( 'mdg_env_tests_js', "{$theme_uri}/assets/js/dist/env-tests.1b49.min.js", array(), null, false );
-	wp_register_script( 'css3pie_js', "{$theme_uri}/assets/js/vendor/css3pie-1.0.0.js", array( 'mdg_env_tests_js' ), null, false );
-	wp_register_script( 'main_js', "{$theme_uri}/assets/js/dist/scripts.0adb.min.js", array( 'jquery', 'jquery-effects-core' ), null, true );
-
-	// Enqueue Scripts
-	wp_enqueue_script( 'mdg_env_tests_js' );
+	// Reigster/Enqueue scripts for IE
 	if ( $ltie9 and $is_IE ) {
+		wp_register_script( 'css3pie_js', "{$theme_uri}/assets/js/vendor/css3pie-1.0.0.js", array( 'mdg_env_tests_js' ), null, false );
 		wp_enqueue_script( 'css3pie_js' );
 	} // if()
+
+
+	// Reigster/Enqueue scripts for all browsers
+	wp_register_script( 'mdg_env_tests_js', "{$theme_uri}/assets/js/dist/env-tests.1b49.min.js", array(), null, false );
+	wp_enqueue_script( 'mdg_env_tests_js' );
 	wp_enqueue_script( 'jquery' );
+	wp_enqueue_script( 'jquery-effects-core' );
+	wp_register_script( 'main_js', "{$theme_uri}/assets/js/dist/scripts.0adb.min.js", array(), null, true );
 	wp_enqueue_script( 'main_js' );
 } // mdg_enqueue_site_scripts()
 add_action( 'wp_enqueue_scripts', 'mdg_enqueue_site_scripts', 100 );
