@@ -27,10 +27,11 @@
     "grunt-autoprefixer": "x.x.x",
     "grunt-group-css-media-queries": "x.x.x",
     "grunt-contrib-cssmin": "x.x.x",
-    "grunt-spritesmith": "~1.23.0",
-    "grunt-imageoptim": "~1.4.1",
-    "gm": "~1.14.2",
-    "grunt-wp-assets": "~0.2.3",
-    "grunt-contrib-clean": "~0.5.0"
+    "grunt-spritesmith": "x.x.x",
+    "grunt-imageoptim": "x.x.x",
+    "gm": "x.x.x",
+    "grunt-wp-assets": "x.x.x",
+    "grunt-contrib-clean": "x.x.x",
+    "grunt-pagespeed": "x.x.x"
   }
 }
