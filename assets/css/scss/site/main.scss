@@ -1,12 +1,7 @@
 // ===============================================
 // Bootstrap
 // ===============================================
-$container-width:             1170px !default;
-$container-tablet:            $container-width;  // Small screen / tablet
-$container-desktop:           $container-width; // Medium screen / desktop
-$container-large-desktop:     $container-width; // Large screen / wide desktop
-$bootstrap-sass-asset-helper: false; // Disables Compass/Ruby asset pipeline
-$icon-font-path: '../../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/';
+@import 'bootstrap-overrides';
 @import 'bootstrap';
 
 // ===============================================

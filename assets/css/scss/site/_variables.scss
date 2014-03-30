@@ -6,10 +6,11 @@ $old-ie: false !default;
 // ===============================================
 // Fonts
 // ===============================================
-$font-main: Arial, Helvetica, sans-serif;
-$font-main-bold: bold; // Does this font support bold? If not change this to the font weight ex: 700.
-$font-featured: $font-main;
-$font-featured-bold: bold; // Does this font support bold? If not change this to the font weight ex: 700.
+$font-main: $font-family-base;       // **Change in bootstrap overrides**
+$font-sans: $font-family-sans-serif; // **Change in bootstrap overrides**
+$font-sans-bold: bold;               // Does this font support bold? If not change this to the font weight ex: 700.
+$font-serif: $font-family-serif;     // **Change in bootstrap overrides**
+$font-serif-bold: bold;              // Does this font support bold? If not change this to the font weight ex: 700.
 
 // ===============================================
 // Font Sizes
@@ -30,11 +31,12 @@ $color4: #ccc; // light grey
 // ===============================================
 // Social Services Colors
 // ===============================================
-$facebook-blue: #3b5998;
-$twitter-blue: #00aced;
-$youtube-red: #b00;
+$fb-blue: #3b5998;
+$tw-blue: #00aced;
+$yt-red: #b00;
 
 // ===============================================
 // Theme Colors
 // ===============================================
-$theme1: #f00; // Change this and add more theme colors
+$theme1: $brand-primary; // **Change in bootstrap overrides**
+$theme2: #000; // Change this and add more theme colors

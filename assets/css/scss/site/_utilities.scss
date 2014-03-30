@@ -34,17 +34,19 @@
 // Theme Color Background Variables
 // ====================================
 .theme-bg-1 { background-color: $theme1; } // Theme color one (Change my comment)
+.theme-bg-2 { background-color: $theme2; } // Theme color one (Change my comment)
 
 // ====================================
 // Theme Font Color Variables
 // ====================================
 .theme-font-color-1 { color: $theme1; } // Theme color one (Change my comment)
+.theme-font-color-2 { color: $theme2; } // Theme color one (Change my comment)
 
 // ====================================
 // Theme Font Family Variables
 // ====================================
-.font-main { font-family: $font-main; }
-.font-featured { font-family: $font-featured; }
+.font-serif { font-family: $font-serif; }
+.font-sans { font-family: $font-sans; }
 
 // ====================================
 // Theme Font Size Variables
