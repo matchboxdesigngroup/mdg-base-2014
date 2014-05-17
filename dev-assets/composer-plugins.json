@@ -22,7 +22,8 @@
         "wpackagist/regenerate-thumbnails":"*",
         "wpackagist/simply-show-ids":"*",
         "wpackagist/user-switching":"*",
-        "wpackagist/query-monitor":"*"
+        "wpackagist/query-monitor":"*",
+        "wpackagist/wordpress-beta-tester":"*"
     },
     "autoload": {
     }
