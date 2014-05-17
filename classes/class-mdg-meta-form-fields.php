@@ -289,13 +289,16 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	 * @return string            The input field and description
 	 */
 	public function chosen_select_multi( $id, $meta, $desc, $options ) {
-		$select = '<select name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" multiple="multiple" class="mdg-chosen-select" style="width:200px;">';
+		$select = '<select name="'.esc_attr( $id ).'_multi_chosen" id="'.esc_attr( $id ).'_multi_chosen" multiple="multiple" class="mdg-chosen-select" style="width:200px;">';
+
+		$meta_array = explode( ',', $meta );
 		foreach ( $options as $option ) {
 			extract( $option );
-			$selected = ( $value == $meta ) ? ' selected="selected"' : '';
+			$selected = ( in_array( $value, $meta_array ) ) ? ' selected="selected"' : '';
 			$select  .= '<option value="'.esc_attr( $value ).'"'.$selected.'>'.esc_attr( $label ).'</option>';
 		} // foreach()
 		$select .= '</select>';
+		$select .= '<input type="hidden"  name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" value="' . esc_attr( $meta ) . '"  placeholder="" >';
 		$select .= '<br>';
 		$select .= '<div class="description">'.wp_kses( $desc, 'post' ).'</div>';
 
@@ -307,14 +310,15 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	/**
 	 * Creates a date picker.
 	 *
-	 * @param string  $id   id attribute
-	 * @param string  $meta meta value
-	 * @param string  $desc description
+	 * @param string  $id           Id attribute.
+	 * @param string  $meta         Meta value.
+	 * @param string  $desc         Description.
+	 * @param string  $date_format  Optional, JavaScript date format default DD, MM d, yy.
 	 *
 	 * @return string       The date picker and description
 	 */
-	public function datepicker( $id, $meta, $desc ) {
-		$datepicker  = '<input type="text" class="mdg-datepicker datepicker" name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" value="'.$meta.'" size="30" />';
+	public function datepicker( $id, $meta, $desc, $date_format = 'DD, MM d, yy' ) {
+		$datepicker  = '<input type="text" class="mdg-datepicker datepicker" name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" value="'.$meta.'" size="30" data-format="'.esc_attr( $date_format ).'" />';
 		$datepicker .= '<br />';
 		$datepicker .= '<div class="description">'.wp_kses( $desc, 'post' ).'</div>';
 
@@ -322,19 +326,32 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	} // datepicker()
 
 
+
 	/**
 	 * Creates a HTML text area WYSWIG editor and description.
 	 *
-	 * @param string  $id   id attribute
-	 * @param string  $meta meta value
-	 * @param string  $desc description
+	 * @param string  $id    id attribute
+	 * @param string  $meta  meta value
+	 * @param string  $desc  description
+	 * @param string  $args  Customize wp_editor arguments.
 	 *
 	 * @return string            The text area and description
 	 */
-	public function wysiwg_editor( $id, $meta, $desc ) {
-		$wysiwg_editor  = '<textarea name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" class="mdg-wyswig-editor" cols="55" rows="4">'.$meta.'</textarea>';
+	public function wysiwg_editor( $id, $meta, $desc = '', $args = array() ) {
+		$meta = html_entity_decode( $meta );
+		$wysiwg_editor = '';
+		$default_args  = array(
+			'teeny'         => false,
+			'editor_class'  => 'mdg-wyswig-editor',
+			'textarea_rows' => 8,
+		);
+		$wp_editor_settings = array_merge( $default_args, $args );
+		ob_start();
+		wp_editor( $meta, $id, $wp_editor_settings );
+		$wysiwg_editor .= ob_get_clean();
+
 		$wysiwg_editor .= '<br>';
-		$wysiwg_editor .= '<div class="description">'.wp_kses( $desc, 'post' ).'</div>';
+		$wysiwg_editor .= '<span class="description">'.esc_attr( $desc ).'</span>';
 
 		return $wysiwg_editor;
 	} // wysiwg_editor()

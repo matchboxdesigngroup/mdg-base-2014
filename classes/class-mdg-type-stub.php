@@ -427,10 +427,6 @@ class MDG_Type_Stub extends MDG_Type_Base
 				'id'    => "{$this->post_type}_date",
 				'type'  => 'date',
 			),
-			// Line
-			array(
-				'type'  => 'line',
-			),
 			// Title
 			array(
 				'label' => 'Title',

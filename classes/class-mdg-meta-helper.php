@@ -82,6 +82,8 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 			'rows'        => array(),
 			'class'       => array(),
 		);
+
+		$allowed_tags['input']['data-format'] = array();
 		return $allowed_tags;
 	} // get_meta_output_kses_allowed_html()
 
@@ -257,12 +259,9 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 					break;
 
 				case 'date':
-					$datepicker = $this->datepicker( $id, $meta, $id );
+					$date_format = ( isset( $date_format ) ) ? $date_format : 'DD, MM d, yy';
+					$datepicker  = $this->datepicker( $id, $meta, $desc, $date_format );
 					echo wp_kses( $datepicker, $allowed_tags );
-					break;
-
-				case 'line':
-					echo wp_kses( '</td></tr></table><hr/><table class="form-table">', $allowed_tags );
 					break;
 
 				case 'title':
@@ -271,7 +270,8 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 
 				case 'wysiwg_editor':
 					$meta = get_post_meta( $post->ID, $id, true );
-					$wysiwg_editor = $this->wysiwg_editor( $id, $meta, $desc );
+					$args = ( isset( $args ) ) ? $args : array();
+					$wysiwg_editor = $this->wysiwg_editor( $id, $meta, $desc, $args );
 					echo wp_kses( $wysiwg_editor, $allowed_tags );
 					break;
 

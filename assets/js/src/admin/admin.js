@@ -4,6 +4,15 @@ jQuery((function($) {
 			Alerts = {}
 	;
 
+	Meta.changeChosen = function(e){
+		// this updates the hidden text box that holds selections
+		var chosenElem = $('#' + e.currentTarget.id).val(),
+				select_id  = e.currentTarget.id.replace('_multi_chosen', ''),
+				textField  = $("#" + select_id)
+		;
+		textField.val(chosenElem);
+	}; // MEta.changeChosen()
+
 	/**
 	 * Sets up the chosen select
 	 *
@@ -20,6 +29,10 @@ jQuery((function($) {
 			allow_single_deselect    : true,
 			disable_search_threshold : 5
 		});
+
+		chosenElem.chosen().change(function(e){
+			Meta.changeChosen(e);
+		});
 	}; // Meta.setupChosen()
 
 	/**
@@ -34,8 +47,11 @@ jQuery((function($) {
 			return false;
 		} // if()
 
+		var dateFormat = datePicker.data('format');
+		console.log(dateFormat);
+		dateFormat = (typeof dateFormat === 'undefined' || dateFormat === '' ) ? 'DD, MM d, yy' : dateFormat;
 		datePicker.datepicker({
-			dateFormat  : 'DD, MM d, yy',
+			dateFormat  : dateFormat,
 			changeMonth : true,
 			changeYear  : true
 		});
@@ -70,20 +86,6 @@ jQuery((function($) {
 		colorPicker.wpColorPicker( options );
 	}; // Meta.setupColorPicker()
 
-	/**
-	 * Sets up the WYWSIG Editor meta.
-	 *
-	 * @return Void
-	 */
-	Meta.setupWyswigEditor = function() {
-		var editor = $('.mdg-wyswig-editor');
-
-		if ( editor.length === 0 ) {
-			return false;
-		} // if()
-
-		editor.cleditor();
-	}; // Meta.setupWyswigEditor()
 
 	/**
 	 * Initializes all meta.
@@ -91,7 +93,6 @@ jQuery((function($) {
 	 * @return Void
 	 */
 	Meta.init = function() {
-		Meta.setupWyswigEditor();
 		Meta.setupChosen();
 		Meta.setupDatepicker();
 		Meta.setupColorPicker();
