@@ -11,3 +11,5 @@ vendor/.git
 /assets/js/src/site/.jscs.json
 
 phpdoc-cache-*
+
+._.DS_Store
