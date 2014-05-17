@@ -91,7 +91,7 @@ function mdg_enqueue_admin_scripts() {
 
 	wp_enqueue_style( 'mdg-admin-css', "{$theme_uri}/assets/css/dist/admin.c833.min.css", array( 'wp-color-picker' ), null, 'all' );
 
-	wp_register_script( 'admin_scripts', "{$theme_uri}/assets/js/dist/admin.b29c.min.js", array( 'jquery', 'jquery-ui-datepicker', 'wp-color-picker' ), null, true );
+	wp_register_script( 'admin_scripts', "{$theme_uri}/assets/js/dist/admin.9f61.min.js", array( 'jquery', 'jquery-ui-datepicker', 'wp-color-picker' ), null, true );
 
 	// Add Global PHP -> JS
 	$mdg_globals = array(
