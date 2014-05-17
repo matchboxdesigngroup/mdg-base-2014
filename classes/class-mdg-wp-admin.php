@@ -541,6 +541,11 @@ class MDG_WP_Admin extends MDG_Generic
 				'slug'     => 'wordpress-seo',
 				'required' => false,
 			),
+			array(
+				'name'     => 'Duplicate Post',
+				'slug'     => 'duplicate-post',
+				'required' => false,
+			),
 		);
 
 		// Change this to your theme text domain, used for internationalising strings
