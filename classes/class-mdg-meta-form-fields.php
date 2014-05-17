@@ -36,7 +36,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	public function text_field( $id, $meta, $desc ) {
 		$text_field  = '<input type="text" name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" value="'.$meta.'" size="30">';
 		$text_field .= '<br>';
-		$text_field .= '<span class="description">'.esc_attr( $desc ).'</span>';
+		$text_field .= '<div class="description">'.wp_kses( $desc, 'post' ).'</div>';
 
 		return $text_field;
 	} // text_field()
@@ -55,7 +55,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	public function email_field( $id, $meta, $desc ) {
 		$email_field  = '<input type="email" name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" value="'.$meta.'" size="30">';
 		$email_field .= '<br>';
-		$email_field .= '<span class="description">'.esc_attr( $desc ).'</span>';
+		$email_field .= '<div class="description">'.wp_kses( $desc, 'post' ).'</div>';
 
 		return $email_field;
 	} // email_field()
@@ -74,7 +74,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	public function url_field( $id, $meta, $desc ) {
 		$url_field  = '<input type="url" name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" value="'.$meta.'" size="30">';
 		$url_field .= '<br>';
-		$url_field .= '<span class="description">'.esc_attr( $desc ).'</span>';
+		$url_field .= '<div class="description">'.wp_kses( $desc, 'post' ).'</div>';
 
 		return $url_field;
 	} // email_field()
@@ -93,7 +93,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	public function color_picker( $id, $meta, $desc ) {
 		$color_picker  = '<input type="text" name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" value="'.$meta.'" size="30" class="mdg-color-picker">';
 		$color_picker .= '<br>';
-		$color_picker .= '<span class="description">'.esc_attr( $desc ).'</span>';
+		$color_picker .= '<div class="description">'.wp_kses( $desc, 'post' ).'</div>';
 
 		return $color_picker;
 	} // color_picker()
@@ -116,7 +116,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 		$input_field .= '<input type="text" name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" value="'.$file_src.'" size="30" />';
 		$input_field .= '<a href="#" id="meta_upload_link_'.esc_attr( $id ).'" class="upload-link button">upload</a>';
 		$input_field .= '<br>';
-		$input_field .= '<span class="description">'.esc_attr( $desc ).'</span>';
+		$input_field .= '<div class="description">'.wp_kses( $desc, 'post' ).'</div>';
 		$input_field .= $image_thumbnail;
 		$input_field .= '</div>';
 		return $input_field;
@@ -174,7 +174,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	public function textarea( $id, $meta, $desc ) {
 		$textarea  = '<textarea name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" cols="55" rows="4">'.$meta.'</textarea>';
 		$textarea .= '<br>';
-		$textarea .= '<span class="description">'.esc_attr( $desc ).'</span>';
+		$textarea .= '<div class="description">'.wp_kses( $desc, 'post' ).'</div>';
 
 		return $textarea;
 	} // textarea()
@@ -193,7 +193,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	public function checkbox( $id, $meta, $desc ) {
 		$checked   = ( $meta == 'on' ) ? ' checked="checked"' : '';
 		$checkbox  = '<input type="checkbox" name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'"'.$checked.'>';
-		$checkbox .= '<label for="'.esc_attr( $id ).'">&nbsp;'.esc_attr( $desc ).'</label>';
+		$checkbox .= '<label for="'.esc_attr( $id ).'">&nbsp;'.wp_kses( $desc, 'post' ).'</label>';
 
 		return $checkbox;
 	} // checkbox()
@@ -220,7 +220,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 			$i = $i + 1;
 		} // foreach()
 		$radio .= '<br>';
-		$radio .= '<span class="description">'.esc_attr( $desc ).'</span>';
+		$radio .= '<div class="description">'.wp_kses( $desc, 'post' ).'</div>';
 
 		return $radio;
 	} // radio()
@@ -245,7 +245,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 		} // foreach()
 		$select .= '</select>';
 		$select .= '<br>';
-		$select .= '<span class="description">'.esc_attr( $desc ).'</span>';
+		$select .= '<div class="description">'.wp_kses( $desc, 'post' ).'</div>';
 
 		return $select;
 	} // select()
@@ -271,7 +271,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 		} // foreach()
 		$select .= '</select>';
 		$select .= '<br>';
-		$select .= '<span class="description">'.esc_attr( $desc ).'</span>';
+		$select .= '<div class="description">'.wp_kses( $desc, 'post' ).'</div>';
 
 		return $select;
 	} // chosen_select()
@@ -297,7 +297,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 		} // foreach()
 		$select .= '</select>';
 		$select .= '<br>';
-		$select .= '<span class="description">'.esc_attr( $desc ).'</span>';
+		$select .= '<div class="description">'.wp_kses( $desc, 'post' ).'</div>';
 
 		return $select;
 	} // chosen_select_multi()
@@ -316,7 +316,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	public function datepicker( $id, $meta, $desc ) {
 		$datepicker  = '<input type="text" class="mdg-datepicker datepicker" name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" value="'.$meta.'" size="30" />';
 		$datepicker .= '<br />';
-		$datepicker .= '<span class="description">'.esc_attr( $desc ).'</span>';
+		$datepicker .= '<div class="description">'.wp_kses( $desc, 'post' ).'</div>';
 
 		return $datepicker;
 	} // datepicker()
@@ -334,7 +334,7 @@ class MDG_Meta_Form_Fields extends MDG_Generic
 	public function wysiwg_editor( $id, $meta, $desc ) {
 		$wysiwg_editor  = '<textarea name="'.esc_attr( $id ).'" id="'.esc_attr( $id ).'" class="mdg-wyswig-editor" cols="55" rows="4">'.$meta.'</textarea>';
 		$wysiwg_editor .= '<br>';
-		$wysiwg_editor .= '<span class="description">'.esc_attr( $desc ).'</span>';
+		$wysiwg_editor .= '<div class="description">'.wp_kses( $desc, 'post' ).'</div>';
 
 		return $wysiwg_editor;
 	} // wysiwg_editor()
