@@ -19,9 +19,12 @@
 <li class="dropdown">
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
                                     API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/.html"><i class="icon-th"></i> </a></li>
+<li><a href="../namespaces/global.html"><i class="icon-th"></i> global</a></li>
 <li><a>Packages</a></li>
-<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
 <li><a href="../packages/WordPress.html"><i class="icon-folder-open"></i> WordPress</a></li>
+<li><a href="../packages/global.html"><i class="icon-folder-open"></i> global</a></li>
 </ul>
 </li>
 <li class="dropdown" id="charts-menu">
@@ -62,19 +65,30 @@
 <i title="Methods" class="icon-custom icon-method"></i> Methods
                     <ul>
 <li class="method public "><a href="#method___construct" title="__construct() :: Class constructor"><span class="description">Class constructor</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method___construct" title="__construct() :: Class Constructor"><span class="description">Class Constructor</span><pre>__construct()</pre></a></li>
 <li class="method public "><a href="#method_checkbox" title="checkbox() :: Creates a HTML checkbox and description."><span class="description">Creates a HTML checkbox and description.</span><pre>checkbox()</pre></a></li>
 <li class="method public "><a href="#method_chosen_select" title="chosen_select() :: Creates a HTML chosen select and description."><span class="description">Creates a HTML chosen select and description.</span><pre>chosen_select()</pre></a></li>
 <li class="method public "><a href="#method_chosen_select_multi" title="chosen_select_multi() :: Creates a HTML chosen select multiple and description."><span class="description">Creates a HTML chosen select multiple and description.</span><pre>chosen_select_multi()</pre></a></li>
+<li class="method public "><a href="#method_clean_multi_input" title="clean_multi_input() :: Cleans the multi input meta field."><span class="description">Cleans the multi input meta field.</span><pre>clean_multi_input()</pre></a></li>
 <li class="method public "><a href="#method_color_picker" title="color_picker() :: Creates a color picker."><span class="description">Creates a color picker.</span><pre>color_picker()</pre></a></li>
 <li class="method public "><a href="#method_datepicker" title="datepicker() :: Creates a date picker."><span class="description">Creates a date picker.</span><pre>datepicker()</pre></a></li>
 <li class="method public "><a href="#method_email_field" title="email_field() :: Creates a HTML email field and description."><span class="description">Creates a HTML email field and description.</span><pre>email_field()</pre></a></li>
 <li class="method public "><a href="#method_file_upload_field" title="file_upload_field() :: Creates a HTML input field and description."><span class="description">Creates a HTML input field and description.</span><pre>file_upload_field()</pre></a></li>
 <li class="method public "><a href="#method_file_upload_field_thumbnail" title="file_upload_field_thumbnail() :: Retrieves file upload field thumbnails"><span class="description">Retrieves file upload field thumbnails</span><pre>file_upload_field_thumbnail()</pre></a></li>
+<li class="method public "><a href="#method_get_attachment_id_from_src" title="get_attachment_id_from_src() :: Get attachment ID from src url"><span class="description">Get attachment ID from src url</span><pre>get_attachment_id_from_src()</pre></a></li>
+<li class="method public "><a href="#method_get_id_by_slug" title="get_id_by_slug() :: Retrieves a page/post/custom post type ID when provided a slug."><span class="description">Retrieves a page/post/custom post type ID when provided a slug.</span><pre>get_id_by_slug()</pre></a></li>
+<li class="method public "><a href="#method_get_youtube_id" title="get_youtube_id() :: Retrieves the YouTube video ID from the supplied embed code"><span class="description">Retrieves the YouTube video ID from the supplied embed code</span><pre>get_youtube_id()</pre></a></li>
+<li class="method public "><a href="#method_group_multi_input" title="group_multi_input() :: Groups the multi input meta field."><span class="description">Groups the multi input meta field.</span><pre>group_multi_input()</pre></a></li>
+<li class="method public "><a href="#method_is_localhost" title="is_localhost() :: Checks if the current host is localhost."><span class="description">Checks if the current host is localhost.</span><pre>is_localhost()</pre></a></li>
+<li class="method public "><a href="#method_is_staging" title="is_staging() :: Checks if the current host is a staging site."><span class="description">Checks if the current host is a staging site.</span><pre>is_staging()</pre></a></li>
+<li class="method public "><a href="#method_make_dummy_content" title="make_dummy_content() :: Adds testing post content to the supplied post type."><span class="description">Adds testing post content to the supplied post type.</span><pre>make_dummy_content()</pre></a></li>
 <li class="method public "><a href="#method_multi_input_field" title="multi_input_field() :: Makes the multi field input"><span class="description">Makes the multi field input</span><pre>multi_input_field()</pre></a></li>
+<li class="method public "><a href="#method_pagination" title="pagination() :: Creates and optionally outputs pagination"><span class="description">Creates and optionally outputs pagination</span><pre>pagination()</pre></a></li>
 <li class="method public "><a href="#method_radio" title="radio() :: Creates a HTML radio and description."><span class="description">Creates a HTML radio and description.</span><pre>radio()</pre></a></li>
 <li class="method public "><a href="#method_select" title="select() :: Creates a HTML select and description."><span class="description">Creates a HTML select and description.</span><pre>select()</pre></a></li>
 <li class="method public "><a href="#method_text_field" title="text_field() :: Creates a HTML text field and description."><span class="description">Creates a HTML text field and description.</span><pre>text_field()</pre></a></li>
 <li class="method public "><a href="#method_textarea" title="textarea() :: Creates a HTML textarea and description."><span class="description">Creates a HTML textarea and description.</span><pre>textarea()</pre></a></li>
+<li class="method public "><a href="#method_truncate_string" title="truncate_string() :: Truncates a string with the supplied information"><span class="description">Truncates a string with the supplied information</span><pre>truncate_string()</pre></a></li>
 <li class="method public "><a href="#method_url_field" title="url_field() :: Creates a HTML URL field and description."><span class="description">Creates a HTML URL field and description.</span><pre>url_field()</pre></a></li>
 <li class="method public "><a href="#method_wysiwg_editor" title="wysiwg_editor() :: Creates a HTML text area WYSWIG editor and description."><span class="description">Creates a HTML text area WYSWIG editor and description.</span><pre>wysiwg_editor()</pre></a></li>
 </ul>
@@ -85,6 +99,7 @@
 <li>
 <a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
 </li>
+<li><a href="../namespaces/.html"></a></li>
 <li class="active">
 <span class="divider">\</span><a href="../classes/MDG_Meta_Form_Fields.html">MDG_Meta_Form_Fields</a>
 </li>
@@ -120,6 +135,16 @@ have easy access to all helper methods/properties.</div>
 <div class="subelement argument">
 <h4>$config</h4>
 <code>array</code><p>Class configuration</p></div>
+</div></div>
+</div>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse" title="public">
+<h2>Class Constructor</h2>
+<pre>__construct() : Void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>Void</code></div>
 </div></div>
 </div>
 <a id="method_checkbox"></a><div class="element clickable method public method_checkbox" data-toggle="collapse" data-target=".method_checkbox .collapse" title="public">
@@ -191,6 +216,31 @@ have easy access to all helper methods/properties.</div>
 <code>string</code>The input field and description</div>
 </div></div>
 </div>
+<a id="method_clean_multi_input"></a><div class="element clickable method public method_clean_multi_input" data-toggle="collapse" data-target=".method_clean_multi_input .collapse" title="public">
+<h2>Cleans the multi input meta field.</h2>
+<pre>clean_multi_input(string $multi_input<code> = ''</code>) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>todo</th>
+<td>Audit and document this method better.</td>
+</tr>
+<tr>
+<th>todo</th>
+<td>Move into MDG_Meta_Helper.</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$multi_input</h4>
+<code>string</code><p>The multi input meta value.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>The cleaned multi input values.</div>
+</div></div>
+</div>
 <a id="method_color_picker"></a><div class="element clickable method public method_color_picker" data-toggle="collapse" data-target=".method_color_picker .collapse" title="public">
 <h2>Creates a color picker.</h2>
 <pre>color_picker(string $id, string $meta, string $desc) : string</pre>
@@ -214,20 +264,23 @@ have easy access to all helper methods/properties.</div>
 </div>
 <a id="method_datepicker"></a><div class="element clickable method public method_datepicker" data-toggle="collapse" data-target=".method_datepicker .collapse" title="public">
 <h2>Creates a date picker.</h2>
-<pre>datepicker(string $id, string $meta, string $desc) : string</pre>
+<pre>datepicker(string $id, string $meta, string $desc, string $date_format<code> = 'DD, MM d, yy'</code>) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$id</h4>
-<code>string</code><p>id attribute</p></div>
+<code>string</code><p>Id attribute.</p></div>
 <div class="subelement argument">
 <h4>$meta</h4>
-<code>string</code><p>meta value</p></div>
+<code>string</code><p>Meta value.</p></div>
 <div class="subelement argument">
 <h4>$desc</h4>
-<code>string</code><p>description</p></div>
+<code>string</code><p>Description.</p></div>
+<div class="subelement argument">
+<h4>$date_format</h4>
+<code>string</code><p>Optional, JavaScript date format default DD, MM d, yy.</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
 <code>string</code>The date picker and description</div>
@@ -290,6 +343,141 @@ have easy access to all helper methods/properties.</div>
 <code>string</code>The image HTML or an empty string</div>
 </div></div>
 </div>
+<a id="method_get_attachment_id_from_src"></a><div class="element clickable method public method_get_attachment_id_from_src" data-toggle="collapse" data-target=".method_get_attachment_id_from_src .collapse" title="public">
+<h2>Get attachment ID from src url</h2>
+<pre>get_attachment_id_from_src(string $attachment_url) : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$attachment_url</h4>
+<code>string</code><p>Absolute URI to an attachment</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>integer</code>Post ID</div>
+</div></div>
+</div>
+<a id="method_get_id_by_slug"></a><div class="element clickable method public method_get_id_by_slug" data-toggle="collapse" data-target=".method_get_id_by_slug .collapse" title="public">
+<h2>Retrieves a page/post/custom post type ID when provided a slug.</h2>
+<pre>get_id_by_slug(string $slug) : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$slug</h4>
+<code>string</code><p>The slug of the page/post/custom post type you want an ID for.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>integer</code>The ID of the page/post/custom post type</div>
+</div></div>
+</div>
+<a id="method_get_youtube_id"></a><div class="element clickable method public method_get_youtube_id" data-toggle="collapse" data-target=".method_get_youtube_id .collapse" title="public">
+<h2>Retrieves the YouTube video ID from the supplied embed code</h2>
+<pre>get_youtube_id(string $embed) : \[type]</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$embed</h4>
+<code>string</code><p>YouTube embed code</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\[type]</code>[description]</div>
+</div></div>
+</div>
+<a id="method_group_multi_input"></a><div class="element clickable method public method_group_multi_input" data-toggle="collapse" data-target=".method_group_multi_input .collapse" title="public">
+<h2>Groups the multi input meta field.</h2>
+<pre>group_multi_input(string $multi_input<code> = ''</code>) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>todo</th>
+<td>Audit and document this method better.</td>
+</tr>
+<tr>
+<th>todo</th>
+<td>Move into MDG_Meta_Helper.</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$multi_input</h4>
+<code>string</code><p>The multi input meta value.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>The grouped multi input values.</div>
+</div></div>
+</div>
+<a id="method_is_localhost"></a><div class="element clickable method public method_is_localhost" data-toggle="collapse" data-target=".method_is_localhost .collapse" title="public">
+<h2>Checks if the current host is localhost.</h2>
+<pre>is_localhost() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>If the current host is localhost.</div>
+</div></div>
+</div>
+<a id="method_is_staging"></a><div class="element clickable method public method_is_staging" data-toggle="collapse" data-target=".method_is_staging .collapse" title="public">
+<h2>Checks if the current host is a staging site.</h2>
+<pre>is_staging() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>If the current host is a staging site.</div>
+</div></div>
+</div>
+<a id="method_make_dummy_content"></a><div class="element clickable method public method_make_dummy_content" data-toggle="collapse" data-target=".method_make_dummy_content .collapse" title="public">
+<h2>Adds testing post content to the supplied post type.</h2>
+<pre>make_dummy_content(string $post_type, string $title, integer $count, array $options<code> = array()</code>) : Void</pre>
+<div class="labels"></div>
+<div class="row collapse">
+<div class="span4">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>example</th>
+<td>'project', 'Sample Project' 20 );</td>
+</tr>
+<tr>
+<th>todo</th>
+<td>Fix all posts having the same exact post date.</td>
+</tr>
+<tr>
+<th>todo</th>
+<td>Add options such as adding http://placehold.it featured images.</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$post_type</h4>
+<code>string</code><p>Required, Name of the post type to create content for.</p></div>
+<div class="subelement argument">
+<h4>$title</h4>
+<code>string</code><p>Required, The title base you want to use without a trailing space, the post count will be appended to the end.</p></div>
+<div class="subelement argument">
+<h4>$count</h4>
+<code>integer</code><p>Required, The amount of posts you want to be added.</p></div>
+<div class="subelement argument">
+<h4>$options</h4>
+<code>array</code><p>Optional, options to customize post generation.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>Void</code></div>
+</div>
+<div class="span4">
+<h3>Examples</h3>
+<pre class="prettyprint linenums"></pre>
+</div>
+</div>
+</div>
 <a id="method_multi_input_field"></a><div class="element clickable method public method_multi_input_field" data-toggle="collapse" data-target=".method_multi_input_field .collapse" title="public">
 <h2>Makes the multi field input</h2>
 <pre>multi_input_field(array $args<code> = array()</code>) : string</pre>
@@ -307,6 +495,27 @@ have easy access to all helper methods/properties.</div>
 <h3>Returns</h3>
 <div class="subelement response">
 <code>string</code>The multi input field and description.</div>
+</div></div>
+</div>
+<a id="method_pagination"></a><div class="element clickable method public method_pagination" data-toggle="collapse" data-target=".method_pagination .collapse" title="public">
+<h2>Creates and optionally outputs pagination</h2>
+<pre>pagination(string $max_num_pages<code> = null</code>, integer $range<code> = 2</code>, boolean $output<code> = true</code>) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$max_num_pages</h4>
+<code>string</code><p>Optional. The amount of pages to be paginated through, defaults to the global $wp_query->max_num_pages.</p></div>
+<div class="subelement argument">
+<h4>$range</h4>
+<code>integer</code><p>Optional. The minimum amount of items to show</p></div>
+<div class="subelement argument">
+<h4>$output</h4>
+<code>boolean</code><p>Optional. Output the content</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>The pagination HTML</div>
 </div></div>
 </div>
 <a id="method_radio"></a><div class="element clickable method public method_radio" data-toggle="collapse" data-target=".method_radio .collapse" title="public">
@@ -399,6 +608,32 @@ have easy access to all helper methods/properties.</div>
 <code>string</code>The input field and description</div>
 </div></div>
 </div>
+<a id="method_truncate_string"></a><div class="element clickable method public method_truncate_string" data-toggle="collapse" data-target=".method_truncate_string .collapse" title="public">
+<h2>Truncates a string with the supplied information</h2>
+<pre>truncate_string(string $string, integer $limit, string $break<code> = '.'</code>, string $pad<code> = '...'</code>) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">Example:
+global $mdg_generic;
+$mdg_generic->truncate( $string, 30, " " )</div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$string</h4>
+<code>string</code><p>The string to be truncated</p></div>
+<div class="subelement argument">
+<h4>$limit</h4>
+<code>integer</code><p>The length of the truncated string</p></div>
+<div class="subelement argument">
+<h4>$break</h4>
+<code>string</code><p>The break point</p></div>
+<div class="subelement argument">
+<h4>$pad</h4>
+<code>string</code><p>The string padding to use</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>The truncated string if $string <= $limit or the input $string</div>
+</div></div>
+</div>
 <a id="method_url_field"></a><div class="element clickable method public method_url_field" data-toggle="collapse" data-target=".method_url_field .collapse" title="public">
 <h2>Creates a HTML URL field and description.</h2>
 <pre>url_field(string $id, string $meta, string $desc) : string</pre>
@@ -422,7 +657,7 @@ have easy access to all helper methods/properties.</div>
 </div>
 <a id="method_wysiwg_editor"></a><div class="element clickable method public method_wysiwg_editor" data-toggle="collapse" data-target=".method_wysiwg_editor .collapse" title="public">
 <h2>Creates a HTML text area WYSWIG editor and description.</h2>
-<pre>wysiwg_editor(string $id, string $meta, string $desc) : string</pre>
+<pre>wysiwg_editor(string $id, string $meta, string $desc<code> = ''</code>, string $args<code> = array()</code>) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -436,6 +671,9 @@ have easy access to all helper methods/properties.</div>
 <div class="subelement argument">
 <h4>$desc</h4>
 <code>string</code><p>description</p></div>
+<div class="subelement argument">
+<h4>$args</h4>
+<code>string</code><p>Customize wp_editor arguments.</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
 <code>string</code>The text area and description</div>
@@ -447,9 +685,9 @@ have easy access to all helper methods/properties.</div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.2.0
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.4.0
 </a> and<br>
-            generated on 2014-03-29T09:37:40-05:00.<br></footer></div>
+            generated on 2014-05-19T09:56:39-05:00.<br></footer></div>
 </div>
 </body>
 </html>
