@@ -511,27 +511,6 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 
 
 	/**
-	 * Resets the transient data by deleting the transient data
-	 *
-	 * @return Void
-	 */
-	public function reset_transient() {
-
-		$transient_titles = get_option( $this->_transient_title_option, array() );
-		$transient_type   = $transient_titles[$this->post_type];
-
-		if ( isset( $transient_type ) and gettype( $transient_type ) ) {
-			foreach ( $transient_type as $title ) {
-				delete_transient( $title );
-			} // foreach()
-		} // if()
-
-		$this->posts = $this->get_posts();
-	} // reset_transient()
-
-
-
-	/**
 	 * Retrieves the current post types posts.
 	 *
 	 * @param  array   $custom_query_args  Optional. Any arguments accepted by the WP_Query class http://codex.wordpress.org/Class_Reference/WP_Query
@@ -548,7 +527,7 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 			'orderby'        => 'date',
 		);
 		$query_args      = array_merge( $default_query_args, $custom_query_args );
-		$transient_title = $this->_custom_transient_title( $query_args, $query_object );
+		$transient_title = $this->_custom_transient_title( $query_args );
 
 		// $transient = ( $this->is_localhost() ) ? false : get_transient( $transient_title );
 		$transient = get_transient( $transient_title );
@@ -626,66 +605,73 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 
 
 	/**
+	 * Resets the transient data by deleting the transient data
+	 *
+	 * @return Void
+	 */
+	public function reset_transient() {
+		$transient_type = $this->_get_all_cached_attachment_transient_ids();
+
+		if ( isset( $transient_type ) and gettype( $transient_type ) ) {
+			foreach ( $transient_type as $title ) {
+				delete_transient( $title );
+			} // foreach()
+		} // if()
+
+		$this->posts = $this->get_posts();
+	} // reset_transient()
+
+
+	/**
 	 * Sets the custom transient title.
 	 *
 	 * @param  array   $query_args   The query arguments for WP_Query.
-	 * @param  boolean $query_object If we are storing the query or the posts.
 	 *
 	 * @return string             Custom transient value.
 	 */
-	private function _custom_transient_title( $query_args, $query_object ) {
-		// Creates a custom transient value out of the
-		// keys of the custom arguments if passed
-		ksort( $query_args );
-		$custom_transient = implode( '', array_keys( $query_args ) );
+	private function _custom_transient_title( $query_args ) {
+		$flattened_array = array();
 
-		// I know this loop inside of a loop isn't
-		// the best way to handle it but there needs
-		// to be some way to implode inner arrays
-		$array_values = '';
-		foreach ( $query_args as $key => $arg ) {
-			if ( gettype( $arg ) == 'array' ) {
-				foreach ( $arg as $key1 => $arg1 ) {
-					if ( gettype( $arg1 ) == 'array' ) {
-						foreach ( $arg1 as $key2 => $arg2 ) {
-							if ( gettype( $arg2 ) == 'array' ) {
-								foreach ( $arg2 as $key3 => $arg3 ) {
-									if ( gettype( $arg3 ) == 'array' ) {
-										foreach ( $arg3 as $key4 => $arg4 ) {
-											if ( gettype( $arg4 ) == 'array' ) {
-												foreach ( $arg4 as $key5 => $arg5 ) {
-													unset( $query_args[$key5] );
-													$array_values .= implode( '', $arg5 );
-												} // foreach()
-											} else {
-												$array_values .= $arg4;
-											} // if/else()
-										} // foreach()
-									} else {
-										$array_values .= $arg3;
-									} // if/else()
-								} // foreach()
-							} else {
-								$array_values .= $arg2;
-							} // if/else()
-						} // foreach()
-					} else {
-						$array_values .= $arg1;
-					} // if/else()
-				} // foreach()
-			} else {
-				$array_values .= $arg;
-			} // if/else()
+		$flatten_array = array_walk_recursive( $query_args, function( $key, $value) use (&$flattened_array) { $flattened_array[$key] = $value; } );
+		$keys          = implode( '', array_keys( $flattened_array ) );
+		$values        = implode( '' , $flattened_array );
+		$transient_id  = md5( "{$keys}{$values}" );
+		$transient_id  = "_mdg{$transient_id}";
+
+		return $transient_id;
+	} // _custom_transient_title()
+
+
+
+	/**
+	 * Retrieves all of the current transient IDs.
+	 *
+	 * <code>$this->_get_all_cached_attachment_transient_ids();</code>
+	 *
+	 * @param   string  $prefix  Optional, the transient id prefix to search for default _mdg.
+	 *
+	 * @return  array            All of the current transient IDs.
+	 */
+	private function _get_all_cached_attachment_transient_ids( $prefix = '_mdg' ) {
+		global $wpdb;
+		$sql = "SELECT `option_name` AS `name`, `option_value` AS `value`
+						FROM  $wpdb->options
+						WHERE `option_name` LIKE '%transient_%'
+						ORDER BY `option_name`";
+
+		$results = $wpdb->get_results( $sql );
+
+		// Find the transient IDs with the supplied prefix.
+		$transients = array();
+		foreach ( $results as $result ) {
+			if ( strpos( $result->name, "_transient_{$prefix}" ) !== false ) {
+				$transient_id = str_replace( '_transient_', '', $result->name );
+				$transients[] = $transient_id;
+			} // if()
 		} // foreach()
 
-		$custom_transient = $custom_transient . implode( '', $query_args );
-		$custom_transient = $custom_transient . $array_values;
-		$custom_transient = str_replace( 'Array', '', $custom_transient );
-		$custom_transient = $custom_transient . $query_object;
-		$custom_transient = md5( $custom_transient );
-
-		return $custom_transient;
-	} // _custom_transient_title()
+		return array_unique( $transients );
+	} // _get_all_cached_attachment_transient_ids()
 
 
 

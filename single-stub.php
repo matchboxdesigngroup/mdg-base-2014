@@ -179,12 +179,12 @@ Etiam ante velit, sagittis sit amet sem ut, rutrum imperdiet tellus. Praesent le
 			'pretty_print' => true,
 			'example'      => '',
 		),
-		array(
-			'title'        => 'Get Posts Custom Query Object',
-			'content'      => stub_get_posts_custom_query_object(),
-			'pretty_print' => true,
-			'example'      => '',
-		),
+		// array(
+		// 	'title'        => 'Get Posts Custom Query Object',
+		// 	'content'      => stub_get_posts_custom_query_object(),
+		// 	'pretty_print' => true,
+		// 	'example'      => '',
+		// ),
 		array(
 			'title'        => 'Get All Post Meta',
 			'content'      => stub_get_all_post_meta(),
