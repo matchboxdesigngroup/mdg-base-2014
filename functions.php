@@ -56,3 +56,12 @@ foreach ( $classes as $class ) {
 	$class   = ( $has_php ) ? $class : "{$class}.php";
 	require_once locate_template( "/classes/{$class}" );
 } // foreach()
+
+
+/**
+ * Enable Jetpack for local development
+ */
+global $mdg_generic;
+if ( $mdg_generic->is_localhost() ) {
+	add_filter( 'jetpack_development_mode', '__return_true' );
+} // if()
