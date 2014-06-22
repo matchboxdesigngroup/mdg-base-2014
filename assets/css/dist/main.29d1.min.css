@@ -5137,6 +5137,37 @@ img.aligncenter {
   margin-right: auto;
 }
 
+.gform_wrapper {
+  margin: 0;
+}
+
+.col-half {
+  width: 50%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  padding: 0 30px;
+}
+
+.col-third {
+  width: 33.3333%;
+  padding-right: 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+}
+
+.col-quarter {
+  width: 25%;
+  padding-right: 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+}
+
 .test {
   width: 220px;
   height: 220px;

@@ -1,0 +1,184 @@
+// ================================================
+// Gravity Forms
+//
+// NOTE: Edit the base form styles section to get
+// the base look for all forms.
+// ================================================
+.gform_wrapper {
+	$input-height: 36px;
+
+	// ==============================================
+	// Gravity Form Reset Styles
+	// (Resets the Gravity Form base plugin styles)
+	// ==============================================
+	margin: 0;
+	width: 100%;
+	max-width: 100%;
+
+	.gform_body {
+		@include clearfix();
+	} // .gform_body
+
+	label {
+		font-weight: normal;
+	} // label
+
+	ul li.gfield {
+		margin-bottom: 10px;
+	} // ul li.gfield
+
+	.top_label {
+		.gfield_label {
+			margin: 0 0 5px;
+			font-weight: normal;
+		} // .gfield_label
+
+		textarea.textarea,
+		input.medium,
+		select.medium {
+			width: 100%;
+			max-width: 100%;
+		} // input.medium, select.medium
+	} // .top_label
+
+	.gfield_radio input[type=radio] {
+		margin-left: 2px;
+	} // .gfield_radio li input[type=radio]
+
+	.gform_footer {
+		padding: 0;
+		margin: 15px 0 0;
+	} // .gform_footer
+
+	// ==============================================
+	// Base Form Styles
+	// (You should only really need to edit this section)
+	// ==============================================
+	@include placeholder($color4);
+
+	label {
+		color: $color1;
+		line-height: 1em;
+	} // label
+
+	.gfield_time_hour {
+		line-height: $input-height;
+	} // .gfield_time_hour
+
+	.top_label {
+		textarea.textarea,
+		input.medium,
+		select.medium,
+		.gfield_time_minute input,
+		.gfield_time_hour input,
+		select {
+			padding: 5px;
+			color: $color3;
+			border: 1px solid $color3;
+			background-color: $color2;
+			@include border-radius(0);
+			line-height: 1.5em;
+			font-size: $med;
+			height: $input-height;
+
+			&:focus {
+				outline: 0;
+			} // &:focus
+		} // textarea.textarea, input.medium, select.medium
+
+		input[type="file"].medium {
+			border: 0;
+			padding: 0;
+		} // input[type="file"].medium
+
+		textarea.textarea,
+		select.medium[multiple="multiple"] {
+			height: auto;
+		} // select.medium[multiple="multiple"]
+
+		textarea.textarea {
+			resize: vertical;
+		} // .textarea.textarea
+	} // .top_label
+
+	.gform_footer {
+		input[type="submit"] {
+			@extend .btn;
+			background-color: $theme1;
+			color: $color2;
+
+			&:hover,
+			&:active,
+			&:focus {
+				background-color: darken($theme1, 5%);
+				color: $color2;
+			} // &:hover, &:active, &:focus
+		} // input[type="submit"]
+	} // .gform_footer
+
+	// ==============================================
+	// Error Form Styles
+	// ==============================================
+	div.validation_error {
+		color: $brand-danger;
+		margin: 0 0 10px;
+	} // div.validation_error
+
+	.top_label .gfield_error {
+		width: 100%;
+
+		.ginput_container {
+			max-width: 100%;
+		} // .ginput_container
+	} // .top_label .gfield_error
+
+
+
+	.top_label .gfield_description.validation_message,
+	.gfield_description.validation_message {
+		padding: 0 !important;
+		margin: 0 !important;
+	} // .top_label .gfield_description.validation_message, .gfield_description.validation_message
+
+	li.gfield {
+		&.gfield_error {
+			div.ginput_complex.ginput_container label,
+			ul.gfield_checkbox,
+			ul.gfield_radio,
+			.gfield_label,
+			.validation_message {
+				color: $brand-danger;
+			} // div.ginput_complex.ginput_container label, ul.gfield_checkbox, ul.gfield_radio, .gfield_label, .validation_message
+
+			input[type=text],
+			input[type=url],
+			input[type=email],
+			input[type=tel],
+			input[type=number],
+			input[type=password],
+			textarea {
+				border: 1px solid $brand-danger;
+			} // input[type=text], input[type=url], input[type=email], input[type=tel], input[type=number], input[type=password], textarea
+		} // &.gfield_error
+
+		&.gfield_error,
+		&.gfield_error.gfield_contains_required.gfield_creditcard_warning {
+			padding: 0 !important;
+			padding-left: 0!important;
+			margin: 0 0 10px -10px !important; // Find a better way to override the padding left;
+			width: 100%;
+			background: none;
+			border: 0;
+		} // &.gfield_error, &.gfield_error.gfield_contains_required.gfield_creditcard_warning
+
+		&.gfield_error.gfield_contains_required label.gfield_label,
+		&.gfield_error.gfield_contains_required div.ginput_container {
+			margin-top: 0;
+		} // &.gfield_error.gfield_contains_required label.gfield_label, &.gfield_error.gfield_contains_required div.ginput_container
+
+		&.gfield_error.gfield_contains_required label.gfield_label,
+		&.gfield_error.gfield_contains_required div.ginput_container {
+			margin-top: 0;
+		} // &.gfield_error.gfield_contains_required label.gfield_label, &.gfield_error.gfield_contains_required div.ginput_container
+	} // li.gfield
+} // .gform_wrapper
