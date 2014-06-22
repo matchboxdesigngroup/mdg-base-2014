@@ -1,9 +1,23 @@
 // =========================================================
-// ShortCodes
+// Columns
 // =========================================================
-// .missing-content {
-// 	background: $alert-warning-bg;
-// 	color: $alert-warning-text;
-// 	border: 1px solid $alert-warning-border;
-// 	padding: 1px 10px;
-// } // .missing-content
+.col-half {
+	width: 50%;
+	@include box-sizing(border-box);
+	float: left;
+	padding: 0 30px;
+} // col-half
+
+.col-third {
+	width: 33.3333%;
+	padding-right: 20px;
+	@include box-sizing(border-box);
+	float: left;
+} // col-third
+
+.col-quarter {
+	width: 25%;
+	padding-right: 20px;
+	@include box-sizing(border-box);
+	float: left;
+} // col-quarter
