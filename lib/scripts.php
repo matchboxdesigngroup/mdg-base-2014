@@ -21,10 +21,10 @@ function mdg_enqueue_site_scripts() {
 	// CSS
 	if ( $ltie9 and $is_IE ) {
 		// CSS for IE.
-		wp_enqueue_style( 'main_css', "{$theme_uri}/assets/css/dist/main-ltie9.4ea5.min.css", array(), null, 'all' );
+		wp_enqueue_style( 'main_css', "{$theme_uri}/assets/css/dist/main-ltie9.min.css", array(), null, 'all' );
 	} else {
 		// CSS for good browsers.
-		wp_enqueue_style( 'main_css', "{$theme_uri}/assets/css/dist/main.d93b.min.css", array(), null, 'all' );
+		wp_enqueue_style( 'main_css', "{$theme_uri}/assets/css/dist/main.min.css", array(), null, 'all' );
 	} // if/else()
 
 	// jQuery is loaded using the same method from HTML5 Boilerplate:
