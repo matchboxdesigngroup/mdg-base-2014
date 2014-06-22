@@ -128,11 +128,11 @@ class MDG_WP_Admin extends MDG_Generic
 			return;
 		} // if()
 
-		$style = '<style type="text/css">';
-			$style .= '.login h1 a {';
-				$style .= 'background-image: url("'.$theme_img_url.'");';
-				$style .= 'background-image: none,url("'.$svg_theme_img_url.'");';
-			$style .= '}';
+		$style  = '<style type="text/css">';
+		$style .= '.login h1 a {';
+		$style .= 'background-image: url("'.$theme_img_url.'");';
+		$style .= 'background-image: none,url("'.$svg_theme_img_url.'");';
+		$style .= '}';
 		$style .= '</style>';
 
 		echo $style;
@@ -236,7 +236,7 @@ class MDG_WP_Admin extends MDG_Generic
 		$client_name    = get_bloginfo( 'name' );
 		$wp_version     = get_bloginfo( 'version' );
 		$footer_content = "Built by <a href='http://matchboxdesigngroup.com' target='_blank'>Matchbox Design Group</a> powered by <a href='http://www.wordpress.org' target='_blank'>WordPress {$wp_version}</a>";
-		$allowed_html = array(
+		$allowed_html   = array(
 			'a' => array(
 				'href'   => array(),
 				'target' => array(),
@@ -539,11 +539,6 @@ class MDG_WP_Admin extends MDG_Generic
 			array(
 				'name'     => 'Yoast - WordPress SEO',
 				'slug'     => 'wordpress-seo',
-				'required' => false,
-			),
-			array(
-				'name'     => 'Duplicate Post',
-				'slug'     => 'duplicate-post',
 				'required' => false,
 			),
 		);
