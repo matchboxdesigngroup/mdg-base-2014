@@ -7,5 +7,7 @@
 	</div>
 </footer>
 
-<div title = 'Back to Top' class = 'page-top-link back-to-top'><a href = '#'>Return to top</a></div>
+<div title="Back to Top" class="css3pie page-top-link back-to-top">
+	<a href="#" class="css3pie">Return to top</a>
+</div> <!-- /.back-to-top -->
 <?php wp_footer(); ?>
