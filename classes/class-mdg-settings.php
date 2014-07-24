@@ -27,11 +27,24 @@ if ( ! class_exists( 'MDG_Settings' ) ) {
 
 
 		/**
-		 * @since  0.2.3 The options group to use.
+		 * The options group to use.
+		 *
+		 * @since  0.2.3
 		 *
 		 * @var    string
 		 */
 		public $option_group = 'mdg_settings_group';
+
+
+
+		/**
+		 * The current theme options.
+		 *
+		 * @since  0.2.3
+		 *
+		 * @var    array
+		 */
+		public $options = array();
 
 
 
@@ -44,6 +57,8 @@ if ( ! class_exists( 'MDG_Settings' ) ) {
 		 */
 		public function __construct( $config = array() ) {
 			parent::__construct();
+
+			$this->options = get_option( $this->option_group, array() );
 
 			$this->_add_mdg_settings_actions_filters();
 		} // __construct()
@@ -60,13 +75,14 @@ if ( ! class_exists( 'MDG_Settings' ) ) {
 		 *
 		 * @since   0.2.3
 		 *
-		 * @param   string  $key      The setting to retrieve.
-		 * @param   string  $default  Optional, default value to return if option does not exists, default empty string.
+		 * @param   string  $key            The setting to retrieve.
+		 * @param   string  $default        Optional, default value to return if option does not exists, default empty string.
+		 * @param   boolean  $force_update  Optional, to force update check of the options instead of stored value, default false.
 		 *
 		 * @return  mixed             The option if it exists or the value of $default.
 		 */
-		public function get_setting( $key, $default = '' ) {
-			$options = get_option( $this->option_group, array() );
+		public function get_setting( $key, $default = '', $force_update = false ) {
+			$options = ( $force_update ) ? get_option( $this->option_group, array() ) : $this->options;
 
 			if ( isset( $options[$key] ) ) {
 				return $options[$key];
@@ -389,7 +405,7 @@ if ( ! class_exists( 'MDG_Settings' ) ) {
 			register_setting( $this->option_group, $this->option_group, array( &$this, 'validate_options' ) );
 
 			// General Settings Group
-			add_settings_section( $general_settings_group, 'General Settings', array( &$this, 'general_section_text' ), $this->page_slug );
+			add_settings_section( $general_settings_group, '', array( &$this, 'general_section_text' ), $this->page_slug );
 			$this->add_settings_fields( $general_settings_group );
 		} // admin_init()
 
