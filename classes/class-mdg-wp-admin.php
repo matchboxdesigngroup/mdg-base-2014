@@ -501,18 +501,8 @@ class MDG_WP_Admin extends MDG_Generic {
 			),
 			// WordPress.org Plugins
 			array(
-				'name'     => 'WordPress Importer',
-				'slug'     => 'wordpress-importer',
-				'required' => false,
-			),
-			array(
 				'name'     => 'Regenerate Thumbnails',
 				'slug'     => 'regenerate-thumbnails',
-				'required' => false,
-			),
-			array(
-				'name'     => 'BackWPup Free',
-				'slug'     => 'backwpup',
 				'required' => false,
 			),
 			array(
