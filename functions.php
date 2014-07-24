@@ -38,7 +38,7 @@ foreach ( $libs as $lib ) {
  */
 $classes = array(
 	'class-mdg-generic',
-	'class-mdg-meta-form-fields',
+	'class-mdg-form-fields',
 	'class-mdg-meta-helper',
 	'class-mdg-images',
 	'class-mdg-type-base',
@@ -49,6 +49,7 @@ $classes = array(
 	'class-mdg-walker-comments',
 	'class-mdg-nav-walker',
 	'class-mdg-sidebar',
+	'class-mdg-settings',
 );
 
 foreach ( $classes as $class ) {
