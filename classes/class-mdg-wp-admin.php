@@ -11,8 +11,7 @@
  *
  * @author       Matchbox Design Group <info@matchboxdesigngroup.com>
  */
-class MDG_WP_Admin extends MDG_Generic
-{
+class MDG_WP_Admin extends MDG_Generic {
 	/**
 	 * Class constructor
 	 *
@@ -600,8 +599,8 @@ class MDG_WP_Admin extends MDG_Generic
 			exit;
 		} // if()
 
-		global $mdg_meta_form_fields;
-		$thumbnail = $mdg_meta_form_fields->file_upload_field_thumbnail( $_GET['fileSrc'] );
+		global $mdg_form_fields;
+		$thumbnail = $mdg_form_fields->file_upload_field_thumbnail( $_GET['fileSrc'] );
 		echo json_encode( $thumbnail );
 		exit;
 	} // mdg_meta_upload_thumb_callback

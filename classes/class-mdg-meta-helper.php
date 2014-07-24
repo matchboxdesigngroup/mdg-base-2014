@@ -11,7 +11,7 @@
  *
  * @author       Matchbox Design Group <info@matchboxdesigngroup.com>
  */
-class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
+class MDG_Meta_Helper extends MDG_Form_Fields {
 	/** @var string Sets the meta box title */
 	public $meta_box_title;
 	/** @var string Sets the meta box position */
@@ -198,99 +198,7 @@ class MDG_Meta_Helper extends MDG_Meta_Form_Fields {
 			echo '<tr>
 			<th><label for="'.esc_attr( $id ).'">'.esc_attr( $label ).'</label></th>
 				<td>';
-
-			switch ( $type ) {
-				case 'divider':
-					echo wp_kses( '<hr>', $allowed_tags );
-					break;
-
-				case 'markup':
-					echo wp_kses( $desc, $allowed_tags );
-					break;
-
-				case 'text':
-					$text_field = $this->text_field( $id, $meta, $desc );
-					echo wp_kses( $text_field, $allowed_tags );
-					break;
-
-				case 'email':
-					$email_field = $this->email_field( $id, $meta, $desc );
-					echo wp_kses( $email_field, $allowed_tags );
-					break;
-
-				case 'url':
-					$url_field = $this->url_field( $id, $meta, $desc );
-					echo wp_kses( $url_field, $allowed_tags );
-					break;
-
-				case 'file':
-					$file_upload = $this->file_upload_field( $id, $meta, $desc );
-					echo wp_kses( $file_upload, $allowed_tags );
-					break;
-
-				case 'textarea':
-					$textarea = $this->textarea( $id, $meta, $desc );
-					echo wp_kses( $textarea, $allowed_tags );
-					break;
-
-				case 'checkbox':
-					$checkbox = $this->checkbox( $id, $meta, $desc );
-					echo wp_kses( $checkbox, $allowed_tags );
-					break;
-
-				case 'radio':
-					$radio = $this->radio( $id, $meta, $desc, $options );
-					echo wp_kses( $radio, $allowed_tags );
-					break;
-
-				case 'select':
-					$select = $this->select( $id, $meta, $desc, $options );
-					echo wp_kses( $select, $allowed_tags );
-					break;
-
-				case 'chosen_select':
-					$chosen_select = $this->chosen_select( $id, $meta, $desc, $options );
-					echo wp_kses( $chosen_select, $allowed_tags );
-					break;
-
-				case 'chosen_select_multi':
-					$chosen_select_multi = $this->chosen_select_multi( $id, $meta, $desc, $options );
-					echo wp_kses( $chosen_select_multi, $allowed_tags );
-					break;
-
-				case 'date':
-					$date_format = ( isset( $date_format ) ) ? $date_format : 'DD, MM d, yy';
-					$datepicker  = $this->datepicker( $id, $meta, $desc, $date_format );
-					echo wp_kses( $datepicker, $allowed_tags );
-					break;
-
-				case 'title':
-					echo wp_kses( '<div class="form-group-title">'.esc_attr( $label ).'</div>', $allowed_tags );
-					break;
-
-				case 'wysiwg_editor':
-					$meta = get_post_meta( $post->ID, $id, true );
-					$args = ( isset( $args ) ) ? $args : array();
-					$wysiwg_editor = $this->wysiwg_editor( $id, $meta, $desc, $args );
-					echo wp_kses( $wysiwg_editor, $allowed_tags );
-					break;
-
-				case 'multi_input':
-					$this->multi_input_field(
-						array(
-							'multi_fields' => $multi_fields,
-							'id'           => $id,
-							'desc'         => $desc,
-							'meta'         => $meta,
-						)
-					);
-					break;
-
-				case 'color_picker':
-					$color_picker = $this->color_picker( $id, $meta, $desc );
-					echo wp_kses( $color_picker, $allowed_tags );
-					break;
-			} // switch()
+				$this->select_form_field( $field, $meta );
 			echo '</td></tr>';
 		} // foreach()
 		echo '</table>'; // end table

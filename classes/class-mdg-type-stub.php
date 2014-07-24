@@ -257,197 +257,214 @@ class MDG_Type_Stub extends MDG_Type_Base
 	 * @return ArrayObject Custom meta fields
 	 */
 	public function get_custom_meta_fields() {
-		global $post;
-		$description = '<div class="mdg-note">Meta description.</div>';
-		return array(
-			// Description
-			array(
-				'label'   => '',
-				'desc'    => $description,
-				'id'      => 'info',
-				'type'    => 'info',
-				'visible' => false,
-			),
-			// Text
-			array(
-				'label' => 'Text',
-				'desc'  => 'Text description.',
-				'id'    => "{$this->post_type}_text",
-				'type'  => 'text',
-			),
-			// URL
-			array(
-				'label' => 'URL',
-				'desc'  => 'URL description.',
-				'id'    => "{$this->post_type}_url",
-				'type'  => 'url',
-			),
-			// Email
-			array(
-				'label' => 'Email',
-				'desc'  => 'Email description.',
-				'id'    => "{$this->post_type}_email",
-				'type'  => 'email',
-			),
-			// Divider
-			array(
-				'type'  => 'divider',
-			),
-			// Markup
-			array(
-				'label' => 'Markup',
-				'desc'  => '<span>Custom markup: </span><a href="#">Link to nowhere</a>',
-				'id'    => "{$this->post_type}_markup",
-				'type'  => 'markup',
-			),
-			// File Upload
-			array(
-				'label' => 'File Upload 1',
-				'desc'  => 'File description.',
-				'id'    => "{$this->post_type}_file_1",
-				'type'  => 'file',
-			),
-			// File Upload
-			array(
-				'label' => 'File Upload 2',
-				'desc'  => 'File description.',
-				'id'    => "{$this->post_type}_file_2",
-				'type'  => 'file',
-			),
-			// Textarea
-			array(
-				'label' => 'Textarea',
-				'desc'  => 'Textarea description.',
-				'id'    => "{$this->post_type}_textarea",
-				'type'  => 'textarea',
-			),
-			// Checkbox
-			array(
-				'label' => 'Checkbox',
-				'desc'  => 'Checkbox description.',
-				'id'    => "{$this->post_type}_checkbox",
-				'type'  => 'checkbox',
-			),
-			// Radio
-			array(
-				'label'   => 'Radio',
-				'desc'    => 'Radio description.',
-				'id'      => "{$this->post_type}_radio",
-				'type'    => 'radio',
-				'options' => array(
-					array(
-						'value' => 'value_1',
-						'label' => 'Radio Label 1',
-					),
-					array(
-						'value' => 'value_2',
-						'label' => 'Radio Label 2',
-					),
-					array(
-						'value' => 'value_3',
-						'label' => 'Radio Label 3',
-					),
-					array(
-						'value' => 'value_4',
-						'label' => 'Radio Label 4',
-					),
+		$meta_fields = array();
+
+		// Description
+		$meta_fields[] = array(
+			'label'   => '',
+			'desc'    => '<div class="mdg-note">Meta description.</div>',
+			'id'      => 'info',
+			'type'    => 'info',
+			'visible' => false,
+		);
+
+		// Text
+		$meta_fields[] = array(
+			'label' => 'Text',
+			'desc'  => 'Text description.',
+			'id'    => "{$this->post_type}_text",
+			'type'  => 'text',
+		);
+
+		// URL
+		$meta_fields[] = array(
+			'label' => 'URL',
+			'desc'  => 'URL description.',
+			'id'    => "{$this->post_type}_url",
+			'type'  => 'url',
+		);
+
+		// Email
+		$meta_fields[] = array(
+			'label' => 'Email',
+			'desc'  => 'Email description.',
+			'id'    => "{$this->post_type}_email",
+			'type'  => 'email',
+		);
+
+		// Divider
+		$meta_fields[] = array(
+			'type'  => 'divider',
+		);
+
+		// Markup
+		$meta_fields[] = array(
+			'label' => 'Markup',
+			'desc'  => '<span>Custom markup: </span><a href="#">Link to nowhere</a>',
+			'id'    => "{$this->post_type}_markup",
+			'type'  => 'markup',
+		);
+
+		// File Upload
+		$meta_fields[] = array(
+			'label' => 'File Upload 1',
+			'desc'  => 'File description.',
+			'id'    => "{$this->post_type}_file_1",
+			'type'  => 'file',
+		);
+
+		// File Upload
+		$meta_fields[] = array(
+			'label' => 'File Upload 2',
+			'desc'  => 'File description.',
+			'id'    => "{$this->post_type}_file_2",
+			'type'  => 'file',
+		);
+
+		// Textarea
+		$meta_fields[] = array(
+			'label' => 'Textarea',
+			'desc'  => 'Textarea description.',
+			'id'    => "{$this->post_type}_textarea",
+			'type'  => 'textarea',
+		);
+
+		// Checkbox
+		$meta_fields[] = array(
+			'label' => 'Checkbox',
+			'desc'  => 'Checkbox description.',
+			'id'    => "{$this->post_type}_checkbox",
+			'type'  => 'checkbox',
+		);
+
+		// Radio
+		$meta_fields[] = array(
+			'label'   => 'Radio',
+			'desc'    => 'Radio description.',
+			'id'      => "{$this->post_type}_radio",
+			'type'    => 'radio',
+			'options' => array(
+				array(
+					'value' => 'value_1',
+					'label' => 'Radio Label 1',
 				),
-			),
-			// Select
-			array(
-				'label'   => 'Select',
-				'desc'    => 'Select description.',
-				'id'      => "{$this->post_type}_select",
-				'type'    => 'select',
-				'options' => array(
-					array(
-						'value' => '',
-						'label' => '-- Select an option --',
-					),
-					array(
-						'value' => 'value_1',
-						'label' => 'Select Label 1',
-					),
-					array(
-						'value' => 'value_2',
-						'label' => 'Select Label 2',
-					),
-					array(
-						'value' => 'value_3',
-						'label' => 'Select Label 3',
-					),
-					array(
-						'value' => 'value_4',
-						'label' => 'Select Label 4',
-					),
+				array(
+					'value' => 'value_2',
+					'label' => 'Radio Label 2',
 				),
-			),
-			// Chosen Select
-			array(
-				'label'   => 'Chosen Select',
-				'desc'    => 'Chosen select description.',
-				'id'      => "{$this->post_type}_chosen_select",
-				'type'    => 'chosen_select',
-				'options' => array(
-					array(
-						'value' => '',
-						'label' => '-- Select an option --',
-					),
-					array(
-						'value' => 'value_1',
-						'label' => 'Label 1',
-					),
-					array(
-						'value' => 'value_2',
-						'label' => 'Label 2',
-					),
+				array(
+					'value' => 'value_3',
+					'label' => 'Radio Label 3',
 				),
-			),
-			// Chosen Select Multi
-			array(
-				'label'   => 'Chosen Select Multi',
-				'desc'    => 'Chosen select multi description.',
-				'id'      => "{$this->post_type}_chosen_select_multi",
-				'type'    => 'chosen_select_multi',
-				'options' => array(
-					array(
-						'value' => 'value_1',
-						'label' => 'Label 1',
-					),
-					array(
-						'value' => 'value_2',
-						'label' => 'Label 2',
-					),
+				array(
+					'value' => 'value_4',
+					'label' => 'Radio Label 4',
 				),
-			),
-			// Date
-			array(
-				'label' => 'Date',
-				'desc'  => 'Date description.',
-				'id'    => "{$this->post_type}_date",
-				'type'  => 'date',
-			),
-			// Title
-			array(
-				'label' => 'Title',
-				'type'  => 'title',
-			),
-			// Color picker
-			array(
-				'label' => 'Color Picker',
-				'desc'  => 'Color Picker description.',
-				'id'    => "{$this->post_type}_color_picker",
-				'type'  => 'color_picker',
-			),
-			// WYSIWG Editor
-			// You have to use html_entity_decode() when outputting the meta.
-			array(
-				'label' => 'WYSIWG Editor',
-				'desc'  => 'WYSIWG Editor description.',
-				'id'    => "{$this->post_type}_wysiwg_editor",
-				'type'  => 'wysiwg_editor',
 			),
 		);
+
+		// Select
+		$meta_fields[] = array(
+			'label'   => 'Select',
+			'desc'    => 'Select description.',
+			'id'      => "{$this->post_type}_select",
+			'type'    => 'select',
+			'options' => array(
+				array(
+					'value' => '',
+					'label' => '-- Select an option --',
+				),
+				array(
+					'value' => 'value_1',
+					'label' => 'Select Label 1',
+				),
+				array(
+					'value' => 'value_2',
+					'label' => 'Select Label 2',
+				),
+				array(
+					'value' => 'value_3',
+					'label' => 'Select Label 3',
+				),
+				array(
+					'value' => 'value_4',
+					'label' => 'Select Label 4',
+				),
+			),
+		);
+
+		// Chosen Select
+		$meta_fields[] = array(
+			'label'   => 'Chosen Select',
+			'desc'    => 'Chosen select description.',
+			'id'      => "{$this->post_type}_chosen_select",
+			'type'    => 'chosen_select',
+			'options' => array(
+				array(
+					'value' => '',
+					'label' => '-- Select an option --',
+				),
+				array(
+					'value' => 'value_1',
+					'label' => 'Label 1',
+				),
+				array(
+					'value' => 'value_2',
+					'label' => 'Label 2',
+				),
+			),
+		);
+
+		// Chosen Select Multi (Does not save correctly)
+		// $meta_fields[] = array(
+		// 	'label'   => 'Chosen Select Multi',
+		// 	'desc'    => 'Chosen select multi description.',
+		// 	'id'      => "{$this->post_type}_chosen_select_multi",
+		// 	'type'    => 'chosen_select_multi',
+		// 	'options' => array(
+		// 		array(
+		// 			'value' => 'value_1',
+		// 			'label' => 'Label 1',
+		// 		),
+		// 		array(
+		// 			'value' => 'value_2',
+		// 			'label' => 'Label 2',
+		// 		),
+		// 	),
+		// );
+
+		// Date
+		$meta_fields[] = array(
+			'label' => 'Date',
+			'desc'  => 'Date description.',
+			'id'    => "{$this->post_type}_date",
+			'type'  => 'date',
+		);
+
+		// Title
+		$meta_fields[] = array(
+			'label' => 'Title',
+			'type'  => 'title',
+		);
+
+		// Color picker
+		$meta_fields[] = array(
+			'label' => 'Color Picker',
+			'desc'  => 'Color Picker description.',
+			'id'    => "{$this->post_type}_color_picker",
+			'type'  => 'color_picker',
+		);
+
+		// WYSIWG Editor
+		// You have to use html_entity_decode() when outputting the meta.
+		$meta_fields[] = array(
+			'label' => 'WYSIWG Editor',
+			'desc'  => 'WYSIWG Editor description.',
+			'id'    => "{$this->post_type}_wysiwg_editor",
+			'type'  => 'wysiwg_editor',
+		);
+
+		return $meta_fields;
 	} // get_custom_meta_fields()
 
 
