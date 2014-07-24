@@ -51,6 +51,33 @@ if ( ! class_exists( 'MDG_Settings' ) ) {
 
 
 		/**
+		 * Helper method to retrieve the options.
+		 *
+		 * <code>
+		 * global $mdg_setting;
+		 * $setting = $mdg_setting->get_setting( 'setting_key' );
+		 * </code>
+		 *
+		 * @since   0.2.3
+		 *
+		 * @param   string  $key      The setting to retrieve.
+		 * @param   string  $default  Optional, default value to return if option does not exists, default empty string.
+		 *
+		 * @return  mixed             The option if it exists or the value of $default.
+		 */
+		public function get_setting( $key, $default = '' ) {
+			$options = get_option( $this->option_group, array() );
+
+			if ( isset( $options[$key] ) ) {
+				return $options[$key];
+			} // if()
+
+			return $default;
+		} // get_setting()
+
+
+
+		/**
 		 * Retrieves the settings fields for a specific settings group.
 		 *
 		 * <code$settings_fields = $this->get_settings_fields( $settings_group );</code>
