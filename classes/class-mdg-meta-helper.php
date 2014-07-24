@@ -95,17 +95,19 @@ class MDG_Meta_Helper extends MDG_Form_Fields {
 	 * @return Void
 	 */
 	protected function _add_actions() {
-		// Save custom meta action hook
-		add_action( 'save_post', array( &$this, 'save_meta' ) );
+		if ( is_admin() ) {
+			// Save custom meta action hook
+			add_action( 'save_post', array( &$this, 'save_meta' ) );
 
-		// Make meta box action hook
-		add_action( 'add_meta_boxes', array( &$this, 'make_meta_box' ) );
+			// Make meta box action hook
+			add_action( 'add_meta_boxes', array( &$this, 'make_meta_box' ) );
 
-		// Remove metaboxes action hook
-		add_action( 'admin_menu' , array( &$this, 'remove_metaboxes' ) );
+			// Remove metaboxes action hook
+			add_action( 'admin_menu' , array( &$this, 'remove_metaboxes' ) );
 
-		// Renames the featured image meta box
-		add_action( 'do_meta_boxes', array( &$this, 'rename_featured_image_meta_box' ) );
+			// Renames the featured image meta box
+			add_action( 'do_meta_boxes', array( &$this, 'rename_featured_image_meta_box' ) );
+		} // if()
 	} // _add_actions()
 
 

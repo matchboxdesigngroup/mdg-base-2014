@@ -176,22 +176,28 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 	 * Checks if the current post type is the correct post type.
 	 *
 	 *
-	 * @param string   $post_type The post type name to check against
+	 * @param  string   $post_type   The post type name to check against
+	 * @param  boolean  $admin_only  Optional, if it should only check in the admin, default tue.
 	 *
 	 * @return boolean If the post type is correct.
 	 */
-	private function _is_correct_post_type( $post_type = null ) {
-		if ( is_null( $post_type ) ) {
-			global $post;
-			$post_type = $post->post_type;
+	public function is_current_post_type( $post_type = null, $admin_only = true ) {
+		global $post;
+		$post_type = ( is_null( $post_type ) ) ? $this->post_type : $post_type;
+
+		if ( is_admin() ) {
+			$screen = get_current_screen();
+			if ( isset( $screen ) and $post_type == $screen->post_type ) {
+				return true;
+			} // if()
 		} // if()
 
-		if ( ! is_null( $post_type ) ) {
-			return $post_type == $this->post_type;
+		if ( ! $admin_only and isset( $post ) and $post->post_type == $post_type ) {
+			return true;
 		} // if()
 
 		return false;
-	} // _is_correct_post_type()
+	} // is_current_post_type()
 
 
 
@@ -288,7 +294,7 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 		} // if()
 
 		$post_type          = $_GET['post_type'];
-		$correct_post_type  = $this->_is_correct_post_type( $post_type );
+		$correct_post_type  = $this->is_current_post_type( $post_type );
 		$supports_thumbnail = post_type_supports( get_post_type(), 'thumbnail' );
 		if ( ! $this->disable_image_column and $correct_post_type and $supports_thumbnail  ) {
 			$cols['mdg_post_thumb'] = __( $this->featured_image_title );
@@ -307,7 +313,7 @@ class MDG_Type_Base extends MDG_Meta_Helper {
 	 * @return Void
 	 */
 	function display_thumbnail_column( $col, $id ) {
-		if ( $col == 'mdg_post_thumb' and $this->_is_correct_post_type( get_post_type( $id ) ) ) {
+		if ( $col == 'mdg_post_thumb' and $this->is_current_post_type( get_post_type( $id ) ) ) {
 			echo get_the_post_thumbnail( $id, 'admin-list-thumb' );
 		} // if()
 	} // display_thumbnail_column()

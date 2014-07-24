@@ -25,8 +25,7 @@
  *
  * @author       Matchbox Design Group <info@matchboxdesigngroup.com>
  */
-class MDG_Type_Stub extends MDG_Type_Base
-{
+class MDG_Type_Stub extends MDG_Type_Base {
 	/**
 	 * Class constructor, handles instantiation functionality for the class
 	 */
@@ -258,6 +257,10 @@ class MDG_Type_Stub extends MDG_Type_Base
 	 */
 	public function get_custom_meta_fields() {
 		$meta_fields = array();
+
+		if ( ! $this->is_current_post_type() ) {
+			return $meta_fields;
+		} // if()
 
 		// Description
 		$meta_fields[] = array(
