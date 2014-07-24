@@ -326,7 +326,8 @@ if ( ! class_exists( 'MDG_Settings' ) ) {
 		 * @return  void
 		 */
 		function admin_add_page() {
-			add_options_page( 'Theme Settings', 'Theme Settings', 'manage_options', $this->page_slug, array( &$this, 'options_page' ) );
+			$theme = wp_get_theme();
+			add_theme_page( "{$theme->Name} Options", "{$theme->Name} Settings", 'manage_options', $this->page_slug, array( &$this, 'options_page' ) );
 			add_action( 'admin_init', array( &$this, 'admin_init' ) );
 		} // admin_add_page()
 
