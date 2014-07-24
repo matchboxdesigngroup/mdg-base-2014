@@ -15,7 +15,22 @@
  */
 if ( ! class_exists( 'MDG_Settings' ) ) {
 	class MDG_Settings extends MDG_Form_Fields {
-		public $page_slug    = 'mdg';
+		/**
+		 * The slug to be used for the options page.
+		 *
+		 * @since  0.2.3
+		 *
+		 * @var    string
+		 */
+		public $page_slug = 'mdg';
+
+
+
+		/**
+		 * @since  0.2.3 The options group to use.
+		 *
+		 * @var    string
+		 */
 		public $option_group = 'mdg_settings_group';
 
 
