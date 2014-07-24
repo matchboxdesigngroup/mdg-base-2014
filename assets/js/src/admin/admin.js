@@ -86,6 +86,41 @@ jQuery((function($) {
 		colorPicker.wpColorPicker( options );
 	}; // Meta.setupColorPicker()
 
+	/**
+	 * Initializes the after title meta placeholder.
+	 *
+	 * @since   0.2.3
+	 *
+	 * @return  {Void}
+	 */
+	Meta.initAfterTitlePlaceholder = function() {
+		var elems = $('.after-title-placeholder');
+
+		if ( elems.length === 0 ) {
+			return;
+		} // if()
+
+		var inputs = elems.find('input');
+		inputs.on('focus', function() {
+			$(this).parent('.after-title-placeholder').removeClass('empty');
+		});
+
+		inputs.on('blur', function() {
+			var that = $(this);
+
+			if ( that.val() === '' ) {
+				$(this).parent('.after-title-placeholder').addClass('empty');
+			} // if()
+		});
+
+		inputs.on('change', function() {
+			var that = $(this);
+
+			if ( that.val() === '' ) {
+				$(this).parent('.after-title-placeholder').addClass('empty');
+			} // if()
+		});
+	}; // Meta.initAfterTitlePlaceholder()
 
 	/**
 	 * Initializes all meta.
@@ -96,6 +131,7 @@ jQuery((function($) {
 		Meta.setupChosen();
 		Meta.setupDatepicker();
 		Meta.setupColorPicker();
+		Meta.initAfterTitlePlaceholder();
 	}; // Meta.init()
 
 	/**

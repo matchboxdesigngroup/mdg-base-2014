@@ -116,6 +116,36 @@ class MDG_Type_Post extends MDG_Type_Base
 
 
 	/**
+	 * Creates custom meta fields array for display after the post title.
+	 * Note: probably only should be textual inputs...
+	 *
+	 * @since   0.2.3
+	 *
+	 * @return  array Custom meta fields
+	 */
+	public function get_custom_after_title_meta_fields() {
+		$meta_fields = array();
+
+		if ( ! $this->is_current_post_type() ) {
+			return $meta_fields;
+		} // if()
+
+		// Text
+		$meta_fields[] = array(
+			'label' => 'Text',
+			'desc'  => 'Text description.',
+			'id'    => "{$this->post_type}_after_title_text",
+			'type'  => 'text',
+		);
+
+
+		return $meta_fields;
+	} // get_custom_after_title_meta_fields()
+
+
+
+
+	/**
 	 * Disables creating post type since post is a default post type
 	 *
 	 * @return Void

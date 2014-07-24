@@ -17,10 +17,10 @@ module.exports = function(grunt) {
 
 	// CSS
 	grunt.registerTask('css', [
-		// 'clean:distCSS',
+		'clean:distCSS',
 		'sass:site',
 		// 'sass:ltie9',
-		// 'sass:admin',
+		'sass:admin',
 		// 'autoprefixer',
 		// 'group_css_media_queries',
 		// 'cssmin',
@@ -33,7 +33,7 @@ module.exports = function(grunt) {
 		'uglify:site',
 		'uglify:env',
 		'uglify:admin',
-		'version'
+		// 'version'
 	]);
 
 	// Cleans up conflicts

@@ -578,6 +578,7 @@ class MDG_Form_Fields extends MDG_Generic {
 		$date_format  = ( isset( $field['date_format'] ) ) ? $field['date_format'] : 'DD, MM d, yy';
 		$label        = ( isset( $field['label'] ) ) ? $field['label'] : '';
 		$args         = ( isset( $field['args'] ) ) ? $field['args'] : array();
+		$attrs        = ( isset( $field['attrs'] ) ) ? $field['attrs'] : array();
 
 		switch ( $type ) {
 			case 'divider':
@@ -589,47 +590,47 @@ class MDG_Form_Fields extends MDG_Generic {
 				break;
 
 			case 'text':
-				$input_field = $this->text_field( $id, $meta, $desc );
+				$input_field = $this->text_field( $id, $meta, $desc, $attrs );
 				break;
 
 			case 'email':
-				$input_field = $this->email_field( $id, $meta, $desc );
+				$input_field = $this->email_field( $id, $meta, $desc, $attrs );
 				break;
 
 			case 'url':
-				$input_field = $this->url_field( $id, $meta, $desc );
+				$input_field = $this->url_field( $id, $meta, $desc, $attrs );
 				break;
 
 			case 'file':
-				$input_field = $this->file_upload_field( $id, $meta, $desc );
+				$input_field = $this->file_upload_field( $id, $meta, $desc, $attrs );
 				break;
 
 			case 'textarea':
-				$input_field = $this->textarea( $id, $meta, $desc );
+				$input_field = $this->textarea( $id, $meta, $desc, $attrs );
 				break;
 
 			case 'checkbox':
-				$input_field = $this->checkbox( $id, $meta, $desc );
+				$input_field = $this->checkbox( $id, $meta, $desc, $attrs );
 				break;
 
 			case 'radio':
-				$input_field = $this->radio( $id, $meta, $desc, $options );
+				$input_field = $this->radio( $id, $meta, $desc, $options, $attrs );
 				break;
 
 			case 'select':
-				$input_field = $this->select( $id, $meta, $desc, $options );
+				$input_field = $this->select( $id, $meta, $desc, $options, $attrs );
 				break;
 
 			case 'chosen_select':
-				$input_field = $this->chosen_select( $id, $meta, $desc, $options );
+				$input_field = $this->chosen_select( $id, $meta, $desc, $options, $attrs );
 				break;
 
 			case 'chosen_select_multi':
-				$input_field = $this->chosen_select_multi( $id, $meta, $desc, $options );
+				$input_field = $this->chosen_select_multi( $id, $meta, $desc, $options, $attrs );
 				break;
 
 			case 'date':
-				$input_field = $this->datepicker( $id, $meta, $desc, $date_format );
+				$input_field = $this->datepicker( $id, $meta, $desc, $date_format, $attrs );
 				break;
 
 			case 'title':
@@ -637,7 +638,7 @@ class MDG_Form_Fields extends MDG_Generic {
 				break;
 
 			case 'wysiwg_editor':
-				$input_field = $this->wysiwg_editor( $id, $meta, $desc, $args );
+				$input_field = $this->wysiwg_editor( $id, $meta, $desc, $args, $attrs );
 				break;
 
 			case 'multi_input':
@@ -652,7 +653,7 @@ class MDG_Form_Fields extends MDG_Generic {
 				break;
 
 			case 'color_picker':
-				$input_field = $this->color_picker( $id, $meta, $desc );
+				$input_field = $this->color_picker( $id, $meta, $desc, $attrs );
 				break;
 		} // switch()
 

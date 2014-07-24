@@ -107,8 +107,64 @@ class MDG_Meta_Helper extends MDG_Form_Fields {
 
 			// Renames the featured image meta box
 			add_action( 'do_meta_boxes', array( &$this, 'rename_featured_image_meta_box' ) );
+
+			// Add meta boxes after title.
+			add_action( 'edit_form_after_title', array( &$this, 'add_meta_after_title' ) );
 		} // if()
 	} // _add_actions()
+
+
+
+	/**
+	 * Adds meta fields after the post title edit field.
+	 *
+	 * @since   0.2.3
+	 *
+	 * @return  void.
+	 */
+	public function add_meta_after_title() {
+		global $post;
+
+		if ( ! $this->is_current_post_type() ) {
+			return;
+		} // if()
+
+		$fields = $this->get_custom_after_title_meta_fields();
+
+		if ( empty( $fields ) ) {
+			return;
+		} // if()
+
+		$html  = '';
+		$html .= '<div class="mdg-after-title">';
+
+		// Use nonce for verification
+		$html .= '<input type="hidden" name="custom_meta_box_nonce" value="'.wp_create_nonce( basename( __FILE__ ) ).'" />';
+
+		foreach ( $fields as $field ) {
+			// We really shouldn't have a description up here
+			$field['desc'] = '';
+
+			$type             = ( isset( $field['type'] ) ) ? $field['type'] : '';
+			$text_field_types = array(
+				'text',
+				'email',
+				'url',
+			);
+			$field_is_text    = in_array( $type, $text_field_types );
+			$id               = ( isset( $field['id'] ) ) ? $field['id'] : '';
+			$meta             = get_post_meta( $post->ID, esc_attr( $id ), true );
+			$empty_class      = ( $meta == '' ) ? ' empty ' : '';
+			$label            = ( isset( $field['label'] ) ) ? $field['label'] : '';
+			$html            .= ( $field_is_text ) ? "<div class='after-title-placeholder{$empty_class}'>" : '';
+			$html            .= $this->label( $id, $label );
+			$html            .= $this->select_form_field( $field, $meta, false );
+			$html            .= ( $field_is_text ) ? '</div>' : '';
+		} // foreach()
+
+		$html .= '</div>';
+		echo wp_kses( $html, $this->get_meta_output_kses_allowed_html() );
+	} // add_meta_after_title()
 
 
 
@@ -432,10 +488,16 @@ class MDG_Meta_Helper extends MDG_Form_Fields {
 	 * @return Void
 	 */
 	public function save_meta( $post_id ) {
+		$after_title_meta_fields = $this->get_custom_after_title_meta_fields();
 		$custom_meta_fields = $this->get_custom_meta_fields();
-		if ( empty( $custom_meta_fields ) )
-			return;
 
-		$this->save_custom_meta( $post_id, $custom_meta_fields );
+
+		$meta_fields = array_merge( $custom_meta_fields, $after_title_meta_fields );
+
+		if ( empty( $meta_fields ) ) {
+			return;
+		} // if()
+
+		$this->save_custom_meta( $post_id, $meta_fields );
 	} // save_meta()
 } // END Class MDG_Meta_Helper

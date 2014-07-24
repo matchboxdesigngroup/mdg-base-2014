@@ -24,7 +24,7 @@ function mdg_enqueue_site_scripts() {
 		wp_enqueue_style( 'main_css', "{$theme_uri}/assets/css/dist/main-ltie9.min.css", array(), null, 'all' );
 	} else {
 		// CSS for good browsers.
-		wp_enqueue_style( 'main_css', "{$theme_uri}/assets/css/dist/main.min.css", array(), null, 'all' );
+		wp_enqueue_style( 'main_css', "{$theme_uri}/assets/css/dist/main.8847.min.css", array(), null, 'all' );
 	} // if/else()
 
 	// jQuery is loaded using the same method from HTML5 Boilerplate:
@@ -89,9 +89,9 @@ function mdg_enqueue_admin_scripts() {
 	$theme_uri = get_template_directory_uri();
 	$ltie9     = preg_match( '/(?i)msie [6-8]/', $_SERVER['HTTP_USER_AGENT'] );
 
-	wp_enqueue_style( 'mdg-admin-css', "{$theme_uri}/assets/css/dist/admin.c833.min.css", array( 'wp-color-picker' ), null, 'all' );
+	wp_enqueue_style( 'mdg-admin-css', "{$theme_uri}/assets/css/dist/admin.min.css", array( 'wp-color-picker' ), null, 'all' );
 
-	wp_register_script( 'admin_scripts', "{$theme_uri}/assets/js/dist/admin.9f61.min.js", array( 'jquery', 'jquery-ui-datepicker', 'wp-color-picker' ), null, true );
+	wp_register_script( 'admin_scripts', "{$theme_uri}/assets/js/dist/admin.min.js", array( 'jquery', 'jquery-ui-datepicker', 'wp-color-picker' ), null, true );
 
 	// Add Global PHP -> JS
 	$mdg_globals = array(
