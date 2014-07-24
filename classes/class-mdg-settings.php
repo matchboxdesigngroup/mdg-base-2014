@@ -2,12 +2,12 @@
 /**
  * This class contains anything to do with the AJAX requests.
  *
- * @version      1.4.0
+ * @version      0.2.3
  *
  * @package      WordPress
  * @subpackage   MDG_Base
  *
- * @since        1.4.0
+ * @since        0.2.3
  *
  * @author       Dan Holloran          <dholloran@matchboxdesigngroup.com>
  *
@@ -38,7 +38,7 @@ if ( ! class_exists( 'MDG_Settings' ) ) {
 		/**
 		 * MDG_Settings class constructor.
 		 *
-		 * @since  1.4.0
+		 * @since  0.2.3
 		 *
 		 * @param  array  $config  Class configuration.
 		 */
@@ -80,7 +80,7 @@ if ( ! class_exists( 'MDG_Settings' ) ) {
 		 *
 		 * <code>$settings_fields["{$this->page_slug}_general"] = $this->_get_general_settings_fields();</code>
 		 *
-		 * @since   1.4.0
+		 * @since   0.2.3
 		 *
 		 * @todo    Fix WYSWIG not loading correct assets.
 		 *
@@ -370,7 +370,7 @@ if ( ! class_exists( 'MDG_Settings' ) ) {
 		/**
 		 * General settings section text.
 		 *
-		 * @since 1.4.0
+		 * @since 0.2.3
 		 *
 		 * <code>add_settings_section( $general_settings_group, 'General Settings', array( &$this, 'general_section_text' ), $this->page_slug );</code>
 		 *
@@ -386,7 +386,7 @@ if ( ! class_exists( 'MDG_Settings' ) ) {
 		 *
 		 * <code>$this->add_settings_fields( $general_settings_group );</code>
 		 *
-		 * @since  1.4.0
+		 * @since  0.2.3
 		 *
 		 * @param   string  $settings_group  The settings group the fields should be associated with.
 		 *
@@ -520,7 +520,7 @@ if ( ! class_exists( 'MDG_Settings' ) ) {
 		 * );
 		 * $attachment_fields .= $wpba_form_fields->build_inputs( $input_fields );
 		 *
-		 * @since   1.4.0
+		 * @since   0.2.3
 		 *
 		 * @todo    Document input types.
 		 *
